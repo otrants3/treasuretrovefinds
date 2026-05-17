@@ -1,0 +1,280 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SunburstSeal from "../components/SunburstSeal.astro";
+
+const CONCEPTS = [
+  {
+    slug: "walk-in",
+    no: "I.",
+    name: "The Walk-In",
+    blurb: "Lights come up on Bill's booth. No click required — you're already inside. Cinematic parallax scroll, real items revealed one by one with their tags.",
+    tone: "transport · cinematic · environment",
+    href: "/concepts/walk-in",
+  },
+  {
+    slug: "notebook",
+    no: "II.",
+    name: "Bill's Notebook",
+    blurb: "The site IS Bill's hand-bound collector's notebook. Cover spread, taped polaroids, red-pen marginalia, handwritten captions. Flip through Bill's brain.",
+    tone: "intimate · scrapbook · weird charm",
+    href: "/concepts/notebook",
+  },
+  {
+    slug: "card-catalog",
+    no: "III.",
+    name: "The Card Catalog",
+    blurb: "A vintage library card-catalog cabinet. Pull a drawer, an index card slides out with the section's content. Dewey numbers, library stamps, typed cards.",
+    tone: "interactive · poke around · librarian-with-a-record",
+    href: "/concepts/card-catalog",
+  },
+  {
+    slug: "auction",
+    no: "IV.",
+    name: "The Auction Catalogue",
+    blurb: "Christie's-style editorial — full-screen lot-by-lot scroll snap. PROVENANCE, ESTIMATE, BILL'S NOTE fields. Sober gravity with outlaw voice.",
+    tone: "prestige · editorial · Goodfellas-meets-Christie's",
+    href: "/concepts/auction",
+  },
+  {
+    slug: "marquee",
+    no: "V.",
+    name: "The Marquee",
+    blurb: "1928 vaudeville show-bill. Period brass-bulb marquee that lights up on load, sequence-fires left to right. REEL I — V structure, ribbon banners.",
+    tone: "theatrical · loud · one-night-only",
+    href: "/concepts/marquee",
+  },
+  {
+    slug: "the-cabinet",
+    no: "0.",
+    name: "The Cabinet (v3 — for comparison)",
+    blurb: "The previous iteration: walnut cabinet doors that open on click, three booth shelves with tag callouts, the full content flow. Left in for side-by-side comparison.",
+    tone: "reference build",
+    href: "/concepts/the-cabinet",
+  },
+];
+---
+
+<Layout title="Treasure Trove Finds — Five Homepage Concepts">
+  <header class="pk-mast">
+    <div class="pk-mast__inner">
+      <div class="pk-mast__center">
+        <p class="pk-mast__eyebrow">— Concept Catalogue · Vol. I, No. 1 —</p>
+        <h1 class="pk-mast__wordmark">TREASURE TROVE FINDS</h1>
+        <p class="pk-mast__sub">
+          Five rooms. One booth. <em>Pick the one that feels like Bill.</em>
+        </p>
+      </div>
+      <div class="pk-mast__seal">
+        <SunburstSeal size={108} est="2022" since="'73" />
+      </div>
+    </div>
+    <div class="pk-rule"></div>
+  </header>
+
+  <section class="pk-grid">
+    {CONCEPTS.map((c) => (
+      <a class={`pk-card pk-card--${c.slug}`} href={c.href}>
+        <div class="pk-card__plate">
+          <span class="pk-card__no">{c.no}</span>
+          <h2 class="pk-card__name">{c.name}</h2>
+        </div>
+        <p class="pk-card__blurb">{c.blurb}</p>
+        <p class="pk-card__tone">{c.tone}</p>
+        <span class="pk-card__cta">Step inside <span aria-hidden="true">→</span></span>
+      </a>
+    ))}
+  </section>
+
+  <footer class="pk-foot">
+    <p>
+      Pick one. We'll keep iterating on whichever lands. The others stay live at
+      their URLs as a holding pen for ideas worth borrowing.
+    </p>
+    <p class="pk-foot__legal">
+      TREASURE TROVE FINDS · PARADISE MALL · BOOTH #18 · LAS VEGAS, NEVADA · <em>An Otranto Labs project</em>
+    </p>
+  </footer>
+</Layout>
+
+<style>
+  .pk-mast {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 32px 0;
+  }
+  .pk-mast__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 720px) {
+    .pk-mast__inner { grid-template-columns: 1fr; text-align: center; }
+    .pk-mast__seal { justify-self: center; }
+  }
+  .pk-mast__center { text-align: center; }
+  .pk-mast__eyebrow {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--color-brass);
+    font-size: 12px;
+    margin: 0;
+  }
+  .pk-mast__wordmark {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: clamp(40px, 6.4vw, 86px);
+    line-height: 0.92;
+    letter-spacing: 0.012em;
+    margin: 10px 0 6px;
+    text-shadow: 2px 2px 0 rgba(26,22,20,0.18);
+    transform: rotate(-0.4deg);
+  }
+  .pk-mast__sub {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-ink);
+    font-size: 18px;
+    margin: 0;
+  }
+  .pk-mast__sub em { color: var(--color-walnut); }
+
+  .pk-rule {
+    border-top: 1.6px solid var(--color-brass);
+    border-bottom: 1.6px solid var(--color-brass);
+    height: 5px;
+    margin: 20px 0 0;
+    position: relative;
+  }
+  .pk-rule::after {
+    content: "✦";
+    position: absolute;
+    top: -14px; left: 50%; transform: translateX(-50%);
+    color: var(--color-brass);
+    background: var(--color-cream);
+    padding: 0 14px;
+    font-size: 18px;
+  }
+
+  .pk-grid {
+    max-width: 1280px;
+    margin: 56px auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 1080px) { .pk-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .pk-grid { grid-template-columns: 1fr; } }
+
+  .pk-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    text-decoration: none;
+    border: 1.5px solid var(--color-walnut);
+    box-shadow: 4px 5px 0 rgba(26,22,20,0.2);
+    padding: 22px 22px 24px;
+    position: relative;
+    transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+  }
+  .pk-card::before, .pk-card::after {
+    content: "";
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--color-brass);
+  }
+  .pk-card::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+  .pk-card::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+  .pk-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 7px 0 rgba(26,22,20,0.25);
+  }
+  .pk-card__plate {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-brass);
+    position: relative;
+  }
+  .pk-card__plate::after {
+    content: "◆";
+    position: absolute;
+    bottom: -9px; left: 0;
+    color: var(--color-brass);
+    background: var(--color-cream);
+    padding: 0 8px 0 0;
+    font-size: 11px;
+  }
+  .pk-card__no {
+    font-family: var(--font-display);
+    color: var(--color-brass);
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .pk-card__name {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    color: var(--color-ink);
+    font-size: 26px;
+    letter-spacing: 0.005em;
+    line-height: 1.05;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .pk-card__blurb {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--color-ink);
+    margin: 0 0 12px;
+    flex: 1;
+  }
+  .pk-card__tone {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-smoke);
+    font-size: 13px;
+    margin: 0 0 18px;
+  }
+  .pk-card__cta {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--color-buddy-red);
+    font-size: 12px;
+    margin-top: auto;
+  }
+
+  .pk-card--the-cabinet { opacity: 0.78; }
+
+  .pk-foot {
+    max-width: 720px;
+    margin: 0 auto 64px;
+    padding: 32px 32px 0;
+    text-align: center;
+    border-top: 1.4px solid var(--color-brass);
+  }
+  .pk-foot p {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-ink);
+    margin: 18px 0 0;
+    font-size: 16px;
+  }
+  .pk-foot__legal {
+    font-family: var(--font-label) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--color-brass);
+    font-style: normal !important;
+    font-size: 10px !important;
+    margin-top: 18px !important;
+  }
+  .pk-foot__legal em { color: var(--color-smoke); font-style: italic; }
+</style>
