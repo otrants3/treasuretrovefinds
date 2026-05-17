@@ -1,0 +1,841 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const BOOTH = {
+  name: "Paradise Mall · Booth #18",
+  street: "3565 E. Flamingo Road",
+  city: "Las Vegas, Nevada 89121",
+  phone: "(516) 446-2693",
+  phoneHref: "tel:+15164462693",
+  hoursLine: "Open daily, 10 'til 6",
+  billLine: "Bill works the booth Weds & Sun",
+  mapHref:
+    "https://www.google.com/maps/search/?api=1&query=3565+E+Flamingo+Road+Las+Vegas+NV+89121",
+};
+---
+
+<Layout title="Bill's Notebook — Treasure Trove Finds">
+  <main class="nb-desk">
+    <!-- BOOK COVER — first spread, the cover -->
+    <article class="nb-book nb-book--cover" aria-label="Bill's notebook — front cover">
+      <div class="nb-cover">
+        <p class="nb-cover__lab">PROPERTY OF</p>
+        <h1 class="nb-cover__name">Bill &amp; Lisa<br/><span>Otranto</span></h1>
+        <div class="nb-cover__rule"></div>
+        <p class="nb-cover__title">A NOTEBOOK<br/>OF AMERICAN<br/>ODDMENTS</p>
+        <p class="nb-cover__by">— kept since 1973 —</p>
+        <div class="nb-cover__sticker">
+          <span>Booth</span>
+          <strong>18</strong>
+          <span>Paradise Mall · Las Vegas</span>
+        </div>
+        <p class="nb-cover__corner">Vol. I · No. 1</p>
+        <p class="nb-cover__hint">flip the page <span aria-hidden="true">↓</span></p>
+      </div>
+    </article>
+
+    <!-- SPREAD I — Origin (Bill's actual story) -->
+    <article class="nb-book" aria-label="Page one — how it started">
+      <div class="nb-spread">
+        <!-- LEFT PAGE — taped polaroid + handwritten note -->
+        <div class="nb-page nb-page--left">
+          <p class="nb-folio">— I. —</p>
+          <figure class="nb-polaroid" style="transform: rotate(-3.5deg);">
+            <span class="nb-tape nb-tape--tl"></span>
+            <span class="nb-tape nb-tape--br"></span>
+            <img src="/photos/case-buddy-l-trucks.jpg" alt="Bill's display case" />
+            <figcaption>
+              the trucks · case 14 · last Sunday
+            </figcaption>
+          </figure>
+          <p class="nb-hand nb-hand--note" style="transform: rotate(-1deg);">
+            "the cards came first. <br/>then everything else."
+          </p>
+        </div>
+
+        <!-- RIGHT PAGE — typed body -->
+        <div class="nb-page nb-page--right">
+          <p class="nb-margin-note">how it started —</p>
+          <h2 class="nb-page__title">Baseball Cards.</h2>
+          <p>
+            Bill caught the bug the way most boys did. A stack of cards.
+            But the <em>players</em> weren't the point. The <strong>numbers
+            on the back</strong> were. The years, the batting averages,
+            the stadium names — the history hiding inside the data.
+            He'd memorize them. He'd cross-reference. He'd want to know
+            what else was happening the year somebody hit .357.
+          </p>
+          <p>
+            That curiosity never quit. Cards became bottles. Bottles
+            became signs. Signs became toys. Toys became <em>anything
+            with a story he hadn't heard yet.</em>
+          </p>
+          <p class="nb-pull">
+            Not just antique. Not just vintage. <em>Nostalgic.</em>
+          </p>
+          <p>
+            Lisa came along, made it a life. Half a century later, the
+            booth at Paradise Mall is what came of it.
+          </p>
+          <p class="nb-sig">
+            — <span>Bill &amp; Lisa</span>
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- SPREAD II — A real piece, with its tag -->
+    <article class="nb-book" aria-label="Page two — a real piece">
+      <div class="nb-spread">
+        <div class="nb-page nb-page--left">
+          <p class="nb-folio">— II. —</p>
+          <h2 class="nb-page__title nb-page__title--small">A piece, by way of example.</h2>
+          <p>
+            Pulled this off a counter in Ohio. 1934. <strong>Ludwig
+            Scherk Renaissance perfume bottle</strong> — silvered metalwork
+            in front, a miniature painting of Marie Antoinette set
+            into the glass. They don't really make things like that
+            anymore. They didn't really make many of them then.
+          </p>
+          <p>
+            Bill will tell you what it would have cost new, what the
+            perfume smelled like, and which Hollywood actresses kept
+            one on the dresser. <em>Ask him.</em>
+          </p>
+        </div>
+
+        <div class="nb-page nb-page--right">
+          <figure class="nb-polaroid" style="transform: rotate(2.5deg);">
+            <span class="nb-tape nb-tape--tl"></span>
+            <span class="nb-tape nb-tape--tr"></span>
+            <img src="/photos/tag-perfume-bottle.jpg" alt="1934 Ludwig Scherk perfume bottle on Bill's tag" />
+            <figcaption>
+              the real tag · in Bill's hand
+            </figcaption>
+          </figure>
+          <span class="nb-tag" style="transform: rotate(-6deg); top: 64%; left: 5%;">
+            <span class="nb-tag__thread"></span>
+            <span class="nb-tag__hole"></span>
+            <span class="nb-tag__era">1934</span>
+            <strong>Scherk Perfume Bottle</strong>
+            <span class="nb-tag__note">w/ Marie Antoinette miniature</span>
+            <span class="nb-tag__price">$225.00</span>
+          </span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SPREAD III — The Booth Experience -->
+    <article class="nb-book" aria-label="Page three — what it's like in the booth">
+      <div class="nb-spread">
+        <div class="nb-page nb-page--left">
+          <p class="nb-folio">— III. —</p>
+          <h2 class="nb-page__title">In the Booth.</h2>
+          <p>
+            Walk in. Point at anything. Bill <em>will not hesitate.</em>
+            He'll tell you the year it was made. He'll tell you the maker.
+            He'll tell you what it sold for new, who probably bought it
+            first, and what was on the radio in America that month.
+          </p>
+          <p>
+            And he'll tell it <strong>animated</strong> — hands moving,
+            leaning on the case, getting into it. This is not your
+            sixth-grade Social Studies teacher's history lecture.
+            This is history told the way it should have been the
+            first time.
+          </p>
+          <p>
+            Lisa keeps the dates straight. Bill carries the rest.
+          </p>
+        </div>
+        <div class="nb-page nb-page--right">
+          <figure class="nb-polaroid" style="transform: rotate(-2deg);">
+            <span class="nb-tape nb-tape--tl"></span>
+            <span class="nb-tape nb-tape--br"></span>
+            <img src="/photos/fan-perfumes.jpg" alt="GE cast-iron fan among the perfumes" />
+            <figcaption>
+              the GE fan · still works
+            </figcaption>
+          </figure>
+          <p class="nb-hand nb-hand--margin" style="transform: rotate(1.5deg);">
+            "ask him to plug it in →"
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- SPREAD IV — Tonight's Lineup -->
+    <article class="nb-book" aria-label="Page four — currently at the booth">
+      <div class="nb-spread">
+        <div class="nb-page nb-page--full">
+          <p class="nb-folio">— IV. —</p>
+          <h2 class="nb-page__title">Currently on the Counter.</h2>
+          <p class="nb-pull">Four pieces. Hand-picked. Subject to change Sunday.</p>
+
+          <div class="nb-grid">
+            <div class="nb-card-item">
+              <figure class="nb-polaroid nb-polaroid--mini" style="transform: rotate(-2.5deg);">
+                <span class="nb-tape nb-tape--tl"></span>
+                <img src="/photos/tag-perfume-bottle.jpg" alt="Marie Antoinette perfume" />
+              </figure>
+              <p class="nb-card-item__era">1934</p>
+              <p class="nb-card-item__name">Scherk Perfume Bottle</p>
+              <p class="nb-card-item__price">$225.00</p>
+            </div>
+            <div class="nb-card-item">
+              <figure class="nb-polaroid nb-polaroid--mini" style="transform: rotate(2deg);">
+                <span class="nb-tape nb-tape--tr"></span>
+                <img src="/photos/tag-race-car.jpg" alt="Hobby Kiddie race car" />
+              </figure>
+              <p class="nb-card-item__era">1930-40s</p>
+              <p class="nb-card-item__name">Hobby Kiddie Race Car</p>
+              <p class="nb-card-item__price">$65.00</p>
+            </div>
+            <div class="nb-card-item">
+              <figure class="nb-polaroid nb-polaroid--mini" style="transform: rotate(-1deg);">
+                <span class="nb-tape nb-tape--tl"></span>
+                <img src="/photos/fan-perfumes.jpg" alt="GE oscillating fan" />
+              </figure>
+              <p class="nb-card-item__era">1930s</p>
+              <p class="nb-card-item__name">GE Cast-Iron Fan</p>
+              <p class="nb-card-item__price">ask Bill</p>
+            </div>
+            <div class="nb-card-item nb-card-item--awaiting">
+              <div class="nb-card-item__placeholder">
+                <span>PHOTO<br/>AWAITING</span>
+              </div>
+              <p class="nb-card-item__era">—</p>
+              <p class="nb-card-item__name">Bill hasn't picked the fourth yet</p>
+              <p class="nb-card-item__price">check Sunday</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SPREAD V — Find the Joint -->
+    <article class="nb-book" aria-label="Page five — find the joint">
+      <div class="nb-spread">
+        <div class="nb-page nb-page--left">
+          <p class="nb-folio">— V. —</p>
+          <h2 class="nb-page__title">Find the Joint.</h2>
+          <p class="nb-pull"><em>no GPS required, but it helps</em></p>
+
+          <p class="nb-line nb-line--bold">{BOOTH.name.toUpperCase()}</p>
+          <p class="nb-line">{BOOTH.street}</p>
+          <p class="nb-line">{BOOTH.city}</p>
+
+          <p class="nb-folio nb-folio--inline">hours</p>
+          <p class="nb-line">{BOOTH.hoursLine}</p>
+          <p class="nb-line nb-line--italic">{BOOTH.billLine}</p>
+
+          <p class="nb-folio nb-folio--inline">ring bill up</p>
+          <p class="nb-phone">{BOOTH.phone}</p>
+
+          <div class="nb-ctas">
+            <a class="nb-btn nb-btn--primary" href={BOOTH.mapHref} target="_blank" rel="noopener">Get Directions</a>
+            <a class="nb-btn nb-btn--secondary" href={BOOTH.phoneHref}>Call Bill</a>
+          </div>
+        </div>
+        <div class="nb-page nb-page--right">
+          <div class="nb-map">
+            <iframe
+              title="Map to Paradise Mall, Booth #18"
+              src="https://www.google.com/maps?q=3565+E+Flamingo+Road+Las+Vegas+NV&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="nb-hand nb-hand--margin" style="transform: rotate(-2deg);">
+            "we're the case with the brass bell out front →"
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- SPREAD VI — Etsy + Closing -->
+    <article class="nb-book" aria-label="Page six — last page">
+      <div class="nb-spread">
+        <div class="nb-page nb-page--full nb-page--last">
+          <p class="nb-folio">— VI. —</p>
+          <h2 class="nb-page__title">Etsy's coming.</h2>
+          <p>
+            We're putting the listings together piece by piece. If you want first
+            crack at the good stuff before it goes up — <em>and the first crack is
+            what you want</em> — leave your name. No spam. No tricks. We don't
+            have time for that.
+          </p>
+          <form class="nb-form" action="#" method="post">
+            <input type="email" name="email" required placeholder="your.email@…" aria-label="Email address" />
+            <button class="nb-btn nb-btn--primary" type="submit">Get the word first</button>
+          </form>
+
+          <div class="nb-closing">
+            <p>Est. 2022 · Collecting since 1973 · <em>Pieces back to 1850.</em></p>
+            <p>Bill knows everybody. <em>Ask no questions.</em></p>
+            <p class="nb-closing__legal">TREASURE TROVE FINDS · PARADISE MALL · BOOTH #18 · LAS VEGAS, NEVADA</p>
+            <p class="nb-closing__labs">An Otranto Labs project</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style is:global>
+  body {
+    background: #221610;
+    background-image:
+      radial-gradient(rgba(0,0,0,0.4) 2px, transparent 2px),
+      radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 5px 5px, 9px 9px;
+  }
+</style>
+
+<style>
+  .nb-desk {
+    padding: 80px 24px 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+    align-items: center;
+  }
+
+  /* ============================================================
+     THE BOOK — each spread sits on a leather-bound desk
+     ============================================================ */
+  .nb-book {
+    position: relative;
+    width: min(1080px, 100%);
+    background: #fbf2d8;
+    background-image:
+      /* faint ruled lines */
+      linear-gradient(rgba(61,42,30,0.06) 1px, transparent 1px);
+    background-size: 100% 30px;
+    background-position: 0 60px;
+    border: 1px solid rgba(61,42,30,0.3);
+    box-shadow:
+      0 20px 40px rgba(0,0,0,0.5),
+      0 6px 0 rgba(0,0,0,0.4);
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+  }
+
+  /* Faint spine (binding) down the middle */
+  .nb-book::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: rgba(61,42,30,0.18);
+    transform: translateX(-50%);
+    box-shadow:
+      -10px 0 18px rgba(0,0,0,0.06),
+      10px 0 18px rgba(0,0,0,0.06);
+    z-index: 1;
+  }
+
+  /* Page corners — slight dog-ear shadow at corners */
+  .nb-book::after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 36px; height: 36px;
+    background: linear-gradient(225deg, rgba(61,42,30,0.18) 50%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .nb-spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 600px;
+  }
+  @media (max-width: 720px) {
+    .nb-spread { grid-template-columns: 1fr; min-height: 0; }
+    .nb-book::before { display: none; }
+  }
+
+  .nb-page {
+    padding: 56px 48px;
+    position: relative;
+  }
+  .nb-page--right {
+    border-left: 1px solid rgba(61,42,30,0.08);
+  }
+  @media (max-width: 720px) {
+    .nb-page--right { border-left: 0; border-top: 1px dashed rgba(61,42,30,0.18); }
+    .nb-page { padding: 36px 28px; }
+  }
+  .nb-page--full {
+    grid-column: 1 / -1;
+    padding: 56px 64px;
+  }
+
+  /* ============================================================
+     COVER (spread I — book cover)
+     ============================================================ */
+  .nb-book--cover {
+    background: linear-gradient(180deg, #4a2f1f 0%, #3D2A1E 50%, #2a1c12 100%);
+    background-image:
+      /* wood grain */
+      repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,0.12) 0 1px,
+        transparent 1px 8px,
+        rgba(255,255,255,0.03) 8px 9px,
+        transparent 9px 18px
+      );
+    border: 4px double rgba(201,162,39,0.55);
+    box-shadow:
+      0 30px 50px rgba(0,0,0,0.6),
+      inset 0 0 60px rgba(0,0,0,0.5);
+  }
+  .nb-book--cover::before { display: none; }
+  .nb-book--cover::after { display: none; }
+  .nb-cover {
+    padding: 80px 56px 72px;
+    color: var(--color-cream);
+    text-align: center;
+    position: relative;
+    min-height: 540px;
+  }
+  .nb-cover__lab {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--color-brass);
+    font-size: 11px;
+    margin: 0 0 12px;
+  }
+  .nb-cover__name {
+    font-family: var(--font-hand);
+    color: var(--color-cream);
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 0.95;
+    margin: 0 0 22px;
+    font-weight: 400;
+    transform: rotate(-1deg);
+  }
+  .nb-cover__name span { color: var(--color-brass); }
+  .nb-cover__rule {
+    width: 64px;
+    margin: 0 auto 22px;
+    border-top: 1.5px solid var(--color-brass);
+    position: relative;
+  }
+  .nb-cover__rule::after {
+    content: "✦";
+    position: absolute;
+    top: -10px; left: 50%; transform: translateX(-50%);
+    color: var(--color-brass);
+    background: var(--color-walnut);
+    padding: 0 8px;
+    font-size: 12px;
+  }
+  .nb-cover__title {
+    font-family: var(--font-display);
+    color: var(--color-cream);
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 0.92;
+    margin: 22px 0 12px;
+    letter-spacing: 0.01em;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+  }
+  .nb-cover__by {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-rose);
+    font-size: 16px;
+    margin: 8px 0 32px;
+  }
+  .nb-cover__sticker {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 32px;
+    background: var(--color-buddy-red);
+    color: var(--color-cream);
+    border: 1.5px solid rgba(0,0,0,0.5);
+    box-shadow: 4px 5px 0 rgba(0,0,0,0.5);
+    font-family: var(--font-label);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 11px;
+    transform: rotate(-2deg);
+  }
+  .nb-cover__sticker strong {
+    font-family: var(--font-display);
+    color: var(--color-cream);
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin: 6px 0;
+    font-weight: 400;
+  }
+  .nb-cover__corner {
+    position: absolute;
+    top: 24px; right: 28px;
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-brass);
+    font-size: 13px;
+    margin: 0;
+  }
+  .nb-cover__hint {
+    position: absolute;
+    bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-label);
+    color: var(--color-brass);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 10px;
+    margin: 0;
+    animation: nb-blink 2.4s ease-in-out infinite;
+  }
+  @keyframes nb-blink {
+    0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(4px); }
+  }
+
+  /* ============================================================
+     PAGE FURNITURE — folio, title, hand-note, margin-note
+     ============================================================ */
+  .nb-folio {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-brass);
+    font-size: 11px;
+    margin: 0 0 14px;
+  }
+  .nb-folio--inline { margin-top: 18px; margin-bottom: 4px; }
+  .nb-margin-note {
+    font-family: var(--font-hand);
+    color: var(--color-buddy-red);
+    font-size: 18px;
+    margin: 0 0 8px;
+    transform: rotate(-1.5deg);
+  }
+  .nb-page__title {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 0.95;
+    margin: 4px 0 22px;
+    letter-spacing: 0.01em;
+    text-shadow: 1.5px 1.5px 0 rgba(26,22,20,0.16);
+    transform: rotate(-0.4deg);
+  }
+  .nb-page__title--small {
+    font-size: clamp(28px, 3vw, 40px);
+  }
+  .nb-page p {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 0 0 14px;
+    color: var(--color-ink);
+  }
+  .nb-page p em { font-style: italic; color: var(--color-walnut); }
+  .nb-page p strong { color: var(--color-buddy-red); font-weight: 700; }
+  .nb-pull {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-buddy-red);
+    font-size: 19px !important;
+    border-left: 2px solid var(--color-brass);
+    padding-left: 14px;
+    margin: 14px 0 18px !important;
+  }
+  .nb-sig {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-walnut);
+    margin-top: 20px;
+  }
+  .nb-sig span {
+    font-family: var(--font-hand);
+    font-style: normal;
+    font-size: 22px;
+    color: var(--color-buddy-red);
+    margin: 0 4px;
+  }
+
+  .nb-hand {
+    font-family: var(--font-hand);
+    color: var(--color-buddy-red);
+    font-size: 24px;
+    line-height: 1.25;
+    margin: 24px 0 0;
+  }
+  .nb-hand--note {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .nb-hand--margin {
+    text-align: right;
+    color: var(--color-walnut);
+    font-size: 18px;
+  }
+
+  /* ============================================================
+     POLAROID — taped into the page
+     ============================================================ */
+  .nb-polaroid {
+    background: #fbf3dc;
+    padding: 12px 12px 48px;
+    border: 1px solid rgba(61,42,30,0.25);
+    box-shadow: 5px 6px 0 rgba(26,22,20,0.22);
+    margin: 0 0 8px;
+    position: relative;
+    max-width: 100%;
+  }
+  .nb-polaroid img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: saturate(0.85) sepia(0.08) contrast(1.05);
+    border: 1px solid rgba(61,42,30,0.25);
+    display: block;
+  }
+  .nb-polaroid figcaption {
+    text-align: center;
+    margin-top: 12px;
+    font-family: var(--font-hand);
+    color: var(--color-walnut);
+    font-size: 16px;
+  }
+  .nb-polaroid--mini { padding: 8px 8px 36px; }
+  .nb-polaroid--mini figcaption { font-size: 12px; }
+  .nb-polaroid--mini img { aspect-ratio: 1; }
+
+  .nb-tape {
+    position: absolute;
+    width: 56px; height: 18px;
+    background: rgba(232, 213, 168, 0.65);
+    border: 1px solid rgba(61,42,30,0.18);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+  }
+  .nb-tape--tl { top: -8px; left: -10px; transform: rotate(-12deg); }
+  .nb-tape--tr { top: -8px; right: -10px; transform: rotate(12deg); }
+  .nb-tape--br { bottom: -8px; right: -10px; transform: rotate(-10deg); }
+
+  /* ============================================================
+     PAPER TAG (in-page)
+     ============================================================ */
+  .nb-tag {
+    position: absolute;
+    width: 200px;
+    background: var(--color-tag-paper);
+    background-image: radial-gradient(rgba(61,42,30,0.08) 1px, transparent 1px);
+    background-size: 4px 4px;
+    color: var(--color-ink);
+    border: 1px solid rgba(61,42,30,0.4);
+    padding: 20px 14px 12px;
+    font-family: var(--font-hand);
+    line-height: 1.3;
+    box-shadow: 4px 5px 0 rgba(26,22,20,0.18);
+  }
+  .nb-tag strong {
+    display: block;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 2px 0;
+  }
+  .nb-tag__thread {
+    position: absolute;
+    top: -22px; left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 1.5px; height: 28px;
+    background: var(--color-brass);
+  }
+  .nb-tag__hole {
+    position: absolute;
+    top: 6px; left: 50%;
+    transform: translateX(-50%);
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--color-cream);
+    box-shadow: inset 0 0 0 1px rgba(61,42,30,0.6);
+  }
+  .nb-tag__era { display: block; font-size: 11px; color: var(--color-walnut); margin-top: 4px; }
+  .nb-tag__note { display: block; font-size: 12px; color: var(--color-walnut); }
+  .nb-tag__price {
+    display: block;
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 20px;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.18);
+  }
+
+  /* ============================================================
+     TONIGHT'S LINEUP grid
+     ============================================================ */
+  .nb-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 18px 0;
+  }
+  @media (max-width: 880px) { .nb-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .nb-grid { grid-template-columns: 1fr; } }
+  .nb-card-item { text-align: center; }
+  .nb-card-item__era {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-brass);
+    font-size: 10px;
+    margin: 12px 0 2px !important;
+    line-height: 1 !important;
+  }
+  .nb-card-item__name {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    color: var(--color-ink);
+    font-size: 15px !important;
+    margin: 2px 0 4px !important;
+    line-height: 1.2 !important;
+  }
+  .nb-card-item__price {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 22px !important;
+    margin: 2px 0 0 !important;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.15);
+  }
+  .nb-card-item__placeholder {
+    aspect-ratio: 1;
+    background:
+      repeating-linear-gradient(45deg,
+        var(--color-tag-paper) 0 10px,
+        rgba(61,42,30,0.05) 10px 11px);
+    border: 1px dashed var(--color-walnut);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    color: var(--color-walnut);
+    font-size: 22px;
+    line-height: 1;
+    text-align: center;
+  }
+
+  /* ============================================================
+     FIND THE JOINT (V)
+     ============================================================ */
+  .nb-line {
+    font-family: var(--font-billing);
+    font-size: 17px !important;
+    margin: 0 !important;
+  }
+  .nb-line--bold { font-weight: 700; }
+  .nb-line--italic { font-style: italic; color: var(--color-smoke); font-size: 14px !important; }
+  .nb-phone {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 38px !important;
+    line-height: 1 !important;
+    margin: 4px 0 6px !important;
+    letter-spacing: 0.01em;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.15);
+  }
+  .nb-ctas {
+    display: flex; gap: 10px;
+    margin-top: 22px;
+  }
+  .nb-btn {
+    flex: 1;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 11px;
+    padding: 12px 14px;
+    text-decoration: none;
+    text-align: center;
+    border: 1.5px solid var(--color-walnut);
+    box-shadow: 2px 2px 0 rgba(26,22,20,0.22);
+    position: relative;
+  }
+  .nb-btn::before {
+    content: "";
+    position: absolute; top: 4px; bottom: 4px; left: 4px; right: 4px;
+    border: 1px solid rgba(242,232,208,0.5);
+    pointer-events: none;
+  }
+  .nb-btn--primary { background: var(--color-buddy-red); color: var(--color-cream); }
+  .nb-btn--secondary { background: var(--color-cream); color: var(--color-ink); }
+  .nb-btn--secondary::before { border-color: rgba(61,42,30,0.4); }
+
+  .nb-map {
+    position: relative;
+    padding: 10px;
+    border: 1.5px solid var(--color-brass);
+    background: rgba(0,0,0,0.04);
+    min-height: 340px;
+  }
+  .nb-map iframe {
+    width: 100%; height: 100%; min-height: 340px;
+    border: 1px solid var(--color-walnut);
+    filter: sepia(0.3) saturate(0.7) contrast(1.05);
+    display: block;
+  }
+
+  /* ============================================================
+     LAST SPREAD — Etsy + closing
+     ============================================================ */
+  .nb-form {
+    display: flex; gap: 0;
+    margin: 18px 0 24px;
+    max-width: 540px;
+  }
+  .nb-form input {
+    flex: 1; min-width: 0;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    border: 1.5px solid var(--color-walnut);
+    border-right: 0;
+    padding: 13px 16px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    outline: none;
+  }
+  .nb-form .nb-btn { flex: 0 0 auto; padding: 13px 20px; }
+
+  .nb-closing {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1.5px solid var(--color-brass);
+    text-align: center;
+  }
+  .nb-closing p {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-ink);
+    margin: 0 0 6px;
+    font-size: 17px;
+  }
+  .nb-closing p em { color: var(--color-walnut); }
+  .nb-closing__legal {
+    font-family: var(--font-label) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--color-brass);
+    font-style: normal !important;
+    font-size: 10px !important;
+    margin-top: 18px !important;
+  }
+  .nb-closing__labs {
+    font-family: var(--font-billing) !important;
+    color: var(--color-smoke);
+    font-size: 13px !important;
+    font-style: italic !important;
+  }
+</style>

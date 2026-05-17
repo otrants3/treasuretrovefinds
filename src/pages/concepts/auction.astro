@@ -1,0 +1,801 @@
+---
+/**
+ * THE AUCTION CATALOGUE — concept route for TreasureTroveFinds.
+ *
+ * Christie's auction catalogue edited by Bill and Lisa. Each lot is a
+ * full-screen scroll-snap "spread" with massive Oswald lot numbers,
+ * brass field labels (PROVENANCE / CONDITION / BILL'S NOTE / ESTIMATE)
+ * and EB Garamond italic commentary. Sober gravity meets outlaw voice —
+ * Christie's meets Goodfellas.
+ *
+ * Constraints obeyed: no pure white, no system sans, no rounded corners
+ * over 2px, no gradients, no card drop shadows (only hard ink offsets),
+ * no emoji, no fedora/tommy-gun/dice/playing-card/neon iconography.
+ */
+import Layout from "../../layouts/Layout.astro";
+import AuctionNav from "../../components/concepts/auction/AuctionNav.astro";
+import LotSection from "../../components/concepts/auction/LotSection.astro";
+import LotHeader from "../../components/concepts/auction/LotHeader.astro";
+import LotPlate from "../../components/concepts/auction/LotPlate.astro";
+
+// Single source of truth for booth + phone — edit here, propagates.
+const BOOTH = {
+  name: "Paradise Mall · Booth #18",
+  street: "3565 E. Flamingo Road",
+  city: "Las Vegas, Nevada 89121",
+  phone: "(516) 446-2693",
+  phoneHref: "tel:+15164462693",
+  mapEmbed: "https://www.google.com/maps?q=3565+E+Flamingo+Road+Las+Vegas+NV&output=embed",
+  mapHref:
+    "https://www.google.com/maps/search/?api=1&query=3565+E+Flamingo+Road+Las+Vegas+NV+89121",
+};
+
+// Lot data — kept inline so the page reads as one auction catalogue.
+const LOTS = [
+  {
+    id: "lot-02",
+    number: "02",
+    tag: "Perfumery · French · Pre-War",
+    meta: "Single specimen · As exhibited at Booth #18",
+    title: "Ludwig Scherk Renaissance Perfume Bottle",
+    subtitle: "German, 1934 — gilt and enamel, with a Marie Antoinette miniature portrait",
+    photo: "/photos/tag-perfume-bottle.jpg",
+    alt: "1934 Ludwig Scherk Renaissance perfume bottle with a Marie Antoinette miniature on the front",
+    estimate: "$225",
+    provenance: "Berlin, House of Scherk, 1934. Stoppered. Crossed the Atlantic somewhere along the line and surfaced in a Vegas estate three winters ago.",
+    condition: "Original stopper. Faint gilt loss at the shoulder; portrait clean. No chips, no clouding, no repairs.",
+    billNote: "If you've never put your nose to a 90-year-old perfume bottle, do it once. This one's still got a ghost of the original.",
+  },
+  {
+    id: "lot-03",
+    number: "03",
+    tag: "Pressed Steel · American · Depression",
+    meta: "One of four currently in the case",
+    title: "Hobby Kiddie Diecast Race Car",
+    subtitle: "American, c. 1930–40 — cast lead alloy, original paint, racing number intact",
+    photo: "/photos/tag-race-car.jpg",
+    alt: "1930s Hobby Kiddie diecast race car in original paint with handwritten paper tag attached",
+    estimate: "$65",
+    provenance: "Bought out of a New Jersey toy collector's basement in 2019. Believed to be a five-and-dime piece — built to sell, lasted ninety years anyway.",
+    condition: "Honest wear. Tires original rubber, slightly perished — sit it on a shelf, don't run it on a hardwood floor.",
+    billNote: "Sixty-five bucks for something this old that still rolls. Try finding that anywhere else in this town.",
+  },
+  {
+    id: "lot-04",
+    number: "04",
+    tag: "Appliance · American · Pre-War",
+    meta: "Working order — verified by Bill",
+    title: "General Electric Cast-Iron Oscillating Fan",
+    subtitle: "American, 1930s — cast iron base, brass cage, four-blade head, original cloth cord",
+    photo: "/photos/fan-perfumes.jpg",
+    alt: "1930s GE cast-iron oscillating fan displayed alongside vintage perfume bottles in the booth case",
+    estimate: "Ask Bill",
+    provenance: "Pulled from a closed Henderson barbershop. Bill rewired the lamp cord himself — original cloth jacket retained.",
+    condition: "Spins quiet on all three speeds. Oscillator engaged and engaging. Patina kept; no over-polishing.",
+    billNote: "Why isn't there a price on it? Because I want you to call. We'll talk. You'll like what I say.",
+  },
+  {
+    id: "lot-05",
+    number: "05",
+    tag: "Advertising · Porcelain · Mobil",
+    meta: "Field-grade, sign-collector caliber",
+    title: "Mobil Gas Porcelain Service-Station Sign",
+    subtitle: "American, 1942 — double-sided porcelain enamel on steel, Pegasus livery",
+    photo: "/photos/signage.jpg",
+    alt: "1942 Mobil Gas porcelain enamel sign mounted in the booth among other advertising signage",
+    estimate: "$420",
+    provenance: "Came out of a defunct Mobil station in Barstow. Roof exposure for forty-some years before someone had the sense to take it down.",
+    condition: "Field wear consistent with original service use. No restoration. Both sides legible. Mounting holes original — no added grommets.",
+    billNote: "You hang this in a garage and you've changed the whole room. Don't restore it. Whoever buys it, leave it alone.",
+  },
+] as const;
+---
+
+<Layout
+  title="The Auction Catalogue · TreasureTroveFinds · Booth #18, Las Vegas"
+  description="Treasure Trove Finds presents Volume I — a catalogue of curated antiques and Americana from Bill and Lisa's booth at Paradise Mall, Las Vegas. Estimates, provenance, and Bill's commentary."
+>
+  <AuctionNav />
+
+  <main class="auction-page">
+    {/* ============================================================
+        LOT 01 — Front matter / brand promise hero.
+        Functions as the catalogue cover page. Massive billing,
+        no item photograph — the silence does the work.
+        ============================================================ */}
+    <LotSection id="lot-01" variant="cream">
+      <LotHeader
+        number="01"
+        tag="Front Matter · Volume I"
+        meta="Compiled, edited & priced by Bill Otranto · Las Vegas, MMXXVI"
+      />
+
+      <div class="auction-front">
+        <p class="auction-front__house">
+          Treasure Trove Finds presents
+        </p>
+        <h1 class="auction-front__title">
+          A Catalogue<br />of Curiosities,<br />Relics &amp; Records.
+        </h1>
+        <p class="auction-front__lede">
+          Eight lots, one booth, fifty years on the hunt. Every piece comes with
+          its homework. Estimates printed. Provenance honest. The auctioneer is
+          in the building Wednesdays and Sundays — and he answers the phone.
+        </p>
+
+        <div class="auction-front__rule" aria-hidden="true"></div>
+
+        <div class="auction-front__meta">
+          <div>
+            <span class="auction-front__meta-label">Sale Conducted At</span>
+            <p>Paradise Mall · Booth #18<br />3565 E. Flamingo Road, Las Vegas</p>
+          </div>
+          <div>
+            <span class="auction-front__meta-label">Bidder's Line</span>
+            <p>
+              <a class="auction-front__phone" href={BOOTH.phoneHref}>{BOOTH.phone}</a><br />
+              <em>Bill will pick up. Or he won't.</em>
+            </p>
+          </div>
+          <div>
+            <span class="auction-front__meta-label">Viewing</span>
+            <p>Daily, 10 'til 6<br />Bill on the floor Weds &amp; Sun</p>
+          </div>
+        </div>
+
+        <div class="auction-front__ctas">
+          <a class="ttf-btn ttf-btn-primary" href="#lot-07">Find the Joint</a>
+          <a class="ttf-btn ttf-btn-secondary" href={BOOTH.phoneHref}>
+            Ring Bill Up · {BOOTH.phone}
+          </a>
+        </div>
+
+        <p class="auction-front__hint" aria-hidden="true">
+          Scroll · Lot 02 ↓
+        </p>
+      </div>
+    </LotSection>
+
+    {/* ============================================================
+        LOTS 02–05 — Real items in the booth, each a full-screen lot
+        sheet with the same auction-house field treatment.
+        ============================================================ */}
+    {LOTS.map((lot) => (
+      <LotSection id={lot.id} variant="cream">
+        <LotHeader number={lot.number} tag={lot.tag} meta={lot.meta} />
+        <LotPlate
+          title={lot.title}
+          subtitle={lot.subtitle}
+          photo={lot.photo}
+          alt={lot.alt}
+          estimate={lot.estimate}
+          provenance={lot.provenance}
+          condition={lot.condition}
+          billNote={lot.billNote}
+        />
+      </LotSection>
+    ))}
+
+    {/* ============================================================
+        LOT 06 — Lot Reserve · How We Got Here.
+        The catalogue equivalent of a "Note from the House."
+        Walnut variant for editorial weight.
+        ============================================================ */}
+    <LotSection id="lot-06" variant="walnut">
+      <LotHeader
+        number="06"
+        tag="Lot Reserve · A Note From the House"
+        meta="On the record · Bill &amp; Lisa Otranto"
+      />
+
+      <div class="auction-essay">
+        <div class="auction-essay__lede-col">
+          <p class="auction-essay__kicker">— A Note From the House —</p>
+          <h2 class="auction-essay__head">How We<br />Got Here.</h2>
+          <p class="auction-essay__pull">
+            Bill caught the bug from baseball cards. The numbers on the back —
+            the stats, the years, the averages — got a hold of him before he
+            could spell <em>provenance</em>.
+          </p>
+        </div>
+        <div class="auction-essay__body-col">
+          <p>
+            Curiosity moved on from cards. To bottles. To signs. To toys. To
+            <em> anything with a story he hadn't heard yet.</em> Not just
+            antique — <strong>nostalgic.</strong> A piece on the shelf is a
+            piece a kid grew up with, somewhere, sometime; that's the part
+            that won't shut up.
+          </p>
+          <p>
+            Lisa came along and made it a life. The booth, the hunt, the cases
+            stacked floor to ceiling — that's the two of them, working in
+            tandem since long before they ever paid for a stall on Flamingo Road.
+          </p>
+          <p>
+            Bill in the booth is the show. He leans on the case. He tells you
+            who made it and when and what the man who made it was up against
+            that year. <em>Not your sixth-grade Social Studies lecture.</em>
+            More like an old friend who happens to know what he's talking
+            about, and likes you enough to share the better half of it.
+          </p>
+          <p class="auction-essay__sign">
+            — The House
+          </p>
+        </div>
+      </div>
+    </LotSection>
+
+    {/* ============================================================
+        LOT 07 — Find the Joint. Map embed + catalog details card.
+        ============================================================ */}
+    <LotSection id="lot-07" variant="cream">
+      <LotHeader
+        number="07"
+        tag="Saleroom · Address &amp; Hours"
+        meta="In person, Booth #18 · Paradise Mall · Las Vegas"
+      />
+
+      <div class="auction-joint">
+        <div class="auction-joint__map-wrap">
+          <iframe
+            class="auction-joint__map"
+            src={BOOTH.mapEmbed}
+            title="Map to Paradise Mall, Booth #18, Las Vegas"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <aside class="auction-joint__card">
+          <h2 class="auction-joint__title">Find the Joint.</h2>
+          <p class="auction-joint__sub">
+            Walk in any day of the week. The cases don't lock.
+          </p>
+
+          <div class="auction-joint__field">
+            <span class="auction-joint__label">Saleroom</span>
+            <p>
+              Paradise Mall · Booth #18<br />
+              {BOOTH.street}<br />
+              {BOOTH.city}
+            </p>
+          </div>
+
+          <div class="auction-joint__field">
+            <span class="auction-joint__label">Viewing Hours</span>
+            <p>
+              Open daily, 10 'til 6<br />
+              <em>Bill works the booth Weds &amp; Sun.</em>
+            </p>
+          </div>
+
+          <div class="auction-joint__field">
+            <span class="auction-joint__label">Bidder's Line</span>
+            <p>
+              <a class="auction-joint__phone" href={BOOTH.phoneHref}>
+                {BOOTH.phone}
+              </a><br />
+              <em>Call ahead — he'll set things aside.</em>
+            </p>
+          </div>
+
+          <div class="auction-joint__ctas">
+            <a class="ttf-btn ttf-btn-primary" href={BOOTH.mapHref} target="_blank" rel="noopener noreferrer">
+              Get Directions
+            </a>
+            <a class="ttf-btn ttf-btn-secondary" href={BOOTH.phoneHref}>
+              Call Bill
+            </a>
+          </div>
+        </aside>
+      </div>
+    </LotSection>
+
+    {/* ============================================================
+        LOT 08 — Etsy email signup. Bill + Lisa "we" voice.
+        ============================================================ */}
+    <LotSection id="lot-08" variant="emerald">
+      <LotHeader
+        number="08"
+        tag="Absentee Bidding · Coming to Etsy"
+        meta="Get on the list before the room fills up"
+      />
+
+      <div class="auction-etsy">
+        <div class="auction-etsy__head-col">
+          <p class="auction-etsy__kicker">— Absentee Bidding —</p>
+          <h2 class="auction-etsy__head">Etsy's Coming.<br />Get on the List.</h2>
+        </div>
+
+        <div class="auction-etsy__body-col">
+          <p class="auction-etsy__lede">
+            We're putting a slice of the booth online — thirty, maybe forty
+            pieces to start, the kind we can crate and ship without losing
+            sleep. The list opens first. Everybody else finds out later.
+          </p>
+          <p class="auction-etsy__lede">
+            Leave us an address. We'll write when there's something worth
+            writing about — not a minute sooner.
+          </p>
+
+          <form class="auction-etsy__form" onsubmit="return false;">
+            <label class="auction-etsy__field">
+              <span class="auction-etsy__label">Your Address</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="you@somewhere.com"
+                required
+                class="auction-etsy__input"
+                aria-label="Email address"
+              />
+            </label>
+            <button type="submit" class="ttf-btn ttf-btn-primary auction-etsy__submit">
+              Put Me on the List
+            </button>
+          </form>
+
+          <p class="auction-etsy__signoff">
+            — Bill &amp; Lisa
+          </p>
+        </div>
+      </div>
+    </LotSection>
+
+    {/* ============================================================
+        CLOSING — Catalogue colophon / footer.
+        ============================================================ */}
+    <footer class="auction-colophon">
+      <div class="auction-colophon__inner">
+        <p class="auction-colophon__line auction-colophon__line--first">
+          Est. 2022 · Collecting since 1973 · Pieces back to 1850.<br />
+          <em>Bill knows everybody. Ask no questions.</em>
+        </p>
+
+        <div class="auction-colophon__rule" aria-hidden="true"></div>
+
+        <p class="auction-colophon__address">
+          Treasure Trove Finds · Paradise Mall · Booth #18 · Las Vegas, Nevada
+        </p>
+        <p class="auction-colophon__phone">
+          <a href={BOOTH.phoneHref}>{BOOTH.phone}</a>
+        </p>
+
+        <p class="auction-colophon__labs">
+          An Otranto Labs project
+        </p>
+      </div>
+    </footer>
+  </main>
+</Layout>
+
+<style is:global>
+  /* Page-level scroll-snap. Body becomes the snap container so the
+     fixed AuctionNav stays put while spreads pass under it. */
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scroll-padding-top: 0;
+  }
+  body {
+    overflow-x: hidden;
+  }
+</style>
+
+<style>
+  .auction-page {
+    padding-top: 0;
+  }
+
+  /* ----- LOT 01 — front matter ----- */
+  .auction-front {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+  }
+  .auction-front__house {
+    font-family: var(--font-billing);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-smoke);
+    margin: 0 0 1.25rem;
+    letter-spacing: 0.04em;
+  }
+  .auction-front__title {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0;
+    text-transform: none;
+  }
+  .auction-front__lede {
+    font-family: var(--font-serif);
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-ink);
+    max-width: 42rem;
+    margin: 1.75rem 0 0;
+  }
+  .auction-front__rule {
+    margin: 2rem 0;
+    height: 1.5px;
+    background: var(--color-brass);
+    max-width: 56rem;
+  }
+  .auction-front__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .auction-front__meta-label {
+    display: block;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    font-size: 0.7rem;
+    color: var(--color-brass);
+    margin-bottom: 0.5rem;
+  }
+  .auction-front__meta p {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .auction-front__meta em {
+    color: var(--color-smoke);
+  }
+  .auction-front__phone {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 1.6rem;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.18);
+    letter-spacing: 0.01em;
+  }
+  .auction-front__ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .auction-front__hint {
+    position: absolute;
+    bottom: -1rem;
+    right: 0;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-size: 0.68rem;
+    color: var(--color-smoke);
+  }
+
+  /* ----- LOT 06 — essay / how-we-got-here ----- */
+  .auction-essay {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+    color: var(--color-cream);
+  }
+  .auction-essay__kicker {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 0.78rem;
+    color: var(--color-brass);
+    margin: 0 0 1.25rem;
+  }
+  .auction-essay__head {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    line-height: 0.98;
+    color: var(--color-cream);
+    margin: 0 0 1.5rem;
+  }
+  .auction-essay__pull {
+    font-family: var(--font-billing);
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--color-brass);
+    margin: 0;
+    border-top: 1.5px solid var(--color-brass);
+    padding-top: 1.25rem;
+    max-width: 22rem;
+  }
+  .auction-essay__body-col {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-cream);
+  }
+  .auction-essay__body-col p {
+    margin: 0 0 1.2rem;
+  }
+  .auction-essay__body-col strong {
+    color: var(--color-brass);
+    font-weight: 500;
+  }
+  .auction-essay__sign {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-brass);
+    margin-top: 1.5rem !important;
+  }
+
+  /* ----- LOT 07 — Find the Joint ----- */
+  .auction-joint {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: stretch;
+  }
+  .auction-joint__map-wrap {
+    background: var(--color-cream);
+    padding: 10px;
+    border: 1.5px solid var(--color-ink);
+    box-shadow: 8px 8px 0 var(--color-ink);
+    position: relative;
+    min-height: 360px;
+  }
+  .auction-joint__map-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--color-brass);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .auction-joint__map {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    border: 0;
+    display: block;
+    filter: sepia(0.18) saturate(0.85);
+  }
+  .auction-joint__card {
+    background: var(--color-cream);
+    border: 1.5px solid var(--color-ink);
+    padding: clamp(1.5rem, 2.5vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    box-shadow: 8px 8px 0 var(--color-ink);
+    position: relative;
+  }
+  .auction-joint__card::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid var(--color-brass);
+    pointer-events: none;
+  }
+  .auction-joint__title {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    font-size: clamp(2rem, 3.4vw, 2.85rem);
+    line-height: 1;
+    color: var(--color-ink);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+  }
+  .auction-joint__sub {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-walnut);
+    margin: -0.5rem 0 0.25rem;
+    font-size: 1.05rem;
+  }
+  .auction-joint__field {
+    border-top: 1px solid var(--color-brass);
+    padding-top: 1rem;
+  }
+  .auction-joint__label {
+    display: block;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    font-size: 0.7rem;
+    color: var(--color-brass);
+    margin-bottom: 0.4rem;
+  }
+  .auction-joint__field p {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .auction-joint__field em {
+    color: var(--color-smoke);
+  }
+  .auction-joint__phone {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 1.7rem;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.18);
+    letter-spacing: 0.01em;
+  }
+  .auction-joint__ctas {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  /* ----- LOT 08 — Etsy / email ----- */
+  .auction-etsy {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+    color: var(--color-cream);
+  }
+  .auction-etsy__kicker {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 0.78rem;
+    color: var(--color-brass);
+    margin: 0 0 1rem;
+  }
+  .auction-etsy__head {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+    line-height: 0.98;
+    color: var(--color-cream);
+    margin: 0;
+  }
+  .auction-etsy__lede {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--color-cream);
+    margin: 0 0 1.25rem;
+    max-width: 38rem;
+  }
+  .auction-etsy__form {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1.5px solid var(--color-brass);
+  }
+  .auction-etsy__field {
+    flex: 1 1 18rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .auction-etsy__label {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    font-size: 0.7rem;
+    color: var(--color-brass);
+  }
+  .auction-etsy__input {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    padding: 0.75rem 0.9rem;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    border: 1.5px solid var(--color-cream);
+    outline: none;
+  }
+  .auction-etsy__input:focus {
+    border-color: var(--color-brass);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.25);
+  }
+  .auction-etsy__submit {
+    flex-shrink: 0;
+  }
+  .auction-etsy__signoff {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-brass);
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  /* ----- Closing colophon ----- */
+  .auction-colophon {
+    background: var(--color-ink);
+    color: var(--color-cream);
+    padding: clamp(3rem, 7vh, 5rem) clamp(1.25rem, 5vw, 4rem);
+    scroll-snap-align: start;
+  }
+  .auction-colophon__inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .auction-colophon__line {
+    font-family: var(--font-billing);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-cream);
+    margin: 0;
+  }
+  .auction-colophon__line em {
+    color: var(--color-brass);
+  }
+  .auction-colophon__rule {
+    width: 60%;
+    max-width: 28rem;
+    height: 1.5px;
+    background: var(--color-brass);
+    margin: 1.75rem auto;
+  }
+  .auction-colophon__address {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    font-size: 0.78rem;
+    color: var(--color-cream);
+    margin: 0 0 0.5rem;
+  }
+  .auction-colophon__phone {
+    margin: 0;
+  }
+  .auction-colophon__phone a {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 1.75rem;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+    letter-spacing: 0.01em;
+  }
+  .auction-colophon__labs {
+    font-family: var(--font-billing);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-smoke);
+    margin: 2rem 0 0;
+  }
+
+  /* ----- Responsive collapses ----- */
+  @media (max-width: 980px) {
+    .auction-front__meta {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .auction-essay,
+    .auction-joint,
+    .auction-etsy {
+      grid-template-columns: 1fr;
+    }
+    .auction-essay__pull {
+      max-width: none;
+    }
+    .auction-joint__map-wrap {
+      min-height: 280px;
+    }
+  }
+  @media (max-width: 600px) {
+    .auction-front__title {
+      font-size: 2.5rem;
+    }
+    .auction-front__hint {
+      display: none;
+    }
+  }
+</style>

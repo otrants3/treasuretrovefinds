@@ -1,0 +1,202 @@
+---
+/**
+ * LotPlate — the full lot-listing spread for a real item.
+ *
+ * Layout: two columns on desktop. Left: large item photograph framed
+ * with an ink hard-offset and brass hairline. Right: vertical stack
+ * of catalog fields (TITLE → PROVENANCE → CONDITION → BILL'S NOTE →
+ * ESTIMATE).
+ *
+ * Render inside <LotSection>; the LotHeader is rendered separately
+ * by the page so dark-variant spreads can color it correctly.
+ */
+interface Props {
+  /** Auction-house style title — full caps, no period. */
+  title: string;
+  /** Sub-title in Bodoni italic — era/maker line. */
+  subtitle: string;
+  /** Image path under /public — required. */
+  photo: string;
+  /** Alt text for the photograph. */
+  alt: string;
+  /** Estimate string e.g. "$225" or "Ask Bill". */
+  estimate: string;
+  /** Provenance line(s). */
+  provenance: string;
+  /** Condition line(s). */
+  condition: string;
+  /** Bill's commentary, EB Garamond italic. */
+  billNote: string;
+  /** Optional photo-credit / caption under the image. */
+  caption?: string;
+}
+
+const { title, subtitle, photo, alt, estimate, provenance, condition, billNote, caption } = Astro.props;
+---
+
+<div class="lot-plate">
+  <figure class="lot-plate__figure">
+    <div class="lot-plate__photo-frame">
+      <img class="lot-plate__photo" src={photo} alt={alt} loading="lazy" />
+    </div>
+    {caption && <figcaption class="lot-plate__caption">{caption}</figcaption>}
+  </figure>
+
+  <div class="lot-plate__details">
+    <h2 class="lot-plate__title">{title}</h2>
+    <p class="lot-plate__subtitle">{subtitle}</p>
+
+    <div class="lot-plate__field-grid">
+      <div class="lot-plate__field">
+        <span class="lot-plate__label">Provenance</span>
+        <p class="lot-plate__body">{provenance}</p>
+      </div>
+      <div class="lot-plate__field">
+        <span class="lot-plate__label">Condition</span>
+        <p class="lot-plate__body">{condition}</p>
+      </div>
+      <div class="lot-plate__field lot-plate__field--note">
+        <span class="lot-plate__label">Bill's Note</span>
+        <p class="lot-plate__body lot-plate__body--italic">{billNote}</p>
+      </div>
+      <div class="lot-plate__field lot-plate__field--estimate">
+        <span class="lot-plate__label">Estimate</span>
+        <p class="lot-plate__estimate">{estimate}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lot-plate {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .lot-plate__figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .lot-plate__photo-frame {
+    background: var(--color-cream);
+    padding: 10px;
+    border: 1.5px solid var(--color-ink);
+    box-shadow: 8px 8px 0 var(--color-ink);
+    position: relative;
+  }
+  .lot-plate__photo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--color-brass);
+    pointer-events: none;
+  }
+  .lot-plate__photo {
+    display: block;
+    width: 100%;
+    height: clamp(280px, 55vh, 540px);
+    object-fit: cover;
+    filter: saturate(0.92) contrast(1.02);
+  }
+  .lot-plate__caption {
+    font-family: var(--font-billing);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--color-smoke);
+    text-align: right;
+    margin-top: 0.25rem;
+  }
+  .lot-plate__details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .lot-plate__title {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    color: var(--color-ink);
+    font-size: clamp(1.85rem, 3vw, 2.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .lot-plate__subtitle {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-walnut);
+    font-size: 1.1rem;
+    margin: -0.4rem 0 0;
+    line-height: 1.4;
+  }
+  .lot-plate__field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1.75rem;
+    margin-top: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-brass);
+  }
+  .lot-plate__field--note,
+  .lot-plate__field--estimate {
+    grid-column: 1 / -1;
+  }
+  .lot-plate__field--estimate {
+    border-top: 1px solid var(--color-brass);
+    padding-top: 1.25rem;
+    margin-top: 0.25rem;
+  }
+  .lot-plate__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .lot-plate__label {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    font-size: 0.7rem;
+    color: var(--color-brass);
+    line-height: 1;
+  }
+  .lot-plate__body {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--color-ink);
+  }
+  .lot-plate__body--italic {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--color-ink);
+  }
+  .lot-plate__estimate {
+    margin: 0;
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: clamp(2.5rem, 4.2vw, 3.5rem);
+    line-height: 1;
+    text-shadow: 2px 2px 0 rgba(26,22,20,0.18);
+  }
+
+  @media (max-width: 980px) {
+    .lot-plate {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    .lot-plate__photo {
+      height: clamp(240px, 42vh, 380px);
+    }
+  }
+  @media (max-width: 600px) {
+    .lot-plate__field-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+</style>

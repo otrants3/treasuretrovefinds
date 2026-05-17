@@ -1,0 +1,40 @@
+---
+/**
+ * CornerStamp.astro — Playful corner stamp ("HELD OVER BY POPULAR DEMAND",
+ * "ENGAGEMENT EXTENDED"). Rotated, ink-stamped feel, walnut on tag-paper.
+ */
+interface Props {
+  text: string;
+  rotation?: number; // degrees
+  class?: string;
+}
+const { text, rotation = -8, class: extraClass = "" } = Astro.props;
+---
+
+<div
+  class={`corner-stamp ${extraClass}`}
+  style={`--rot:${rotation}deg`}
+>
+  <span class="stamp-inner">{text}</span>
+</div>
+
+<style>
+  .corner-stamp {
+    display: inline-block;
+    transform: rotate(var(--rot, -8deg));
+    padding: 0.4rem 0.7rem;
+    border: 2px solid var(--color-buddy-red);
+    color: var(--color-buddy-red);
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 0.72rem;
+    background: rgba(242,232,208,0.0);
+    box-shadow: inset 0 0 0 1px var(--color-buddy-red);
+    opacity: 0.85;
+    line-height: 1.1;
+  }
+  .stamp-inner {
+    display: inline-block;
+  }
+</style>

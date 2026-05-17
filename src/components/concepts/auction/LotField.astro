@@ -1,0 +1,59 @@
+---
+/**
+ * LotField — a single auction-catalog field: small caps brass label
+ * over EB Garamond body copy. Used for PROVENANCE / CONDITION / etc.
+ *
+ * Variants:
+ *  - default → serif body
+ *  - "note"  → italic body (used for "Bill's Note")
+ *  - "price" → Anton Buddy L red display number (used for ESTIMATE)
+ */
+interface Props {
+  label: string;
+  variant?: "default" | "note" | "price";
+}
+const { label, variant = "default" } = Astro.props;
+---
+
+<div class={`auction-field auction-field--${variant}`}>
+  <span class="auction-field__label">{label}</span>
+  <div class="auction-field__body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .auction-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .auction-field__label {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.36em;
+    font-size: 0.72rem;
+    color: var(--color-brass);
+    line-height: 1;
+  }
+  .auction-field__body {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--color-ink);
+  }
+  .auction-field--note .auction-field__body {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-ink);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .auction-field--price .auction-field__body {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+</style>

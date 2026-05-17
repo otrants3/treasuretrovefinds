@@ -1,0 +1,187 @@
+---
+/**
+ * CatalogPlate.astro — One item plate for the Tonight's Lineup reel.
+ * Brass-bordered frame, Anton display name, Bodoni italic provenance,
+ * handwritten Bill-note tag, price in Buddy-L red.
+ */
+interface Props {
+  plate: string;           // "PLATE NO. 14"
+  name: string;            // "1934 LUDWIG SCHERK PERFUME BOTTLE"
+  era: string;             // "German, Renaissance figural, Marie Antoinette stopper"
+  note: string;            // handwritten note text
+  price: string;           // "$225" | "ASK BILL"
+  img?: string;            // /photos/...
+  imgAlt?: string;
+  placeholder?: boolean;   // empty plate (Bill's pick coming)
+}
+const { plate, name, era, note, price, img, imgAlt = "", placeholder = false } = Astro.props;
+---
+
+<article class="plate">
+  <div class="plate-label">{plate}</div>
+
+  <div class="plate-frame">
+    {placeholder ? (
+      <div class="plate-placeholder">
+        <span class="ph-mark">?</span>
+        <span class="ph-text">Awaiting Bill's pick</span>
+      </div>
+    ) : (
+      <img src={img} alt={imgAlt} loading="lazy" />
+    )}
+  </div>
+
+  <h3 class="plate-name">{name}</h3>
+  <p class="plate-era">{era}</p>
+
+  <div class="plate-tag">
+    <span class="tag-twine" aria-hidden="true"></span>
+    <span class="tag-hole" aria-hidden="true"></span>
+    <p class="tag-note">{note}</p>
+  </div>
+
+  <div class="plate-price">{price}</div>
+</article>
+
+<style>
+  .plate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0.75rem 1.25rem;
+    background: var(--color-cream);
+    border: 1.5px solid var(--color-walnut);
+    box-shadow: 4px 4px 0 rgba(26,22,20,0.18);
+    position: relative;
+  }
+  .plate::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(201,162,39,0.45);
+    pointer-events: none;
+  }
+
+  .plate-label {
+    font-family: var(--font-label);
+    font-size: 0.7rem;
+    letter-spacing: 0.34em;
+    color: var(--color-brass);
+    margin-bottom: 0.55rem;
+  }
+
+  .plate-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--color-walnut);
+    padding: 8px;
+    box-shadow:
+      inset 0 0 0 1px rgba(201,162,39,0.55),
+      inset 0 0 0 5px var(--color-walnut),
+      inset 0 0 18px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: relative;
+  }
+  .plate-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.92) contrast(1.02);
+    display: block;
+  }
+
+  .plate-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-cream);
+    gap: 0.5rem;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(242,232,208,0.05) 0,
+        rgba(242,232,208,0.05) 6px,
+        transparent 6px,
+        transparent 14px
+      );
+  }
+  .ph-mark {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--color-brass);
+    line-height: 1;
+  }
+  .ph-text {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-cream);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .plate-name {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-size: 1.35rem;
+    line-height: 1.05;
+    margin: 0.85rem 0 0.35rem;
+    letter-spacing: 0.015em;
+    max-width: 22ch;
+  }
+  .plate-era {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-smoke);
+    font-size: 0.95rem;
+    margin: 0 0 0.85rem;
+    line-height: 1.35;
+    max-width: 26ch;
+  }
+
+  .plate-tag {
+    position: relative;
+    background: var(--color-tag-paper);
+    border: 1px dashed rgba(61,42,30,0.5);
+    padding: 0.85rem 0.7rem 0.55rem;
+    width: 90%;
+    transform: rotate(-1.5deg);
+    margin-bottom: 1rem;
+    box-shadow: 2px 2px 0 rgba(26,22,20,0.15);
+  }
+  .tag-hole {
+    position: absolute;
+    top: -5px; left: 50%;
+    transform: translateX(-50%);
+    width: 10px; height: 10px;
+    background: var(--color-cream);
+    border: 1.5px solid var(--color-walnut);
+    border-radius: 50%;
+  }
+  .tag-twine {
+    position: absolute;
+    top: -22px; left: 50%;
+    transform: translateX(-50%);
+    width: 1.5px; height: 20px;
+    background: var(--color-walnut);
+    opacity: 0.55;
+  }
+  .tag-note {
+    font-family: var(--font-hand);
+    color: var(--color-ink);
+    font-size: 0.98rem;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .plate-price {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 1.85rem;
+    line-height: 1;
+    text-shadow: 1.5px 1.5px 0 rgba(26,22,20,0.18);
+  }
+</style>

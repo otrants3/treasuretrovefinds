@@ -1,0 +1,49 @@
+---
+/**
+ * Ribbon.astro — Buddy-L red boxing-poster ribbon banner.
+ * Cream Oswald small-caps text. Pointed-end ribbon shape.
+ */
+interface Props {
+  text: string;
+  class?: string;
+}
+const { text, class: extraClass = "" } = Astro.props;
+---
+
+<div class={`ribbon ${extraClass}`}>
+  <span class="ribbon-tail ribbon-tail-left" aria-hidden="true"></span>
+  <span class="ribbon-body">{text}</span>
+  <span class="ribbon-tail ribbon-tail-right" aria-hidden="true"></span>
+</div>
+
+<style>
+  .ribbon {
+    display: inline-flex;
+    align-items: stretch;
+    filter: drop-shadow(3px 3px 0 rgba(26,22,20,0.22));
+  }
+  .ribbon-body {
+    background: var(--color-buddy-red);
+    color: var(--color-cream);
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.85rem;
+    padding: 0.55rem 1.1rem;
+    border-top: 1px solid rgba(242,232,208,0.4);
+    border-bottom: 1px solid rgba(242,232,208,0.4);
+    white-space: nowrap;
+  }
+  .ribbon-tail {
+    width: 0;
+    height: 0;
+    border-top: 1.1rem solid var(--color-buddy-red);
+    border-bottom: 1.1rem solid var(--color-buddy-red);
+  }
+  .ribbon-tail-left {
+    border-left: 0.85rem solid transparent;
+  }
+  .ribbon-tail-right {
+    border-right: 0.85rem solid transparent;
+  }
+</style>
