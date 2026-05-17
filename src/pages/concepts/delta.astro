@@ -1,0 +1,1273 @@
+---
+/* ====================================================================
+   DELTA — Custom Three.js 3D Cabinet
+   --------------------------------------------------------------------
+   A real-time 3D walnut curio cabinet renders at the top of the page
+   from primitive BoxGeometry. Wood texture is loaded onto the frame,
+   two glass doors swing open on load (rotateY ~108deg around their
+   outer-edge hinges), warm light pours from inside, simple stand-in
+   "items" sit on three shelves, and the camera drifts on mouse-move.
+
+   Reduced-motion users get the doors already open and no drift.
+
+   The rest of the page is normal HTML/CSS — Bill & Lisa's story,
+   lineup, the record, find the joint, etsy, footer.
+   ==================================================================== */
+
+import Layout from "../../layouts/Layout.astro";
+
+const BOOTH = {
+  name: "Paradise Mall · Booth #18",
+  street: "3565 E. Flamingo Road",
+  city: "Las Vegas, Nevada 89121",
+  phone: "(516) 446-2693",
+  phoneHref: "tel:+15164462693",
+  hoursLine: "Open daily, 10 'til 6",
+  billLine: "Bill works the booth Weds & Sun",
+  mapEmbed: "https://www.google.com/maps?q=3565+E+Flamingo+Road+Las+Vegas+NV&output=embed",
+  mapHref:
+    "https://www.google.com/maps/search/?api=1&query=3565+E+Flamingo+Road+Las+Vegas+NV+89121",
+};
+
+const LINEUP = [
+  {
+    plate: "PLATE NO. 01",
+    era: "1934",
+    item: "Ludwig Scherk Renaissance Perfume Bottle",
+    note: "w/ Marie Antoinette miniature",
+    price: "$225.00",
+    photo: "/photos/tag-perfume-bottle.jpg",
+  },
+  {
+    plate: "PLATE NO. 02",
+    era: "1930-40s",
+    item: "Hobby Kiddie Diecast Race Car",
+    note: "#SH-457, original rubber",
+    price: "$65.00",
+    photo: "/photos/tag-race-car.jpg",
+  },
+  {
+    plate: "PLATE NO. 03",
+    era: "1930s",
+    item: "GE Cast-Iron Oscillating Fan",
+    note: "still works · ask Bill to plug it in",
+    price: "ask Bill",
+    photo: "/photos/fan-perfumes.jpg",
+  },
+  {
+    plate: "PLATE NO. 04",
+    era: "—",
+    item: "Awaiting Bill's Pick",
+    note: "he has thirty in mind, won't commit to one",
+    price: "—",
+    photo: "",
+  },
+];
+
+const TAGS = [
+  { era: "1934", item: "Ludwig Scherk Perfume Bottle", note: "w/ Marie Antoinette picture · original metalwork", price: "$225.00", rotate: -4 },
+  { era: "1930-40", item: "Hobby Kiddie Race Car", note: "green over silver, original rubber, #SH-457", price: "$65.00", rotate: 2 },
+  { era: "1938", item: "Buddy L Fire Engine", note: "Am. pressed steel, E. Moline, IL. all-original ladders", price: "$285.00", rotate: -1 },
+  { era: "1942", item: "Mobil Gas Porcelain Sign", note: "Pegasus crest · honest wear, no rust-through", price: "$420.00", rotate: 4 },
+  { era: "1930s", item: "GE Cast-Iron Fan", note: "brass blade, still oscillates", price: "ask Bill", rotate: -3 },
+];
+---
+
+<Layout title="Treasure Trove Finds — The Cabinet, in 3D">
+  <!-- =================================================================
+       3D CABINET — Three.js fixed-aspect stage (80vh)
+       The <canvas> is mounted by the module script below.
+       ================================================================= -->
+  <section class="dl-stage" aria-label="Antique curio cabinet, in three dimensions">
+    <div id="dl-cabinet" class="dl-stage__canvas-wrap">
+      <!-- canvas injected by Three.js -->
+      <div class="dl-stage__fallback" aria-hidden="true">
+        <img src="/cabinet/pexels-36901179.jpg" alt="" />
+      </div>
+    </div>
+
+    <!-- Hero billing overlays the lower portion of the 3D scene -->
+    <div class="dl-stage__billing">
+      <p class="dl-billing__eyebrow">— For Your Inspection, Nightly —</p>
+      <h1 class="ttf-headline dl-billing__headline">
+        Every Piece<br />Has a Record.
+      </h1>
+      <p class="dl-billing__sub">
+        Fifty years on the hunt — now showing at Paradise Mall, Booth #18, Las Vegas.
+      </p>
+      <div class="dl-billing__ctas">
+        <a class="ttf-btn ttf-btn-primary" href="#joint">Drop in — Booth #18</a>
+        <a class="ttf-btn ttf-btn-secondary" href={BOOTH.phoneHref}>Ring Bill up</a>
+      </div>
+    </div>
+
+    <p class="dl-stage__hint" aria-hidden="true">↓ scroll · the doors are already open</p>
+  </section>
+
+  <!-- =================================================================
+       MASTHEAD STRIP
+       ================================================================= -->
+  <header class="dl-mast">
+    <div class="dl-mast__inner">
+      <p class="dl-mast__eyebrow">— Fine Curiosities &amp; Relics · Vol. I, No. 1 —</p>
+      <p class="dl-mast__wordmark">TREASURE TROVE FINDS</p>
+      <p class="dl-mast__sub">A back-room of American oddments, kept by Bill &amp; Lisa.</p>
+    </div>
+    <div class="ttf-double-rule"></div>
+  </header>
+
+  <!-- =================================================================
+       HOW WE GOT HERE
+       ================================================================= -->
+  <section id="story" class="dl-story">
+    <p class="ttf-label dl-section__eyebrow">— The Proprietors —</p>
+    <h2 class="ttf-billing-title dl-section__title">HOW WE GOT HERE</h2>
+    <p class="dl-section__sub">baseball cards, then everything else</p>
+    <div class="ttf-double-rule"></div>
+
+    <div class="dl-story__copy">
+      <h3 class="dl-story__pullquote">
+        "Bill wasn't collecting antiques. <em>He was collecting the stories behind the numbers.</em>"
+      </h3>
+
+      <p>
+        Bill caught the bug the way most boys did — a stack of baseball cards. But the
+        players weren't the point. The <strong>numbers on the back</strong> were. The years,
+        the batting averages, the team names, the stadiums. The history hiding inside
+        the data. He'd memorize them. He'd cross-reference them. He'd want to know
+        <em>what else</em> was happening the year a player hit .357.
+      </p>
+
+      <p>
+        That curiosity never quit. From cards he moved to bottles, then signs, then toys,
+        then anything that came with a story he hadn't heard yet. Not just antique. Not
+        just vintage. <em>Nostalgic</em> — pieces with a hold on the room they came out of.
+        A perfume bottle from 1934 with a Marie Antoinette miniature painted on the front.
+        A pressed-steel race car from when steel was the right material for a toy. A
+        General Electric oscillating fan, cast iron and brass, that's been moving air
+        through living rooms since before the war.
+      </p>
+
+      <p>
+        Lisa came along, made it a life. Together they've spent the last half-century
+        chasing American oddments up and down two coasts — <em>not for the price tags
+        but for the moments the objects remember.</em>
+      </p>
+
+      <p>
+        Walk into Booth #18 and point at anything. Bill won't hesitate. He'll tell you
+        the year it was made, the maker, what it sold for new, who probably bought it
+        first, and what was happening in America that month. And he'll tell it animated
+        — hands moving, leaning on the case, getting <em>into it</em>. This is not your
+        sixth-grade Social Studies teacher's history lecture. Lisa keeps the dates
+        straight. Bill carries the rest.
+      </p>
+
+      <p class="dl-story__sig">— <span>Bill &amp; Lisa</span>, Booth&nbsp;#18</p>
+    </div>
+  </section>
+
+  <hr class="ttf-rule" />
+
+  <!-- =================================================================
+       TONIGHT'S LINEUP
+       ================================================================= -->
+  <section id="lineup" class="dl-lineup">
+    <p class="ttf-label dl-section__eyebrow">— On the Bill Tonight —</p>
+    <h2 class="ttf-billing-title dl-section__title">TONIGHT'S LINEUP</h2>
+    <p class="dl-section__sub">four pieces, hand-picked, currently at the booth</p>
+    <div class="ttf-double-rule"></div>
+
+    <div class="dl-lineup__grid">
+      {LINEUP.map((p) => (
+        <article class="dl-plate">
+          <div class="dl-plate__frame">
+            {p.photo ? (
+              <img src={p.photo} alt={p.item} />
+            ) : (
+              <div class="dl-plate__awaiting">AWAITING</div>
+            )}
+          </div>
+          <p class="ttf-label dl-plate__no">{p.plate}</p>
+          <h3 class="dl-plate__item">{p.item}</h3>
+          <p class="dl-plate__era">{p.era}</p>
+          <p class="dl-plate__note">{p.note}</p>
+          <p class="dl-plate__price">{p.price}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- =================================================================
+       EVERY PIECE HAS A RECORD — emerald felt
+       ================================================================= -->
+  <section id="tags" class="dl-felt ttf-on-emerald">
+    <div class="dl-felt__inner">
+      <p class="ttf-label dl-felt__eyebrow">— On the Counter —</p>
+      <h2 class="dl-felt__title">EVERY PIECE HAS A RECORD</h2>
+      <p class="dl-felt__sub">the homework, in our own hand</p>
+      <div class="ttf-double-rule"></div>
+
+      <div class="dl-tag-row">
+        {TAGS.map((t) => (
+          <div class="dl-tag" style={`transform: rotate(${t.rotate}deg);`}>
+            <span class="dl-tag__hole"></span>
+            <p class="dl-tag__era">{t.era}</p>
+            <p class="dl-tag__item">{t.item}</p>
+            <p class="dl-tag__note">{t.note}</p>
+            <p class="dl-tag__price">{t.price}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="dl-felt__footer">
+        Want the full story behind any of them? <a href={BOOTH.phoneHref}>Ring Bill up — {BOOTH.phone}</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       FIND THE JOINT
+       ================================================================= -->
+  <section id="joint" class="dl-joint">
+    <p class="ttf-label dl-section__eyebrow">— Directions —</p>
+    <h2 class="ttf-billing-title dl-section__title">FIND THE JOINT</h2>
+    <p class="dl-section__sub">no GPS required, but it helps</p>
+    <div class="ttf-double-rule"></div>
+
+    <div class="dl-joint__grid">
+      <div class="dl-map-frame">
+        <iframe
+          title="Map to Paradise Mall, Booth #18"
+          src={BOOTH.mapEmbed}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <aside class="dl-card">
+        <p class="ttf-label">Directions</p>
+        <p class="dl-card__line dl-card__line--bold">{BOOTH.name.toUpperCase()}</p>
+        <p class="dl-card__line">{BOOTH.street}</p>
+        <p class="dl-card__line">{BOOTH.city}</p>
+
+        <div class="dl-card__divider"></div>
+
+        <p class="ttf-label">Hours</p>
+        <p class="dl-card__line">{BOOTH.hoursLine}</p>
+        <p class="dl-card__line dl-card__line--italic">{BOOTH.billLine}</p>
+
+        <div class="dl-card__divider"></div>
+
+        <p class="ttf-label">Ring Bill Up</p>
+        <p class="dl-card__line dl-card__line--phone">{BOOTH.phone}</p>
+        <p class="dl-card__line dl-card__line--italic">Call ahead and we'll set things aside.</p>
+
+        <div class="dl-card__buttons">
+          <a class="ttf-btn ttf-btn-primary" href={BOOTH.mapHref} target="_blank" rel="noopener">Get Directions</a>
+          <a class="ttf-btn ttf-btn-secondary" href={BOOTH.phoneHref}>Call Bill</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       ETSY
+       ================================================================= -->
+  <section id="etsy" class="dl-etsy">
+    <p class="ttf-label dl-section__eyebrow">— Coming Soon —</p>
+    <h2 class="ttf-billing-title dl-section__title">ETSY'S COMING.</h2>
+    <p class="dl-section__sub">get on the list · jump the queue</p>
+    <div class="ttf-double-rule"></div>
+
+    <div class="dl-etsy__inner">
+      <p class="dl-etsy__body">
+        We're putting the listings together piece by piece. If you want first crack at
+        the good stuff before it goes up — <em>and the first crack is what you want</em> —
+        leave your name. No spam. No tricks. We don't have time for that.
+      </p>
+
+      <form class="dl-etsy__form" action="#" method="post">
+        <input type="email" name="email" placeholder="your.email@…" aria-label="Email address" required />
+        <button class="ttf-btn ttf-btn-primary" type="submit">Get the word first</button>
+      </form>
+
+      <p class="ttf-label dl-etsy__legal">No spam · No tricks · We don't have time for that</p>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       FOOTER
+       ================================================================= -->
+  <footer class="dl-footer">
+    <div class="ttf-double-rule"></div>
+    <p class="dl-footer__tagline">
+      Est. 2022 · Collecting since 1973 · <em>Pieces back to 1850.</em><br />
+      Bill knows everybody. <em>Ask no questions.</em>
+    </p>
+    <p class="ttf-label dl-footer__legal">
+      TREASURE TROVE FINDS · PARADISE MALL · BOOTH #18 · LAS VEGAS, NEVADA
+    </p>
+    <p class="dl-footer__labs">An Otranto Labs project</p>
+    <p class="dl-footer__back"><a href="/concepts">← back to the concept board</a></p>
+  </footer>
+</Layout>
+
+<!-- ===================================================================
+     THREE.JS — module script (Astro keeps the `type="module"` here so
+     ES `import` works). CDN: three@0.169.0
+     =================================================================== -->
+<script type="module">
+  import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js";
+
+  const mount = document.getElementById("dl-cabinet");
+  if (!mount) {
+    console.warn("[delta] mount #dl-cabinet missing");
+  } else {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // -----------------------------------------------------------
+    // Renderer / scene / camera
+    // -----------------------------------------------------------
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    mount.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = null; // CSS backdrop shows through
+
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+    camera.position.set(0, 1.4, 5.4);
+    camera.lookAt(0, 1.3, 0);
+
+    function resize() {
+      const w = mount.clientWidth;
+      const h = mount.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    // -----------------------------------------------------------
+    // Materials — wood (textured) + glass (physical, transmissive)
+    // -----------------------------------------------------------
+    const texLoader = new THREE.TextureLoader();
+    const wood = texLoader.load("/cabinet/wood-grain.jpg");
+    wood.wrapS = wood.wrapT = THREE.RepeatWrapping;
+    wood.colorSpace = THREE.SRGBColorSpace;
+    wood.repeat.set(1.4, 2.2);
+
+    const woodMat = new THREE.MeshStandardMaterial({
+      map: wood,
+      color: 0x6b4a32,
+      roughness: 0.62,
+      metalness: 0.08,
+    });
+
+    const darkWoodMat = new THREE.MeshStandardMaterial({
+      map: wood,
+      color: 0x3d2a1e,
+      roughness: 0.72,
+      metalness: 0.04,
+    });
+
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      color: 0xeae3d2,
+      roughness: 0.05,
+      metalness: 0,
+      transmission: 0.92,
+      thickness: 0.04,
+      ior: 1.5,
+      transparent: true,
+      opacity: 0.35,
+      side: THREE.DoubleSide,
+    });
+
+    const brassMat = new THREE.MeshStandardMaterial({
+      color: 0xc9a227,
+      roughness: 0.28,
+      metalness: 0.85,
+    });
+
+    const feltMat = new THREE.MeshStandardMaterial({
+      color: 0x1f4d3f,
+      roughness: 0.95,
+      metalness: 0.0,
+    });
+
+    // -----------------------------------------------------------
+    // Cabinet group
+    //   Coordinate system: x right, y up, z toward camera.
+    //   Cabinet outer footprint: W=3.2  H=3.6  D=0.9
+    // -----------------------------------------------------------
+    const cabinet = new THREE.Group();
+    scene.add(cabinet);
+
+    const W = 3.2, H = 3.6, D = 0.9, T = 0.08; // thickness
+    const innerW = W - T * 2;
+    const innerH = H - T * 2;
+
+    // Back panel (felt-lined interior facing forward)
+    const back = new THREE.Mesh(
+      new THREE.BoxGeometry(W, H, T),
+      feltMat
+    );
+    back.position.set(0, H / 2, -D / 2);
+    cabinet.add(back);
+
+    // Outer back wood
+    const backWood = new THREE.Mesh(
+      new THREE.BoxGeometry(W, H, T * 0.6),
+      darkWoodMat
+    );
+    backWood.position.set(0, H / 2, -D / 2 - T * 0.5);
+    cabinet.add(backWood);
+
+    // Sides
+    const sideGeo = new THREE.BoxGeometry(T, H, D);
+    const sideL = new THREE.Mesh(sideGeo, darkWoodMat);
+    sideL.position.set(-W / 2 + T / 2, H / 2, 0);
+    cabinet.add(sideL);
+    const sideR = new THREE.Mesh(sideGeo, darkWoodMat);
+    sideR.position.set(W / 2 - T / 2, H / 2, 0);
+    cabinet.add(sideR);
+
+    // Top & bottom
+    const capGeo = new THREE.BoxGeometry(W, T, D);
+    const top = new THREE.Mesh(capGeo, darkWoodMat);
+    top.position.set(0, H - T / 2, 0);
+    cabinet.add(top);
+    const bottom = new THREE.Mesh(capGeo, darkWoodMat);
+    bottom.position.set(0, T / 2, 0);
+    cabinet.add(bottom);
+
+    // Crown molding
+    const crown = new THREE.Mesh(
+      new THREE.BoxGeometry(W + 0.18, 0.12, D + 0.18),
+      darkWoodMat
+    );
+    crown.position.set(0, H + 0.06, 0);
+    cabinet.add(crown);
+
+    const baseSkirt = new THREE.Mesh(
+      new THREE.BoxGeometry(W + 0.18, 0.16, D + 0.18),
+      darkWoodMat
+    );
+    baseSkirt.position.set(0, -0.08, 0);
+    cabinet.add(baseSkirt);
+
+    // Horizontal shelves (3 shelves divide interior into 4 bays... we'll do 3 bays)
+    const shelfY = [innerH * 0.34, innerH * 0.62]; // two interior shelves => 3 bays
+    const shelfGeo = new THREE.BoxGeometry(innerW, T * 0.6, D - T * 1.4);
+    shelfY.forEach((y) => {
+      const sh = new THREE.Mesh(shelfGeo, woodMat);
+      sh.position.set(0, T + y, 0);
+      cabinet.add(sh);
+    });
+
+    // -----------------------------------------------------------
+    // Items on the shelves — simple primitives standing in for antiques
+    // -----------------------------------------------------------
+    const itemMats = [
+      new THREE.MeshStandardMaterial({ color: 0x9e2a2b, roughness: 0.55, metalness: 0.12 }), // buddy red
+      new THREE.MeshStandardMaterial({ color: 0xb47b6e, roughness: 0.45, metalness: 0.2 }),  // rose
+      new THREE.MeshStandardMaterial({ color: 0xc9a227, roughness: 0.32, metalness: 0.7 }),  // brass
+      new THREE.MeshStandardMaterial({ color: 0x3d2a1e, roughness: 0.6, metalness: 0.05 }),  // walnut
+      new THREE.MeshStandardMaterial({ color: 0xe8d5a8, roughness: 0.4, metalness: 0.05 }),  // tag paper
+      new THREE.MeshStandardMaterial({ color: 0x1f4d3f, roughness: 0.5, metalness: 0.15 }),  // emerald
+    ];
+
+    function placeItems(shelfTopY) {
+      // shelfTopY is the world Y of the surface items sit on
+      const items = [];
+      const slots = [-1.0, -0.35, 0.3, 0.95];
+      slots.forEach((x, i) => {
+        const kind = (i + Math.floor(shelfTopY * 7)) % 4;
+        let mesh;
+        const mat = itemMats[(i + Math.floor(shelfTopY * 11)) % itemMats.length];
+        if (kind === 0) {
+          // Bottle: tall cylinder + small neck
+          const body = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.13, 0.34, 16), mat);
+          body.position.set(x, shelfTopY + 0.17, -0.05);
+          items.push(body);
+          const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 0.10, 12), mat);
+          neck.position.set(x, shelfTopY + 0.39, -0.05);
+          items.push(neck);
+        } else if (kind === 1) {
+          // Cube/box (toy crate)
+          const box = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.18, 0.20), mat);
+          box.position.set(x, shelfTopY + 0.09, -0.05);
+          items.push(box);
+        } else if (kind === 2) {
+          // Sphere (orb / paperweight)
+          const sph = new THREE.Mesh(new THREE.SphereGeometry(0.13, 18, 14), mat);
+          sph.position.set(x, shelfTopY + 0.13, -0.05);
+          items.push(sph);
+        } else {
+          // Squat cylinder (tin / fan base)
+          const tin = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.22, 18), mat);
+          tin.position.set(x, shelfTopY + 0.11, -0.05);
+          items.push(tin);
+        }
+      });
+      items.forEach((m) => cabinet.add(m));
+    }
+
+    // Bay surfaces from bottom up:
+    //  bay 0 sits on top of bottom plank (y = T)
+    //  bay 1 sits on shelf 1 top
+    //  bay 2 sits on shelf 2 top
+    placeItems(T);
+    placeItems(T + shelfY[0] + T * 0.3);
+    placeItems(T + shelfY[1] + T * 0.3);
+
+    // -----------------------------------------------------------
+    // Doors — two panes hinged at outer edges
+    // Each door is parented to a pivot group at its hinge x.
+    // -----------------------------------------------------------
+    const doorW = W / 2 - 0.02;
+    const doorH = H - 0.16;
+    const doorThick = 0.04;
+
+    function makeDoor(side /* "L" | "R" */) {
+      const pivot = new THREE.Group();
+      // Hinge x is the outer edge of the cabinet, just inside the side panel
+      const hingeX = side === "L" ? -W / 2 + T : W / 2 - T;
+      pivot.position.set(hingeX, H / 2, D / 2 + 0.01);
+
+      // Door frame (the wooden rectangle around the glass)
+      const frameThick = 0.10;
+      const frameMat = darkWoodMat;
+      const topRail = new THREE.Mesh(new THREE.BoxGeometry(doorW, frameThick, doorThick), frameMat);
+      const botRail = new THREE.Mesh(new THREE.BoxGeometry(doorW, frameThick, doorThick), frameMat);
+      const leftStile = new THREE.Mesh(new THREE.BoxGeometry(frameThick, doorH, doorThick), frameMat);
+      const rightStile = new THREE.Mesh(new THREE.BoxGeometry(frameThick, doorH, doorThick), frameMat);
+
+      // Door is offset from pivot so hinge is at one edge.
+      // For LEFT door, the door body extends from x=0 (hinge) to x=+doorW (free edge).
+      // For RIGHT door, from x=0 (hinge) to x=-doorW (free edge).
+      const dir = side === "L" ? 1 : -1;
+      const cx = dir * doorW / 2;
+
+      topRail.position.set(cx, doorH / 2 - frameThick / 2, 0);
+      botRail.position.set(cx, -doorH / 2 + frameThick / 2, 0);
+      leftStile.position.set(dir * frameThick / 2, 0, 0);
+      rightStile.position.set(dir * (doorW - frameThick / 2), 0, 0);
+
+      pivot.add(topRail, botRail, leftStile, rightStile);
+
+      // Glass pane fills the interior of the frame
+      const glassW = doorW - frameThick * 2;
+      const glassH = doorH - frameThick * 2;
+      const glass = new THREE.Mesh(
+        new THREE.BoxGeometry(glassW, glassH, doorThick * 0.4),
+        glassMat
+      );
+      glass.position.set(cx, 0, 0);
+      pivot.add(glass);
+
+      // Brass handle near the free edge
+      const handleX = dir * (doorW - frameThick - 0.07);
+      const handle = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.022, 0.022, 0.20, 12),
+        brassMat
+      );
+      handle.position.set(handleX, 0, doorThick * 0.8);
+      pivot.add(handle);
+
+      const knob = new THREE.Mesh(new THREE.SphereGeometry(0.035, 14, 12), brassMat);
+      knob.position.set(handleX, 0.11, doorThick * 0.8);
+      pivot.add(knob);
+
+      cabinet.add(pivot);
+      return pivot;
+    }
+
+    const doorL = makeDoor("L");
+    const doorR = makeDoor("R");
+
+    // Center cabinet vertically a bit, push it back so it doesn't crash the camera
+    cabinet.position.set(0, -0.4, 0);
+
+    // -----------------------------------------------------------
+    // Lighting
+    // -----------------------------------------------------------
+    const ambient = new THREE.AmbientLight(0x8a7458, 0.55);
+    scene.add(ambient);
+
+    // Warm interior point light — center of the cabinet
+    const interior = new THREE.PointLight(0xffd5a3, 8, 6, 1.6);
+    interior.position.set(0, 1.5, -0.1);
+    scene.add(interior);
+
+    // Subtle front rim
+    const rim = new THREE.DirectionalLight(0xf2e8d0, 0.6);
+    rim.position.set(2, 3, 4);
+    scene.add(rim);
+
+    // Cool back-fill so the walnut reads
+    const fill = new THREE.DirectionalLight(0x4a5560, 0.25);
+    fill.position.set(-3, 2, 3);
+    scene.add(fill);
+
+    // -----------------------------------------------------------
+    // Door animation — easeOutCubic from 0 to ±1.9rad over 1.5s
+    // -----------------------------------------------------------
+    const DOOR_TARGET = 1.9; // radians (~108°)
+    let animStart = null;
+    let animating = false;
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function startDoorAnimation() {
+      animStart = performance.now();
+      animating = true;
+    }
+
+    if (reduced) {
+      // Doors open, no animation, no drift
+      doorL.rotation.y = DOOR_TARGET;
+      doorR.rotation.y = -DOOR_TARGET;
+    } else {
+      setTimeout(startDoorAnimation, 600);
+    }
+
+    // -----------------------------------------------------------
+    // Camera parallax on mouse move (~±3°)
+    // -----------------------------------------------------------
+    let targetYaw = 0;
+    let targetPitch = 0;
+    let yaw = 0;
+    let pitch = 0;
+    const MAX = (3 * Math.PI) / 180;
+
+    if (!reduced) {
+      window.addEventListener("mousemove", (e) => {
+        const nx = (e.clientX / window.innerWidth) * 2 - 1;
+        const ny = (e.clientY / window.innerHeight) * 2 - 1;
+        targetYaw = -nx * MAX;
+        targetPitch = ny * MAX * 0.6;
+      });
+    }
+
+    // -----------------------------------------------------------
+    // Render loop
+    // -----------------------------------------------------------
+    function tick(now) {
+      // Door easing
+      if (animating) {
+        const elapsed = now - animStart;
+        const t = Math.min(elapsed / 1500, 1);
+        const k = easeOutCubic(t);
+        doorL.rotation.y = DOOR_TARGET * k;
+        doorR.rotation.y = -DOOR_TARGET * k;
+        if (t >= 1) animating = false;
+      }
+
+      // Camera parallax
+      yaw += (targetYaw - yaw) * 0.05;
+      pitch += (targetPitch - pitch) * 0.05;
+      const radius = 5.4;
+      camera.position.x = Math.sin(yaw) * radius;
+      camera.position.z = Math.cos(yaw) * radius;
+      camera.position.y = 1.4 + pitch * 2;
+      camera.lookAt(0, 1.3, 0);
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // Hide the static fallback image once Three.js has rendered
+    requestAnimationFrame(() => {
+      const fb = mount.querySelector(".dl-stage__fallback");
+      if (fb) fb.style.opacity = "0";
+    });
+  }
+</script>
+
+<style>
+  /* ================================================================
+     STAGE — fixed 80vh container for the 3D scene
+     ================================================================ */
+  .dl-stage {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    min-height: 560px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at center, #2a1c12 0%, #18100a 70%, #0c0805 100%);
+    isolation: isolate;
+  }
+  .dl-stage__canvas-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .dl-stage__canvas-wrap canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+  .dl-stage__fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    transition: opacity 700ms ease-out 200ms;
+    pointer-events: none;
+  }
+  .dl-stage__fallback img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.55) saturate(0.85);
+  }
+
+  /* Hero billing overlays the lower portion of the 3D scene */
+  .dl-stage__billing {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 6vh;
+    transform: translateX(-50%);
+    width: min(640px, 92vw);
+    background: var(--color-cream);
+    background-image: radial-gradient(rgba(61,42,30,0.06) 1px, transparent 1.4px);
+    background-size: 4px 4px;
+    border: 1.5px solid var(--color-walnut);
+    box-shadow:
+      0 8px 0 rgba(0,0,0,0.5),
+      inset 0 0 0 5px var(--color-cream),
+      inset 0 0 0 6px var(--color-brass);
+    padding: 28px 36px 26px;
+    text-align: center;
+  }
+  .dl-stage__billing::before,
+  .dl-stage__billing::after {
+    content: "✦";
+    position: absolute;
+    color: var(--color-brass);
+    font-size: 18px;
+  }
+  .dl-stage__billing::before { top: 10px; left: 14px; }
+  .dl-stage__billing::after  { bottom: 10px; right: 14px; }
+
+  .dl-billing__eyebrow {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--color-brass);
+    font-size: 11px;
+    margin: 0 0 4px;
+  }
+  .dl-billing__headline {
+    font-size: clamp(40px, 5.5vw, 76px);
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .dl-billing__sub {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-ink);
+    font-size: clamp(14px, 1.5vw, 17px);
+    margin: 12px auto 18px;
+    max-width: 30rem;
+  }
+  .dl-billing__ctas {
+    display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  }
+
+  .dl-stage__hint {
+    position: absolute;
+    z-index: 2;
+    bottom: 1.2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-label);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: var(--color-brass);
+    margin: 0;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 640px) {
+    .dl-stage { height: 70vh; min-height: 480px; }
+    .dl-stage__billing { padding: 22px 22px 20px; bottom: 4vh; }
+  }
+
+  /* ================================================================
+     MASTHEAD
+     ================================================================ */
+  .dl-mast {
+    padding: 36px 24px 0;
+    max-width: 1180px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .dl-mast__inner { padding-bottom: 14px; }
+  .dl-mast__eyebrow {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--color-brass);
+    font-size: 11px;
+    margin: 0;
+  }
+  .dl-mast__wordmark {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 0.95;
+    letter-spacing: 0.012em;
+    margin: 4px 0;
+    text-shadow: 1.5px 1.5px 0 rgba(26,22,20,0.18);
+    transform: rotate(-0.3deg);
+  }
+  .dl-mast__sub {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-ink);
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* ================================================================
+     SHARED SECTION HEADER
+     ================================================================ */
+  .dl-section__eyebrow {
+    text-align: center;
+    margin: 0 0 4px;
+  }
+  .dl-section__title {
+    text-align: center;
+    font-size: clamp(28px, 4vw, 44px);
+    text-transform: uppercase;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .dl-section__sub {
+    text-align: center;
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-smoke);
+    font-size: 15px;
+    margin: 6px 0 0;
+  }
+
+  /* ================================================================
+     STORY
+     ================================================================ */
+  .dl-story {
+    max-width: 760px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+  }
+  .dl-story__copy {
+    margin-top: 28px;
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--color-ink);
+  }
+  .dl-story__copy p { margin: 0 0 1rem; }
+  .dl-story__copy p em { color: var(--color-walnut); font-style: italic; }
+  .dl-story__copy p strong { color: var(--color-buddy-red); font-weight: 700; }
+  .dl-story__pullquote {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-buddy-red);
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.3;
+    margin: 0 0 1.25rem;
+    border-left: 3px solid var(--color-brass);
+    padding-left: 1.25rem;
+  }
+  .dl-story__pullquote em {
+    color: var(--color-walnut);
+    font-style: italic;
+    font-weight: 700;
+  }
+  .dl-story__sig {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-walnut);
+    font-size: 16px;
+    margin: 1.25rem 0 0;
+  }
+  .dl-story__sig span {
+    font-family: var(--font-hand);
+    font-style: normal;
+    font-size: 22px;
+    color: var(--color-buddy-red);
+    margin: 0 4px;
+  }
+
+  /* ================================================================
+     LINEUP
+     ================================================================ */
+  .dl-lineup {
+    max-width: 1180px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+  }
+  .dl-lineup__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 28px;
+  }
+  @media (max-width: 1024px) { .dl-lineup__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .dl-lineup__grid { grid-template-columns: 1fr; } }
+
+  .dl-plate {
+    background: var(--color-cream);
+    border: 1.5px solid var(--color-walnut);
+    padding: 14px 16px 18px;
+    box-shadow: 4px 4px 0 rgba(26,22,20,0.18);
+    position: relative;
+  }
+  .dl-plate__frame {
+    aspect-ratio: 4/5;
+    border: 1px solid var(--color-walnut);
+    background: #1a1614;
+    overflow: hidden;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .dl-plate__frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: saturate(0.85) sepia(0.12) contrast(1.05);
+  }
+  .dl-plate__awaiting {
+    position: absolute;
+    inset: 0;
+    display: grid; place-items: center;
+    font-family: var(--font-label);
+    letter-spacing: 0.35em;
+    color: var(--color-brass);
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(61,42,30,0.6) 0 8px,
+        rgba(26,22,20,0.6) 8px 16px);
+  }
+  .dl-plate__no {
+    margin: 0 0 4px;
+  }
+  .dl-plate__item {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    color: var(--color-ink);
+    font-size: 17px;
+    line-height: 1.2;
+    margin: 0 0 4px;
+  }
+  .dl-plate__era {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-smoke);
+    font-size: 13px;
+    margin: 0 0 4px;
+  }
+  .dl-plate__note {
+    font-family: var(--font-hand);
+    color: var(--color-walnut);
+    font-size: 15px;
+    line-height: 1.3;
+    margin: 0 0 8px;
+  }
+  .dl-plate__price {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  /* ================================================================
+     EMERALD FELT — every piece has a record
+     ================================================================ */
+  .dl-felt {
+    background: var(--color-emerald);
+    background-image:
+      radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,0.18) 1px, transparent 1.5px);
+    background-size: 3px 3px, 7px 7px;
+    color: var(--color-cream);
+    margin-top: 64px;
+    padding: 72px 24px 80px;
+    border-top: 8px double var(--color-brass);
+    border-bottom: 8px double var(--color-brass);
+  }
+  .dl-felt__inner { max-width: 1180px; margin: 0 auto; text-align: center; }
+  .dl-felt__eyebrow { color: var(--color-brass); margin: 0 0 4px; }
+  .dl-felt__title {
+    font-family: var(--font-display);
+    color: var(--color-cream);
+    font-size: clamp(32px, 4.5vw, 56px);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+    transform: rotate(-0.4deg);
+    text-transform: uppercase;
+    letter-spacing: 0.012em;
+    line-height: 0.95;
+    margin: 0;
+  }
+  .dl-felt__sub {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-cream);
+    font-size: 16px;
+    margin: 8px 0 0;
+  }
+  .dl-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px 36px;
+    margin: 40px 0 24px;
+  }
+  .dl-tag {
+    background: var(--color-tag-paper);
+    color: var(--color-ink);
+    width: 220px;
+    padding: 22px 18px 18px;
+    border: 1px solid rgba(61,42,30,0.45);
+    box-shadow: 4px 5px 0 rgba(0,0,0,0.35);
+    position: relative;
+    text-align: left;
+  }
+  .dl-tag__hole {
+    position: absolute;
+    top: -10px; left: 18px;
+    width: 14px; height: 14px;
+    background: var(--color-emerald);
+    border: 1.5px solid var(--color-walnut);
+    border-radius: 50%;
+  }
+  .dl-tag__hole::after {
+    content: "";
+    position: absolute;
+    top: 12px; left: 6px;
+    width: 1.5px; height: 18px;
+    background: var(--color-walnut);
+    transform: rotate(8deg);
+  }
+  .dl-tag__era {
+    font-family: var(--font-label);
+    letter-spacing: 0.25em;
+    color: var(--color-buddy-red);
+    font-size: 11px;
+    margin: 0 0 2px;
+  }
+  .dl-tag__item {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    color: var(--color-ink);
+    font-size: 15px;
+    line-height: 1.2;
+    margin: 0 0 6px;
+  }
+  .dl-tag__note {
+    font-family: var(--font-hand);
+    color: var(--color-walnut);
+    font-size: 15px;
+    line-height: 1.25;
+    margin: 0 0 10px;
+  }
+  .dl-tag__price {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 22px;
+    margin: 0;
+  }
+  .dl-felt__footer {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-cream);
+    font-size: 17px;
+    margin: 24px 0 0;
+  }
+  .dl-felt__footer a {
+    color: var(--color-brass);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-brass);
+  }
+
+  /* ================================================================
+     JOINT
+     ================================================================ */
+  .dl-joint {
+    max-width: 1180px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+  }
+  .dl-joint__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 32px;
+    margin-top: 28px;
+  }
+  @media (max-width: 880px) { .dl-joint__grid { grid-template-columns: 1fr; } }
+
+  .dl-map-frame {
+    position: relative;
+    padding: 10px;
+    border: 1.5px solid var(--color-brass);
+    background: rgba(0,0,0,0.04);
+    min-height: 380px;
+  }
+  .dl-map-frame iframe {
+    width: 100%; height: 100%; min-height: 380px;
+    border: 1px solid var(--color-walnut);
+    display: block;
+    filter: sepia(0.3) saturate(0.7) contrast(1.05);
+  }
+
+  .dl-card {
+    background: var(--color-cream);
+    border: 1.5px solid var(--color-walnut);
+    padding: 28px 24px;
+  }
+  .dl-card .ttf-label { margin: 12px 0 6px; }
+  .dl-card .ttf-label:first-of-type { margin-top: 0; }
+  .dl-card__line {
+    font-family: var(--font-billing);
+    font-size: 17px;
+    margin: 0;
+    color: var(--color-ink);
+  }
+  .dl-card__line--bold { font-weight: 700; }
+  .dl-card__line--italic {
+    font-style: italic;
+    color: var(--color-smoke);
+    font-size: 14px;
+  }
+  .dl-card__line--phone {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 40px;
+    line-height: 1;
+    margin: 2px 0 6px;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.15);
+  }
+  .dl-card__divider {
+    border-top: 1px solid var(--color-brass);
+    margin: 14px 0;
+    position: relative;
+    height: 0;
+  }
+  .dl-card__divider::after {
+    content: "◆";
+    position: absolute;
+    top: -9px; left: 50%; transform: translateX(-50%);
+    color: var(--color-brass);
+    background: var(--color-cream);
+    padding: 0 8px;
+    font-size: 11px;
+  }
+  .dl-card__buttons {
+    display: flex; gap: 10px; margin-top: 18px;
+  }
+  .dl-card__buttons .ttf-btn {
+    flex: 1;
+    padding: 10px 14px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    box-shadow: 2px 2px 0 rgba(26,22,20,0.22);
+  }
+
+  /* ================================================================
+     ETSY
+     ================================================================ */
+  .dl-etsy {
+    max-width: 720px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+  }
+  .dl-etsy__inner { text-align: center; margin-top: 24px; }
+  .dl-etsy__body {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-ink);
+    margin: 0 auto 22px;
+    max-width: 560px;
+  }
+  .dl-etsy__body em { color: var(--color-walnut); }
+  .dl-etsy__form {
+    display: flex; gap: 0;
+    max-width: 520px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .dl-etsy__form input {
+    flex: 1; min-width: 220px;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    border: 1.5px solid var(--color-walnut);
+    border-right: 0;
+    padding: 14px 16px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    outline: none;
+  }
+  .dl-etsy__form input:focus { background: #faf2d8; }
+  .dl-etsy__form .ttf-btn { border-left: 1.5px solid var(--color-walnut); }
+  .dl-etsy__legal { color: var(--color-brass); margin-top: 18px; }
+  @media (max-width: 540px) {
+    .dl-etsy__form input {
+      border-right: 1.5px solid var(--color-walnut);
+      margin-bottom: 12px;
+    }
+  }
+
+  /* ================================================================
+     FOOTER
+     ================================================================ */
+  .dl-footer {
+    text-align: center;
+    padding: 56px 24px 48px;
+    max-width: 720px;
+    margin: 56px auto 0;
+  }
+  .dl-footer__tagline {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-ink);
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 22px 0 16px;
+  }
+  .dl-footer__tagline em { color: var(--color-walnut); }
+  .dl-footer__legal { color: var(--color-brass); margin-bottom: 14px; }
+  .dl-footer__labs {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-smoke);
+    font-size: 13px;
+    margin: 0 0 12px;
+  }
+  .dl-footer__back {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 11px;
+    margin: 0;
+  }
+  .dl-footer__back a {
+    color: var(--color-brass);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-brass);
+  }
+</style>

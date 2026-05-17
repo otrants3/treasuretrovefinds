@@ -1,1520 +1,340 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SunburstSeal from "../components/SunburstSeal.astro";
 
-// --- BOOTH FACTS ---
-const BOOTH = {
-  name: "Paradise Mall · Booth #18",
-  street: "3565 E. Flamingo Road",
-  city: "Las Vegas, Nevada 89121",
-  phone: "(516) 446-2693",
-  phoneHref: "tel:+15164462693",
-  hoursLine: "Open daily, 10 'til 6",
-  billLine: "Bill works the booth Weds & Sun",
-  mapHref:
-    "https://www.google.com/maps/search/?api=1&query=3565+E+Flamingo+Road+Las+Vegas+NV+89121",
-};
-
-// --- SHELVES: one section each, in scroll order ---
-const SHELVES = [
-  { no: "I",   slug: "front",   tab: "The Front" },
-  { no: "II",  slug: "story",   tab: "How We Got Here" },
-  { no: "III", slug: "lineup",  tab: "Tonight's Lineup" },
-  { no: "IV",  slug: "record",  tab: "The Record" },
-  { no: "V",   slug: "joint",   tab: "Find the Joint" },
-  { no: "VI",  slug: "word",    tab: "Get The Word First" },
+const REAL_ASSET_CONCEPTS = [
+  {
+    slug: "gamma",
+    no: "γ",
+    name: "The Real Cabinet (photo composite)",
+    blurb: "Built on actual antique-curio-cabinet photography. Doors-closed → doors-open crossfade on load (real photos, not CSS). Each section uses a different real cabinet/shelf photo as its backdrop with content laid over.",
+    tone: "real photo · believable furniture · ships today",
+    href: "/concepts/gamma",
+    flag: "Recommended",
+  },
+  {
+    slug: "delta",
+    no: "δ",
+    name: "Real 3D Cabinet (Three.js)",
+    blurb: "Actual real-time WebGL cabinet built from primitive geometry + real wood texture. Two glass doors swing open in true 3D on load. Mouse-move parallax. Custom-built, runs in the browser.",
+    tone: "real 3D · interactive · world-class polish",
+    href: "/concepts/delta",
+    flag: "Most unique",
+  },
+  {
+    slug: "alpha-stub",
+    no: "α",
+    name: "AI-Generated Cabinet (needs Gemini key)",
+    blurb: "When you drop a GEMINI_API_KEY into the project env, I can generate a custom photorealistic cabinet image set (closed, open, brass details, interior lighting) and composite them. Until then, GAMMA is the closest real-photo equivalent.",
+    tone: "blocked · needs your key · ~2 min to enable",
+    href: "/concepts/gamma",
+    flag: "Blocked",
+  },
+  {
+    slug: "beta-stub",
+    no: "β",
+    name: "3D Model Embed (Sketchfab / model-viewer)",
+    blurb: "Would embed a free CC0 antique cabinet .glb via Google's model-viewer or a Sketchfab iframe. I haven't found a perfect cabinet model yet — if you point me to one on Sketchfab you like, I'll wire it up.",
+    tone: "needs model · 30 min to wire up",
+    href: "/concepts/delta",
+    flag: "Pending model",
+  },
 ];
 
-// --- TONIGHT'S LINEUP items (real pieces from Bill's tags) ---
-const LINEUP = [
-  { era: "1934", item: "Ludwig Scherk Renaissance Perfume Bottle", note: "w/ Marie Antoinette miniature · original silvered metalwork", price: "$225.00", photo: "/photos/tag-perfume-bottle.jpg" },
-  { era: "1930-40s", item: "Hobby Kiddie Diecast Race Car", note: "green over silver · original rubber · #SH-457 all original", price: "$65.00", photo: "/photos/tag-race-car.jpg" },
-  { era: "1930s", item: "GE Cast-Iron Oscillating Fan", note: "still works · brass blade · ask Bill to plug it in", price: "ask Bill", photo: "/photos/fan-perfumes.jpg" },
-  { era: "—", item: "Bill's pick coming Sunday", note: "he has thirty in mind, won't commit to one yet", price: "check back", photo: "" },
-];
-
-// --- THE RECORD: paper tags on emerald felt ---
-const RECORD_TAGS = [
-  { era: "1934", item: "Scherk Perfume Bottle", notes: "w/ Marie Antoinette miniature", price: "$225.00", rot: -4 },
-  { era: "1930-40", item: "Hobby Kiddie Race Car", notes: "green · original rubber · #SH-457", price: "$65.00", rot: 2 },
-  { era: "1938", item: "Buddy L Fire Engine", notes: "E. Moline IL · all-orig ladders", price: "$285.00", rot: -1 },
-  { era: "1942", item: "Mobil Gas Porcelain Sign", notes: "Pegasus crest · honest wear", price: "$420.00", rot: 4 },
-  { era: "1930s", item: "Carved Bakelite Cuff", notes: "cherry red · two repairs Bill'll show you", price: "$68.00", rot: -3 },
-  { era: "1928", item: "Tin Pan Alley Sheet Music", notes: "signed in pencil · provenance on file", price: "$42.00", rot: 1 },
+const PREVIOUS_CONCEPTS = [
+  { slug: "the-cabinet", no: "v4", name: "The CSS Cabinet (the one you said was crap)", blurb: "The previous attempt — drawn entirely in CSS. Confirmed not believable as furniture. Kept for comparison.", href: "/concepts/the-cabinet" },
+  { slug: "walk-in", no: "v3·a", name: "The Walk-In", blurb: "Cinematic lights-come-on parallax scroll. No cabinet, just the room.", href: "/concepts/walk-in" },
+  { slug: "notebook", no: "v3·b", name: "Bill's Notebook", blurb: "Hand-bound notebook with taped polaroids and red-pen margins.", href: "/concepts/notebook" },
+  { slug: "card-catalog", no: "v3·c", name: "The Card Catalog", blurb: "Library card-catalog drawers that pull open with typed index cards.", href: "/concepts/card-catalog" },
+  { slug: "auction", no: "v3·d", name: "The Auction Catalogue", blurb: "Christie's-style full-screen LOT spreads.", href: "/concepts/auction" },
+  { slug: "marquee", no: "v3·e", name: "The Marquee", blurb: "Vaudeville show-bill with brass bulbs that light up on load.", href: "/concepts/marquee" },
 ];
 ---
 
-<Layout title="Treasure Trove Finds — Paradise Mall, Booth #18">
-  <div class="curio" id="curio">
-    <!-- ============================================================
-         CROWN — top of the cabinet · wordmark · sticky on scroll
-         ============================================================ -->
-    <header class="curio__crown">
-      <div class="curio__pediment">
-        <div class="curio__pediment-inner">
-          <span class="curio__pediment-finial curio__pediment-finial--l">❦</span>
-          <span class="curio__pediment-finial curio__pediment-finial--r">❦</span>
-          <p class="curio__eyebrow">— Fine Curiosities &amp; Relics · Vol. I, No. 1 —</p>
-          <h1 class="curio__wordmark">TREASURE TROVE FINDS</h1>
-          <p class="curio__tagline">
-            <em>Paradise Mall · Booth&nbsp;#18 · Las Vegas</em>
-          </p>
-          <p class="curio__est">Est. 2022 · Collecting since 1973 · Pieces back to 1850</p>
-        </div>
-        <!-- Brass crown molding strip -->
-        <div class="curio__crown-strip"></div>
+<Layout title="Treasure Trove Finds — Pick a Cabinet">
+  <header class="pk-mast">
+    <div class="pk-mast__inner">
+      <div class="pk-mast__center">
+        <p class="pk-mast__eyebrow">— Concept Catalogue · Real-Asset Round —</p>
+        <h1 class="pk-mast__wordmark">TREASURE TROVE FINDS</h1>
+        <p class="pk-mast__sub">
+          New round, built on <em>real cabinet photography and real 3D.</em> Pick a cabinet.
+        </p>
       </div>
-    </header>
+      <div class="pk-mast__seal">
+        <SunburstSeal size={108} est="2022" since="'73" />
+      </div>
+    </div>
+    <div class="pk-rule"></div>
+  </header>
 
-    <!-- ============================================================
-         SHELF-TAB NAVIGATION — brass strip on the left (sticky)
-         ============================================================ -->
-    <nav class="curio__rail" aria-label="Cabinet shelves">
-      <p class="curio__rail-eyebrow">— Shelves —</p>
-      {SHELVES.map((s) => (
-        <a class="curio__tab" href={`#shelf-${s.slug}`} data-target={`shelf-${s.slug}`}>
-          <span class="curio__tab-no">{s.no}</span>
-          <span class="curio__tab-name">{s.tab}</span>
+  <section class="pk-section">
+    <h2 class="pk-section__title">Real Assets — built today</h2>
+    <p class="pk-section__sub">Each of these uses actual photography or actual 3D, not CSS gradients pretending to be wood.</p>
+    <div class="pk-grid">
+      {REAL_ASSET_CONCEPTS.map((c) => (
+        <a class={`pk-card pk-card--${c.slug}`} href={c.href}>
+          {c.flag && <span class="pk-card__flag">{c.flag}</span>}
+          <div class="pk-card__plate">
+            <span class="pk-card__no">{c.no}</span>
+            <h2 class="pk-card__name">{c.name}</h2>
+          </div>
+          <p class="pk-card__blurb">{c.blurb}</p>
+          <p class="pk-card__tone">{c.tone}</p>
+          <span class="pk-card__cta">Step inside <span aria-hidden="true">→</span></span>
         </a>
       ))}
-      <div class="curio__rail-foot"><span aria-hidden="true">❦</span></div>
-    </nav>
-
-    <!-- ============================================================
-         CABINET BODY — vertical wood walls, shelves stacked inside
-         ============================================================ -->
-    <div class="curio__body">
-
-      <!-- ============================================================
-           SHELF I — THE FRONT (hero)
-           ============================================================ -->
-      <section class="shelf" id="shelf-front" data-shelf="1">
-        <div class="shelf__rail-top">
-          <span class="shelf__plate">
-            <span class="shelf__plate-no">I.</span>
-            <span class="shelf__plate-name">Every Piece Has a Record</span>
-            <span class="shelf__plate-sub">— the front of the house —</span>
-          </span>
-        </div>
-        <div class="shelf__interior">
-          <!-- Glass doors swing open on load (one per side) -->
-          <div class="shelf__door shelf__door--l" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-          <div class="shelf__door shelf__door--r" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-
-          <div class="shelf__content shelf__content--hero">
-            <figure class="hero-photo">
-              <img src="/photos/booth-wide.jpg" alt="Inside Booth #18 at Paradise Mall — Bill's curated antique cases" loading="eager" />
-            </figure>
-            <div class="hero-billing">
-              <p class="hero-billing__eyebrow">— Tonight at Booth Eighteen —</p>
-              <h2 class="hero-billing__headline">Every piece<br/>has a record.</h2>
-              <p class="hero-billing__sub">
-                Fifty years on the hunt. Bill &amp; Lisa's back-room of American oddments — pieces back to 1850. The things that catch your mind.
-              </p>
-              <div class="hero-billing__ctas">
-                <a class="curio-btn curio-btn--primary" href="#shelf-joint">Drop in — Booth #18</a>
-                <a class="curio-btn curio-btn--secondary" href={BOOTH.phoneHref}>Ring Bill up · {BOOTH.phone}</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="shelf__rail-bot"></div>
-      </section>
-
-      <!-- ============================================================
-           SHELF II — HOW WE GOT HERE (origin)
-           ============================================================ -->
-      <section class="shelf" id="shelf-story" data-shelf="2">
-        <div class="shelf__rail-top">
-          <span class="shelf__plate">
-            <span class="shelf__plate-no">II.</span>
-            <span class="shelf__plate-name">How We Got Here</span>
-            <span class="shelf__plate-sub">— baseball cards, then everything else —</span>
-          </span>
-        </div>
-        <div class="shelf__interior">
-          <div class="shelf__door shelf__door--l" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-          <div class="shelf__door shelf__door--r" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-
-          <div class="shelf__content shelf__content--story">
-            <figure class="story-portrait">
-              <div class="story-portrait__frame">
-                <img src="/photos/fan-perfumes.jpg" alt="A corner of Bill & Lisa's booth — the kind of room you don't find in 2026" />
-              </div>
-              <figcaption>
-                <span class="story-portrait__name">Bill &amp; Lisa Otranto</span>
-                <span class="story-portrait__sub">Proprietors · Booth #18</span>
-              </figcaption>
-            </figure>
-            <div class="story-copy">
-              <h3 class="story-pull">
-                "Bill wasn't collecting antiques. <em>He was collecting the stories behind the numbers.</em>"
-              </h3>
-              <p>
-                Bill caught the bug the way most boys did — a stack of baseball cards. But
-                the <em>players</em> weren't the point. The <strong>numbers on the back</strong>
-                were. Years, batting averages, stadium names — the history hiding inside
-                the data. He'd memorize them. He'd cross-reference. He'd want to know what
-                else was happening the year somebody hit .357.
-              </p>
-              <p>
-                That curiosity never quit. Cards became bottles. Bottles became signs. Signs
-                became toys. Toys became <em>anything with a story he hadn't heard yet.</em>
-                Not just antique. Not just vintage. <em>Nostalgic</em> — pieces with a hold
-                on the rooms they came out of. A 1934 perfume bottle with a Marie Antoinette
-                miniature. A pressed-steel race car from when steel was the right material
-                for a toy. A cast-iron GE fan that's been moving air through living rooms
-                since before the war.
-              </p>
-              <p>
-                Lisa came along, made it a life. Walk into Booth&nbsp;#18 and point at
-                anything. Bill <strong>will not hesitate.</strong> He'll tell you the year,
-                the maker, what it sold for new, who probably bought it first, and what
-                was on the radio in America that month. And he'll tell it animated — hands
-                moving, leaning on the case, getting into it. <em>This is not your sixth-grade
-                Social Studies teacher's lecture.</em> This is history told the way it should
-                have been the first time.
-              </p>
-              <p class="story-sig">— <span>Bill &amp; Lisa</span></p>
-            </div>
-          </div>
-        </div>
-        <div class="shelf__rail-bot"></div>
-      </section>
-
-      <!-- ============================================================
-           SHELF III — TONIGHT'S LINEUP
-           ============================================================ -->
-      <section class="shelf" id="shelf-lineup" data-shelf="3">
-        <div class="shelf__rail-top">
-          <span class="shelf__plate">
-            <span class="shelf__plate-no">III.</span>
-            <span class="shelf__plate-name">Tonight's Lineup</span>
-            <span class="shelf__plate-sub">— four pieces, hand-picked, currently at the booth —</span>
-          </span>
-        </div>
-        <div class="shelf__interior">
-          <div class="shelf__door shelf__door--l" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-          <div class="shelf__door shelf__door--r" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-
-          <div class="shelf__content shelf__content--lineup">
-            <div class="lineup-grid">
-              {LINEUP.map((p, i) => (
-                <article class={`piece ${!p.photo ? "piece--awaiting" : ""}`}>
-                  <div class="piece__frame">
-                    {p.photo
-                      ? <img src={p.photo} alt={p.item} loading="lazy" />
-                      : <div class="piece__placeholder">PHOTO<br/>AWAITING</div>
-                    }
-                    <span class="piece__no">No. 0{i + 1}</span>
-                  </div>
-                  <p class="piece__era">{p.era}</p>
-                  <h4 class="piece__name">{p.item}</h4>
-                  <p class="piece__note">{p.note}</p>
-                  <p class="piece__price">{p.price.startsWith("$") ? p.price : p.price}</p>
-                </article>
-              ))}
-            </div>
-            <p class="lineup-foot">
-              <span class="leaf">❦</span>
-              The lineup turns over fast. <a href={BOOTH.phoneHref}>Call ahead</a> if you've got your eye on something.
-              <span class="leaf">❦</span>
-            </p>
-          </div>
-        </div>
-        <div class="shelf__rail-bot"></div>
-      </section>
-
-      <!-- ============================================================
-           SHELF IV — THE RECORD (emerald felt back wall)
-           ============================================================ -->
-      <section class="shelf shelf--felt" id="shelf-record" data-shelf="4">
-        <div class="shelf__rail-top">
-          <span class="shelf__plate shelf__plate--dark">
-            <span class="shelf__plate-no">IV.</span>
-            <span class="shelf__plate-name">The Record</span>
-            <span class="shelf__plate-sub">— every piece has one · in Bill's own hand —</span>
-          </span>
-        </div>
-        <div class="shelf__interior shelf__interior--felt">
-          <div class="shelf__door shelf__door--l" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-          <div class="shelf__door shelf__door--r" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-
-          <div class="shelf__content shelf__content--record">
-            <p class="record-eyebrow">— Pulled from the counter —</p>
-            <h3 class="record-headline">Every Piece Has a Record.</h3>
-            <p class="record-sub">the homework, in our own hand</p>
-
-            <div class="record-tags">
-              {RECORD_TAGS.map((t) => (
-                <span class="rtag" style={`transform: rotate(${t.rot}deg);`}>
-                  <span class="rtag__thread"></span>
-                  <span class="rtag__hole"></span>
-                  <span class="rtag__era">{t.era}</span>
-                  <strong class="rtag__item">{t.item}</strong>
-                  <span class="rtag__note">{t.notes}</span>
-                  <span class="rtag__price">{t.price}</span>
-                </span>
-              ))}
-            </div>
-
-            <p class="record-foot">
-              Want the full story behind any of them? <a href={BOOTH.phoneHref}>Ring Bill up — {BOOTH.phone}</a>
-            </p>
-          </div>
-        </div>
-        <div class="shelf__rail-bot"></div>
-      </section>
-
-      <!-- ============================================================
-           SHELF V — FIND THE JOINT
-           ============================================================ -->
-      <section class="shelf" id="shelf-joint" data-shelf="5">
-        <div class="shelf__rail-top">
-          <span class="shelf__plate">
-            <span class="shelf__plate-no">V.</span>
-            <span class="shelf__plate-name">Find the Joint</span>
-            <span class="shelf__plate-sub">— no GPS required, but it helps —</span>
-          </span>
-        </div>
-        <div class="shelf__interior">
-          <div class="shelf__door shelf__door--l" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-          <div class="shelf__door shelf__door--r" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-
-          <div class="shelf__content shelf__content--joint">
-            <div class="joint-map">
-              <iframe
-                title="Map to Paradise Mall, Booth #18"
-                src="https://www.google.com/maps?q=3565+E+Flamingo+Road+Las+Vegas+NV&output=embed"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <aside class="joint-card">
-              <span class="joint-card__corner joint-card__corner--tl"></span>
-              <span class="joint-card__corner joint-card__corner--tr"></span>
-              <span class="joint-card__corner joint-card__corner--bl"></span>
-              <span class="joint-card__corner joint-card__corner--br"></span>
-
-              <p class="joint-label">Booth</p>
-              <p class="joint-line joint-line--bold">{BOOTH.name.toUpperCase()}</p>
-              <p class="joint-line">{BOOTH.street}</p>
-              <p class="joint-line">{BOOTH.city}</p>
-              <div class="joint-divider"></div>
-
-              <p class="joint-label">Hours</p>
-              <p class="joint-line">{BOOTH.hoursLine}</p>
-              <p class="joint-line joint-line--italic">{BOOTH.billLine}</p>
-              <div class="joint-divider"></div>
-
-              <p class="joint-label">Ring Bill Up</p>
-              <p class="joint-phone">{BOOTH.phone}</p>
-              <p class="joint-line joint-line--italic">Call ahead and we'll set things aside.</p>
-
-              <div class="joint-buttons">
-                <a class="curio-btn curio-btn--primary curio-btn--sm" href={BOOTH.mapHref} target="_blank" rel="noopener">Get Directions</a>
-                <a class="curio-btn curio-btn--secondary curio-btn--sm" href={BOOTH.phoneHref}>Call Bill</a>
-              </div>
-            </aside>
-          </div>
-        </div>
-        <div class="shelf__rail-bot"></div>
-      </section>
-
-      <!-- ============================================================
-           SHELF VI — GET THE WORD FIRST (etsy + footer)
-           ============================================================ -->
-      <section class="shelf" id="shelf-word" data-shelf="6">
-        <div class="shelf__rail-top">
-          <span class="shelf__plate">
-            <span class="shelf__plate-no">VI.</span>
-            <span class="shelf__plate-name">Get the Word First</span>
-            <span class="shelf__plate-sub">— Etsy's coming · jump the queue —</span>
-          </span>
-        </div>
-        <div class="shelf__interior">
-          <div class="shelf__door shelf__door--l" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-          <div class="shelf__door shelf__door--r" aria-hidden="true">
-            <div class="shelf__door-glass"></div>
-            <span class="shelf__door-handle"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--top"></span>
-            <span class="shelf__door-hinge shelf__door-hinge--bot"></span>
-          </div>
-
-          <div class="shelf__content shelf__content--word">
-            <h3 class="word-title">Etsy's Coming.</h3>
-            <p class="word-body">
-              We're putting the listings together piece by piece. If you want first
-              crack at the good stuff before it goes up — <em>and the first crack is
-              what you want</em> — leave your name. No spam. No tricks. We don't have
-              time for that.
-            </p>
-            <form class="word-form" action="#" method="post">
-              <input type="email" name="email" required placeholder="your.email@…" aria-label="Email address" />
-              <button class="curio-btn curio-btn--primary" type="submit">Get the word first</button>
-            </form>
-            <p class="word-legal">No spam · No tricks · We don't have time for that</p>
-          </div>
-        </div>
-        <div class="shelf__rail-bot"></div>
-      </section>
     </div>
+  </section>
 
-    <!-- ============================================================
-         CABINET BASE — wooden plinth with the closing legal
-         ============================================================ -->
-    <footer class="curio__base">
-      <p class="curio__base-tagline">
-        Est. 2022 · Collecting since 1973 · <em>Pieces back to 1850.</em><br/>
-        Bill knows everybody. <em>Ask no questions.</em>
-      </p>
-      <p class="curio__base-legal">
-        TREASURE TROVE FINDS · PARADISE MALL · BOOTH #18 · LAS VEGAS, NEVADA
-      </p>
-      <p class="curio__base-labs">An Otranto Labs project · <a href="/concepts">other concepts</a></p>
-    </footer>
-  </div>
+  <section class="pk-section pk-section--prev">
+    <h2 class="pk-section__title">Previous round — kept for reference</h2>
+    <p class="pk-section__sub">Concepts from the last few iterations. Still browsable in case anything's worth borrowing.</p>
+    <div class="pk-grid pk-grid--mini">
+      {PREVIOUS_CONCEPTS.map((c) => (
+        <a class="pk-card pk-card--mini" href={c.href}>
+          <div class="pk-card__plate">
+            <span class="pk-card__no">{c.no}</span>
+            <h3 class="pk-card__name pk-card__name--sm">{c.name}</h3>
+          </div>
+          <p class="pk-card__blurb pk-card__blurb--sm">{c.blurb}</p>
+          <span class="pk-card__cta">Open →</span>
+        </a>
+      ))}
+    </div>
+  </section>
 
-  <script is:inline>
-    (function () {
-      // OPEN: all glass doors auto-open shortly after load, staggered top-to-bottom.
-      var shelves = document.querySelectorAll('.shelf');
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var openDelay = reduce ? 0 : 500;
-
-      window.addEventListener('load', function () {
-        setTimeout(function () {
-          shelves.forEach(function (s, i) {
-            setTimeout(function () { s.classList.add('shelf--open'); }, i * 140);
-          });
-        }, openDelay);
-      });
-
-      // RAIL TAB ACTIVE STATE — highlight whichever shelf is in view
-      var tabs = document.querySelectorAll('.curio__tab');
-      var byId = {};
-      tabs.forEach(function (t) { byId[t.getAttribute('data-target')] = t; });
-
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            var id = e.target.id;
-            var tab = byId[id];
-            if (!tab) return;
-            if (e.isIntersecting && e.intersectionRatio > 0.35) {
-              tabs.forEach(function (t) { t.classList.remove('curio__tab--active'); });
-              tab.classList.add('curio__tab--active');
-            }
-          });
-        }, { threshold: [0.35, 0.6] });
-        shelves.forEach(function (s) { io.observe(s); });
-      }
-    })();
-  </script>
+  <footer class="pk-foot">
+    <p>
+      Pick a winner from the top row. Tell me what to fix on the chosen one and I'll iterate.
+      Once you settle, I promote that concept to <code>/</code> and we ship a real domain.
+    </p>
+    <p class="pk-foot__legal">
+      TREASURE TROVE FINDS · PARADISE MALL · BOOTH #18 · LAS VEGAS, NEVADA · <em>An Otranto Labs project</em>
+    </p>
+  </footer>
 </Layout>
 
-<style is:global>
-  /* Match the cabinet — body is dim and slightly warm. */
-  html { scroll-behavior: smooth; }
-  body {
-    background: #1a120a;
-    background-image:
-      radial-gradient(rgba(0,0,0,0.4) 1.5px, transparent 1.5px),
-      radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 5px 5px, 9px 9px;
-    color: var(--color-cream);
-  }
-</style>
-
 <style>
-  /* ============================================================
-     THE CURIO — page-spanning wooden cabinet, perspective set so
-     the doors swing in 3D.
-     ============================================================ */
-  .curio {
-    position: relative;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 0 60px;
-    perspective: 1600px;
-    perspective-origin: 50% 30%;
-  }
-
-  /* Wood texture mixin — used by crown, base, rails, shelf rails */
-  .curio__crown,
-  .curio__base,
-  .shelf__rail-top,
-  .shelf__rail-bot,
-  .curio__body::before,
-  .curio__body::after {
-    background-color: #3D2A1E;
-    background-image:
-      /* tight wood grain */
-      repeating-linear-gradient(
-        91deg,
-        rgba(0,0,0,0.16) 0 1px,
-        transparent 1px 7px,
-        rgba(255,255,255,0.035) 7px 8px,
-        transparent 8px 16px
-      ),
-      /* wider plank variation */
-      repeating-linear-gradient(
-        90deg,
-        rgba(0,0,0,0.10) 0 80px,
-        rgba(255,255,255,0.025) 80px 82px,
-        rgba(0,0,0,0.16) 82px 160px
-      ),
-      linear-gradient(180deg, #4a2f1f 0%, #3D2A1E 50%, #2a1c12 100%);
-  }
-
-  /* ============================================================
-     CROWN — pediment + brass crown molding
-     ============================================================ */
-  .curio__crown {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    padding: 28px 56px 14px;
-    box-shadow:
-      inset 0 0 60px rgba(0,0,0,0.55),
-      inset 0 -3px 0 rgba(0,0,0,0.7),
-      inset 0 0 0 2px rgba(0,0,0,0.5),
-      inset 0 0 0 4px rgba(201,162,39,0.45),
-      0 6px 12px rgba(0,0,0,0.5);
-  }
-  .curio__pediment {
-    position: relative;
-    text-align: center;
-    padding: 18px 24px 28px;
-    background: var(--color-cream);
-    background-image: radial-gradient(rgba(61,42,30,0.07) 1px, transparent 1.4px);
-    background-size: 4px 4px;
-    border: 1.5px solid var(--color-walnut);
-    box-shadow:
-      inset 0 0 0 5px var(--color-cream),
-      inset 0 0 0 6px var(--color-brass),
-      0 4px 0 rgba(0,0,0,0.5);
-  }
-  .curio__pediment-inner { position: relative; }
-  .curio__pediment-finial {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-brass);
-    font-size: 22px;
-  }
-  .curio__pediment-finial--l { left: 18px; }
-  .curio__pediment-finial--r { right: 18px; }
-  .curio__eyebrow {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.34em;
-    color: var(--color-brass);
-    font-size: 11px;
-    margin: 0;
-  }
-  .curio__wordmark {
-    font-family: var(--font-display);
-    color: var(--color-buddy-red);
-    font-size: clamp(36px, 5.2vw, 64px);
-    line-height: 0.95;
-    letter-spacing: 0.012em;
-    margin: 6px 0 4px;
-    text-shadow: 2px 2px 0 rgba(26,22,20,0.2);
-    transform: rotate(-0.4deg);
-  }
-  .curio__tagline {
-    font-family: var(--font-billing);
-    color: var(--color-ink);
-    font-size: 14px;
-    margin: 0;
-  }
-  .curio__tagline em { font-style: italic; }
-  .curio__est {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-smoke);
-    font-size: 12px;
-    margin: 6px 0 0;
-  }
-  .curio__crown-strip {
-    height: 14px;
-    margin: 12px -56px 0;
-    background: linear-gradient(180deg, #f0d77a 0%, #C9A227 35%, #8a6c19 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.3),
-      inset 0 -2px 0 rgba(0,0,0,0.3),
-      0 2px 0 rgba(0,0,0,0.5);
-    position: relative;
-  }
-  .curio__crown-strip::before,
-  .curio__crown-strip::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px; height: 8px;
-    background: var(--color-walnut);
-    border-radius: 50%;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-  }
-  .curio__crown-strip::before { left: 28px; }
-  .curio__crown-strip::after  { right: 28px; }
-
-  /* ============================================================
-     SHELF NAVIGATION RAIL — left side, sticky brass plate
-     ============================================================ */
-  .curio__rail {
-    position: fixed;
-    top: 50%;
-    left: 22px;
-    transform: translateY(-50%);
-    z-index: 30;
-    background: linear-gradient(180deg, #d8b647 0%, #C9A227 40%, #a07e1d 100%);
-    color: var(--color-walnut);
-    padding: 14px 6px 14px;
-    border: 1.5px solid rgba(0,0,0,0.45);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.35),
-      inset 0 -2px 0 rgba(0,0,0,0.3),
-      4px 5px 0 rgba(0,0,0,0.5);
-    width: 64px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    align-items: center;
-  }
-  .curio__rail-eyebrow {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-walnut);
-    font-size: 8px;
-    margin: 0 0 4px;
-  }
-  .curio__tab {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--color-walnut);
-    padding: 6px 4px;
-    border-radius: 0;
-    width: 100%;
-    text-align: center;
-    transition: background 120ms ease-out, color 120ms ease-out;
-    position: relative;
-  }
-  .curio__tab:hover {
-    background: rgba(255,255,255,0.18);
-  }
-  .curio__tab--active {
-    background: var(--color-buddy-red);
-    color: var(--color-cream);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 0 1px rgba(0,0,0,0.4);
-  }
-  .curio__tab--active .curio__tab-no { color: var(--color-brass); }
-  .curio__tab--active .curio__tab-name { color: var(--color-cream); }
-  .curio__tab-no {
-    font-family: var(--font-display);
-    color: var(--color-walnut);
-    font-size: 16px;
-    line-height: 1;
-    letter-spacing: 0.04em;
-  }
-  .curio__tab-name {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-walnut);
-    font-size: 8px;
-    margin-top: 3px;
-    line-height: 1.1;
-    word-break: break-word;
-  }
-  .curio__rail-foot {
-    margin-top: 4px;
-    color: var(--color-walnut);
-    font-size: 12px;
-  }
-
-  /* Mobile: collapse rail to a horizontal sticky bar at the top */
-  @media (max-width: 880px) {
-    .curio__rail {
-      position: sticky;
-      top: 0;
-      left: 0;
-      transform: none;
-      width: 100%;
-      flex-direction: row;
-      justify-content: space-around;
-      padding: 6px 8px;
-      gap: 2px;
-    }
-    .curio__rail-eyebrow, .curio__rail-foot { display: none; }
-    .curio__tab { flex-direction: row; gap: 6px; padding: 4px 6px; flex: 1; }
-    .curio__tab-no { font-size: 13px; }
-    .curio__tab-name { font-size: 8px; margin: 0; }
-  }
-
-  /* ============================================================
-     CABINET BODY — vertical wooden side walls, shelves inside
-     ============================================================ */
-  .curio__body {
-    position: relative;
-    padding: 0 30px;
-    box-shadow:
-      inset 4px 0 0 rgba(201,162,39,0.4),
-      inset -4px 0 0 rgba(201,162,39,0.4),
-      inset 5px 0 12px rgba(0,0,0,0.5),
-      inset -5px 0 12px rgba(0,0,0,0.5);
-  }
-  /* Left wood wall */
-  .curio__body::before {
-    content: "";
-    position: absolute;
-    top: 0; bottom: 0; left: 0;
-    width: 30px;
-    box-shadow:
-      inset -2px 0 0 rgba(0,0,0,0.45),
-      inset 0 0 30px rgba(0,0,0,0.5);
-  }
-  /* Right wood wall */
-  .curio__body::after {
-    content: "";
-    position: absolute;
-    top: 0; bottom: 0; right: 0;
-    width: 30px;
-    box-shadow:
-      inset 2px 0 0 rgba(0,0,0,0.45),
-      inset 0 0 30px rgba(0,0,0,0.5);
-  }
-
-  /* ============================================================
-     SHELF — top rail (with brass plate), interior with doors, bottom rail
-     ============================================================ */
-  .shelf {
-    position: relative;
-    scroll-margin-top: 120px;
-  }
-  .shelf__rail-top, .shelf__rail-bot {
-    height: 22px;
-    position: relative;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.05),
-      inset 0 -1px 0 rgba(0,0,0,0.5),
-      0 2px 0 rgba(0,0,0,0.45);
-  }
-  .shelf__rail-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 28px;
-  }
-  .shelf__plate {
-    background: linear-gradient(180deg, #d8b647 0%, #C9A227 38%, #a07e1d 100%);
-    color: var(--color-walnut);
-    padding: 8px 22px;
-    border: 1.5px solid rgba(0,0,0,0.45);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.4),
-      inset 0 -2px 0 rgba(0,0,0,0.3),
-      0 2px 0 rgba(0,0,0,0.45);
-    display: inline-flex;
-    align-items: baseline;
-    gap: 12px;
-    transform: translateY(-50%);
-    position: relative;
-    z-index: 5;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 92%;
-  }
-  .shelf__plate::before, .shelf__plate::after {
-    content: "";
-    position: absolute;
-    width: 6px; height: 6px;
-    background: var(--color-walnut);
-    border-radius: 50%;
-    top: 50%; transform: translateY(-50%);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-  }
-  .shelf__plate::before { left: 6px; }
-  .shelf__plate::after  { right: 6px; }
-  .shelf__plate-no {
-    font-family: var(--font-display);
-    font-size: 22px;
-    color: var(--color-walnut);
-    line-height: 1;
-    letter-spacing: 0.04em;
-    padding-left: 16px;
-  }
-  .shelf__plate-name {
-    font-family: var(--font-billing);
-    font-weight: 700;
-    color: var(--color-walnut);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 16px;
-  }
-  .shelf__plate-sub {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: rgba(61,42,30,0.78);
-    font-size: 13px;
-    padding-right: 16px;
-  }
-  .shelf__plate--dark .shelf__plate-no,
-  .shelf__plate--dark .shelf__plate-name { color: var(--color-walnut); }
-
-  /* Interior — back wall of the cabinet (dark) + content + doors */
-  .shelf__interior {
-    position: relative;
-    background:
-      radial-gradient(ellipse at 50% 35%, rgba(255,222,150,0.06) 0%, transparent 65%),
-      linear-gradient(180deg, #2a1c12 0%, #1f1308 100%);
-    box-shadow:
-      inset 0 0 80px rgba(0,0,0,0.7),
-      inset 0 0 0 1px rgba(201,162,39,0.25);
-    padding: 64px 56px 64px;
-    min-height: 540px;
-    perspective: 1600px;
-    transform-style: preserve-3d;
-    overflow: hidden;
-  }
-  .shelf__interior--felt {
-    background:
-      radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-      radial-gradient(rgba(0,0,0,0.18) 1px, transparent 1.5px),
-      linear-gradient(180deg, #1F4D3F 0%, #173a30 100%);
-    background-size: 3px 3px, 7px 7px, 100% 100%;
-  }
-
-  /* GLASS DOORS — two per shelf, swing open on shelf--open */
-  .shelf__door {
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 50%;
-    z-index: 6;
-    pointer-events: auto;
-    transition: transform 1100ms cubic-bezier(0.65, 0, 0.35, 1),
-                opacity 1100ms ease 800ms;
-    will-change: transform;
-  }
-  .shelf__door--l { left: 0; transform-origin: left center; }
-  .shelf__door--r { right: 0; transform-origin: right center; }
-
-  .shelf__door-glass {
-    position: absolute;
-    inset: 8px;
-    background:
-      linear-gradient(135deg,
-        rgba(255,255,255,0.10) 0%,
-        rgba(255,255,255,0.02) 35%,
-        rgba(255,255,255,0.0) 50%,
-        rgba(255,255,255,0.06) 70%,
-        rgba(255,255,255,0.0) 100%
-      ),
-      linear-gradient(180deg, rgba(31, 77, 63, 0.07), rgba(0,0,0,0.06));
-    border: 1.5px solid rgba(201,162,39,0.6);
-    box-shadow:
-      inset 0 0 0 2px rgba(0,0,0,0.4),
-      inset 0 0 40px rgba(0,0,0,0.15);
-  }
-
-  /* Brass door handle */
-  .shelf__door-handle {
-    position: absolute;
-    top: 50%;
-    width: 10px; height: 48px;
-    background: linear-gradient(180deg, #f0d77a 0%, #C9A227 38%, #8a6c19 100%);
-    border-radius: 6px;
-    box-shadow:
-      inset 0 0 0 1px rgba(0,0,0,0.4),
-      0 2px 0 rgba(0,0,0,0.45);
-    transform: translateY(-50%);
-    z-index: 2;
-  }
-  .shelf__door--l .shelf__door-handle { right: 14px; }
-  .shelf__door--r .shelf__door-handle { left: 14px; }
-
-  /* Hinges */
-  .shelf__door-hinge {
-    position: absolute;
-    width: 18px; height: 14px;
-    background: linear-gradient(180deg, #f0d77a 0%, #C9A227 50%, #8a6c19 100%);
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4);
-  }
-  .shelf__door--l .shelf__door-hinge { left: 0; }
-  .shelf__door--r .shelf__door-hinge { right: 0; }
-  .shelf__door-hinge--top { top: 14%; }
-  .shelf__door-hinge--bot { bottom: 14%; }
-
-  /* Door OPEN state — applied via JS class shelf--open */
-  .shelf--open .shelf__door--l {
-    transform: rotateY(-102deg) translateZ(2px);
-    opacity: 0.5;
-  }
-  .shelf--open .shelf__door--r {
-    transform: rotateY(102deg) translateZ(2px);
-    opacity: 0.5;
-  }
-
-  /* Reduced motion: doors fade instead of swing */
-  @media (prefers-reduced-motion: reduce) {
-    .shelf__door { transition: opacity 300ms ease; }
-    .shelf--open .shelf__door--l,
-    .shelf--open .shelf__door--r {
-      transform: none;
-      opacity: 0;
-    }
-  }
-
-  /* SHELF CONTENT — sits on the back wall, behind the (now open) doors */
-  .shelf__content {
-    position: relative;
-    z-index: 3;
-    color: var(--color-cream);
-  }
-
-  /* ============================================================
-     HERO content (Shelf I)
-     ============================================================ */
-  .shelf__content--hero {
+  .pk-mast { max-width: 1280px; margin: 0 auto; padding: 32px 32px 0; }
+  .pk-mast__inner {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
     align-items: center;
   }
-  @media (max-width: 880px) { .shelf__content--hero { grid-template-columns: 1fr; } }
-  .hero-photo {
-    margin: 0;
-    padding: 12px;
-    background: linear-gradient(135deg, #4a2f1f, #3D2A1E);
-    border: 1.5px solid rgba(201,162,39,0.5);
-    box-shadow: inset 0 0 0 4px var(--color-walnut), 0 6px 0 rgba(0,0,0,0.4);
+  @media (max-width: 720px) {
+    .pk-mast__inner { grid-template-columns: 1fr; text-align: center; }
+    .pk-mast__seal { justify-self: center; }
   }
-  .hero-photo img {
-    width: 100%;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    filter: saturate(0.85) sepia(0.08) contrast(1.05);
-    border: 1px solid rgba(0,0,0,0.5);
-    display: block;
-  }
-  .hero-billing {
-    background: var(--color-cream);
-    background-image: radial-gradient(rgba(61,42,30,0.06) 1px, transparent 1.4px);
-    background-size: 4px 4px;
-    color: var(--color-ink);
-    padding: 28px 30px;
-    border: 1.5px solid var(--color-walnut);
-    box-shadow: inset 0 0 0 5px var(--color-cream), inset 0 0 0 6px var(--color-brass), 0 6px 0 rgba(0,0,0,0.45);
-    position: relative;
-  }
-  .hero-billing::before, .hero-billing::after {
-    content: "✦";
-    position: absolute;
-    color: var(--color-brass);
-    font-size: 16px;
-  }
-  .hero-billing::before { top: 10px; left: 14px; }
-  .hero-billing::after  { bottom: 10px; right: 14px; }
-  .hero-billing__eyebrow {
+  .pk-mast__center { text-align: center; }
+  .pk-mast__eyebrow {
     font-family: var(--font-label);
     text-transform: uppercase;
     letter-spacing: 0.32em;
     color: var(--color-brass);
-    font-size: 11px;
-    text-align: center;
-    margin: 0 0 6px;
+    font-size: 12px;
+    margin: 0;
   }
-  .hero-billing__headline {
+  .pk-mast__wordmark {
     font-family: var(--font-display);
     color: var(--color-buddy-red);
-    font-size: clamp(36px, 5vw, 64px);
+    font-size: clamp(40px, 6.4vw, 86px);
     line-height: 0.92;
-    text-align: center;
-    margin: 4px 0 14px;
+    letter-spacing: 0.012em;
+    margin: 10px 0 6px;
     text-shadow: 2px 2px 0 rgba(26,22,20,0.18);
     transform: rotate(-0.4deg);
-    text-transform: uppercase;
   }
-  .hero-billing__sub {
+  .pk-mast__sub {
     font-family: var(--font-billing);
     font-style: italic;
     color: var(--color-ink);
-    font-size: 16px;
-    margin: 12px auto 22px;
-    text-align: center;
-    line-height: 1.5;
+    font-size: 18px;
+    margin: 0;
   }
-  .hero-billing__ctas {
-    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  .pk-mast__sub em { color: var(--color-walnut); }
+  .pk-rule {
+    border-top: 1.6px solid var(--color-brass);
+    border-bottom: 1.6px solid var(--color-brass);
+    height: 5px;
+    margin: 20px 0 0;
+    position: relative;
+  }
+  .pk-rule::after {
+    content: "✦";
+    position: absolute;
+    top: -14px; left: 50%; transform: translateX(-50%);
+    color: var(--color-brass);
+    background: var(--color-cream);
+    padding: 0 14px;
+    font-size: 18px;
   }
 
-  /* ============================================================
-     STORY content (Shelf II)
-     ============================================================ */
-  .shelf__content--story {
-    display: grid;
-    grid-template-columns: minmax(240px, 0.8fr) 1.2fr;
-    gap: 40px;
-    align-items: start;
-    color: var(--color-cream);
+  .pk-section {
+    max-width: 1280px;
+    margin: 56px auto;
+    padding: 0 32px;
   }
-  @media (max-width: 880px) { .shelf__content--story { grid-template-columns: 1fr; } }
-  .story-portrait { margin: 0; }
-  .story-portrait__frame {
-    padding: 12px;
-    background: #fbf3dc;
-    border: 1px solid rgba(61,42,30,0.3);
-    box-shadow: 4px 5px 0 rgba(0,0,0,0.45), inset 0 0 24px rgba(61,42,30,0.06);
-    transform: rotate(-1deg);
-  }
-  .story-portrait__frame img {
-    width: 100%;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    filter: saturate(0.6) sepia(0.35) contrast(1.05) brightness(0.95);
-    border: 1px solid rgba(61,42,30,0.3);
-    display: block;
-  }
-  .story-portrait figcaption {
-    margin-top: 14px;
-    text-align: center;
-  }
-  .story-portrait__name {
-    display: block;
+  .pk-section--prev { margin-top: 80px; opacity: 0.78; }
+  .pk-section__title {
     font-family: var(--font-billing);
     font-weight: 700;
-    color: var(--color-cream);
-    font-size: 17px;
-    letter-spacing: 0.02em;
+    color: var(--color-ink);
+    font-size: clamp(24px, 3vw, 34px);
+    letter-spacing: 0.005em;
+    margin: 0 0 6px;
+    text-align: center;
   }
-  .story-portrait__sub {
-    display: block;
+  .pk-section__sub {
     font-family: var(--font-billing);
     font-style: italic;
-    color: var(--color-rose);
-    font-size: 13px;
-    margin-top: 2px;
-  }
-  .story-copy {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--color-cream);
-  }
-  .story-copy p { margin: 0 0 14px; }
-  .story-copy p em { font-style: italic; color: var(--color-rose); }
-  .story-copy p strong { color: var(--color-brass); font-weight: 700; }
-  .story-pull {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-brass);
-    font-size: clamp(20px, 2.2vw, 26px);
-    line-height: 1.3;
-    margin: 0 0 18px;
-    border-left: 3px solid var(--color-buddy-red);
-    padding-left: 16px;
-  }
-  .story-pull em { color: var(--color-rose); }
-  .story-sig {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-rose);
-    margin-top: 14px;
-  }
-  .story-sig span {
-    font-family: var(--font-hand);
-    font-style: normal;
-    color: var(--color-cream);
-    font-size: 20px;
-    margin: 0 4px;
+    color: var(--color-smoke);
+    text-align: center;
+    margin: 0 0 28px;
   }
 
-  /* ============================================================
-     LINEUP content (Shelf III)
-     ============================================================ */
-  .lineup-grid {
+  .pk-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
   }
-  @media (max-width: 1024px) { .lineup-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 540px) { .lineup-grid { grid-template-columns: 1fr; } }
-  .piece { text-align: center; color: var(--color-cream); }
-  .piece__frame {
+  @media (max-width: 720px) { .pk-grid { grid-template-columns: 1fr; } }
+  .pk-grid--mini {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 880px) { .pk-grid--mini { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .pk-grid--mini { grid-template-columns: 1fr; } }
+
+  .pk-card {
     position: relative;
-    padding: 10px;
-    background: linear-gradient(135deg, #4a2f1f, #3D2A1E);
-    border: 1.5px solid rgba(201,162,39,0.5);
-    box-shadow: inset 0 0 0 3px var(--color-walnut), 0 4px 0 rgba(0,0,0,0.4);
-    aspect-ratio: 4/5;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    text-decoration: none;
+    border: 1.5px solid var(--color-walnut);
+    box-shadow: 4px 5px 0 rgba(26,22,20,0.22);
+    padding: 26px 26px 28px;
+    transition: transform 120ms ease-out, box-shadow 120ms ease-out;
   }
-  .piece__frame img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    filter: saturate(0.88) sepia(0.06) contrast(1.05);
-    border: 1px solid rgba(0,0,0,0.5);
-    display: block;
-  }
-  .piece__placeholder {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    background:
-      repeating-linear-gradient(45deg,
-        var(--color-tag-paper) 0 12px,
-        rgba(61,42,30,0.06) 12px 13px);
-    color: var(--color-walnut);
-    font-family: var(--font-display);
-    font-size: 24px;
-    line-height: 1;
-    text-align: center;
-    border: 1px solid var(--color-walnut);
-  }
-  .piece__no {
+  .pk-card::before, .pk-card::after {
+    content: "";
     position: absolute;
-    top: 6px; left: 6px;
-    background: var(--color-brass);
-    color: var(--color-walnut);
-    padding: 3px 8px;
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--color-brass);
+  }
+  .pk-card::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+  .pk-card::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+  .pk-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 7px 0 rgba(26,22,20,0.28);
+  }
+  .pk-card__flag {
+    position: absolute;
+    top: 10px; right: 14px;
+    background: var(--color-buddy-red);
+    color: var(--color-cream);
+    padding: 4px 10px;
     font-family: var(--font-label);
     font-size: 9px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    box-shadow: 2px 2px 0 rgba(26,22,20,0.3);
+    transform: rotate(3deg);
   }
-  .piece__era {
-    font-family: var(--font-label);
-    color: var(--color-brass);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    font-size: 10px;
-    margin: 12px 0 2px;
-  }
-  .piece__name {
-    font-family: var(--font-display);
-    color: var(--color-cream);
-    font-size: 18px;
-    line-height: 1.1;
-    margin: 2px 0 4px;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-  }
-  .piece__note {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-rose);
-    font-size: 13px;
-    margin: 0 0 6px;
-    line-height: 1.3;
-  }
-  .piece__price {
-    font-family: var(--font-display);
-    color: var(--color-buddy-red);
-    font-size: 22px;
-    margin: 0;
-    letter-spacing: 0.02em;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-  }
-  .lineup-foot {
-    text-align: center;
-    margin: 24px 0 0;
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-rose);
-    font-size: 15px;
-  }
-  .lineup-foot a { color: var(--color-brass); text-decoration: none; border-bottom: 1px dotted var(--color-brass); }
-  .leaf { color: var(--color-brass); font-size: 18px; margin: 0 10px; }
-
-  /* ============================================================
-     RECORD content (Shelf IV) — emerald felt
-     ============================================================ */
-  .shelf__content--record { text-align: center; color: var(--color-cream); }
-  .record-eyebrow {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.32em;
-    color: var(--color-brass);
-    font-size: 12px;
-    margin: 0 0 8px;
-  }
-  .record-headline {
-    font-family: var(--font-display);
-    color: var(--color-cream);
-    font-size: clamp(40px, 5vw, 64px);
-    line-height: 0.95;
-    margin: 0;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
-    letter-spacing: 0.008em;
-    transform: rotate(-0.4deg);
-    text-transform: uppercase;
-  }
-  .record-sub {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-rose);
-    margin: 8px 0 32px;
-    font-size: 17px;
-  }
-  .record-tags {
+  .pk-card__plate {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 28px 36px;
-    margin: 24px 0;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-brass);
   }
-  .rtag {
-    background: var(--color-tag-paper);
-    background-image: radial-gradient(rgba(61,42,30,0.08) 1px, transparent 1px);
-    background-size: 4px 4px;
-    color: var(--color-ink);
-    border: 1px solid rgba(61,42,30,0.4);
-    padding: 22px 14px 14px;
-    width: 200px;
-    font-family: var(--font-hand);
-    line-height: 1.3;
-    position: relative;
-    box-shadow: 4px 5px 0 rgba(0,0,0,0.45);
-    text-align: left;
-    flex-shrink: 0;
-  }
-  .rtag__thread {
-    position: absolute;
-    top: -22px; left: 50%;
-    transform: translateX(-50%) rotate(2deg);
-    width: 1.5px; height: 28px;
-    background: var(--color-brass);
-  }
-  .rtag__hole {
-    position: absolute;
-    top: 8px; left: 50%;
-    transform: translateX(-50%);
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: var(--color-emerald);
-    box-shadow: inset 0 0 0 1px rgba(61,42,30,0.6);
-  }
-  .rtag__era {
-    display: block;
-    font-size: 11px;
-    color: var(--color-walnut);
-    margin-top: 4px;
-  }
-  .rtag__item {
-    display: block;
-    font-weight: 400;
-    font-size: 15px;
-    color: var(--color-ink);
-    line-height: 1.15;
-    margin: 2px 0 4px;
-  }
-  .rtag__note {
-    display: block;
-    font-size: 12px;
-    color: var(--color-walnut);
-    margin-bottom: 4px;
-  }
-  .rtag__price {
-    display: block;
+  .pk-card__no {
     font-family: var(--font-display);
-    color: var(--color-buddy-red);
-    font-size: 22px;
-    letter-spacing: 0.02em;
-    text-shadow: 1px 1px 0 rgba(26,22,20,0.18);
-  }
-  .record-foot {
-    margin-top: 24px;
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-cream);
-    font-size: 16px;
-  }
-  .record-foot a { color: var(--color-brass); text-decoration: none; border-bottom: 1px dotted var(--color-brass); }
-
-  /* ============================================================
-     JOINT content (Shelf V)
-     ============================================================ */
-  .shelf__content--joint {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 32px;
-  }
-  @media (max-width: 880px) { .shelf__content--joint { grid-template-columns: 1fr; } }
-  .joint-map {
-    position: relative;
-    padding: 10px;
-    background: linear-gradient(135deg, #4a2f1f, #3D2A1E);
-    border: 1.5px solid rgba(201,162,39,0.5);
-    box-shadow: inset 0 0 0 3px var(--color-walnut), 0 4px 0 rgba(0,0,0,0.4);
-    min-height: 380px;
-  }
-  .joint-map iframe {
-    width: 100%; height: 100%; min-height: 380px;
-    border: 1px solid var(--color-walnut);
-    filter: sepia(0.3) saturate(0.7) contrast(1.05);
-    display: block;
-  }
-  .joint-card {
-    background: var(--color-cream);
-    border: 1.5px solid var(--color-walnut);
-    padding: 24px;
-    position: relative;
-    color: var(--color-ink);
-  }
-  .joint-card__corner { position: absolute; width: 16px; height: 16px; border: 1.5px solid var(--color-brass); }
-  .joint-card__corner--tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-  .joint-card__corner--tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
-  .joint-card__corner--bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
-  .joint-card__corner--br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-  .joint-label {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
     color: var(--color-brass);
-    font-size: 11px;
-    margin: 14px 0 4px;
-  }
-  .joint-label:first-of-type { margin-top: 0; }
-  .joint-line {
-    font-family: var(--font-billing);
-    font-size: 16px;
-    margin: 0;
-    color: var(--color-ink);
-  }
-  .joint-line--bold { font-weight: 700; }
-  .joint-line--italic { font-style: italic; color: var(--color-smoke); font-size: 14px; }
-  .joint-phone {
-    font-family: var(--font-display);
-    color: var(--color-buddy-red);
-    font-size: 36px;
+    font-size: 32px;
     line-height: 1;
-    margin: 2px 0 6px;
-    letter-spacing: 0.01em;
-    text-shadow: 1px 1px 0 rgba(26,22,20,0.18);
+    letter-spacing: 0.04em;
   }
-  .joint-divider {
-    border-top: 1px solid var(--color-brass);
-    margin: 12px 0;
-    position: relative;
-    height: 0;
-  }
-  .joint-divider::after {
-    content: "◆";
-    position: absolute;
-    top: -9px; left: 50%; transform: translateX(-50%);
-    color: var(--color-brass);
-    background: var(--color-cream);
-    padding: 0 8px;
-    font-size: 11px;
-  }
-  .joint-buttons { display: flex; gap: 10px; margin-top: 16px; }
-  .joint-buttons .curio-btn { flex: 1; }
-
-  /* ============================================================
-     WORD content (Shelf VI)
-     ============================================================ */
-  .shelf__content--word {
-    max-width: 620px;
-    margin: 0 auto;
-    text-align: center;
-    color: var(--color-cream);
-  }
-  .word-title {
-    font-family: var(--font-display);
-    color: var(--color-cream);
-    font-size: clamp(36px, 4vw, 52px);
-    line-height: 0.95;
-    margin: 0 0 16px;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
-    transform: rotate(-0.4deg);
+  .pk-card__name {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    color: var(--color-ink);
+    font-size: 24px;
+    letter-spacing: 0.005em;
+    line-height: 1.05;
+    margin: 0;
     text-transform: uppercase;
   }
-  .word-body {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--color-cream);
-    margin: 0 0 22px;
-  }
-  .word-body em { color: var(--color-rose); }
-  .word-form {
-    display: flex; gap: 0;
-    max-width: 480px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .word-form input {
-    flex: 1; min-width: 220px;
-    background: var(--color-cream);
-    color: var(--color-ink);
-    border: 1.5px solid var(--color-walnut);
-    border-right: 0;
-    padding: 13px 16px;
+  .pk-card__name--sm { font-size: 17px; text-transform: none; }
+  .pk-card__blurb {
     font-family: var(--font-serif);
     font-size: 16px;
-    outline: none;
-  }
-  .word-form input:focus { background: #faf2d8; }
-  .word-form .curio-btn { border-left: 1.5px solid var(--color-walnut); }
-  .word-legal {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
-    color: var(--color-brass);
-    font-size: 10px;
-    margin-top: 18px;
-  }
-  @media (max-width: 540px) {
-    .word-form input { border-right: 1.5px solid var(--color-walnut); margin-bottom: 12px; }
-  }
-
-  /* ============================================================
-     CABINET BASE — wooden plinth at the bottom
-     ============================================================ */
-  .curio__base {
-    padding: 28px 56px 32px;
-    text-align: center;
-    color: var(--color-cream);
-    box-shadow:
-      inset 0 3px 0 rgba(0,0,0,0.6),
-      inset 0 0 60px rgba(0,0,0,0.5),
-      inset 0 0 0 2px rgba(0,0,0,0.5),
-      inset 0 0 0 4px rgba(201,162,39,0.45);
-  }
-  .curio__base-tagline {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-cream);
+    line-height: 1.55;
+    color: var(--color-ink);
     margin: 0 0 12px;
-    font-size: 17px;
-    line-height: 1.6;
+    flex: 1;
   }
-  .curio__base-tagline em { color: var(--color-rose); }
-  .curio__base-legal {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
-    color: var(--color-brass);
-    font-size: 10px;
-    margin: 0 0 6px;
-  }
-  .curio__base-labs {
+  .pk-card__blurb--sm { font-size: 14px; }
+  .pk-card__tone {
     font-family: var(--font-billing);
     font-style: italic;
     color: var(--color-smoke);
     font-size: 13px;
-    margin: 8px 0 0;
+    margin: 0 0 18px;
   }
-  .curio__base-labs a {
-    color: var(--color-rose);
-    text-decoration: none;
-    border-bottom: 1px dotted var(--color-rose);
-  }
-
-  /* ============================================================
-     CURIO BUTTONS (stamped catalog buttons)
-     ============================================================ */
-  .curio-btn {
-    display: inline-block;
+  .pk-card__cta {
     font-family: var(--font-label);
     text-transform: uppercase;
     letter-spacing: 0.24em;
+    color: var(--color-buddy-red);
     font-size: 12px;
-    padding: 13px 22px;
-    text-decoration: none;
-    text-align: center;
-    border: 1.5px solid var(--color-walnut);
-    box-shadow: 3px 3px 0 rgba(26,22,20,0.4);
-    position: relative;
-    cursor: pointer;
-    transition: transform 80ms ease-out;
+    margin-top: auto;
   }
-  .curio-btn::before {
-    content: "";
-    position: absolute; top: 4px; bottom: 4px; left: 4px; right: 4px;
-    border: 1px solid rgba(242,232,208,0.5);
-    pointer-events: none;
-  }
-  .curio-btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 rgba(26,22,20,0.4); }
-  .curio-btn--primary { background: var(--color-buddy-red); color: var(--color-cream); }
-  .curio-btn--secondary { background: var(--color-cream); color: var(--color-ink); }
-  .curio-btn--secondary::before { border-color: rgba(61,42,30,0.4); }
-  .curio-btn--sm { padding: 10px 14px; font-size: 11px; letter-spacing: 0.22em; box-shadow: 2px 2px 0 rgba(26,22,20,0.4); }
+  .pk-card--mini { padding: 18px 20px; }
 
-  /* Tighter padding for shelves on mobile */
-  @media (max-width: 720px) {
-    .curio { padding: 0 0 32px; }
-    .curio__crown { padding: 18px 24px 10px; }
-    .curio__crown-strip { margin: 10px -24px 0; }
-    .curio__body { padding: 0 14px; }
-    .curio__body::before, .curio__body::after { width: 14px; }
-    .shelf__interior { padding: 40px 24px; min-height: 440px; }
-    .shelf__plate { padding: 6px 14px; gap: 8px; }
-    .shelf__plate-no { font-size: 18px; padding-left: 10px; }
-    .shelf__plate-name { font-size: 14px; }
-    .shelf__plate-sub { font-size: 11px; padding-right: 10px; }
-    .curio__base { padding: 22px 24px; }
+  .pk-card--alpha-stub, .pk-card--beta-stub {
+    opacity: 0.7;
+    background-image:
+      repeating-linear-gradient(45deg,
+        var(--color-cream) 0 16px,
+        rgba(61,42,30,0.05) 16px 17px);
   }
+
+  .pk-foot {
+    max-width: 720px;
+    margin: 0 auto 64px;
+    padding: 32px 32px 0;
+    text-align: center;
+    border-top: 1.4px solid var(--color-brass);
+  }
+  .pk-foot p {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-ink);
+    margin: 18px 0 0;
+    font-size: 16px;
+  }
+  .pk-foot code {
+    font-family: var(--font-label);
+    background: rgba(201,162,39,0.18);
+    color: var(--color-walnut);
+    padding: 1px 6px;
+    border: 1px solid var(--color-brass);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+  .pk-foot__legal {
+    font-family: var(--font-label) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--color-brass);
+    font-style: normal !important;
+    font-size: 10px !important;
+    margin-top: 18px !important;
+  }
+  .pk-foot__legal em { color: var(--color-smoke); font-style: italic; }
 </style>
