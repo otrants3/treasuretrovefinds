@@ -1,0 +1,164 @@
+---
+/**
+ * A "drawer" of the curio cabinet — one of the categories.
+ * Glass-front feel, brass nameplate, item peek behind glass.
+ * Interactive: clicking expands (anchor link to category page later).
+ */
+interface Props {
+  number: string;        // "I.", "II.", etc — drawer number in brass
+  category: string;      // "Toys & Trucks"
+  blurb: string;         // 1-line Bill voice
+  photo?: string;        // /photos/...
+  href?: string;
+}
+const { number, category, blurb, photo, href = "#collection" } = Astro.props;
+---
+
+<a class="ttf-drawer" href={href}>
+  <div class="ttf-drawer__glass">
+    {photo && <img src={photo} alt={category} loading="lazy" />}
+    <div class="ttf-drawer__reflection"></div>
+  </div>
+  <div class="ttf-drawer__nameplate">
+    <span class="ttf-drawer__no">{number}</span>
+    <span class="ttf-drawer__name">{category}</span>
+  </div>
+  <p class="ttf-drawer__blurb">{blurb}</p>
+  <div class="ttf-drawer__handle">
+    <span></span>
+    <span></span>
+  </div>
+</a>
+
+<style>
+  .ttf-drawer {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background:
+      linear-gradient(135deg, #4a2f1f 0%, #3D2A1E 50%, #2a1c12 100%);
+    padding: 12px 12px 56px;
+    box-shadow:
+      inset 0 0 0 1.5px rgba(201,162,39,0.5),
+      inset 0 0 0 4px var(--color-walnut),
+      inset 0 0 30px rgba(0,0,0,0.4),
+      0 6px 0 rgba(0,0,0,0.25);
+    position: relative;
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  }
+  .ttf-drawer:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 0 0 1.5px rgba(201,162,39,0.7),
+      inset 0 0 0 4px var(--color-walnut),
+      inset 0 0 30px rgba(0,0,0,0.45),
+      0 9px 0 rgba(0,0,0,0.3);
+  }
+
+  /* glass-front panel */
+  .ttf-drawer__glass {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--color-ink);
+    border: 1.5px solid rgba(201,162,39,0.7);
+    overflow: hidden;
+  }
+  .ttf-drawer__glass img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.85) sepia(0.08) contrast(1.04) brightness(0.9);
+  }
+  .ttf-drawer__reflection {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255,255,255,0.16) 0%,
+        rgba(255,255,255,0.04) 35%,
+        transparent 50%,
+        rgba(255,255,255,0.0) 80%
+      );
+    pointer-events: none;
+  }
+
+  /* brass nameplate */
+  .ttf-drawer__nameplate {
+    position: relative;
+    margin: 14px 4px 4px;
+    background: var(--color-brass);
+    background-image:
+      linear-gradient(180deg,
+        rgba(255,255,255,0.25) 0%,
+        rgba(255,255,255,0.0) 35%,
+        rgba(0,0,0,0.15) 100%);
+    padding: 8px 12px;
+    box-shadow:
+      inset 0 0 0 1px rgba(0,0,0,0.25),
+      0 2px 0 rgba(0,0,0,0.3);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .ttf-drawer__nameplate::before,
+  .ttf-drawer__nameplate::after {
+    content: "";
+    position: absolute;
+    width: 6px; height: 6px;
+    background: var(--color-walnut);
+    border-radius: 50%;
+    top: 50%; transform: translateY(-50%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .ttf-drawer__nameplate::before { left: 4px; }
+  .ttf-drawer__nameplate::after  { right: 4px; }
+
+  .ttf-drawer__no {
+    font-family: var(--font-display);
+    color: var(--color-walnut);
+    font-size: 22px;
+    line-height: 1;
+    padding-left: 18px;
+  }
+  .ttf-drawer__name {
+    font-family: var(--font-billing);
+    font-weight: 700;
+    color: var(--color-walnut);
+    letter-spacing: 0.06em;
+    font-size: 16px;
+    text-transform: uppercase;
+    flex: 1;
+    text-align: center;
+    padding-right: 18px;
+  }
+
+  .ttf-drawer__blurb {
+    margin: 10px 8px 0;
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-tag-paper);
+    font-size: 14px;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  /* drawer pull / handle */
+  .ttf-drawer__handle {
+    position: absolute;
+    bottom: 14px; left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 14px;
+    background: var(--color-brass);
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.3), rgba(0,0,0,0.2));
+    border-radius: 7px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.4), inset 0 0 0 1px rgba(0,0,0,0.25);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 6px;
+  }
+  .ttf-drawer__handle span {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--color-walnut);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+</style>

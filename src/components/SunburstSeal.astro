@@ -1,0 +1,65 @@
+---
+/**
+ * Brass sunburst "EST. 2022" seal.
+ * Center reads EST. + the bottom-stat reads collecting since.
+ * Per A.J.: dad was 11 in '73 — Est is 2022 (storefront), Collecting since '73.
+ */
+interface Props {
+  size?: number;
+  est?: string;      // top center number ("2022")
+  since?: string;    // bottom-center number ("'73")
+  bgColor?: string;  // background of the inner cream disc, used to make label-text inset look right
+}
+
+const { size = 110, est = "2022", since = "'73", bgColor = "#F2E8D0" } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 200 200"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label={`Established ${est}, collecting since ${since}`}
+  role="img"
+>
+  <!-- Outer brass rays -->
+  <g transform="translate(100,100)" fill="#C9A227">
+    {Array.from({ length: 12 }).map((_, i) => (
+      <g transform={`rotate(${i * 30})`}>
+        <polygon points="0,-94 4,-72 -4,-72" />
+      </g>
+    ))}
+    {Array.from({ length: 12 }).map((_, i) => (
+      <g transform={`rotate(${i * 30 + 15})`}>
+        <polygon points="0,-88 2,-74 -2,-74" />
+      </g>
+    ))}
+  </g>
+
+  <!-- Brass outer ring -->
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#C9A227" stroke-width="1.5" />
+
+  <!-- Cream inner disc with red border -->
+  <circle cx="100" cy="100" r="64" fill={bgColor} stroke="#9E2A2B" stroke-width="1.5" />
+
+  <!-- Inner double ring -->
+  <circle cx="100" cy="100" r="46" fill="none" stroke="#9E2A2B" stroke-width="0.9" />
+
+  <!-- Curved label paths -->
+  <defs>
+    <path id="topArc" d="M 38,100 a 62,62 0 0,1 124,0" fill="none" />
+    <path id="botArc" d="M 38,108 a 62,62 0 0,0 124,0" fill="none" />
+  </defs>
+
+  <!-- Curved labels (Oswald small caps) -->
+  <text font-family="Oswald, sans-serif" font-size="10.5" letter-spacing="3.2" fill="#9E2A2B">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">— EST. {est} —</textPath>
+  </text>
+  <text font-family="Oswald, sans-serif" font-size="9" letter-spacing="2.6" fill="#9E2A2B">
+    <textPath href="#botArc" startOffset="50%" text-anchor="middle">COLLECTING SINCE {since}</textPath>
+  </text>
+
+  <!-- Center monogram -->
+  <text x="100" y="96" font-family="Anton, serif" font-size="21" fill="#9E2A2B" text-anchor="middle">TTF</text>
+  <text x="100" y="118" font-family="Bodoni Moda, serif" font-style="italic" font-size="10" fill="#9E2A2B" text-anchor="middle" letter-spacing="0.5">paradise mall · #18</text>
+</svg>

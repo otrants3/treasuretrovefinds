@@ -1,0 +1,49 @@
+---
+/**
+ * Boxing-billing section header.
+ * Stacked eyebrow / title / subhead with brass rules above and below.
+ */
+interface Props {
+  eyebrow: string;
+  title: string;
+  sub?: string;
+  onEmerald?: boolean;
+}
+const { eyebrow, title, sub, onEmerald = false } = Astro.props;
+---
+
+<header class={`ttf-billing-header${onEmerald ? " ttf-on-emerald" : ""}`}>
+  <p class="ttf-label">— {eyebrow} —</p>
+  <div class="ttf-billing-rules"></div>
+  <h2 class="ttf-billing-title">{title}</h2>
+  {sub && <p class="ttf-billing-sub">{sub}</p>}
+  <div class="ttf-billing-rules"></div>
+</header>
+
+<style>
+  .ttf-billing-header {
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .ttf-billing-header .ttf-label {
+    color: var(--color-brass);
+    margin: 0 0 0.5rem;
+  }
+  .ttf-billing-title {
+    font-size: clamp(28px, 4vw, 44px);
+    margin: 0.5rem 0 0.25rem;
+  }
+  .ttf-billing-header.ttf-on-emerald .ttf-billing-title {
+    color: var(--color-cream);
+  }
+  .ttf-billing-sub {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-smoke);
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+  }
+  .ttf-billing-header.ttf-on-emerald .ttf-billing-sub {
+    color: var(--color-rose);
+  }
+</style>

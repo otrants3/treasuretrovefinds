@@ -1,0 +1,116 @@
+---
+/**
+ * Bill's handwritten paper price-tag.
+ * Modeled on his real tags: aged kraft paper, hole-punch + twine,
+ * Permanent Marker handwriting, price in red.
+ */
+interface Props {
+  item: string;
+  notes?: string;       // 1-2 lines of Bill's research
+  era?: string;         // e.g. "1934", "1930-1940s"
+  price?: string;       // e.g. "$225.00" — appears in Buddy L red
+  rotate?: number;      // degrees of tilt
+  size?: "sm" | "md" | "lg";
+  onFelt?: boolean;     // styling for tags placed on emerald
+}
+const {
+  item, notes, era, price,
+  rotate = -3,
+  size = "md",
+  onFelt = false,
+} = Astro.props;
+
+const widths = { sm: "180px", md: "220px", lg: "260px" };
+const widthVal = widths[size];
+---
+
+<div
+  class={`ttf-paper-tag${onFelt ? " ttf-paper-tag--felt" : ""}`}
+  style={`transform: rotate(${rotate}deg); width: ${widthVal};`}
+>
+  <!-- twine -->
+  <span class="ttf-paper-tag__twine"></span>
+  <!-- hole-punch -->
+  <span class="ttf-paper-tag__hole"></span>
+
+  <div class="ttf-paper-tag__body">
+    {era && <span class="ttf-paper-tag__era">{era}</span>}
+    <strong class="ttf-paper-tag__item">{item}</strong>
+    {notes && <span class="ttf-paper-tag__notes">{notes}</span>}
+    {price && <span class="ttf-paper-tag__price">${price.replace(/^\$/, "")}</span>}
+  </div>
+</div>
+
+<style>
+  .ttf-paper-tag {
+    background: var(--color-tag-paper);
+    background-image:
+      radial-gradient(rgba(61,42,30,0.08) 1px, transparent 1px);
+    background-size: 4px 4px;
+    color: var(--color-ink);
+    padding: 26px 18px 16px;
+    border: 1px solid rgba(61,42,30,0.4);
+    position: relative;
+    box-shadow: 4px 5px 0 rgba(26,22,20,0.18);
+    font-family: var(--font-hand);
+    font-size: 14px;
+    line-height: 1.35;
+    flex-shrink: 0;
+  }
+  .ttf-paper-tag--felt {
+    box-shadow: 4px 5px 0 rgba(0,0,0,0.4);
+  }
+  .ttf-paper-tag__hole {
+    position: absolute;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--color-cream);
+    box-shadow: inset 0 0 0 1.5px rgba(61,42,30,0.6);
+  }
+  .ttf-paper-tag--felt .ttf-paper-tag__hole {
+    background: var(--color-emerald);
+  }
+  .ttf-paper-tag__twine {
+    position: absolute;
+    top: -22px; left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 1.5px; height: 30px;
+    background: var(--color-brass);
+  }
+  .ttf-paper-tag__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ttf-paper-tag__era {
+    font-family: var(--font-hand);
+    font-size: 12px;
+    color: var(--color-walnut);
+    letter-spacing: 0.04em;
+  }
+  .ttf-paper-tag__item {
+    font-family: var(--font-hand);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--color-ink);
+    line-height: 1.2;
+  }
+  .ttf-paper-tag__notes {
+    font-family: var(--font-hand);
+    font-size: 13px;
+    color: var(--color-walnut);
+    line-height: 1.35;
+  }
+  .ttf-paper-tag__price {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 26px;
+    letter-spacing: 0.01em;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.18);
+    line-height: 1;
+  }
+</style>
