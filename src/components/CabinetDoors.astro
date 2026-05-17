@@ -1,0 +1,378 @@
+---
+/**
+ * The Cabinet — the literal entry of the site.
+ * On first paint: two ornate walnut doors with brass handles, locked shut,
+ * brass plaque in the middle reading TREASURE TROVE FINDS.
+ * Click "Pull to enter" (or anywhere on the doors) -> doors swing open,
+ * revealing the booth interior beneath. This IS the hero.
+ *
+ * Use this component as a wrapper; pass interior content via <slot />.
+ */
+---
+
+<section class="cabinet" id="ttf-cabinet" aria-label="Treasure Trove Finds — entry">
+  <!-- INTERIOR: revealed when doors open. Sits behind doors. -->
+  <div class="cabinet__interior">
+    <slot />
+  </div>
+
+  <!-- DOORS: stack above interior, swing open on click -->
+  <div class="cabinet__doors" aria-hidden="false">
+    <!-- top frame brass plate "PARADISE MALL · BOOTH #18 · KNOWN TO THE RIGHT PEOPLE" -->
+    <div class="cabinet__topband">
+      <span>Paradise Mall · Booth #18 · Las Vegas</span>
+      <span aria-hidden="true">✦</span>
+      <span>Known to the right people</span>
+    </div>
+
+    <!-- LEFT DOOR -->
+    <div class="cabinet__door cabinet__door--left">
+      <div class="cabinet__panel"></div>
+      <div class="cabinet__panel cabinet__panel--inner"></div>
+      <span class="cabinet__handle" aria-hidden="true"></span>
+      <span class="cabinet__hinge cabinet__hinge--top" aria-hidden="true"></span>
+      <span class="cabinet__hinge cabinet__hinge--bot" aria-hidden="true"></span>
+    </div>
+
+    <!-- RIGHT DOOR -->
+    <div class="cabinet__door cabinet__door--right">
+      <div class="cabinet__panel"></div>
+      <div class="cabinet__panel cabinet__panel--inner"></div>
+      <span class="cabinet__handle" aria-hidden="true"></span>
+      <span class="cabinet__hinge cabinet__hinge--top" aria-hidden="true"></span>
+      <span class="cabinet__hinge cabinet__hinge--bot" aria-hidden="true"></span>
+    </div>
+
+    <!-- CENTER PLAQUE — TTF wordmark + "Pull to enter" CTA -->
+    <div class="cabinet__plaque">
+      <p class="cabinet__eyebrow">— Fine Curiosities &amp; Relics —</p>
+      <h1 class="cabinet__wordmark">TREASURE<br />TROVE&nbsp;FINDS</h1>
+      <p class="cabinet__sub">A back-room of American oddments,<br /> kept by Bill &amp; Lisa since '73.</p>
+      <button class="cabinet__open" type="button" id="ttf-open" aria-controls="ttf-cabinet">
+        <span class="cabinet__open-icon" aria-hidden="true">⤬</span>
+        Pull to enter
+      </button>
+      <p class="cabinet__est">Est. 2022 · Collecting since 1973 · Pieces back to 1850</p>
+    </div>
+
+    <!-- floor shadow under the doors -->
+    <div class="cabinet__floor" aria-hidden="true"></div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const cab = document.getElementById('ttf-cabinet');
+    if (!cab) return;
+    const btn = document.getElementById('ttf-open');
+    const open = function () {
+      if (cab.classList.contains('cabinet--open')) return;
+      cab.classList.add('cabinet--open');
+      // After the swing completes, let users scroll into the interior naturally.
+      setTimeout(function () {
+        const interior = cab.querySelector('.cabinet__interior');
+        if (interior) interior.setAttribute('tabindex', '-1');
+        // Smoothly nudge to the next section after a beat
+      }, 1700);
+    };
+    btn && btn.addEventListener('click', open);
+    cab.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+    // Open on Escape so power users can skip
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') open();
+    });
+  })();
+</script>
+
+<style>
+  .cabinet {
+    position: relative;
+    min-height: 92vh;
+    perspective: 1800px;
+    perspective-origin: 50% 50%;
+    isolation: isolate;
+    overflow: hidden;
+    background: #1a120a;
+  }
+
+  /* Interior — the hero content, sits behind doors */
+  .cabinet__interior {
+    position: relative;
+    z-index: 0;
+    min-height: 92vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    opacity: 0;
+    transition: opacity 800ms ease-out 600ms;
+  }
+  .cabinet--open .cabinet__interior {
+    opacity: 1;
+  }
+
+  /* Doors layer */
+  .cabinet__doors {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    transform-style: preserve-3d;
+    pointer-events: auto;
+    transition: opacity 800ms ease 1000ms;
+  }
+  .cabinet--open .cabinet__doors {
+    pointer-events: none;
+  }
+
+  /* Top brass band */
+  .cabinet__topband {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 5;
+    background: linear-gradient(180deg, #d8b647 0%, #C9A227 40%, #a07e1d 100%);
+    color: var(--color-walnut);
+    text-align: center;
+    padding: 8px 24px;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    box-shadow:
+      inset 0 -2px 0 rgba(0,0,0,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.3),
+      0 2px 0 rgba(0,0,0,0.3);
+  }
+  .cabinet__topband span[aria-hidden="true"] { color: var(--color-buddy-red); opacity: 0.75; }
+
+  /* Each door */
+  .cabinet__door {
+    position: absolute;
+    top: 32px; bottom: 0;
+    width: 50%;
+    background-color: #3D2A1E;
+    background-image:
+      /* tighter wood grain */
+      repeating-linear-gradient(
+        92deg,
+        rgba(0,0,0,0.18) 0 1px,
+        transparent 1px 6px,
+        rgba(255,255,255,0.04) 6px 7px,
+        transparent 7px 14px
+      ),
+      /* broader plank variation */
+      repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,0.12) 0 60px,
+        rgba(255,255,255,0.03) 60px 62px,
+        rgba(0,0,0,0.18) 62px 120px
+      ),
+      /* base wood tone */
+      linear-gradient(180deg, #4a2f1f 0%, #3D2A1E 50%, #2a1c12 100%);
+    box-shadow:
+      inset 0 0 60px rgba(0,0,0,0.55),
+      inset 0 0 0 2px rgba(0,0,0,0.5),
+      inset 0 0 0 4px rgba(201,162,39,0.35),
+      inset 0 0 0 5px rgba(0,0,0,0.5);
+    transition: transform 1700ms cubic-bezier(0.65, 0, 0.35, 1), box-shadow 1700ms ease;
+    will-change: transform;
+  }
+  .cabinet__door--left {
+    left: 0;
+    transform-origin: left center;
+  }
+  .cabinet__door--right {
+    right: 0;
+    transform-origin: right center;
+  }
+
+  /* Inset panels — give the doors depth */
+  .cabinet__panel {
+    position: absolute;
+    inset: 36px 28px;
+    border: 1.5px solid rgba(201,162,39,0.55);
+    background:
+      linear-gradient(135deg,
+        rgba(255,255,255,0.04) 0%,
+        rgba(0,0,0,0.18) 70%);
+    box-shadow:
+      inset 0 0 0 2px rgba(0,0,0,0.5),
+      inset 0 0 24px rgba(0,0,0,0.45);
+  }
+  .cabinet__panel--inner {
+    inset: 56px 48px;
+    border: 1px solid rgba(201,162,39,0.4);
+    background:
+      linear-gradient(135deg,
+        rgba(255,255,255,0.02) 0%,
+        rgba(0,0,0,0.25) 80%);
+  }
+
+  /* Brass handles (oval, on inner edge of each door) */
+  .cabinet__handle {
+    position: absolute;
+    top: 50%;
+    width: 14px; height: 56px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #f0d77a 0%, #C9A227 35%, #8a6c19 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(0,0,0,0.4),
+      0 3px 0 rgba(0,0,0,0.5),
+      0 0 8px rgba(201,162,39,0.5);
+    transform: translateY(-50%);
+  }
+  .cabinet__door--left .cabinet__handle { right: 16px; }
+  .cabinet__door--right .cabinet__handle { left: 16px; }
+
+  /* Hinges */
+  .cabinet__hinge {
+    position: absolute;
+    width: 22px; height: 18px;
+    background: linear-gradient(180deg, #f0d77a 0%, #C9A227 50%, #8a6c19 100%);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.5), 0 1px 0 rgba(0,0,0,0.4);
+  }
+  .cabinet__door--left .cabinet__hinge { left: 0; }
+  .cabinet__door--right .cabinet__hinge { right: 0; }
+  .cabinet__hinge--top { top: 12%; }
+  .cabinet__hinge--bot { bottom: 12%; }
+
+  /* Center plaque — TTF wordmark, sits ON TOP of the closed doors */
+  .cabinet__plaque {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: min(560px, 86vw);
+    text-align: center;
+    background: var(--color-cream);
+    background-image: radial-gradient(rgba(61,42,30,0.06) 1px, transparent 1.4px);
+    background-size: 4px 4px;
+    padding: 36px 32px 30px;
+    border: 1.5px solid var(--color-walnut);
+    box-shadow:
+      0 8px 0 rgba(0,0,0,0.5),
+      0 0 0 5px var(--color-cream),
+      0 0 0 7px var(--color-brass),
+      0 0 0 8px rgba(0,0,0,0.6),
+      0 0 60px rgba(0,0,0,0.5);
+    transition: transform 1700ms cubic-bezier(0.65, 0, 0.35, 1),
+                opacity 600ms ease 600ms;
+  }
+  .cabinet__plaque::before,
+  .cabinet__plaque::after {
+    content: "✦";
+    position: absolute;
+    color: var(--color-brass);
+    font-size: 18px;
+  }
+  .cabinet__plaque::before { top: 10px; left: 14px; }
+  .cabinet__plaque::after  { bottom: 10px; right: 14px; }
+  .cabinet--open .cabinet__plaque {
+    transform: translate(-50%, -50%) scale(0.94);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .cabinet__eyebrow {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--color-brass);
+    font-size: 11px;
+    margin: 0 0 6px;
+  }
+  .cabinet__wordmark {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 0.9;
+    letter-spacing: 0.012em;
+    margin: 4px 0 8px;
+    text-shadow: 2px 2px 0 rgba(26,22,20,0.2);
+    transform: rotate(-0.4deg);
+  }
+  .cabinet__sub {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-ink);
+    font-size: 16px;
+    margin: 0 0 24px;
+    line-height: 1.4;
+  }
+  .cabinet__open {
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 13px;
+    padding: 14px 28px;
+    border: 1.5px solid var(--color-walnut);
+    background: var(--color-buddy-red);
+    color: var(--color-cream);
+    box-shadow: 3px 3px 0 rgba(26,22,20,0.35);
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 80ms ease-out, box-shadow 80ms ease-out;
+  }
+  .cabinet__open::before {
+    content: "";
+    position: absolute;
+    top: 4px; bottom: 4px; left: 4px; right: 4px;
+    border: 1px solid rgba(242,232,208,0.5);
+    pointer-events: none;
+  }
+  .cabinet__open:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 rgba(26,22,20,0.4); }
+  .cabinet__open:active { transform: translate(1px,1px); box-shadow: 2px 2px 0 rgba(26,22,20,0.3); }
+  .cabinet__open-icon { font-size: 16px; }
+  .cabinet__est {
+    margin: 16px 0 0;
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-smoke);
+    font-size: 13px;
+  }
+
+  /* Door swing */
+  .cabinet--open .cabinet__door--left {
+    transform: rotateY(-108deg);
+    box-shadow:
+      inset 0 0 60px rgba(0,0,0,0.7),
+      inset 0 0 0 2px rgba(0,0,0,0.5),
+      inset 0 0 0 4px rgba(201,162,39,0.25);
+  }
+  .cabinet--open .cabinet__door--right {
+    transform: rotateY(108deg);
+    box-shadow:
+      inset 0 0 60px rgba(0,0,0,0.7),
+      inset 0 0 0 2px rgba(0,0,0,0.5),
+      inset 0 0 0 4px rgba(201,162,39,0.25);
+  }
+
+  /* Floor shadow */
+  .cabinet__floor {
+    position: absolute;
+    bottom: 0; left: 8%; right: 8%;
+    height: 28px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 80%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Reduced-motion — skip the swing, doors just fade out */
+  @media (prefers-reduced-motion: reduce) {
+    .cabinet__door, .cabinet__plaque, .cabinet__interior {
+      transition-duration: 200ms !important;
+    }
+    .cabinet--open .cabinet__door--left,
+    .cabinet--open .cabinet__door--right {
+      transform: none;
+      opacity: 0;
+    }
+  }
+</style>
