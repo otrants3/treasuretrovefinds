@@ -1,0 +1,167 @@
+---
+/**
+ * Catalog plate — for Tonight's Lineup.
+ * Framed photo, brass plate number, item name in Anton red,
+ * Bodoni italic era line, paper-tag note overlaid, big red price.
+ */
+interface Props {
+  plate: string;       // "PLATE NO. 14"
+  item: string;        // "1938 Buddy L Fire Engine"
+  era: string;         // "American, pressed steel, East Moline, Illinois"
+  note: string;        // Bill's research note (handwritten on tag)
+  price?: string;      // "$ 285" — omitted = "Awaiting"
+  photo?: string;
+  awaiting?: boolean;
+}
+const { plate, item, era, note, price, photo, awaiting = false } = Astro.props;
+---
+
+<article class="ttf-plate">
+  <div class="ttf-plate__frame">
+    {photo
+      ? <img src={photo} alt={item} loading="lazy" />
+      : <div class="ttf-plate__awaiting">PHOTO<br />AWAITING</div>
+    }
+    <!-- paper-tag pinned to corner -->
+    <span class="ttf-plate__tag">
+      <span class="ttf-plate__tag-twine"></span>
+      <span class="ttf-plate__tag-hole"></span>
+      <span class="ttf-plate__tag-line">{era}</span>
+      <span class="ttf-plate__tag-note">{note}</span>
+    </span>
+  </div>
+  <p class="ttf-plate__no">{plate}</p>
+  <h3 class="ttf-plate__name">{item}</h3>
+  {price && (
+    <p class="ttf-plate__price">{price.startsWith("$") ? price : `$ ${price}`}</p>
+  )}
+  {awaiting && <p class="ttf-plate__pending">Bill's writing the record now.</p>}
+</article>
+
+<style>
+  .ttf-plate {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .ttf-plate__frame {
+    position: relative;
+    padding: 12px;
+    border: 1.5px solid var(--color-brass);
+    background: var(--color-cream);
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+  .ttf-plate__frame::before, .ttf-plate__frame::after {
+    content: "";
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--color-brass);
+  }
+  .ttf-plate__frame::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+  .ttf-plate__frame::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+  .ttf-plate__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.88) sepia(0.06) contrast(1.04);
+    border: 1px solid var(--color-walnut);
+    display: block;
+  }
+  .ttf-plate__awaiting {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      repeating-linear-gradient(45deg,
+        var(--color-tag-paper) 0 12px,
+        rgba(61,42,30,0.05) 12px 13px);
+    color: var(--color-walnut);
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-align: center;
+    border: 1px solid var(--color-walnut);
+  }
+
+  /* Tag pinned to the bottom-right of the plate */
+  .ttf-plate__tag {
+    position: absolute;
+    bottom: 16px; right: 16px;
+    background: var(--color-tag-paper);
+    background-image:
+      radial-gradient(rgba(61,42,30,0.08) 1px, transparent 1px);
+    background-size: 4px 4px;
+    border: 1px solid rgba(61,42,30,0.4);
+    box-shadow: 3px 4px 0 rgba(0,0,0,0.25);
+    transform: rotate(-6deg);
+    padding: 14px 12px 10px;
+    max-width: 56%;
+    font-family: var(--font-hand);
+    line-height: 1.25;
+    text-align: left;
+  }
+  .ttf-plate__tag-hole {
+    position: absolute;
+    top: 6px; left: 50%;
+    transform: translateX(-50%);
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--color-cream);
+    box-shadow: inset 0 0 0 1px rgba(61,42,30,0.6);
+  }
+  .ttf-plate__tag-twine {
+    position: absolute;
+    top: -18px; left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 1.5px; height: 24px;
+    background: var(--color-brass);
+  }
+  .ttf-plate__tag-line {
+    display: block;
+    font-size: 11px;
+    color: var(--color-walnut);
+    margin-bottom: 2px;
+  }
+  .ttf-plate__tag-note {
+    display: block;
+    font-size: 13px;
+    color: var(--color-ink);
+  }
+
+  .ttf-plate__no {
+    font-family: var(--font-label);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    font-size: 11px;
+    margin: 14px 0 4px;
+  }
+  .ttf-plate__name {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 24px;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    margin: 0 0 6px;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.14);
+  }
+  .ttf-plate__price {
+    font-family: var(--font-display);
+    color: var(--color-buddy-red);
+    font-size: 28px;
+    letter-spacing: 0.02em;
+    margin: 4px 0 0;
+    text-shadow: 1px 1px 0 rgba(26,22,20,0.14);
+  }
+  .ttf-plate__pending {
+    font-family: var(--font-billing);
+    font-style: italic;
+    color: var(--color-smoke);
+    font-size: 14px;
+    margin: 6px 0 0;
+  }
+</style>
