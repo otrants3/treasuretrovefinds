@@ -1,340 +1,782 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SunburstSeal from "../components/SunburstSeal.astro";
+import CatalogPlate from "../components/CatalogPlate.astro";
+import BoxingBilling from "../components/BoxingBilling.astro";
 
-const REAL_ASSET_CONCEPTS = [
-  {
-    slug: "gamma",
-    no: "γ",
-    name: "The Real Cabinet (photo composite)",
-    blurb: "Built on actual antique-curio-cabinet photography. Doors-closed → doors-open crossfade on load (real photos, not CSS). Each section uses a different real cabinet/shelf photo as its backdrop with content laid over.",
-    tone: "real photo · believable furniture · ships today",
-    href: "/concepts/gamma",
-    flag: "Recommended",
-  },
-  {
-    slug: "delta",
-    no: "δ",
-    name: "Real 3D Cabinet (Three.js)",
-    blurb: "Actual real-time WebGL cabinet built from primitive geometry + real wood texture. Two glass doors swing open in true 3D on load. Mouse-move parallax. Custom-built, runs in the browser.",
-    tone: "real 3D · interactive · world-class polish",
-    href: "/concepts/delta",
-    flag: "Most unique",
-  },
-  {
-    slug: "alpha-stub",
-    no: "α",
-    name: "AI-Generated Cabinet (needs Gemini key)",
-    blurb: "When you drop a GEMINI_API_KEY into the project env, I can generate a custom photorealistic cabinet image set (closed, open, brass details, interior lighting) and composite them. Until then, GAMMA is the closest real-photo equivalent.",
-    tone: "blocked · needs your key · ~2 min to enable",
-    href: "/concepts/gamma",
-    flag: "Blocked",
-  },
-  {
-    slug: "beta-stub",
-    no: "β",
-    name: "3D Model Embed (Sketchfab / model-viewer)",
-    blurb: "Would embed a free CC0 antique cabinet .glb via Google's model-viewer or a Sketchfab iframe. I haven't found a perfect cabinet model yet — if you point me to one on Sketchfab you like, I'll wire it up.",
-    tone: "needs model · 30 min to wire up",
-    href: "/concepts/delta",
-    flag: "Pending model",
-  },
-];
+const BOOTH = {
+  address1: "3565 E. Flamingo Road",
+  address2: "Paradise Mall · Booth #18",
+  city: "Las Vegas, NV 89121",
+  phoneDisplay: "(516) 446-2693",
+  phoneTel: "+15164462693",
+  hours: "Weds & Sun · 10 AM – 6 PM",
+  mapsQuery: "Paradise+Antique+Mall+3565+E+Flamingo+Rd+Las+Vegas+NV+89121",
+};
 
-const PREVIOUS_CONCEPTS = [
-  { slug: "the-cabinet", no: "v4", name: "The CSS Cabinet (the one you said was crap)", blurb: "The previous attempt — drawn entirely in CSS. Confirmed not believable as furniture. Kept for comparison.", href: "/concepts/the-cabinet" },
-  { slug: "walk-in", no: "v3·a", name: "The Walk-In", blurb: "Cinematic lights-come-on parallax scroll. No cabinet, just the room.", href: "/concepts/walk-in" },
-  { slug: "notebook", no: "v3·b", name: "Bill's Notebook", blurb: "Hand-bound notebook with taped polaroids and red-pen margins.", href: "/concepts/notebook" },
-  { slug: "card-catalog", no: "v3·c", name: "The Card Catalog", blurb: "Library card-catalog drawers that pull open with typed index cards.", href: "/concepts/card-catalog" },
-  { slug: "auction", no: "v3·d", name: "The Auction Catalogue", blurb: "Christie's-style full-screen LOT spreads.", href: "/concepts/auction" },
-  { slug: "marquee", no: "v3·e", name: "The Marquee", blurb: "Vaudeville show-bill with brass bulbs that light up on load.", href: "/concepts/marquee" },
+const LINEUP = [
+  {
+    plate: "PLATE NO. 01",
+    item: "Renaissance Perfume Bottle",
+    era: "1934 · Ludwig Scherk · silver filigree, Marie Antoinette miniature",
+    note: "Pre-war German atelier. Miniature painted on ivorine. Original stopper.",
+    price: "$ 225",
+    photo: "/photos/tag-perfume-bottle.jpg",
+  },
+  {
+    plate: "PLATE NO. 02",
+    item: "Hobby Kiddie Diecast Race Car",
+    era: "1930-40s · #SH-457 · pressed steel, original green",
+    note: "Driver intact. Original wheels. Patina untouched — never restored.",
+    price: "$ 65",
+    photo: "/photos/tag-race-car.jpg",
+  },
+  {
+    plate: "PLATE NO. 03",
+    item: "GE Cast-Iron Oscillating Fan",
+    era: "1930s · General Electric · brass blades, cast-iron base",
+    note: "Runs cool. Original cord. Ask Bill about the patent date stamp.",
+    price: "Ask Bill",
+    photo: "/photos/fan-perfumes.jpg",
+  },
 ];
 ---
 
-<Layout title="Treasure Trove Finds — Pick a Cabinet">
-  <header class="pk-mast">
-    <div class="pk-mast__inner">
-      <div class="pk-mast__center">
-        <p class="pk-mast__eyebrow">— Concept Catalogue · Real-Asset Round —</p>
-        <h1 class="pk-mast__wordmark">TREASURE TROVE FINDS</h1>
-        <p class="pk-mast__sub">
-          New round, built on <em>real cabinet photography and real 3D.</em> Pick a cabinet.
+<Layout
+  title="TreasureTroveFinds · Paradise Mall, Booth #18 · Las Vegas"
+  description="Bill & Lisa's curated antique booth at Paradise Mall, Las Vegas. Every piece has a record. Collecting since 1973."
+>
+  <!-- =========================================================
+       HERO — sticky scroll-scrubbed cabinet photo
+  ========================================================= -->
+  <section data-hero class="ttf-hero">
+    <div data-hero-stage class="ttf-hero__stage">
+      <!-- Layer 1: doors closed -->
+      <div data-hero-closed data-parallax="14" class="ttf-hero__layer">
+        <img src="/cabinet/pexels-36901179.jpg" alt="Antique ornate cabinet with glass doors closed" fetchpriority="high" />
+      </div>
+      <!-- Layer 2: door swung open, apothecary bottles -->
+      <div data-hero-open data-parallax="10" class="ttf-hero__layer">
+        <img src="/cabinet/pexels-13207903.jpg" alt="Apothecary cabinet with glass door swung open" />
+      </div>
+      <!-- Layer 3: camera inside the cabinet, rich shelves -->
+      <div data-hero-inside data-parallax="6" class="ttf-hero__layer">
+        <img src="/cabinet/pexels-9704134.jpg" alt="Inside the curio cabinet — shelves of curiosities" />
+      </div>
+      <!-- Cinematic vignette + atmosphere -->
+      <div data-hero-vignette class="ttf-hero__vignette"></div>
+    </div>
+
+    <!-- Foreground brass nameplate -->
+    <div data-hero-title data-parallax="-4" class="ttf-hero__plate-wrap">
+      <div class="ttf-hero__scrim"></div>
+      <div class="ttf-hero__plate">
+        <p class="ttf-hero__eyebrow">— PARADISE MALL · LAS VEGAS · BOOTH №18 —</p>
+        <h1 class="ttf-hero__wordmark">TreasureTrove<br/><span>FINDS</span></h1>
+        <p class="ttf-hero__tag">Fine Curiosities &amp; Relics · Curated History, Plain Prices</p>
+        <div class="ttf-hero__rule"></div>
+        <p class="ttf-hero__sub"><em>Every piece has a record.</em></p>
+      </div>
+    </div>
+
+    <div data-hero-cue class="ttf-hero__cue" aria-hidden="true">
+      <span>SCROLL TO ENTER</span>
+      <span class="ttf-hero__cue-line"></span>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION — STORY (cream, pure typography)
+  ========================================================= -->
+  <section id="story" class="ttf-story" data-reveal>
+    <div class="ttf-story__inner">
+      <p class="ttf-label">— Fifty Years on the Hunt —</p>
+      <blockquote class="ttf-story__quote">
+        &ldquo;It started with baseball cards. The numbers on the back. The years, the batting averages — the history hiding inside the data.&rdquo;
+      </blockquote>
+      <div class="ttf-story__body">
+        <p>
+          Cards turned into bottles. Bottles turned into signs. Signs turned into toys, and toys turned into anything with a story
+          worth telling. Bill's been on the hunt since 1973, and every piece he buys comes back to the booth with its homework done —
+          maker, era, provenance, the bit you tell guests when they pick it up off the shelf.
+        </p>
+        <p>
+          Lisa came along and turned it into a life. The two of them work the Paradise Mall booth on Wednesdays and Sundays —
+          Bill leaning on the counter, hands moving, talking like a man who's been waiting fifty years to tell you what you just
+          picked up. It is, in his words, <em>not your sixth-grade Social Studies teacher's lecture.</em>
+        </p>
+        <p>
+          What you're looking at is the back room. The cabinet. The records he's kept on every piece he's ever loved enough to keep.
         </p>
       </div>
-      <div class="pk-mast__seal">
-        <SunburstSeal size={108} est="2022" since="'73" />
+      <p class="ttf-story__sig">— Bill &amp; Lisa Otranto</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION — TONIGHT'S LINEUP (cream, 3 plates)
+  ========================================================= -->
+  <section id="lineup" class="ttf-lineup">
+    <div class="ttf-lineup__inner" data-reveal>
+      <BoxingBilling
+        eyebrow="On the Shelf This Week"
+        title="Tonight's Lineup"
+        sub="Three pieces Bill is rooting for. Each one has its record on the tag."
+      />
+      <div class="ttf-lineup__grid">
+        {LINEUP.map((it) => (
+          <CatalogPlate
+            plate={it.plate}
+            item={it.item}
+            era={it.era}
+            note={it.note}
+            price={it.price}
+            photo={it.photo}
+          />
+        ))}
       </div>
-    </div>
-    <div class="pk-rule"></div>
-  </header>
-
-  <section class="pk-section">
-    <h2 class="pk-section__title">Real Assets — built today</h2>
-    <p class="pk-section__sub">Each of these uses actual photography or actual 3D, not CSS gradients pretending to be wood.</p>
-    <div class="pk-grid">
-      {REAL_ASSET_CONCEPTS.map((c) => (
-        <a class={`pk-card pk-card--${c.slug}`} href={c.href}>
-          {c.flag && <span class="pk-card__flag">{c.flag}</span>}
-          <div class="pk-card__plate">
-            <span class="pk-card__no">{c.no}</span>
-            <h2 class="pk-card__name">{c.name}</h2>
-          </div>
-          <p class="pk-card__blurb">{c.blurb}</p>
-          <p class="pk-card__tone">{c.tone}</p>
-          <span class="pk-card__cta">Step inside <span aria-hidden="true">→</span></span>
-        </a>
-      ))}
+      <p class="ttf-lineup__foot">
+        <em>The rest of the room rotates weekly. Drop in to see what hasn't made it to the website yet.</em>
+      </p>
     </div>
   </section>
 
-  <section class="pk-section pk-section--prev">
-    <h2 class="pk-section__title">Previous round — kept for reference</h2>
-    <p class="pk-section__sub">Concepts from the last few iterations. Still browsable in case anything's worth borrowing.</p>
-    <div class="pk-grid pk-grid--mini">
-      {PREVIOUS_CONCEPTS.map((c) => (
-        <a class="pk-card pk-card--mini" href={c.href}>
-          <div class="pk-card__plate">
-            <span class="pk-card__no">{c.no}</span>
-            <h3 class="pk-card__name pk-card__name--sm">{c.name}</h3>
-          </div>
-          <p class="pk-card__blurb pk-card__blurb--sm">{c.blurb}</p>
-          <span class="pk-card__cta">Open →</span>
-        </a>
-      ))}
+  <!-- =========================================================
+       SECTION — THE RECORD (emerald felt punch)
+  ========================================================= -->
+  <section id="record" class="ttf-record ttf-on-emerald" data-reveal>
+    <div class="ttf-record__inner">
+      <p class="ttf-record__eyebrow">— EVERY PIECE HAS A —</p>
+      <h2 class="ttf-record__title">Record</h2>
+      <div class="ttf-billing-rules"></div>
+      <figure class="ttf-record__figure">
+        <img src="/photos/tag-perfume-bottle.jpg" alt="Bill's handwritten tag on a 1934 Ludwig Scherk perfume bottle" />
+      </figure>
+      <p class="ttf-record__caption">
+        Other vendors write a price. Bill writes the record — in his own handwriting,
+        on the back of every tag in the booth.
+      </p>
     </div>
   </section>
 
-  <footer class="pk-foot">
-    <p>
-      Pick a winner from the top row. Tell me what to fix on the chosen one and I'll iterate.
-      Once you settle, I promote that concept to <code>/</code> and we ship a real domain.
-    </p>
-    <p class="pk-foot__legal">
-      TREASURE TROVE FINDS · PARADISE MALL · BOOTH #18 · LAS VEGAS, NEVADA · <em>An Otranto Labs project</em>
-    </p>
+  <!-- =========================================================
+       SECTION — FIND THE JOINT (cream, map + card)
+  ========================================================= -->
+  <section id="find" class="ttf-find" data-reveal>
+    <div class="ttf-find__inner">
+      <div class="ttf-find__map">
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src={`https://maps.google.com/maps?q=${BOOTH.mapsQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+          title="Paradise Antique Mall — Booth #18"
+        ></iframe>
+      </div>
+      <aside class="ttf-find__card">
+        <p class="ttf-label">— Find the Joint —</p>
+        <h3 class="ttf-find__name">Paradise Mall<br/><span>Booth №18</span></h3>
+        <div class="ttf-double-rule"></div>
+        <p class="ttf-find__addr">
+          {BOOTH.address1}<br/>
+          {BOOTH.city}
+        </p>
+        <p class="ttf-find__hours">
+          <span class="ttf-label" style="letter-spacing:0.24em;">Hours</span><br/>
+          {BOOTH.hours}
+        </p>
+        <p class="ttf-find__phone">
+          <span class="ttf-label" style="letter-spacing:0.24em;">Ring Bill</span><br/>
+          <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
+        </p>
+        <div class="ttf-find__buttons">
+          <a class="ttf-btn ttf-btn-primary" href={`https://www.google.com/maps/dir/?api=1&destination=${BOOTH.mapsQuery}`} target="_blank" rel="noopener">Get Directions</a>
+          <a class="ttf-btn ttf-btn-secondary" href={`tel:${BOOTH.phoneTel}`}>Call Bill</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION — ETSY (cream, minimal)
+  ========================================================= -->
+  <section id="etsy" class="ttf-etsy" data-reveal>
+    <div class="ttf-etsy__inner">
+      <p class="ttf-label">— Etsy's Coming —</p>
+      <h2 class="ttf-etsy__title">Get the Word First.</h2>
+      <p class="ttf-etsy__sub">
+        We're cataloging the booth piece by piece. When the listings go live, the first 200 names on this list hear about it before
+        anyone else.
+      </p>
+      <form class="ttf-etsy__form" action="https://formspree.io/f/placeholder" method="POST">
+        <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit" class="ttf-btn ttf-btn-primary">Put Me On The List</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer class="ttf-foot">
+    <div class="ttf-foot__inner">
+      <SunburstSeal size={86} est="2022" since="'73" />
+      <p class="ttf-foot__name">TreasureTroveFinds</p>
+      <p class="ttf-foot__line">
+        Paradise Mall · Booth №18 · Las Vegas, NV
+      </p>
+      <p class="ttf-foot__line ttf-foot__phone">
+        <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
+      </p>
+      <div class="ttf-foot__rule"></div>
+      <p class="ttf-foot__legal">
+        Est. 2022 · Collecting since '73 · Pieces back to 1850. Ask no questions.
+      </p>
+    </div>
   </footer>
+
+  <script>
+    import "../scripts/cabinet-scroll.ts";
+  </script>
+
+  <style>
+    /* ==============================================
+       HERO
+    ============================================== */
+    .ttf-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #0e0a07;
+    }
+    .ttf-hero__stage {
+      position: absolute;
+      inset: -4% -4%;
+      will-change: transform;
+    }
+    .ttf-hero__layer {
+      position: absolute;
+      inset: 0;
+      will-change: transform, opacity;
+    }
+    .ttf-hero__layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.92) contrast(1.06);
+    }
+    .ttf-hero__vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.65) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.7));
+    }
+
+    .ttf-hero__plate-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      will-change: transform, opacity;
+    }
+    .ttf-hero__scrim {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center,
+          rgba(0,0,0,0.7) 0%,
+          rgba(0,0,0,0.55) 35%,
+          rgba(0,0,0,0.0) 75%);
+      pointer-events: none;
+    }
+    .ttf-hero__plate {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+    .ttf-hero__eyebrow {
+      font-family: var(--font-label);
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--color-brass);
+      font-size: 0.7rem;
+      margin: 0 0 1.25rem;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
+    }
+    .ttf-hero__wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(58px, 10vw, 148px);
+      line-height: 0.86;
+      color: var(--color-cream);
+      letter-spacing: 0.01em;
+      margin: 0;
+      text-shadow:
+        3px 4px 0 rgba(0,0,0,0.7),
+        0 2px 18px rgba(0,0,0,0.85),
+        0 0 48px rgba(201,162,39,0.18);
+    }
+    .ttf-hero__wordmark span {
+      color: var(--color-brass);
+      font-style: italic;
+      font-family: var(--font-billing);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      font-size: 0.55em;
+      display: inline-block;
+      transform: translateY(-0.05em);
+    }
+    .ttf-hero__tag {
+      font-family: var(--font-billing);
+      font-style: italic;
+      color: var(--color-cream);
+      opacity: 0.86;
+      font-size: clamp(13px, 1.4vw, 16px);
+      margin: 1rem 0 0.75rem;
+      letter-spacing: 0.04em;
+    }
+    .ttf-hero__rule {
+      width: 220px;
+      max-width: 70vw;
+      height: 1.2px;
+      background: var(--color-brass);
+      margin: 0.75rem auto;
+      position: relative;
+    }
+    .ttf-hero__rule::before {
+      content: "✦";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--color-brass);
+      background: rgba(0,0,0,0.6);
+      padding: 0 10px;
+      font-size: 14px;
+    }
+    .ttf-hero__sub {
+      font-family: var(--font-billing);
+      color: var(--color-cream);
+      font-style: italic;
+      font-size: clamp(14px, 1.6vw, 19px);
+      margin: 0.5rem 0 0;
+      letter-spacing: 0.02em;
+    }
+
+    .ttf-hero__cue {
+      position: absolute;
+      bottom: 2.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-brass);
+      font-family: var(--font-label);
+      letter-spacing: 0.38em;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+    }
+    .ttf-hero__cue-line {
+      width: 1.5px;
+      height: 36px;
+      background: var(--color-brass);
+      animation: ttf-cue-pulse 1.8s ease-in-out infinite;
+      transform-origin: top center;
+    }
+    @keyframes ttf-cue-pulse {
+      0%, 100% { transform: scaleY(0.6); opacity: 0.5; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    /* ==============================================
+       STORY
+    ============================================== */
+    .ttf-story {
+      position: relative;
+      padding: 7.5rem 1.5rem 6rem;
+    }
+    .ttf-story__inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .ttf-story__inner .ttf-label {
+      display: block;
+      margin: 0 0 2rem;
+    }
+    .ttf-story__quote {
+      font-family: var(--font-billing);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(22px, 3.2vw, 36px);
+      line-height: 1.25;
+      color: var(--color-ink);
+      margin: 0 0 3rem;
+      position: relative;
+    }
+    .ttf-story__quote::before,
+    .ttf-story__quote::after {
+      color: var(--color-brass);
+      font-family: var(--font-billing);
+      font-size: 1.4em;
+      line-height: 0;
+      position: relative;
+      top: 0.18em;
+    }
+    .ttf-story__body {
+      text-align: left;
+      font-family: var(--font-serif);
+      color: var(--color-ink);
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .ttf-story__body p {
+      margin: 0 0 1.1rem;
+    }
+    .ttf-story__sig {
+      font-family: var(--font-hand);
+      color: var(--color-walnut);
+      font-size: 22px;
+      margin: 2.25rem 0 0;
+      letter-spacing: 0.01em;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+    }
+
+    /* ==============================================
+       LINEUP
+    ============================================== */
+    .ttf-lineup {
+      padding: 5rem 1.5rem 6rem;
+      background:
+        linear-gradient(180deg, rgba(61,42,30,0.04), rgba(61,42,30,0));
+    }
+    .ttf-lineup__inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .ttf-lineup__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin: 3rem 0 1.5rem;
+    }
+    .ttf-lineup__foot {
+      text-align: center;
+      font-family: var(--font-billing);
+      color: var(--color-smoke);
+      font-size: 15px;
+      margin: 2rem 0 0;
+    }
+
+    /* ==============================================
+       RECORD (emerald punch)
+    ============================================== */
+    .ttf-record {
+      background: var(--color-emerald);
+      padding: 6.5rem 1.5rem 7rem;
+      position: relative;
+    }
+    .ttf-record::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1.4px),
+        radial-gradient(rgba(0,0,0,0.18) 1px, transparent 1.4px);
+      background-size: 4px 4px, 9px 9px;
+      background-position: 0 0, 2px 2px;
+      pointer-events: none;
+    }
+    .ttf-record__inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    .ttf-record__eyebrow {
+      font-family: var(--font-label);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--color-brass);
+      font-size: 0.72rem;
+      margin: 0 0 0.5rem;
+    }
+    .ttf-record__title {
+      font-family: var(--font-display);
+      color: var(--color-cream);
+      font-size: clamp(56px, 9vw, 120px);
+      line-height: 0.9;
+      letter-spacing: 0.005em;
+      margin: 0 0 1rem;
+      text-shadow: 2px 3px 0 rgba(0,0,0,0.4);
+    }
+    .ttf-record__figure {
+      margin: 3rem auto 1.75rem;
+      max-width: 560px;
+      padding: 14px;
+      background: var(--color-emerald);
+      border: 1.5px solid var(--color-brass);
+      position: relative;
+      box-shadow:
+        0 18px 48px rgba(0,0,0,0.4),
+        inset 0 0 0 1px rgba(201,162,39,0.25);
+    }
+    .ttf-record__figure::before,
+    .ttf-record__figure::after {
+      content: "";
+      position: absolute;
+      width: 22px; height: 22px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-record__figure::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .ttf-record__figure::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+    .ttf-record__figure img {
+      width: 100%;
+      display: block;
+      filter: saturate(0.95) contrast(1.04);
+    }
+    .ttf-record__caption {
+      font-family: var(--font-billing);
+      font-style: italic;
+      color: var(--color-cream);
+      opacity: 0.92;
+      font-size: clamp(15px, 1.7vw, 20px);
+      line-height: 1.55;
+      margin: 1.25rem auto 0;
+      max-width: 520px;
+    }
+
+    /* ==============================================
+       FIND THE JOINT
+    ============================================== */
+    .ttf-find {
+      padding: 6rem 1.5rem;
+    }
+    .ttf-find__inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2.5rem;
+      align-items: stretch;
+    }
+    .ttf-find__map {
+      position: relative;
+      border: 1.5px solid var(--color-walnut);
+      background: var(--color-walnut);
+      box-shadow: 6px 6px 0 rgba(26,22,20,0.18);
+      min-height: 460px;
+    }
+    .ttf-find__map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      border: 0;
+      display: block;
+      filter: sepia(0.18) saturate(0.85) contrast(1.04);
+    }
+    .ttf-find__card {
+      background: var(--color-cream);
+      border: 1.5px solid var(--color-walnut);
+      padding: 2.5rem 2rem;
+      box-shadow: 6px 6px 0 rgba(26,22,20,0.18);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .ttf-find__card::before,
+    .ttf-find__card::after {
+      content: "";
+      position: absolute;
+      width: 22px; height: 22px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-find__card::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+    .ttf-find__card::after  { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+    .ttf-find__name {
+      font-family: var(--font-display);
+      color: var(--color-buddy-red);
+      font-size: clamp(36px, 4.5vw, 54px);
+      line-height: 0.95;
+      letter-spacing: 0.005em;
+      margin: 0.5rem 0 0;
+      text-shadow: 2px 2px 0 rgba(26,22,20,0.14);
+    }
+    .ttf-find__name span {
+      font-family: var(--font-billing);
+      font-style: italic;
+      font-weight: 700;
+      color: var(--color-walnut);
+      font-size: 0.6em;
+      letter-spacing: 0.04em;
+    }
+    .ttf-find__addr,
+    .ttf-find__hours,
+    .ttf-find__phone {
+      font-family: var(--font-serif);
+      color: var(--color-ink);
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 1rem 0 0;
+    }
+    .ttf-find__phone a {
+      font-family: var(--font-display);
+      color: var(--color-buddy-red);
+      font-size: 26px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .ttf-find__buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.75rem;
+    }
+
+    /* ==============================================
+       ETSY
+    ============================================== */
+    .ttf-etsy {
+      padding: 5rem 1.5rem 6.5rem;
+      background:
+        linear-gradient(180deg, rgba(61,42,30,0), rgba(61,42,30,0.04));
+    }
+    .ttf-etsy__inner {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .ttf-etsy__title {
+      font-family: var(--font-display);
+      color: var(--color-buddy-red);
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 0.95;
+      letter-spacing: 0.005em;
+      margin: 0.75rem 0 1rem;
+      text-shadow: 2px 2px 0 rgba(26,22,20,0.14);
+    }
+    .ttf-etsy__sub {
+      font-family: var(--font-serif);
+      color: var(--color-ink);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+    .ttf-etsy__form {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 460px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .ttf-etsy__form input {
+      flex: 1 1 240px;
+      min-width: 220px;
+      padding: 0.875rem 1rem;
+      background: var(--color-cream);
+      border: 1.5px solid var(--color-walnut);
+      color: var(--color-ink);
+      font-family: var(--font-serif);
+      font-size: 16px;
+      box-shadow: 3px 3px 0 rgba(26,22,20,0.18);
+      outline: none;
+    }
+    .ttf-etsy__form input:focus {
+      border-color: var(--color-buddy-red);
+    }
+
+    /* ==============================================
+       FOOTER
+    ============================================== */
+    .ttf-foot {
+      padding: 4rem 1.5rem 3rem;
+      background: var(--color-walnut);
+      color: var(--color-cream);
+      text-align: center;
+    }
+    .ttf-foot__inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .ttf-foot__name {
+      font-family: var(--font-display);
+      color: var(--color-cream);
+      font-size: 36px;
+      margin: 1.25rem 0 0.25rem;
+      letter-spacing: 0.005em;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+    }
+    .ttf-foot__line {
+      font-family: var(--font-billing);
+      font-style: italic;
+      color: var(--color-cream);
+      opacity: 0.86;
+      margin: 0.25rem 0;
+      font-size: 15px;
+    }
+    .ttf-foot__phone a {
+      color: var(--color-brass);
+      font-family: var(--font-display);
+      font-style: normal;
+      font-size: 22px;
+      text-decoration: none;
+    }
+    .ttf-foot__rule {
+      width: 200px;
+      height: 1px;
+      background: var(--color-brass);
+      opacity: 0.7;
+      margin: 1.5rem 0 1rem;
+    }
+    .ttf-foot__legal {
+      font-family: var(--font-label);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--color-brass);
+      font-size: 0.7rem;
+      margin: 0;
+    }
+
+    /* ==============================================
+       MOBILE
+    ============================================== */
+    @media (max-width: 820px) {
+      .ttf-hero__wordmark { line-height: 0.92; }
+      .ttf-lineup__grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .ttf-find__inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .ttf-find__map { min-height: 320px; }
+      .ttf-find__map iframe { min-height: 320px; }
+      .ttf-find__card { padding: 2rem 1.5rem; }
+      .ttf-story { padding: 5rem 1.25rem 4.5rem; }
+      .ttf-record { padding: 5rem 1.25rem 5.5rem; }
+      .ttf-etsy__form { flex-direction: column; }
+      .ttf-etsy__form input { width: 100%; }
+    }
+  </style>
 </Layout>
-
-<style>
-  .pk-mast { max-width: 1280px; margin: 0 auto; padding: 32px 32px 0; }
-  .pk-mast__inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 24px;
-    align-items: center;
-  }
-  @media (max-width: 720px) {
-    .pk-mast__inner { grid-template-columns: 1fr; text-align: center; }
-    .pk-mast__seal { justify-self: center; }
-  }
-  .pk-mast__center { text-align: center; }
-  .pk-mast__eyebrow {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.32em;
-    color: var(--color-brass);
-    font-size: 12px;
-    margin: 0;
-  }
-  .pk-mast__wordmark {
-    font-family: var(--font-display);
-    color: var(--color-buddy-red);
-    font-size: clamp(40px, 6.4vw, 86px);
-    line-height: 0.92;
-    letter-spacing: 0.012em;
-    margin: 10px 0 6px;
-    text-shadow: 2px 2px 0 rgba(26,22,20,0.18);
-    transform: rotate(-0.4deg);
-  }
-  .pk-mast__sub {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-ink);
-    font-size: 18px;
-    margin: 0;
-  }
-  .pk-mast__sub em { color: var(--color-walnut); }
-  .pk-rule {
-    border-top: 1.6px solid var(--color-brass);
-    border-bottom: 1.6px solid var(--color-brass);
-    height: 5px;
-    margin: 20px 0 0;
-    position: relative;
-  }
-  .pk-rule::after {
-    content: "✦";
-    position: absolute;
-    top: -14px; left: 50%; transform: translateX(-50%);
-    color: var(--color-brass);
-    background: var(--color-cream);
-    padding: 0 14px;
-    font-size: 18px;
-  }
-
-  .pk-section {
-    max-width: 1280px;
-    margin: 56px auto;
-    padding: 0 32px;
-  }
-  .pk-section--prev { margin-top: 80px; opacity: 0.78; }
-  .pk-section__title {
-    font-family: var(--font-billing);
-    font-weight: 700;
-    color: var(--color-ink);
-    font-size: clamp(24px, 3vw, 34px);
-    letter-spacing: 0.005em;
-    margin: 0 0 6px;
-    text-align: center;
-  }
-  .pk-section__sub {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-smoke);
-    text-align: center;
-    margin: 0 0 28px;
-  }
-
-  .pk-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-  }
-  @media (max-width: 720px) { .pk-grid { grid-template-columns: 1fr; } }
-  .pk-grid--mini {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-  @media (max-width: 880px) { .pk-grid--mini { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 540px) { .pk-grid--mini { grid-template-columns: 1fr; } }
-
-  .pk-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background: var(--color-cream);
-    color: var(--color-ink);
-    text-decoration: none;
-    border: 1.5px solid var(--color-walnut);
-    box-shadow: 4px 5px 0 rgba(26,22,20,0.22);
-    padding: 26px 26px 28px;
-    transition: transform 120ms ease-out, box-shadow 120ms ease-out;
-  }
-  .pk-card::before, .pk-card::after {
-    content: "";
-    position: absolute;
-    width: 14px; height: 14px;
-    border: 1.5px solid var(--color-brass);
-  }
-  .pk-card::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-  .pk-card::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-  .pk-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 7px 0 rgba(26,22,20,0.28);
-  }
-  .pk-card__flag {
-    position: absolute;
-    top: 10px; right: 14px;
-    background: var(--color-buddy-red);
-    color: var(--color-cream);
-    padding: 4px 10px;
-    font-family: var(--font-label);
-    font-size: 9px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    box-shadow: 2px 2px 0 rgba(26,22,20,0.3);
-    transform: rotate(3deg);
-  }
-  .pk-card__plate {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--color-brass);
-  }
-  .pk-card__no {
-    font-family: var(--font-display);
-    color: var(--color-brass);
-    font-size: 32px;
-    line-height: 1;
-    letter-spacing: 0.04em;
-  }
-  .pk-card__name {
-    font-family: var(--font-billing);
-    font-weight: 700;
-    color: var(--color-ink);
-    font-size: 24px;
-    letter-spacing: 0.005em;
-    line-height: 1.05;
-    margin: 0;
-    text-transform: uppercase;
-  }
-  .pk-card__name--sm { font-size: 17px; text-transform: none; }
-  .pk-card__blurb {
-    font-family: var(--font-serif);
-    font-size: 16px;
-    line-height: 1.55;
-    color: var(--color-ink);
-    margin: 0 0 12px;
-    flex: 1;
-  }
-  .pk-card__blurb--sm { font-size: 14px; }
-  .pk-card__tone {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-smoke);
-    font-size: 13px;
-    margin: 0 0 18px;
-  }
-  .pk-card__cta {
-    font-family: var(--font-label);
-    text-transform: uppercase;
-    letter-spacing: 0.24em;
-    color: var(--color-buddy-red);
-    font-size: 12px;
-    margin-top: auto;
-  }
-  .pk-card--mini { padding: 18px 20px; }
-
-  .pk-card--alpha-stub, .pk-card--beta-stub {
-    opacity: 0.7;
-    background-image:
-      repeating-linear-gradient(45deg,
-        var(--color-cream) 0 16px,
-        rgba(61,42,30,0.05) 16px 17px);
-  }
-
-  .pk-foot {
-    max-width: 720px;
-    margin: 0 auto 64px;
-    padding: 32px 32px 0;
-    text-align: center;
-    border-top: 1.4px solid var(--color-brass);
-  }
-  .pk-foot p {
-    font-family: var(--font-billing);
-    font-style: italic;
-    color: var(--color-ink);
-    margin: 18px 0 0;
-    font-size: 16px;
-  }
-  .pk-foot code {
-    font-family: var(--font-label);
-    background: rgba(201,162,39,0.18);
-    color: var(--color-walnut);
-    padding: 1px 6px;
-    border: 1px solid var(--color-brass);
-    font-size: 13px;
-    letter-spacing: 0.1em;
-  }
-  .pk-foot__legal {
-    font-family: var(--font-label) !important;
-    text-transform: uppercase;
-    letter-spacing: 0.24em;
-    color: var(--color-brass);
-    font-style: normal !important;
-    font-size: 10px !important;
-    margin-top: 18px !important;
-  }
-  .pk-foot__legal em { color: var(--color-smoke); font-style: italic; }
-</style>
