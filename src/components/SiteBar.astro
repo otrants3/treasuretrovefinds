@@ -1,0 +1,111 @@
+---
+const BOOTH = {
+  phoneDisplay: "(516) 446-2693",
+  phoneTel: "+15164462693",
+  mapsQuery: "Paradise+Antique+Mall+3565+E+Flamingo+Rd+Las+Vegas+NV+89121",
+};
+---
+
+<div class="ttf-bar" role="navigation" aria-label="Booth info">
+  <div class="ttf-bar__inner">
+    <a class="ttf-bar__brand" href="/">
+      <span class="ttf-bar__brand-mark">TTF</span>
+      <span class="ttf-bar__brand-line">Paradise Mall · Booth №18 · Las Vegas</span>
+    </a>
+    <p class="ttf-bar__status">
+      <span class="ttf-bar__dot" data-bar-dot></span>
+      <span data-bar-status>Wed &amp; Sun · 10–6</span>
+    </p>
+    <div class="ttf-bar__cta">
+      <a class="ttf-bar__btn ttf-bar__btn--cream" href={`https://www.google.com/maps/dir/?api=1&destination=${BOOTH.mapsQuery}`} target="_blank" rel="noopener">Visit the Booth</a>
+      <a class="ttf-bar__btn ttf-bar__btn--red" href={`tel:${BOOTH.phoneTel}`}>Call {BOOTH.phoneDisplay}</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const now = new Date();
+    const day = now.getDay();
+    const hour = now.getHours();
+    const dot = document.querySelector('[data-bar-dot]');
+    const txt = document.querySelector('[data-bar-status]');
+    if (!dot || !txt) return;
+    const isOpenDay = day === 0 || day === 3;
+    const isOpenHour = hour >= 10 && hour < 18;
+    if (isOpenDay && isOpenHour) {
+      dot.classList.add('ttf-bar__dot--open');
+      txt.textContent = 'Open today · 10–6';
+    } else if (isOpenDay && hour < 10) {
+      txt.textContent = 'Opens 10 AM today';
+    } else if (isOpenDay) {
+      txt.textContent = 'Closed for the night · back next open';
+    } else {
+      const daysToWed = (3 - day + 7) % 7 || 7;
+      const daysToSun = (0 - day + 7) % 7 || 7;
+      const nextLabel = daysToWed < daysToSun ? 'Wednesday' : 'Sunday';
+      txt.textContent = `Next open · ${nextLabel} · 10–6`;
+    }
+  })();
+</script>
+
+<style>
+  .ttf-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(26,22,20,0.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid var(--color-brass);
+    color: var(--color-cream);
+  }
+  .ttf-bar__inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 0.6rem 1.25rem;
+    display: flex; align-items: center; gap: 1.25rem;
+  }
+  .ttf-bar__brand {
+    display: flex; align-items: center; gap: 0.65rem;
+    margin: 0; flex: 0 0 auto;
+    text-decoration: none;
+  }
+  .ttf-bar__brand-mark {
+    font-family: var(--font-display); color: var(--color-brass);
+    font-size: 18px; line-height: 1; padding: 6px 9px;
+    border: 1px solid var(--color-brass); letter-spacing: 0.02em;
+  }
+  .ttf-bar__brand-line {
+    font-family: var(--font-billing); font-style: italic;
+    color: var(--color-cream); font-size: 13px; opacity: 0.92;
+  }
+  .ttf-bar__status {
+    flex: 1 1 auto; display: flex; align-items: center; gap: 0.55rem; margin: 0;
+    font-family: var(--font-label); letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--color-cream); font-size: 0.72rem;
+  }
+  .ttf-bar__dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--color-smoke);
+    box-shadow: 0 0 0 2px rgba(90,85,78,0.18);
+  }
+  .ttf-bar__dot--open {
+    background: #6FBE6A;
+    box-shadow: 0 0 0 3px rgba(111,190,106,0.25), 0 0 14px rgba(111,190,106,0.6);
+  }
+  .ttf-bar__cta { display: flex; gap: 0.5rem; flex: 0 0 auto; }
+  .ttf-bar__btn {
+    font-family: var(--font-label); letter-spacing: 0.22em; text-transform: uppercase;
+    text-decoration: none; font-size: 0.72rem; padding: 0.55rem 0.9rem;
+    border: 1px solid var(--color-brass); line-height: 1;
+  }
+  .ttf-bar__btn--cream { color: var(--color-cream); background: transparent; }
+  .ttf-bar__btn--cream:hover { background: rgba(242,232,208,0.08); }
+  .ttf-bar__btn--red {
+    color: var(--color-cream); background: var(--color-buddy-red);
+    border-color: var(--color-buddy-red);
+  }
+  @media (max-width: 720px) {
+    .ttf-bar__brand-line { display: none; }
+    .ttf-bar__status { font-size: 0.62rem; letter-spacing: 0.16em; }
+    .ttf-bar__inner { gap: 0.65rem; padding: 0.5rem 0.9rem; }
+    .ttf-bar__btn { padding: 0.5rem 0.7rem; font-size: 0.62rem; letter-spacing: 0.14em; }
+  }
+</style>

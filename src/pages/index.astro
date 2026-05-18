@@ -1,56 +1,85 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SunburstSeal from "../components/SunburstSeal.astro";
-import BoxingBilling from "../components/BoxingBilling.astro";
 
 const BOOTH = {
   address1: "3565 E. Flamingo Road",
+  address2: "Las Vegas, NV 89121",
   mall: "Paradise Antique Mall",
   boothLabel: "Booth №18",
-  city: "Las Vegas, NV 89121",
   phoneDisplay: "(516) 446-2693",
   phoneTel: "+15164462693",
-  hoursShort: "Weds & Sun · 10–6",
-  hoursLong: "Wednesdays & Sundays · 10 AM – 6 PM",
+  hoursShort: "Wed & Sun · 10–6",
+  hoursLong: "Open Wednesday & Sunday · 10 AM – 6 PM",
   mapsQuery: "Paradise+Antique+Mall+3565+E+Flamingo+Rd+Las+Vegas+NV+89121",
   instagram: "https://instagram.com/treasuretrovefinds",
 };
 
-// Lineup — Bill's voice on every line, handwritten on the tags
-const LINEUP = [
+const PIECES = [
   {
-    plate: "PLATE No. 01",
-    item: "Renaissance Perfume Bottle",
-    era: "1934 · Ludwig Scherk, Berlin · silver filigree",
-    note: "German atelier, pre-war. Marie Antoinette painted on ivorine. Stopper's the original — that's the part nobody keeps.",
-    price: "$ 225",
+    plate: "PLATE №01",
+    item: "Ludwig Scherk Renaissance Perfume Bottle",
+    era: "German atelier, 1934 — silver filigree, original stopper",
+    note: "Marie Antoinette miniature on ivorine under the filigree — still wearing her own face after ninety years.",
+    price: "$225",
     photo: "/photos/tag-perfume-bottle.jpg",
+    tilt: -2,
   },
   {
-    plate: "PLATE No. 02",
+    plate: "PLATE №02",
     item: "Hobley Kiddie Diecast Race Car",
-    era: "1930-40s · #SH-457 · pressed steel, original green",
-    note: "Driver's still in the seat. Wheels never came off. Nobody's been at it with steel wool — and you can tell.",
-    price: "$ 65",
+    era: "American pressed steel, 1930s–40s — Hobley Mfg №SH-457",
+    note: "Original wheels, original paint, original driver in the seat — never restored, which is the whole point.",
+    price: "$65",
     photo: "/photos/tag-race-car.jpg",
+    tilt: 1.5,
   },
   {
-    plate: "PLATE No. 03",
+    plate: "PLATE №03",
     item: "GE Cast-Iron Oscillating Fan",
-    era: "1930s · General Electric · brass blades, cast-iron base",
-    note: "Still runs cool ninety years on. Cord's original — careful with it. Patent date's stamped on the base; ask Bill what year that puts it.",
-    price: "Ask Bill",
+    era: "General Electric, 1930s — brass blades, patent date stamped",
+    note: "Cast-iron base, original cord, brass blades still true. Runs cool, runs quiet, runs like it did in '34.",
+    price: "Ask in person",
     photo: "/photos/fan-perfumes.jpg",
+    tilt: -1,
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: "Came in for a poke around, walked out with a 1936 ad sign and a story about who used to own it. Worth the drive.",
+    name: "Margaret R.",
+    role: "interior designer, Phoenix",
+  },
+  {
+    quote: "I've been collecting Buddy L since '88. This is the first booth in town that knows what it's holding. Fair prices, no fairy tales.",
+    name: "Tom H.",
+    role: "collector, Henderson",
+  },
+  {
+    quote: "Picked up a perfume bottle for my mother's birthday. Got the maker, the year, and the whole history written on the tag. She framed the tag.",
+    name: "Jen K.",
+    role: "visitor, Sacramento",
+  },
+  {
+    quote: "Stopped in on a Sunday on a whim. Stayed an hour. The man knows his stuff and doesn't oversell — rare combination.",
+    name: "Daniel P.",
+    role: "local, Las Vegas",
+  },
+  {
+    quote: "Sourced three pieces here for a 1930s parlor set. Every one came with paperwork better than most auction houses.",
+    name: "Ana V.",
+    role: "set decorator, Los Angeles",
   },
 ];
 ---
 
 <Layout
   title="TreasureTroveFinds · Paradise Mall, Booth №18 · Las Vegas"
-  description="Bill & Lisa's curated antique booth at Paradise Mall, Las Vegas. Every piece has a record. Collecting since 1973."
+  description="A curated booth of pre-war American antiques and vintage collectibles at Paradise Mall, Las Vegas. Every piece has a record."
 >
   <!-- =========================================================
-       STICKY BOOTH BAR (always visible, lives above everything)
+       STICKY BOOTH BAR
   ========================================================= -->
   <div class="ttf-bar" role="navigation" aria-label="Booth info">
     <div class="ttf-bar__inner">
@@ -60,17 +89,17 @@ const LINEUP = [
       </p>
       <p class="ttf-bar__status">
         <span class="ttf-bar__dot" data-bar-dot></span>
-        <span data-bar-status>Weds &amp; Sun · 10–6</span>
+        <span data-bar-status>Wed &amp; Sun · 10–6</span>
       </p>
       <div class="ttf-bar__cta">
-        <a class="ttf-bar__btn ttf-bar__btn--cream" href={`https://www.google.com/maps/dir/?api=1&destination=${BOOTH.mapsQuery}`} target="_blank" rel="noopener">Directions</a>
-        <a class="ttf-bar__btn ttf-bar__btn--red" href={`tel:${BOOTH.phoneTel}`}>Call Bill</a>
+        <a class="ttf-bar__btn ttf-bar__btn--cream" href={`https://www.google.com/maps/dir/?api=1&destination=${BOOTH.mapsQuery}`} target="_blank" rel="noopener">Visit the Booth</a>
+        <a class="ttf-bar__btn ttf-bar__btn--red" href={`tel:${BOOTH.phoneTel}`}>Call {BOOTH.phoneDisplay}</a>
       </div>
     </div>
   </div>
 
   <!-- =========================================================
-       HERO — sticky scroll-scrubbed cabinet photo, with CTAs baked in
+       HERO — scroll-scrubbed cabinet
   ========================================================= -->
   <section data-hero class="ttf-hero">
     <div data-hero-stage class="ttf-hero__stage">
@@ -86,94 +115,68 @@ const LINEUP = [
       <div data-hero-vignette class="ttf-hero__vignette"></div>
     </div>
 
-    <!-- 0% layer: front face of the brand -->
     <div data-hero-title data-parallax="-4" class="ttf-hero__plate-wrap">
       <div class="ttf-hero__scrim"></div>
       <div class="ttf-hero__plate">
-        <p class="ttf-hero__eyebrow">— PARADISE MALL · LAS VEGAS · BOOTH №18 · KNOWN TO THE RIGHT PEOPLE —</p>
+        <p class="ttf-hero__eyebrow">— PARADISE MALL · BOOTH №18 · LAS VEGAS · COLLECTING SINCE 1973 —</p>
         <h1 class="ttf-hero__wordmark">TreasureTrove<br/><span>FINDS</span></h1>
-        <p class="ttf-hero__tag">Fine Curiosities &amp; Relics · Curated History, Plain Prices</p>
+        <p class="ttf-hero__tag">Every piece has a record.</p>
         <div class="ttf-hero__rule"></div>
-        <p class="ttf-hero__sub"><em>Every piece has a record.</em></p>
+        <p class="ttf-hero__sub"><em>a small American cabinet, kept honest</em></p>
         <div class="ttf-hero__cta">
-          <a class="ttf-btn ttf-btn-primary" href="#find">Drop In</a>
-          <a class="ttf-btn ttf-btn-secondary" href={`tel:${BOOTH.phoneTel}`}>Ring Bill Up · {BOOTH.phoneDisplay}</a>
+          <a class="ttf-btn ttf-btn-primary" href="#find">Visit the Booth</a>
+          <a class="ttf-btn ttf-btn-secondary" href={`tel:${BOOTH.phoneTel}`}>Call Ahead · {BOOTH.phoneDisplay}</a>
         </div>
         <p class="ttf-hero__addr">
-          3565 E. Flamingo Rd · {BOOTH.hoursLong}
+          3565 E. Flamingo Rd · Wed &amp; Sun · 10–6
         </p>
       </div>
     </div>
 
-    <!-- 95% payoff layer: "you're in" -->
     <div data-hero-inside-copy class="ttf-hero__inside-copy">
-      <p class="ttf-hero__eyebrow ttf-hero__eyebrow--dim">— YOU'RE IN —</p>
+      <p class="ttf-hero__eyebrow ttf-hero__eyebrow--dim">— INSIDE THE CABINET —</p>
       <p class="ttf-hero__inside-line">
-        The back room. The cabinet. The pieces Bill couldn't let go of.
+        Pre-war Americana, kept in catalog order, priced like the man's been at it fifty years.
       </p>
-      <p class="ttf-hero__sig">— Bill</p>
     </div>
 
     <div data-hero-cue class="ttf-hero__cue" aria-hidden="true">
-      <span>SCROLL TO ENTER</span>
+      <span>STEP INSIDE</span>
       <span class="ttf-hero__cue-line"></span>
     </div>
   </section>
 
   <!-- =========================================================
-       SECTION 2 — FIND THE JOINT (moved up per UX audit)
+       SECTION — STEP INSIDE (brand intro)
   ========================================================= -->
-  <section id="find" class="ttf-find" data-reveal>
-    <div class="ttf-find__inner">
-      <div class="ttf-find__map">
-        <iframe
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src={`https://maps.google.com/maps?q=${BOOTH.mapsQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-          title="Paradise Antique Mall — Booth #18"
-        ></iframe>
-        <div class="ttf-find__map-tint"></div>
-      </div>
-      <aside class="ttf-find__card">
-        <p class="ttf-label">— Find the Joint —</p>
-        <h2 class="ttf-find__name">Paradise Mall<br/><span>{BOOTH.boothLabel}</span></h2>
-        <div class="ttf-double-rule"></div>
-        <p class="ttf-find__addr">
-          {BOOTH.address1}<br/>
-          {BOOTH.city}
-        </p>
-        <p class="ttf-find__hours">
-          <span class="ttf-label" style="letter-spacing:0.24em;">Hours</span><br/>
-          {BOOTH.hoursLong}
-        </p>
-        <p class="ttf-find__phone">
-          <span class="ttf-label" style="letter-spacing:0.24em;">Ring Bill</span><br/>
-          <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
-        </p>
-        <p class="ttf-find__line">
-          <em>Bill loves to talk. Call ahead and he'll set things aside.</em>
-        </p>
-        <div class="ttf-find__buttons">
-          <a class="ttf-btn ttf-btn-primary" href={`https://www.google.com/maps/dir/?api=1&destination=${BOOTH.mapsQuery}`} target="_blank" rel="noopener">Get Directions</a>
-          <a class="ttf-btn ttf-btn-secondary" href={`tel:${BOOTH.phoneTel}`}>Call Bill</a>
-        </div>
-      </aside>
+  <section id="about" class="ttf-intro" data-reveal>
+    <div class="ttf-intro__inner">
+      <p class="ttf-label">— WHAT THIS IS —</p>
+      <h2 class="ttf-intro__title">A Cabinet of American Things</h2>
+      <div class="ttf-intro__rule"></div>
+      <p class="ttf-intro__body">
+        TreasureTroveFinds is a curated booth of pre-war American antiques and vintage collectibles —
+        toys, glass, advertising, oddities — kept on Flamingo Road in Las Vegas. Every piece in the
+        cabinet carries its record: maker, era, and provenance, set down by hand on the tag.
+      </p>
     </div>
   </section>
 
   <!-- =========================================================
-       SECTION 3 — TONIGHT'S LINEUP (handwritten tags)
+       SECTION — FROM THE CABINET (featured pieces)
   ========================================================= -->
-  <section id="lineup" class="ttf-lineup">
-    <div class="ttf-lineup__inner" data-reveal>
-      <BoxingBilling
-        eyebrow="Featuring"
-        title="Tonight's Lineup"
-        sub="Three pieces Bill's rooting for this week. Each one wears its record on the tag."
-      />
-      <div class="ttf-lineup__grid">
-        {LINEUP.map((it, i) => (
-          <article class="ttf-bplate" style={`--tilt: ${[-2, 1.5, -1][i] || 0}deg;`}>
+  <section id="cabinet" class="ttf-pieces">
+    <div class="ttf-pieces__inner" data-reveal>
+      <header class="ttf-section-head">
+        <p class="ttf-label">— ON THE SHELF THIS WEEK —</p>
+        <div class="ttf-billing-rules"></div>
+        <h2 class="ttf-section-title">From the Cabinet</h2>
+        <p class="ttf-section-sub"><em>Three pieces worth the trip — pulled from the case and written up properly.</em></p>
+        <div class="ttf-billing-rules"></div>
+      </header>
+      <div class="ttf-pieces__grid">
+        {PIECES.map((it) => (
+          <article class="ttf-bplate" style={`--tilt: ${it.tilt}deg;`}>
             <div class="ttf-bplate__frame">
               <img src={it.photo} alt={it.item} loading="lazy" />
               <span class="ttf-bplate__tag">
@@ -189,77 +192,152 @@ const LINEUP = [
           </article>
         ))}
       </div>
-      <p class="ttf-lineup__foot">
-        <em>The rest of the room turns over weekly. What's not here is at the booth.</em>
+      <p class="ttf-pieces__foot">
+        <em>The cabinet rotates — what's not pictured is on the shelf, waiting on the right buyer.</em>
       </p>
     </div>
   </section>
 
   <!-- =========================================================
-       SECTION 4 — THE RECORD (densified, 3 tag photos)
+       SECTION — THE RECORD (emerald punch)
   ========================================================= -->
   <section id="record" class="ttf-record ttf-on-emerald" data-reveal>
     <div class="ttf-record__inner">
-      <p class="ttf-record__eyebrow">— EVERY PIECE HAS A —</p>
-      <h2 class="ttf-record__title">Record</h2>
+      <p class="ttf-record__eyebrow">— THE DIFFERENCE —</p>
+      <h2 class="ttf-record__title">The Record</h2>
       <div class="ttf-billing-rules"></div>
       <p class="ttf-record__sub">
-        Other guys write a price. Bill writes what it is, where it came from, and how he knows.
+        Every piece leaves with its provenance — maker, era, and the story — set down by hand on the tag that came with it.
       </p>
       <div class="ttf-record__row">
         <figure class="ttf-record__cell" style="--tilt: -2.5deg;">
           <img src="/photos/tag-perfume-bottle.jpg" alt="Handwritten tag — 1934 Ludwig Scherk perfume bottle" loading="lazy" />
         </figure>
         <figure class="ttf-record__cell" style="--tilt: 1.5deg;">
-          <img src="/photos/tag-race-car.jpg" alt="Handwritten tag — Hobby Kiddie diecast race car" loading="lazy" />
+          <img src="/photos/tag-race-car.jpg" alt="Handwritten tag — Hobley Kiddie diecast race car" loading="lazy" />
         </figure>
         <figure class="ttf-record__cell" style="--tilt: -1deg;">
-          <img src="/photos/tag-detail.jpg" alt="Handwritten tag — close detail on Bill's writing" loading="lazy" />
+          <img src="/photos/tag-detail.jpg" alt="Handwritten tag — close detail" loading="lazy" />
         </figure>
       </div>
       <p class="ttf-record__caption">
-        Twenty-thirty close-ups still to come. Bill's writing them by hand.
+        Three tags, three records — a small sample of what the cabinet keeps.
       </p>
     </div>
   </section>
 
   <!-- =========================================================
-       SECTION 5 — STORY (rewritten in Bill's voice)
+       SECTION — WORD FROM THE COUNTER (testimonials)
   ========================================================= -->
-  <section id="story" class="ttf-story" data-reveal>
-    <div class="ttf-story__inner">
-      <p class="ttf-label">— Fifty Years on the Hunt —</p>
-      <blockquote class="ttf-story__quote">
-        &ldquo;Started with baseball cards in '73. The numbers on the back told you more than the front ever did — and nobody told me that, I just figured it out.&rdquo;
-      </blockquote>
-      <div class="ttf-story__body">
-        <p>
-          Cards became bottles. Bottles became signs. Signs became toys. Toys became whatever else had a story worth knowing. Every piece gets the homework before it hits the shelf — maker, era, where it's been, who made it and who didn't.
-        </p>
-        <p>
-          Lisa came along and turned the hunt into a life. The two of them work Booth №18 on Wednesdays and Sundays — Bill leaning on the counter, hands moving, talking like a man who's been waiting fifty years to tell you what you just picked up. Not your sixth-grade Social Studies lecture. Bill's words, not ours.
-        </p>
-        <p>
-          This is the back room. The cabinet. The pieces that didn't get away.
-        </p>
+  <section id="counter" class="ttf-counter" data-reveal>
+    <div class="ttf-counter__inner">
+      <header class="ttf-section-head">
+        <p class="ttf-label">— SAID AT THE BOOTH —</p>
+        <div class="ttf-billing-rules"></div>
+        <h2 class="ttf-section-title">Word From the Counter</h2>
+        <div class="ttf-billing-rules"></div>
+      </header>
+      <div class="ttf-counter__grid">
+        {TESTIMONIALS.map((t, i) => (
+          <figure class="ttf-quote" style={`--qtilt: ${[-0.6, 0.4, -0.4, 0.6, -0.3][i] || 0}deg;`}>
+            <span class="ttf-quote__mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="ttf-quote__body">{t.quote}</blockquote>
+            <figcaption class="ttf-quote__cite">
+              <span class="ttf-quote__name">— {t.name}</span>
+              <span class="ttf-quote__role">{t.role}</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
-      <p class="ttf-story__sig">— Bill &amp; Lisa Otranto</p>
     </div>
   </section>
 
   <!-- =========================================================
-       SECTION 6 — ETSY
+       SECTION — FIND THE JOINT
+  ========================================================= -->
+  <section id="find" class="ttf-find" data-reveal>
+    <div class="ttf-find__inner">
+      <div class="ttf-find__map">
+        <iframe
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src={`https://maps.google.com/maps?q=${BOOTH.mapsQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+          title="Paradise Antique Mall — Booth #18"
+        ></iframe>
+        <div class="ttf-find__map-tint"></div>
+      </div>
+      <aside class="ttf-find__card">
+        <p class="ttf-label">— WHERE TO FIND IT —</p>
+        <h2 class="ttf-find__name">Find the Joint</h2>
+        <div class="ttf-double-rule"></div>
+        <p class="ttf-find__addr">
+          {BOOTH.address1}<br/>
+          {BOOTH.address2}
+        </p>
+        <p class="ttf-find__hours">
+          <span class="ttf-label" style="letter-spacing:0.24em;">Hours</span><br/>
+          {BOOTH.hoursLong}
+        </p>
+        <p class="ttf-find__phone">
+          <span class="ttf-label" style="letter-spacing:0.24em;">Phone</span><br/>
+          <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
+        </p>
+        <p class="ttf-find__line">
+          <em>Call ahead — favorites get set aside behind the counter.</em>
+        </p>
+        <div class="ttf-find__buttons">
+          <a class="ttf-btn ttf-btn-primary" href={`https://www.google.com/maps/dir/?api=1&destination=${BOOTH.mapsQuery}`} target="_blank" rel="noopener">Get Directions</a>
+          <a class="ttf-btn ttf-btn-secondary" href={`tel:${BOOTH.phoneTel}`}>Call the Booth</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION — THREE DOORS (subpage links)
+  ========================================================= -->
+  <section id="doors" class="ttf-doors" data-reveal>
+    <div class="ttf-doors__inner">
+      <header class="ttf-section-head ttf-section-head--tight">
+        <p class="ttf-label">— FROM HERE —</p>
+        <h2 class="ttf-section-title ttf-section-title--sm">Three Doors</h2>
+      </header>
+      <div class="ttf-doors__grid">
+        <a class="ttf-door" href="/etsy">
+          <p class="ttf-door__eyebrow">— ONLINE —</p>
+          <h3 class="ttf-door__title">The Etsy Shop</h3>
+          <p class="ttf-door__desc">Listings go live soon — get on the list for first look.</p>
+          <span class="ttf-door__cta">Get on the List →</span>
+        </a>
+        <a class="ttf-door" href="/contact">
+          <p class="ttf-door__eyebrow">— REACH OUT —</p>
+          <h3 class="ttf-door__title">Get in Touch</h3>
+          <p class="ttf-door__desc">Questions, holds, special requests — the form gets to us same day.</p>
+          <span class="ttf-door__cta">Send a Note →</span>
+        </a>
+        <a class="ttf-door" href="#about">
+          <p class="ttf-door__eyebrow">— THE BACKSTORY —</p>
+          <h3 class="ttf-door__title">Our Story</h3>
+          <p class="ttf-door__desc">Fifty years of collecting, one booth on Flamingo Road.</p>
+          <span class="ttf-door__cta">Read the Story →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION — SUBSCRIBERS (Etsy launch list)
   ========================================================= -->
   <section id="etsy" class="ttf-etsy" data-reveal>
     <div class="ttf-etsy__inner">
-      <p class="ttf-label">— Etsy's Coming, Slow —</p>
-      <h2 class="ttf-etsy__title">Get the Word First.</h2>
+      <p class="ttf-label">— EARLY ACCESS —</p>
+      <h2 class="ttf-etsy__title">Etsy's Coming</h2>
       <p class="ttf-etsy__sub">
-        First 200 names on the list hear before the rest of the room does. Drop your address.
+        The cabinet opens online soon. Drop your email and you'll see the listings before anyone else does.
       </p>
       <form class="ttf-etsy__form" action="https://formspree.io/f/placeholder" method="POST">
-        <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address" />
-        <button type="submit" class="ttf-btn ttf-btn-primary">Put Me On The List</button>
+        <input type="email" name="email" required placeholder="your@email" aria-label="Email address" />
+        <button type="submit" class="ttf-btn ttf-btn-primary">Put Me on the List</button>
       </form>
     </div>
   </section>
@@ -274,6 +352,9 @@ const LINEUP = [
       <p class="ttf-foot__line">
         Paradise Mall · Booth №18 · Las Vegas, NV
       </p>
+      <p class="ttf-foot__line">
+        {BOOTH.address1} · Las Vegas, NV 89121
+      </p>
       <p class="ttf-foot__line ttf-foot__phone">
         <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
       </p>
@@ -282,7 +363,7 @@ const LINEUP = [
       </p>
       <div class="ttf-foot__rule"></div>
       <p class="ttf-foot__legal">
-        Est. 2022 · Collecting since '73 · Bill knows everybody. Ask no questions.
+        Est. 2026 · Collecting since 1973 · Ask no questions.
       </p>
     </div>
   </footer>
@@ -290,7 +371,6 @@ const LINEUP = [
   <script>
     import "../scripts/cabinet-scroll.ts";
 
-    // Open today indicator — Wed (3) & Sun (0), 10:00-18:00 local
     (function() {
       const now = new Date();
       const day = now.getDay();
@@ -303,9 +383,10 @@ const LINEUP = [
       if (isOpenDay && isOpenHour) {
         dot.classList.add('ttf-bar__dot--open');
         txt.textContent = 'Open today · 10–6';
+      } else if (isOpenDay && hour < 10) {
+        txt.textContent = 'Opens 10 AM today';
       } else if (isOpenDay) {
-        const nextOpen = hour < 10 ? 'Opens 10 AM today' : 'Closed for the night';
-        txt.textContent = nextOpen;
+        txt.textContent = 'Closed for the night · back next open';
       } else {
         const daysToWed = (3 - day + 7) % 7 || 7;
         const daysToSun = (0 - day + 7) % 7 || 7;
@@ -316,853 +397,585 @@ const LINEUP = [
   </script>
 
   <style>
-    /* ==============================================
-       STICKY BAR
-    ============================================== */
+    /* Sticky bar */
     .ttf-bar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: fixed; top: 0; left: 0; right: 0;
       z-index: 50;
       background: rgba(26,22,20,0.92);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       border-bottom: 1.5px solid var(--color-brass);
       color: var(--color-cream);
     }
     .ttf-bar__inner {
-      max-width: 1280px;
-      margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
       padding: 0.6rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
+      display: flex; align-items: center; gap: 1.25rem;
     }
-    .ttf-bar__brand {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      margin: 0;
-      flex: 0 0 auto;
-    }
+    .ttf-bar__brand { display: flex; align-items: center; gap: 0.65rem; margin: 0; flex: 0 0 auto; }
     .ttf-bar__brand-mark {
-      font-family: var(--font-display);
-      color: var(--color-brass);
-      font-size: 18px;
-      line-height: 1;
-      padding: 6px 9px;
-      border: 1px solid var(--color-brass);
-      letter-spacing: 0.02em;
+      font-family: var(--font-display); color: var(--color-brass);
+      font-size: 18px; line-height: 1; padding: 6px 9px;
+      border: 1px solid var(--color-brass); letter-spacing: 0.02em;
     }
     .ttf-bar__brand-line {
-      font-family: var(--font-billing);
-      font-style: italic;
-      color: var(--color-cream);
-      font-size: 13px;
-      opacity: 0.92;
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-cream); font-size: 13px; opacity: 0.92;
     }
     .ttf-bar__status {
-      flex: 1 1 auto;
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      margin: 0;
-      font-family: var(--font-label);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--color-cream);
-      font-size: 0.72rem;
+      flex: 1 1 auto; display: flex; align-items: center; gap: 0.55rem; margin: 0;
+      font-family: var(--font-label); letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--color-cream); font-size: 0.72rem;
     }
     .ttf-bar__dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--color-smoke);
+      width: 8px; height: 8px; border-radius: 50%; background: var(--color-smoke);
       box-shadow: 0 0 0 2px rgba(90,85,78,0.18);
     }
     .ttf-bar__dot--open {
       background: #6FBE6A;
       box-shadow: 0 0 0 3px rgba(111,190,106,0.25), 0 0 14px rgba(111,190,106,0.6);
     }
-    .ttf-bar__cta {
-      display: flex;
-      gap: 0.5rem;
-      flex: 0 0 auto;
-    }
+    .ttf-bar__cta { display: flex; gap: 0.5rem; flex: 0 0 auto; }
     .ttf-bar__btn {
-      font-family: var(--font-label);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-size: 0.72rem;
-      padding: 0.55rem 0.9rem;
-      border: 1px solid var(--color-brass);
-      line-height: 1;
-      transition: transform 80ms ease;
+      font-family: var(--font-label); letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; font-size: 0.72rem; padding: 0.55rem 0.9rem;
+      border: 1px solid var(--color-brass); line-height: 1;
     }
-    .ttf-bar__btn--cream {
-      color: var(--color-cream);
-      background: transparent;
-    }
+    .ttf-bar__btn--cream { color: var(--color-cream); background: transparent; }
     .ttf-bar__btn--cream:hover { background: rgba(242,232,208,0.08); }
     .ttf-bar__btn--red {
-      color: var(--color-cream);
-      background: var(--color-buddy-red);
+      color: var(--color-cream); background: var(--color-buddy-red);
       border-color: var(--color-buddy-red);
     }
-    .ttf-bar__btn--red:hover { transform: translateY(-1px); }
-
     @media (max-width: 720px) {
       .ttf-bar__brand-line { display: none; }
       .ttf-bar__status { font-size: 0.62rem; letter-spacing: 0.16em; }
       .ttf-bar__inner { gap: 0.65rem; padding: 0.5rem 0.9rem; }
       .ttf-bar__btn { padding: 0.5rem 0.7rem; font-size: 0.62rem; letter-spacing: 0.14em; }
     }
-
-    /* push content under sticky bar (~48px) */
     body { padding-top: 48px; }
     @media (max-width: 720px) { body { padding-top: 42px; } }
 
-    /* ==============================================
-       HERO
-    ============================================== */
+    /* Shared section heads */
+    .ttf-section-head {
+      text-align: center;
+      margin: 0 0 2rem;
+    }
+    .ttf-section-head--tight { margin-bottom: 1.25rem; }
+    .ttf-section-head .ttf-label { color: var(--color-brass); margin: 0 0 0.5rem; }
+    .ttf-section-title {
+      font-family: var(--font-billing);
+      font-weight: 700;
+      color: var(--color-ink);
+      font-size: clamp(30px, 4.2vw, 46px);
+      line-height: 1.05;
+      margin: 0.5rem 0 0.5rem;
+      letter-spacing: 0.01em;
+    }
+    .ttf-section-title--sm { font-size: clamp(24px, 3vw, 34px); }
+    .ttf-section-sub {
+      font-family: var(--font-billing);
+      font-style: italic;
+      color: var(--color-smoke);
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* HERO (unchanged from v6.1) */
     .ttf-hero {
-      position: relative;
-      width: 100%;
-      height: calc(100vh - 48px);
-      overflow: hidden;
-      background: #0e0a07;
+      position: relative; width: 100%; height: calc(100vh - 48px);
+      overflow: hidden; background: #0e0a07;
     }
     @media (max-width: 720px) { .ttf-hero { height: calc(100vh - 42px); } }
-    .ttf-hero__stage {
-      position: absolute;
-      inset: -4% -4%;
-      will-change: transform;
-    }
-    .ttf-hero__layer {
-      position: absolute;
-      inset: 0;
-      will-change: transform, opacity;
-    }
+    .ttf-hero__stage { position: absolute; inset: -4% -4%; will-change: transform; }
+    .ttf-hero__layer { position: absolute; inset: 0; will-change: transform, opacity; }
     .ttf-hero__layer img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
       filter: saturate(0.92) contrast(1.06);
     }
     .ttf-hero__vignette {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+      position: absolute; inset: 0; pointer-events: none;
       background:
         radial-gradient(ellipse at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.65) 100%),
         linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.7));
     }
-
     .ttf-hero__plate-wrap {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 1.5rem;
-      will-change: transform, opacity;
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 0 1.5rem; will-change: transform, opacity;
     }
     .ttf-hero__scrim {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at center,
-          rgba(0,0,0,0.7) 0%,
-          rgba(0,0,0,0.55) 35%,
-          rgba(0,0,0,0.0) 75%);
-      pointer-events: none;
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.0) 75%);
     }
-    .ttf-hero__plate {
-      position: relative;
-      z-index: 2;
-      max-width: 920px;
-    }
+    .ttf-hero__plate { position: relative; z-index: 2; max-width: 920px; }
     .ttf-hero__eyebrow {
-      font-family: var(--font-label);
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--color-brass);
-      font-size: 0.68rem;
-      margin: 0 0 1.25rem;
+      font-family: var(--font-label); letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--color-brass); font-size: 0.68rem; margin: 0 0 1.25rem;
       text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
     }
-    .ttf-hero__eyebrow--dim {
-      color: var(--color-brass);
-      opacity: 0.92;
-    }
+    .ttf-hero__eyebrow--dim { color: var(--color-brass); opacity: 0.92; }
     .ttf-hero__wordmark {
       font-family: var(--font-display);
       font-size: clamp(54px, 9vw, 138px);
-      line-height: 0.86;
-      color: var(--color-cream);
-      letter-spacing: 0.01em;
-      margin: 0;
-      text-shadow:
-        3px 4px 0 rgba(0,0,0,0.7),
-        0 2px 18px rgba(0,0,0,0.85),
-        0 0 48px rgba(201,162,39,0.18);
+      line-height: 0.86; color: var(--color-cream); letter-spacing: 0.01em; margin: 0;
+      text-shadow: 3px 4px 0 rgba(0,0,0,0.7), 0 2px 18px rgba(0,0,0,0.85), 0 0 48px rgba(201,162,39,0.18);
     }
     .ttf-hero__wordmark span {
-      color: var(--color-brass);
-      font-style: italic;
-      font-family: var(--font-billing);
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      font-size: 0.55em;
-      display: inline-block;
-      transform: translateY(-0.05em);
+      color: var(--color-brass); font-style: italic; font-family: var(--font-billing);
+      font-weight: 700; letter-spacing: 0.18em; font-size: 0.55em;
+      display: inline-block; transform: translateY(-0.05em);
     }
     .ttf-hero__tag {
-      font-family: var(--font-billing);
-      font-style: italic;
-      color: var(--color-cream);
-      opacity: 0.88;
-      font-size: clamp(13px, 1.4vw, 16px);
-      margin: 1rem 0 0.75rem;
-      letter-spacing: 0.04em;
+      font-family: var(--font-billing); font-style: italic; color: var(--color-cream);
+      opacity: 0.92; font-size: clamp(14px, 1.6vw, 19px);
+      margin: 1rem 0 0.5rem; letter-spacing: 0.04em;
     }
     .ttf-hero__rule {
-      width: 220px;
-      max-width: 70vw;
-      height: 1.2px;
-      background: var(--color-brass);
-      margin: 0.75rem auto;
-      position: relative;
+      width: 220px; max-width: 70vw; height: 1.2px; background: var(--color-brass);
+      margin: 0.75rem auto; position: relative;
     }
     .ttf-hero__rule::before {
-      content: "✦";
-      position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--color-brass);
-      background: rgba(0,0,0,0.6);
-      padding: 0 10px;
-      font-size: 14px;
+      content: "✦"; position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%); color: var(--color-brass);
+      background: rgba(0,0,0,0.6); padding: 0 10px; font-size: 14px;
     }
     .ttf-hero__sub {
-      font-family: var(--font-billing);
-      color: var(--color-cream);
-      font-style: italic;
-      font-size: clamp(14px, 1.6vw, 19px);
-      margin: 0.5rem 0 1.5rem;
-      letter-spacing: 0.02em;
+      font-family: var(--font-billing); color: var(--color-cream);
+      font-style: italic; font-size: clamp(13px, 1.4vw, 16px);
+      margin: 0.25rem 0 1.5rem; letter-spacing: 0.02em; opacity: 0.86;
     }
     .ttf-hero__cta {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      flex-wrap: wrap;
+      display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
       margin: 0.5rem 0 1.25rem;
     }
-    .ttf-hero__cta .ttf-btn {
-      box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
-    }
-    .ttf-hero__cta .ttf-btn-secondary {
-      background: rgba(242,232,208,0.96);
-    }
+    .ttf-hero__cta .ttf-btn { box-shadow: 3px 3px 0 rgba(0,0,0,0.5); }
+    .ttf-hero__cta .ttf-btn-secondary { background: rgba(242,232,208,0.96); }
     .ttf-hero__addr {
-      font-family: var(--font-label);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--color-cream);
-      opacity: 0.78;
-      font-size: 0.72rem;
-      margin: 0.75rem 0 0;
+      font-family: var(--font-label); letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--color-cream); opacity: 0.78; font-size: 0.72rem; margin: 0.75rem 0 0;
       text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
     }
-
     .ttf-hero__inside-copy {
-      position: absolute;
-      inset: auto 0 6rem 0;
-      text-align: center;
-      padding: 0 1.5rem;
-      opacity: 0;
-      will-change: opacity, transform;
-      pointer-events: none;
+      position: absolute; inset: auto 0 5rem 0; text-align: center; padding: 0 1.5rem;
+      opacity: 0; will-change: opacity, transform; pointer-events: none;
     }
     .ttf-hero__inside-line {
-      font-family: var(--font-billing);
-      font-style: italic;
-      color: var(--color-cream);
-      font-size: clamp(18px, 2.4vw, 28px);
-      margin: 0.5rem auto 0.5rem;
-      max-width: 620px;
-      text-shadow: 2px 2px 12px rgba(0,0,0,0.85);
+      font-family: var(--font-billing); font-style: italic; color: var(--color-cream);
+      font-size: clamp(18px, 2.4vw, 28px); margin: 0.5rem auto 0;
+      max-width: 720px; text-shadow: 2px 2px 12px rgba(0,0,0,0.85);
     }
-    .ttf-hero__sig {
-      font-family: var(--font-hand);
-      color: var(--color-brass);
-      font-size: 22px;
-      margin: 0.75rem 0 0;
-      transform: rotate(-2deg);
-      display: inline-block;
-      text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
-    }
-
     .ttf-hero__cue {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--color-brass);
-      font-family: var(--font-label);
-      letter-spacing: 0.38em;
-      font-size: 0.66rem;
-      text-transform: uppercase;
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--color-brass); font-family: var(--font-label);
+      letter-spacing: 0.38em; font-size: 0.66rem; text-transform: uppercase;
     }
     .ttf-hero__cue-line {
-      width: 1.5px;
-      height: 36px;
-      background: var(--color-brass);
-      animation: ttf-cue-pulse 1.8s ease-in-out infinite;
-      transform-origin: top center;
+      width: 1.5px; height: 36px; background: var(--color-brass);
+      animation: ttf-cue-pulse 1.8s ease-in-out infinite; transform-origin: top center;
     }
     @keyframes ttf-cue-pulse {
       0%, 100% { transform: scaleY(0.6); opacity: 0.5; }
       50% { transform: scaleY(1); opacity: 1; }
     }
 
-    /* ==============================================
-       FIND THE JOINT (now section 2)
-    ============================================== */
-    .ttf-find {
-      padding: 5.5rem 1.5rem 6rem;
+    /* STEP INSIDE intro */
+    .ttf-intro {
+      padding: 6rem 1.5rem 5rem;
+      text-align: center;
     }
+    .ttf-intro__inner { max-width: 720px; margin: 0 auto; }
+    .ttf-intro__title {
+      font-family: var(--font-billing); font-weight: 700;
+      color: var(--color-ink);
+      font-size: clamp(34px, 5vw, 56px); line-height: 1.05;
+      margin: 1rem 0 0.75rem; letter-spacing: 0.005em;
+    }
+    .ttf-intro__rule {
+      width: 84px; height: 2px; background: var(--color-brass);
+      margin: 0.5rem auto 1.5rem; position: relative;
+    }
+    .ttf-intro__rule::before {
+      content: "✦"; position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%); color: var(--color-brass);
+      background: var(--color-cream); padding: 0 8px; font-size: 14px;
+    }
+    .ttf-intro__body {
+      font-family: var(--font-serif); color: var(--color-ink);
+      font-size: clamp(16px, 1.6vw, 19px); line-height: 1.7;
+      max-width: 620px; margin: 0 auto;
+    }
+
+    /* FROM THE CABINET — featured pieces */
+    .ttf-pieces {
+      padding: 4rem 1.5rem 5.5rem;
+      background: linear-gradient(180deg, rgba(61,42,30,0.04), rgba(61,42,30,0));
+    }
+    .ttf-pieces__inner { max-width: 1180px; margin: 0 auto; }
+    .ttf-pieces__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
+      margin: 2.5rem 0 1.5rem;
+    }
+    .ttf-pieces__foot {
+      text-align: center; font-family: var(--font-billing);
+      color: var(--color-smoke); font-size: 15px; margin: 1.5rem 0 0;
+    }
+    .ttf-bplate { display: flex; flex-direction: column; text-align: center; }
+    .ttf-bplate__frame {
+      position: relative; padding: 12px; border: 1.5px solid var(--color-brass);
+      background: var(--color-cream); aspect-ratio: 4/5; overflow: hidden;
+      transform: rotate(var(--tilt, 0));
+    }
+    .ttf-bplate__frame::before, .ttf-bplate__frame::after {
+      content: ""; position: absolute; width: 22px; height: 22px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-bplate__frame::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .ttf-bplate__frame::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+    .ttf-bplate__frame img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(0.88) sepia(0.06) contrast(1.04);
+      border: 1px solid var(--color-walnut); display: block;
+    }
+    .ttf-bplate__tag {
+      position: absolute; bottom: 16px; right: 16px;
+      background: var(--color-tag-paper);
+      background-image: radial-gradient(rgba(61,42,30,0.10) 1px, transparent 1px);
+      background-size: 4px 4px;
+      border: 1px solid rgba(61,42,30,0.45);
+      box-shadow: 4px 5px 0 rgba(0,0,0,0.32);
+      transform: rotate(-5deg); padding: 16px 14px 12px; max-width: 64%;
+      font-family: var(--font-hand); line-height: 1.28; text-align: left; color: var(--color-ink);
+    }
+    .ttf-bplate__tag-hole {
+      position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+      width: 8px; height: 8px; border-radius: 50%; background: var(--color-cream);
+      box-shadow: inset 0 0 0 1.5px rgba(61,42,30,0.7);
+    }
+    .ttf-bplate__tag-twine {
+      position: absolute; top: -22px; left: 50%; transform: translateX(-50%) rotate(3deg);
+      width: 1.5px; height: 28px; background: var(--color-brass);
+    }
+    .ttf-bplate__tag-era {
+      display: block; font-family: var(--font-hand); font-size: 11px;
+      color: var(--color-walnut); margin-bottom: 4px; line-height: 1.2;
+    }
+    .ttf-bplate__tag-note {
+      display: block; font-family: var(--font-hand); font-size: 13.5px;
+      color: var(--color-ink); line-height: 1.3;
+    }
+    .ttf-bplate__tag-price {
+      display: block; margin-top: 6px; font-family: var(--font-display);
+      color: var(--color-buddy-red); font-size: 22px; line-height: 1;
+      text-shadow: 1px 1px 0 rgba(26,22,20,0.18);
+    }
+    .ttf-bplate__no {
+      font-family: var(--font-label); letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--color-brass); font-size: 11px; margin: 14px 0 4px;
+    }
+    .ttf-bplate__name {
+      font-family: var(--font-display); color: var(--color-buddy-red);
+      font-size: 22px; line-height: 1.05; letter-spacing: 0.01em; margin: 0;
+      text-shadow: 1px 1px 0 rgba(26,22,20,0.14);
+    }
+
+    /* RECORD */
+    .ttf-record {
+      background: var(--color-emerald); padding: 5.5rem 1.5rem 6rem; position: relative;
+    }
+    .ttf-record::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1.4px),
+        radial-gradient(rgba(0,0,0,0.18) 1px, transparent 1.4px);
+      background-size: 4px 4px, 9px 9px;
+      background-position: 0 0, 2px 2px;
+    }
+    .ttf-record__inner { max-width: 1120px; margin: 0 auto; text-align: center; position: relative; }
+    .ttf-record__eyebrow {
+      font-family: var(--font-label); letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--color-brass); font-size: 0.72rem; margin: 0 0 0.5rem;
+    }
+    .ttf-record__title {
+      font-family: var(--font-display); color: var(--color-cream);
+      font-size: clamp(52px, 8vw, 110px); line-height: 0.9; letter-spacing: 0.005em;
+      margin: 0 0 0.5rem; text-shadow: 2px 3px 0 rgba(0,0,0,0.4);
+    }
+    .ttf-record__sub {
+      font-family: var(--font-billing); font-style: italic; color: var(--color-cream);
+      opacity: 0.92; font-size: clamp(15px, 1.7vw, 20px); line-height: 1.55;
+      max-width: 640px; margin: 1.25rem auto 0;
+    }
+    .ttf-record__row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem;
+      margin: 3rem 0 1.5rem;
+    }
+    .ttf-record__cell {
+      margin: 0; padding: 12px; background: var(--color-emerald);
+      border: 1.5px solid var(--color-brass); position: relative;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(201,162,39,0.25);
+      transform: rotate(var(--tilt, 0));
+      aspect-ratio: 4/5; overflow: hidden;
+    }
+    .ttf-record__cell::before, .ttf-record__cell::after {
+      content: ""; position: absolute; width: 18px; height: 18px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-record__cell::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .ttf-record__cell::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+    .ttf-record__cell img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(0.95) contrast(1.04);
+    }
+    .ttf-record__caption {
+      font-family: var(--font-billing); font-style: italic; color: var(--color-cream);
+      opacity: 0.78; font-size: 14px; margin: 1.5rem auto 0;
+    }
+
+    /* WORD FROM THE COUNTER — testimonials */
+    .ttf-counter {
+      padding: 5rem 1.5rem 5.5rem;
+      background:
+        linear-gradient(180deg, rgba(61,42,30,0.05), rgba(61,42,30,0)),
+        var(--color-cream);
+    }
+    .ttf-counter__inner { max-width: 1180px; margin: 0 auto; }
+    .ttf-counter__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem;
+      margin: 2.5rem 0 0;
+    }
+    .ttf-counter__grid > .ttf-quote:nth-child(4) { grid-column: 1 / 3; }
+    .ttf-counter__grid > .ttf-quote:nth-child(5) { grid-column: 3 / 4; }
+    @media (max-width: 980px) {
+      .ttf-counter__grid { grid-template-columns: repeat(2, 1fr); }
+      .ttf-counter__grid > .ttf-quote:nth-child(4),
+      .ttf-counter__grid > .ttf-quote:nth-child(5) { grid-column: auto; }
+      .ttf-counter__grid > .ttf-quote:nth-child(5) { grid-column: 1 / -1; max-width: 540px; margin: 0 auto; }
+    }
+    @media (max-width: 640px) {
+      .ttf-counter__grid { grid-template-columns: 1fr; }
+      .ttf-counter__grid > .ttf-quote:nth-child(5) { grid-column: auto; max-width: none; }
+    }
+    .ttf-quote {
+      position: relative; margin: 0;
+      background: var(--color-cream);
+      border: 1.5px solid var(--color-walnut);
+      padding: 2rem 1.6rem 1.4rem;
+      box-shadow: 4px 5px 0 rgba(26,22,20,0.18);
+      transform: rotate(var(--qtilt, 0));
+    }
+    .ttf-quote::before, .ttf-quote::after {
+      content: ""; position: absolute; width: 18px; height: 18px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-quote::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .ttf-quote::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+    .ttf-quote__mark {
+      position: absolute; top: -10px; left: 14px;
+      font-family: var(--font-billing); font-style: italic;
+      font-size: 64px; line-height: 1; color: var(--color-brass);
+      background: var(--color-cream); padding: 0 8px;
+    }
+    .ttf-quote__body {
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-ink); font-size: 17px; line-height: 1.45;
+      margin: 0 0 1rem;
+    }
+    .ttf-quote__cite {
+      display: flex; flex-direction: column; gap: 2px;
+      border-top: 1px solid rgba(61,42,30,0.25); padding-top: 0.75rem;
+    }
+    .ttf-quote__name {
+      font-family: var(--font-label); letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--color-buddy-red); font-size: 0.78rem;
+    }
+    .ttf-quote__role {
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-smoke); font-size: 13px;
+    }
+
+    /* FIND THE JOINT */
+    .ttf-find { padding: 5.5rem 1.5rem 5.5rem; }
     .ttf-find__inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 2.5rem;
-      align-items: stretch;
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; align-items: stretch;
     }
     .ttf-find__map {
-      position: relative;
-      border: 1.5px solid var(--color-walnut);
+      position: relative; border: 1.5px solid var(--color-walnut);
       background: var(--color-walnut);
       box-shadow: 6px 6px 0 rgba(26,22,20,0.22);
-      min-height: 460px;
-      overflow: hidden;
+      min-height: 460px; overflow: hidden;
     }
     .ttf-find__map iframe {
-      width: 100%;
-      height: 100%;
-      min-height: 460px;
-      border: 0;
-      display: block;
-      /* heavy sepia + desaturate to kill modern Google palette */
+      width: 100%; height: 100%; min-height: 460px; border: 0; display: block;
       filter: sepia(0.55) saturate(0.5) contrast(1.1) brightness(0.92) hue-rotate(-8deg);
     }
     .ttf-find__map-tint {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+      position: absolute; inset: 0; pointer-events: none;
       background:
         radial-gradient(ellipse at center, rgba(61,42,30,0) 40%, rgba(26,22,20,0.18) 100%),
         linear-gradient(180deg, rgba(201,162,39,0.06), rgba(61,42,30,0.12));
       mix-blend-mode: multiply;
     }
     .ttf-find__card {
-      background: var(--color-cream);
-      border: 1.5px solid var(--color-walnut);
-      padding: 2.5rem 2rem;
-      box-shadow: 6px 6px 0 rgba(26,22,20,0.22);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      background: var(--color-cream); border: 1.5px solid var(--color-walnut);
+      padding: 2.5rem 2rem; box-shadow: 6px 6px 0 rgba(26,22,20,0.22);
+      position: relative; display: flex; flex-direction: column; justify-content: center;
     }
-    .ttf-find__card::before,
-    .ttf-find__card::after {
-      content: "";
-      position: absolute;
-      width: 22px; height: 22px;
+    .ttf-find__card::before, .ttf-find__card::after {
+      content: ""; position: absolute; width: 22px; height: 22px;
       border: 1.5px solid var(--color-brass);
     }
     .ttf-find__card::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
     .ttf-find__card::after  { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
     .ttf-find__name {
-      font-family: var(--font-display);
-      color: var(--color-buddy-red);
-      font-size: clamp(36px, 4.5vw, 54px);
-      line-height: 0.95;
-      letter-spacing: 0.005em;
-      margin: 0.5rem 0 0;
-      text-shadow: 2px 2px 0 rgba(26,22,20,0.14);
-    }
-    .ttf-find__name span {
-      font-family: var(--font-billing);
-      font-style: italic;
-      font-weight: 700;
-      color: var(--color-walnut);
-      font-size: 0.6em;
-      letter-spacing: 0.04em;
-    }
-    .ttf-find__addr,
-    .ttf-find__hours,
-    .ttf-find__phone {
-      font-family: var(--font-serif);
+      font-family: var(--font-billing); font-weight: 700;
       color: var(--color-ink);
-      font-size: 16px;
-      line-height: 1.5;
-      margin: 1rem 0 0;
+      font-size: clamp(34px, 4vw, 48px); line-height: 0.95;
+      margin: 0.5rem 0 0; letter-spacing: 0.005em;
+    }
+    .ttf-find__addr, .ttf-find__hours, .ttf-find__phone {
+      font-family: var(--font-serif); color: var(--color-ink);
+      font-size: 16px; line-height: 1.5; margin: 1rem 0 0;
     }
     .ttf-find__phone a {
-      font-family: var(--font-display);
-      color: var(--color-buddy-red);
-      font-size: 26px;
-      text-decoration: none;
-      letter-spacing: 0.01em;
+      font-family: var(--font-display); color: var(--color-buddy-red);
+      font-size: 26px; text-decoration: none; letter-spacing: 0.01em;
     }
     .ttf-find__line {
-      font-family: var(--font-billing);
-      font-style: italic;
-      color: var(--color-smoke);
-      margin: 1.25rem 0 0;
-      font-size: 15px;
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-smoke); margin: 1.25rem 0 0; font-size: 15px;
     }
-    .ttf-find__buttons {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
+    .ttf-find__buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
 
-    /* ==============================================
-       LINEUP (handwritten paper-tags on every plate)
-    ============================================== */
-    .ttf-lineup {
-      padding: 4.5rem 1.5rem 5rem;
-      background: linear-gradient(180deg, rgba(61,42,30,0.04), rgba(61,42,30,0));
-    }
-    .ttf-lineup__inner {
-      max-width: 1180px;
-      margin: 0 auto;
-    }
-    .ttf-lineup__grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
-      margin: 2.5rem 0 1.5rem;
-    }
-    .ttf-lineup__foot {
-      text-align: center;
-      font-family: var(--font-billing);
-      color: var(--color-smoke);
-      font-size: 15px;
+    /* THREE DOORS */
+    .ttf-doors { padding: 4.5rem 1.5rem 5.5rem; }
+    .ttf-doors__inner { max-width: 1180px; margin: 0 auto; }
+    .ttf-doors__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
       margin: 1.5rem 0 0;
     }
-
-    /* Bill's plate: framed photo + handwritten tag pinned to corner */
-    .ttf-bplate {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-    }
-    .ttf-bplate__frame {
-      position: relative;
-      padding: 12px;
-      border: 1.5px solid var(--color-brass);
-      background: var(--color-cream);
-      aspect-ratio: 4/5;
-      overflow: hidden;
-      transform: rotate(var(--tilt, 0));
-    }
-    .ttf-bplate__frame::before,
-    .ttf-bplate__frame::after {
-      content: "";
-      position: absolute;
-      width: 22px; height: 22px;
-      border: 1.5px solid var(--color-brass);
-    }
-    .ttf-bplate__frame::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-    .ttf-bplate__frame::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-    .ttf-bplate__frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(0.88) sepia(0.06) contrast(1.04);
-      border: 1px solid var(--color-walnut);
-      display: block;
-    }
-
-    /* The handwritten tag — pinned diagonally on the photo */
-    .ttf-bplate__tag {
-      position: absolute;
-      bottom: 16px;
-      right: 16px;
-      background: var(--color-tag-paper);
-      background-image:
-        radial-gradient(rgba(61,42,30,0.10) 1px, transparent 1px);
-      background-size: 4px 4px;
-      border: 1px solid rgba(61,42,30,0.45);
-      box-shadow: 4px 5px 0 rgba(0,0,0,0.32);
-      transform: rotate(-5deg);
-      padding: 16px 14px 12px;
-      max-width: 64%;
-      font-family: var(--font-hand);
-      line-height: 1.28;
-      text-align: left;
-      color: var(--color-ink);
-    }
-    .ttf-bplate__tag-hole {
-      position: absolute;
-      top: 6px; left: 50%;
-      transform: translateX(-50%);
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--color-cream);
-      box-shadow: inset 0 0 0 1.5px rgba(61,42,30,0.7);
-    }
-    .ttf-bplate__tag-twine {
-      position: absolute;
-      top: -22px; left: 50%;
-      transform: translateX(-50%) rotate(3deg);
-      width: 1.5px; height: 28px;
-      background: var(--color-brass);
-    }
-    .ttf-bplate__tag-era {
-      display: block;
-      font-family: var(--font-hand);
-      font-size: 11px;
-      color: var(--color-walnut);
-      margin-bottom: 4px;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-    }
-    .ttf-bplate__tag-note {
-      display: block;
-      font-family: var(--font-hand);
-      font-size: 13.5px;
-      color: var(--color-ink);
-      line-height: 1.3;
-    }
-    .ttf-bplate__tag-price {
-      display: block;
-      margin-top: 6px;
-      font-family: var(--font-display);
-      color: var(--color-buddy-red);
-      font-size: 22px;
-      line-height: 1;
-      text-shadow: 1px 1px 0 rgba(26,22,20,0.18);
-    }
-    .ttf-bplate__no {
-      font-family: var(--font-label);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--color-brass);
-      font-size: 11px;
-      margin: 14px 0 4px;
-    }
-    .ttf-bplate__name {
-      font-family: var(--font-display);
-      color: var(--color-buddy-red);
-      font-size: 22px;
-      line-height: 1.05;
-      letter-spacing: 0.01em;
-      margin: 0;
-      text-shadow: 1px 1px 0 rgba(26,22,20,0.14);
-    }
-
-    /* ==============================================
-       RECORD (densified)
-    ============================================== */
-    .ttf-record {
-      background: var(--color-emerald);
-      padding: 5.5rem 1.5rem 6rem;
-      position: relative;
-    }
-    .ttf-record::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1.4px),
-        radial-gradient(rgba(0,0,0,0.18) 1px, transparent 1.4px);
-      background-size: 4px 4px, 9px 9px;
-      background-position: 0 0, 2px 2px;
-      pointer-events: none;
-    }
-    .ttf-record__inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
-    }
-    .ttf-record__eyebrow {
-      font-family: var(--font-label);
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--color-brass);
-      font-size: 0.72rem;
-      margin: 0 0 0.5rem;
-    }
-    .ttf-record__title {
-      font-family: var(--font-display);
-      color: var(--color-cream);
-      font-size: clamp(52px, 8vw, 110px);
-      line-height: 0.9;
-      letter-spacing: 0.005em;
-      margin: 0 0 0.5rem;
-      text-shadow: 2px 3px 0 rgba(0,0,0,0.4);
-    }
-    .ttf-record__sub {
-      font-family: var(--font-billing);
-      font-style: italic;
-      color: var(--color-cream);
-      opacity: 0.92;
-      font-size: clamp(15px, 1.7vw, 20px);
-      line-height: 1.55;
-      max-width: 640px;
-      margin: 1.25rem auto 0;
-    }
-    .ttf-record__row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
-      margin: 3rem 0 1.5rem;
-    }
-    .ttf-record__cell {
-      margin: 0;
-      padding: 12px;
-      background: var(--color-emerald);
-      border: 1.5px solid var(--color-brass);
-      position: relative;
-      box-shadow:
-        0 14px 36px rgba(0,0,0,0.4),
-        inset 0 0 0 1px rgba(201,162,39,0.25);
-      transform: rotate(var(--tilt, 0));
-      aspect-ratio: 4/5;
-      overflow: hidden;
-    }
-    .ttf-record__cell::before,
-    .ttf-record__cell::after {
-      content: "";
-      position: absolute;
-      width: 18px; height: 18px;
-      border: 1.5px solid var(--color-brass);
-    }
-    .ttf-record__cell::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-    .ttf-record__cell::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-    .ttf-record__cell img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: saturate(0.95) contrast(1.04);
-    }
-    .ttf-record__caption {
-      font-family: var(--font-billing);
-      font-style: italic;
-      color: var(--color-cream);
-      opacity: 0.78;
-      font-size: 14px;
-      margin: 1.5rem auto 0;
-    }
-
-    /* ==============================================
-       STORY
-    ============================================== */
-    .ttf-story {
-      position: relative;
-      padding: 6.5rem 1.5rem 5.5rem;
-    }
-    .ttf-story__inner {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .ttf-story__inner .ttf-label {
-      display: block;
-      margin: 0 0 1.75rem;
-    }
-    .ttf-story__quote {
-      font-family: var(--font-billing);
-      font-style: italic;
-      font-weight: 400;
-      font-size: clamp(22px, 3.2vw, 34px);
-      line-height: 1.25;
-      color: var(--color-ink);
-      margin: 0 0 2.5rem;
-    }
-    .ttf-story__body {
-      text-align: left;
-      font-family: var(--font-serif);
-      color: var(--color-ink);
-      font-size: 17px;
-      line-height: 1.7;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .ttf-story__body p {
-      margin: 0 0 1.1rem;
-    }
-    .ttf-story__sig {
-      font-family: var(--font-hand);
-      color: var(--color-walnut);
-      font-size: 22px;
-      margin: 2rem 0 0;
-      letter-spacing: 0.01em;
-      transform: rotate(-1.5deg);
-      display: inline-block;
-    }
-
-    /* ==============================================
-       ETSY
-    ============================================== */
-    .ttf-etsy {
-      padding: 4.5rem 1.5rem 6rem;
-      background:
-        linear-gradient(180deg, rgba(61,42,30,0), rgba(61,42,30,0.04));
-    }
-    .ttf-etsy__inner {
-      max-width: 620px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .ttf-etsy__title {
-      font-family: var(--font-display);
-      color: var(--color-buddy-red);
-      font-size: clamp(40px, 6vw, 64px);
-      line-height: 0.95;
-      letter-spacing: 0.005em;
-      margin: 0.75rem 0 1rem;
-      text-shadow: 2px 2px 0 rgba(26,22,20,0.14);
-    }
-    .ttf-etsy__sub {
-      font-family: var(--font-serif);
-      color: var(--color-ink);
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 480px;
-      margin: 0 auto 2rem;
-    }
-    .ttf-etsy__form {
-      display: flex;
-      gap: 0.5rem;
-      max-width: 460px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .ttf-etsy__form input {
-      flex: 1 1 240px;
-      min-width: 220px;
-      padding: 0.875rem 1rem;
+    .ttf-door {
+      display: flex; flex-direction: column; text-align: center;
+      padding: 2.25rem 1.5rem 2rem;
       background: var(--color-cream);
       border: 1.5px solid var(--color-walnut);
-      color: var(--color-ink);
-      font-family: var(--font-serif);
-      font-size: 16px;
-      box-shadow: 3px 3px 0 rgba(26,22,20,0.18);
-      outline: none;
+      box-shadow: 5px 5px 0 rgba(26,22,20,0.18);
+      position: relative; text-decoration: none; color: inherit;
+      transition: transform 120ms ease, box-shadow 120ms ease;
     }
-    .ttf-etsy__form input:focus {
-      border-color: var(--color-buddy-red);
+    .ttf-door:hover {
+      transform: translate(-1px, -2px);
+      box-shadow: 7px 7px 0 rgba(26,22,20,0.22);
+    }
+    .ttf-door::before, .ttf-door::after {
+      content: ""; position: absolute; width: 18px; height: 18px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-door::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+    .ttf-door::after  { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+    .ttf-door__eyebrow {
+      font-family: var(--font-label); letter-spacing: 0.36em; text-transform: uppercase;
+      color: var(--color-brass); font-size: 0.68rem; margin: 0 0 0.5rem;
+    }
+    .ttf-door__title {
+      font-family: var(--font-display); color: var(--color-buddy-red);
+      font-size: 28px; line-height: 1.05; margin: 0.25rem 0 0.75rem;
+      text-shadow: 1px 1px 0 rgba(26,22,20,0.14);
+    }
+    .ttf-door__desc {
+      font-family: var(--font-serif); color: var(--color-ink);
+      font-size: 15px; line-height: 1.55; margin: 0 0 1rem;
+    }
+    .ttf-door__cta {
+      font-family: var(--font-label); letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--color-walnut); font-size: 0.78rem;
+      padding-bottom: 4px; border-bottom: 1.5px solid var(--color-brass);
+      align-self: center;
     }
 
-    /* ==============================================
-       FOOTER
-    ============================================== */
+    /* ETSY (subscribers) */
+    .ttf-etsy {
+      padding: 4.5rem 1.5rem 6rem;
+      background: linear-gradient(180deg, rgba(61,42,30,0), rgba(61,42,30,0.04));
+    }
+    .ttf-etsy__inner { max-width: 620px; margin: 0 auto; text-align: center; }
+    .ttf-etsy__title {
+      font-family: var(--font-display); color: var(--color-buddy-red);
+      font-size: clamp(40px, 6vw, 64px); line-height: 0.95; letter-spacing: 0.005em;
+      margin: 0.75rem 0 1rem; text-shadow: 2px 2px 0 rgba(26,22,20,0.14);
+    }
+    .ttf-etsy__sub {
+      font-family: var(--font-serif); color: var(--color-ink);
+      font-size: 16px; line-height: 1.6; max-width: 480px; margin: 0 auto 2rem;
+    }
+    .ttf-etsy__form {
+      display: flex; gap: 0.5rem; max-width: 460px; margin: 0 auto;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .ttf-etsy__form input {
+      flex: 1 1 240px; min-width: 220px; padding: 0.875rem 1rem;
+      background: var(--color-cream); border: 1.5px solid var(--color-walnut);
+      color: var(--color-ink); font-family: var(--font-serif); font-size: 16px;
+      box-shadow: 3px 3px 0 rgba(26,22,20,0.18); outline: none;
+    }
+    .ttf-etsy__form input:focus { border-color: var(--color-buddy-red); }
+
+    /* FOOTER */
     .ttf-foot {
       padding: 3.5rem 1.5rem 3rem;
-      background: var(--color-walnut);
-      color: var(--color-cream);
-      text-align: center;
+      background: var(--color-walnut); color: var(--color-cream); text-align: center;
     }
     .ttf-foot__inner {
-      max-width: 720px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 720px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
     }
     .ttf-foot__name {
-      font-family: var(--font-display);
-      color: var(--color-cream);
-      font-size: 34px;
-      margin: 1.25rem 0 0.25rem;
-      letter-spacing: 0.005em;
-      text-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+      font-family: var(--font-display); color: var(--color-cream);
+      font-size: 34px; margin: 1.25rem 0 0.25rem;
+      letter-spacing: 0.005em; text-shadow: 2px 2px 0 rgba(0,0,0,0.35);
     }
     .ttf-foot__line {
-      font-family: var(--font-billing);
-      font-style: italic;
-      color: var(--color-cream);
-      opacity: 0.86;
-      margin: 0.25rem 0;
-      font-size: 15px;
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-cream); opacity: 0.86; margin: 0.25rem 0; font-size: 15px;
     }
     .ttf-foot__phone a {
-      color: var(--color-brass);
-      font-family: var(--font-display);
-      font-style: normal;
-      font-size: 22px;
-      text-decoration: none;
+      color: var(--color-brass); font-family: var(--font-display);
+      font-style: normal; font-size: 22px; text-decoration: none;
     }
-    .ttf-foot__social {
-      margin: 0.75rem 0 0;
-    }
+    .ttf-foot__social { margin: 0.75rem 0 0; }
     .ttf-foot__social a {
-      font-family: var(--font-label);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      color: var(--color-brass);
-      text-decoration: none;
-      border-bottom: 1px solid var(--color-brass);
-      padding-bottom: 3px;
+      font-family: var(--font-label); letter-spacing: 0.28em; text-transform: uppercase;
+      font-size: 0.7rem; color: var(--color-brass); text-decoration: none;
+      border-bottom: 1px solid var(--color-brass); padding-bottom: 3px;
     }
     .ttf-foot__rule {
-      width: 200px;
-      height: 1px;
-      background: var(--color-brass);
-      opacity: 0.7;
-      margin: 1.5rem 0 1rem;
+      width: 200px; height: 1px; background: var(--color-brass);
+      opacity: 0.7; margin: 1.5rem 0 1rem;
     }
     .ttf-foot__legal {
-      font-family: var(--font-label);
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--color-brass);
-      font-size: 0.68rem;
-      margin: 0;
+      font-family: var(--font-label); letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--color-brass); font-size: 0.68rem; margin: 0;
     }
 
-    /* ==============================================
-       MOBILE
-    ============================================== */
+    /* MOBILE */
     @media (max-width: 820px) {
       .ttf-hero__wordmark { line-height: 0.92; }
       .ttf-hero__cta { gap: 0.5rem; }
       .ttf-hero__cta .ttf-btn { font-size: 0.72rem; padding: 0.75rem 1rem; }
-      .ttf-hero__inside-copy { bottom: 4.5rem; }
-      .ttf-lineup__grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        max-width: 360px;
-        margin-left: auto;
-        margin-right: auto;
+      .ttf-hero__inside-copy { bottom: 4rem; }
+      .ttf-intro { padding: 4.5rem 1.25rem 4rem; }
+      .ttf-pieces__grid {
+        grid-template-columns: 1fr; gap: 2.5rem;
+        max-width: 360px; margin-left: auto; margin-right: auto;
       }
-      .ttf-find__inner {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
+      .ttf-find__inner { grid-template-columns: 1fr; gap: 1.5rem; }
       .ttf-find__map { min-height: 320px; }
       .ttf-find__map iframe { min-height: 320px; }
       .ttf-find__card { padding: 2rem 1.5rem; }
       .ttf-record__row { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
       .ttf-record { padding: 4.5rem 1.25rem 5rem; }
-      .ttf-story { padding: 4.5rem 1.25rem 4rem; }
+      .ttf-doors__grid { grid-template-columns: 1fr; gap: 1rem; max-width: 460px; margin-left: auto; margin-right: auto; }
       .ttf-etsy__form { flex-direction: column; }
       .ttf-etsy__form input { width: 100%; }
     }

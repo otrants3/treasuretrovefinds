@@ -1,0 +1,65 @@
+---
+import SunburstSeal from "./SunburstSeal.astro";
+
+const BOOTH = {
+  address1: "3565 E. Flamingo Road",
+  phoneDisplay: "(516) 446-2693",
+  phoneTel: "+15164462693",
+  instagram: "https://instagram.com/treasuretrovefinds",
+};
+---
+
+<footer class="ttf-foot">
+  <div class="ttf-foot__inner">
+    <SunburstSeal size={86} est="2022" since="'73" />
+    <p class="ttf-foot__name">TreasureTroveFinds</p>
+    <p class="ttf-foot__line">Paradise Mall · Booth №18 · Las Vegas, NV</p>
+    <p class="ttf-foot__line">{BOOTH.address1} · Las Vegas, NV 89121</p>
+    <p class="ttf-foot__line ttf-foot__phone">
+      <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
+    </p>
+    <p class="ttf-foot__social">
+      <a href={BOOTH.instagram} target="_blank" rel="noopener">Follow on Instagram</a>
+    </p>
+    <div class="ttf-foot__rule"></div>
+    <p class="ttf-foot__legal">Est. 2026 · Collecting since 1973 · Ask no questions.</p>
+  </div>
+</footer>
+
+<style>
+  .ttf-foot {
+    padding: 3.5rem 1.5rem 3rem;
+    background: var(--color-walnut); color: var(--color-cream); text-align: center;
+  }
+  .ttf-foot__inner {
+    max-width: 720px; margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .ttf-foot__name {
+    font-family: var(--font-display); color: var(--color-cream);
+    font-size: 34px; margin: 1.25rem 0 0.25rem;
+    letter-spacing: 0.005em; text-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+  }
+  .ttf-foot__line {
+    font-family: var(--font-billing); font-style: italic;
+    color: var(--color-cream); opacity: 0.86; margin: 0.25rem 0; font-size: 15px;
+  }
+  .ttf-foot__phone a {
+    color: var(--color-brass); font-family: var(--font-display);
+    font-style: normal; font-size: 22px; text-decoration: none;
+  }
+  .ttf-foot__social { margin: 0.75rem 0 0; }
+  .ttf-foot__social a {
+    font-family: var(--font-label); letter-spacing: 0.28em; text-transform: uppercase;
+    font-size: 0.7rem; color: var(--color-brass); text-decoration: none;
+    border-bottom: 1px solid var(--color-brass); padding-bottom: 3px;
+  }
+  .ttf-foot__rule {
+    width: 200px; height: 1px; background: var(--color-brass);
+    opacity: 0.7; margin: 1.5rem 0 1rem;
+  }
+  .ttf-foot__legal {
+    font-family: var(--font-label); letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--color-brass); font-size: 0.68rem; margin: 0;
+  }
+</style>

@@ -1,0 +1,202 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SiteBar from "../components/SiteBar.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+const BOOTH = {
+  phoneDisplay: "(516) 446-2693",
+  phoneTel: "+15164462693",
+};
+---
+
+<Layout
+  title="TreasureTroveFinds · Get in Touch"
+  description="Send TreasureTroveFinds a note. Questions, holds, special requests, press — same-day on Wed and Sun."
+>
+  <SiteBar />
+
+  <section class="ttf-sub-hero">
+    <div class="ttf-sub-hero__bg">
+      <img src="/cabinet/pexels-36901179.jpg" alt="Antique cabinet — glass doors closed" />
+      <div class="ttf-sub-hero__vignette"></div>
+    </div>
+    <div class="ttf-sub-hero__inner">
+      <p class="ttf-sub-hero__eyebrow">— REACH OUT —</p>
+      <h1 class="ttf-sub-hero__title">Send a Note</h1>
+      <div class="ttf-sub-hero__rule"></div>
+      <p class="ttf-sub-hero__sub">
+        Questions, holds, special requests, press — the form gets to us same day on Wed and Sun, next morning otherwise. If you've seen a piece you want set aside, mention it here and it stays behind the counter until you arrive.
+      </p>
+    </div>
+  </section>
+
+  <section class="ttf-contact">
+    <div class="ttf-contact__inner">
+      <form class="ttf-form" action="https://formspree.io/f/placeholder" method="POST">
+        <div class="ttf-form__row">
+          <label class="ttf-field">
+            <span class="ttf-field__label">Your name</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label class="ttf-field">
+            <span class="ttf-field__label">Email</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+        </div>
+        <label class="ttf-field">
+          <span class="ttf-field__label">What you're looking for</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <label class="ttf-field">
+          <span class="ttf-field__label">Phone <span class="ttf-field__opt">(optional)</span></span>
+          <input type="tel" name="phone" autocomplete="tel" />
+        </label>
+        <div class="ttf-form__submit">
+          <button type="submit" class="ttf-btn ttf-btn-primary">Send the Note</button>
+        </div>
+      </form>
+
+      <aside class="ttf-call">
+        <p class="ttf-call__line"><em>Faster on the phone? Ring the booth direct.</em></p>
+        <p class="ttf-call__num">
+          <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
+        </p>
+        <a class="ttf-btn ttf-btn-secondary" href={`tel:${BOOTH.phoneTel}`}>Call the Booth</a>
+      </aside>
+    </div>
+    <p class="ttf-contact__foot">
+      <em>Booth №18 · Paradise Mall · open Wed and Sun, 10 till 6.</em>
+    </p>
+  </section>
+
+  <SiteFooter />
+
+  <style>
+    body { padding-top: 48px; }
+    @media (max-width: 720px) { body { padding-top: 42px; } }
+
+    .ttf-sub-hero {
+      position: relative; min-height: 56vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 5rem 1.5rem 4rem; overflow: hidden;
+      color: var(--color-cream);
+    }
+    .ttf-sub-hero__bg { position: absolute; inset: 0; z-index: 0; }
+    .ttf-sub-hero__bg img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(0.85) contrast(1.05) brightness(0.68);
+    }
+    .ttf-sub-hero__vignette {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse at center, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.85) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.6));
+    }
+    .ttf-sub-hero__inner { position: relative; z-index: 1; text-align: center; max-width: 720px; }
+    .ttf-sub-hero__eyebrow {
+      font-family: var(--font-label); letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--color-brass); font-size: 0.7rem; margin: 0 0 1rem;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
+    }
+    .ttf-sub-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(46px, 7vw, 96px); line-height: 0.9;
+      color: var(--color-cream); margin: 0;
+      text-shadow: 3px 4px 0 rgba(0,0,0,0.7), 0 2px 18px rgba(0,0,0,0.85);
+    }
+    .ttf-sub-hero__rule {
+      width: 200px; max-width: 70vw; height: 1.2px;
+      background: var(--color-brass); margin: 1rem auto; position: relative;
+    }
+    .ttf-sub-hero__rule::before {
+      content: "✦"; position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%); color: var(--color-brass);
+      background: rgba(0,0,0,0.6); padding: 0 10px; font-size: 14px;
+    }
+    .ttf-sub-hero__sub {
+      font-family: var(--font-serif); color: var(--color-cream); opacity: 0.92;
+      font-size: clamp(15px, 1.7vw, 18px); line-height: 1.6;
+      margin: 0.75rem auto 0; max-width: 620px;
+    }
+
+    .ttf-contact { padding: 5rem 1.5rem 5rem; }
+    .ttf-contact__inner {
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: start;
+    }
+    .ttf-contact__foot {
+      text-align: center;
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-smoke); font-size: 14px; margin: 2.5rem 0 0;
+    }
+    @media (max-width: 820px) {
+      .ttf-contact__inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .ttf-form {
+      background: var(--color-cream);
+      border: 1.5px solid var(--color-walnut);
+      box-shadow: 6px 6px 0 rgba(26,22,20,0.18);
+      padding: 2.25rem 2rem 2rem;
+      position: relative;
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    .ttf-form::before, .ttf-form::after {
+      content: ""; position: absolute; width: 22px; height: 22px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-form::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+    .ttf-form::after  { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+    .ttf-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 580px) { .ttf-form__row { grid-template-columns: 1fr; } }
+    .ttf-field { display: flex; flex-direction: column; gap: 0.35rem; }
+    .ttf-field__label {
+      font-family: var(--font-label); letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--color-walnut); font-size: 0.72rem;
+    }
+    .ttf-field__opt {
+      font-family: var(--font-billing); font-style: italic;
+      letter-spacing: 0.02em; text-transform: none;
+      color: var(--color-smoke); font-size: 0.78rem; margin-left: 0.25rem;
+    }
+    .ttf-field input,
+    .ttf-field textarea {
+      background: var(--color-cream);
+      border: 1.5px solid var(--color-walnut);
+      color: var(--color-ink);
+      font-family: var(--font-serif);
+      font-size: 16px; padding: 0.75rem 0.9rem; outline: none;
+      box-shadow: 2px 2px 0 rgba(26,22,20,0.18);
+    }
+    .ttf-field input:focus, .ttf-field textarea:focus {
+      border-color: var(--color-buddy-red);
+    }
+    .ttf-field textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
+    .ttf-form__submit { display: flex; justify-content: flex-end; margin-top: 0.25rem; }
+
+    .ttf-call {
+      background: var(--color-cream);
+      border: 1.5px solid var(--color-walnut);
+      box-shadow: 6px 6px 0 rgba(26,22,20,0.18);
+      padding: 2rem 1.75rem; text-align: center;
+      position: relative;
+    }
+    .ttf-call::before, .ttf-call::after {
+      content: ""; position: absolute; width: 22px; height: 22px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-call::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+    .ttf-call::after  { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+    .ttf-call__line {
+      font-family: var(--font-billing); color: var(--color-smoke);
+      font-size: 15px; margin: 0 0 0.5rem;
+    }
+    .ttf-call__num {
+      margin: 0.25rem 0 1rem;
+    }
+    .ttf-call__num a {
+      font-family: var(--font-display); color: var(--color-buddy-red);
+      font-size: 30px; text-decoration: none;
+    }
+  </style>
+</Layout>

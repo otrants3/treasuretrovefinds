@@ -1,0 +1,206 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SiteBar from "../components/SiteBar.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+const CATEGORIES = [
+  { name: "Toys & Trucks", detail: "pressed steel, diecast, original paint" },
+  { name: "Bottles & Apothecary", detail: "pre-war glass, perfume, pharmacy" },
+  { name: "Advertising & Signage", detail: "enamel, tin, paper, 1920s–40s" },
+];
+---
+
+<Layout
+  title="TreasureTroveFinds · The Etsy Shop"
+  description="The TreasureTroveFinds cabinet, online. Pre-war American antiques shipped from Las Vegas. Listings going live soon."
+>
+  <SiteBar />
+
+  <section class="ttf-sub-hero">
+    <div class="ttf-sub-hero__bg">
+      <img src="/cabinet/pexels-13207903.jpg" alt="Apothecary cabinet with glass door open" />
+      <div class="ttf-sub-hero__vignette"></div>
+    </div>
+    <div class="ttf-sub-hero__inner">
+      <p class="ttf-sub-hero__eyebrow">— OPENING SOON —</p>
+      <h1 class="ttf-sub-hero__title">The Cabinet, Online</h1>
+      <div class="ttf-sub-hero__rule"></div>
+      <p class="ttf-sub-hero__sub">
+        Pieces from the booth are headed to Etsy in small batches — toys, glass, advertising, the odd curiosity. Same record, same handwritten tag, shipped from Las Vegas. Get on the list and you'll see the listings the day they post.
+      </p>
+    </div>
+  </section>
+
+  <section class="ttf-etsy-body">
+    <div class="ttf-etsy-body__inner">
+      <header class="ttf-section-head">
+        <p class="ttf-label">— WHAT YOU'LL FIND ON ETSY —</p>
+        <div class="ttf-billing-rules"></div>
+        <h2 class="ttf-section-title">A Cross-Section of the Cabinet</h2>
+        <div class="ttf-billing-rules"></div>
+      </header>
+      <ul class="ttf-cat-list">
+        {CATEGORIES.map((c, i) => (
+          <li class="ttf-cat">
+            <span class="ttf-cat__no">№0{i + 1}</span>
+            <span class="ttf-cat__name">{c.name}</span>
+            <span class="ttf-cat__detail">{c.detail}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="ttf-etsy-signup">
+    <div class="ttf-etsy-signup__inner">
+      <p class="ttf-label">— EARLY ACCESS —</p>
+      <h2 class="ttf-etsy-signup__title">First Look at the Listings</h2>
+      <p class="ttf-etsy-signup__sub">
+        Drop your email and you'll see the listings before anyone else does.
+      </p>
+      <form class="ttf-etsy__form" action="https://formspree.io/f/placeholder" method="POST">
+        <input type="email" name="email" required placeholder="your@email" aria-label="Email address" />
+        <button type="submit" class="ttf-btn ttf-btn-primary">Put Me on the List</button>
+      </form>
+      <p class="ttf-etsy-signup__back">
+        <a class="ttf-btn ttf-btn-secondary" href="/">Back to the Booth</a>
+      </p>
+    </div>
+  </section>
+
+  <SiteFooter />
+
+  <style>
+    body { padding-top: 48px; }
+    @media (max-width: 720px) { body { padding-top: 42px; } }
+
+    .ttf-section-head { text-align: center; margin: 0 0 2rem; }
+    .ttf-section-head .ttf-label { color: var(--color-brass); margin: 0 0 0.5rem; }
+    .ttf-section-title {
+      font-family: var(--font-billing); font-weight: 700; color: var(--color-ink);
+      font-size: clamp(28px, 3.6vw, 40px); line-height: 1.05;
+      margin: 0.5rem 0; letter-spacing: 0.01em;
+    }
+
+    /* Subpage hero */
+    .ttf-sub-hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 5rem 1.5rem 4rem;
+      overflow: hidden;
+      color: var(--color-cream);
+    }
+    .ttf-sub-hero__bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .ttf-sub-hero__bg img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(0.85) contrast(1.05) brightness(0.72);
+    }
+    .ttf-sub-hero__vignette {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse at center, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.85) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.6));
+    }
+    .ttf-sub-hero__inner {
+      position: relative; z-index: 1; text-align: center; max-width: 720px;
+    }
+    .ttf-sub-hero__eyebrow {
+      font-family: var(--font-label); letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--color-brass); font-size: 0.7rem; margin: 0 0 1rem;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
+    }
+    .ttf-sub-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(46px, 7vw, 96px); line-height: 0.9;
+      color: var(--color-cream); margin: 0;
+      text-shadow: 3px 4px 0 rgba(0,0,0,0.7), 0 2px 18px rgba(0,0,0,0.85);
+    }
+    .ttf-sub-hero__rule {
+      width: 200px; max-width: 70vw; height: 1.2px;
+      background: var(--color-brass); margin: 1rem auto; position: relative;
+    }
+    .ttf-sub-hero__rule::before {
+      content: "✦"; position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%); color: var(--color-brass);
+      background: rgba(0,0,0,0.6); padding: 0 10px; font-size: 14px;
+    }
+    .ttf-sub-hero__sub {
+      font-family: var(--font-serif); color: var(--color-cream); opacity: 0.92;
+      font-size: clamp(15px, 1.7vw, 18px); line-height: 1.6;
+      margin: 0.75rem auto 0; max-width: 600px;
+    }
+
+    /* Categories */
+    .ttf-etsy-body {
+      padding: 5rem 1.5rem 4rem;
+    }
+    .ttf-etsy-body__inner { max-width: 820px; margin: 0 auto; }
+    .ttf-cat-list {
+      list-style: none; padding: 0; margin: 2rem 0 0;
+      display: flex; flex-direction: column; gap: 0;
+      border-top: 1.5px solid var(--color-brass);
+    }
+    .ttf-cat {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      align-items: baseline;
+      border-bottom: 1.5px solid rgba(201,162,39,0.4);
+    }
+    .ttf-cat__no {
+      font-family: var(--font-display); color: var(--color-brass);
+      font-size: 22px; letter-spacing: 0.02em;
+    }
+    .ttf-cat__name {
+      font-family: var(--font-billing); font-weight: 700; color: var(--color-ink);
+      font-size: clamp(20px, 2.4vw, 28px); line-height: 1.1;
+    }
+    .ttf-cat__detail {
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-smoke); font-size: 15px; text-align: right;
+    }
+
+    /* Signup */
+    .ttf-etsy-signup {
+      padding: 4rem 1.5rem 6rem;
+      background: linear-gradient(180deg, rgba(61,42,30,0), rgba(61,42,30,0.05));
+      text-align: center;
+    }
+    .ttf-etsy-signup__inner { max-width: 580px; margin: 0 auto; }
+    .ttf-etsy-signup__title {
+      font-family: var(--font-display); color: var(--color-buddy-red);
+      font-size: clamp(36px, 5vw, 56px); line-height: 0.95; letter-spacing: 0.005em;
+      margin: 0.75rem 0 0.75rem; text-shadow: 2px 2px 0 rgba(26,22,20,0.14);
+    }
+    .ttf-etsy-signup__sub {
+      font-family: var(--font-serif); color: var(--color-ink);
+      font-size: 16px; line-height: 1.6; max-width: 480px; margin: 0 auto 2rem;
+    }
+    .ttf-etsy__form {
+      display: flex; gap: 0.5rem; max-width: 460px; margin: 0 auto;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .ttf-etsy__form input {
+      flex: 1 1 240px; min-width: 220px; padding: 0.875rem 1rem;
+      background: var(--color-cream); border: 1.5px solid var(--color-walnut);
+      color: var(--color-ink); font-family: var(--font-serif); font-size: 16px;
+      box-shadow: 3px 3px 0 rgba(26,22,20,0.18); outline: none;
+    }
+    .ttf-etsy__form input:focus { border-color: var(--color-buddy-red); }
+    .ttf-etsy-signup__back { margin: 2.25rem 0 0; }
+
+    @media (max-width: 720px) {
+      .ttf-sub-hero { min-height: 52vh; padding: 4rem 1.25rem 3.5rem; }
+      .ttf-cat {
+        grid-template-columns: auto 1fr; gap: 0.75rem 1rem;
+      }
+      .ttf-cat__detail { grid-column: 1 / -1; text-align: left; padding-left: 3rem; }
+      .ttf-etsy__form { flex-direction: column; }
+      .ttf-etsy__form input { width: 100%; }
+    }
+  </style>
+</Layout>
