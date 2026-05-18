@@ -92,20 +92,30 @@ if (hero) {
 }
 
 // Editorial section reveals
+// IMPORTANT: default CSS keeps these visible. We only animate-in if motion is OK.
+// This guards against JS errors, reduced-motion users, and ScrollTrigger pin-disrupted layouts.
 const reveals = document.querySelectorAll<HTMLElement>("[data-reveal]");
-reveals.forEach((el) => {
-  gsap.from(el, {
-    scrollTrigger: {
-      trigger: el,
-      start: "top 82%",
-      toggleActions: "play none none none",
-    },
-    opacity: 0,
-    y: 28,
-    duration: 0.9,
-    ease: "power2.out",
+if (!prefersReducedMotion) {
+  reveals.forEach((el) => {
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: 28 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power2.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      }
+    );
   });
-});
+}
 
 // Anchor links route through Lenis for smooth scroll
 document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
