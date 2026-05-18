@@ -36,6 +36,30 @@ const {
 
     <!-- Favicon (typographic, brass on cream) -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- LocalBusiness schema — feeds "antiques near me" Google packs -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "AntiqueStore",
+      "name": "TreasureTroveFinds",
+      "description": "Curated antique and vintage collectibles. Every piece has a record. Bill and Lisa Otranto, Booth #18 at Paradise Antique Mall.",
+      "image": "https://treasuretrovefinds.vercel.app/cabinet/pexels-36901179.jpg",
+      "url": "https://treasuretrovefinds.vercel.app",
+      "telephone": "+15164462693",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3565 E. Flamingo Road, Booth #18",
+        "addressLocality": "Las Vegas",
+        "addressRegion": "NV",
+        "postalCode": "89121",
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "10:00", "closes": "18:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday",    "opens": "10:00", "closes": "18:00" }
+      ]
+    })} />
   </head>
   <body>
     <slot />

@@ -29,10 +29,12 @@ if (hero) {
   const title = hero.querySelector<HTMLElement>("[data-hero-title]");
   const cue = hero.querySelector<HTMLElement>("[data-hero-cue]");
   const vignette = hero.querySelector<HTMLElement>("[data-hero-vignette]");
+  const insideCopy = hero.querySelector<HTMLElement>("[data-hero-inside-copy]");
 
   // Set initial states
   gsap.set(open, { opacity: 0 });
   gsap.set(inside, { opacity: 0, scale: 1.18 });
+  if (insideCopy) gsap.set(insideCopy, { opacity: 0, y: 24 });
 
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -59,6 +61,11 @@ if (hero) {
     .to(inside, { opacity: 1, scale: 1.0, duration: 0.45, ease: "power2.inOut" }, 0.55)
     .to(stage, { scale: 1.18, duration: 0.45, ease: "none" }, 0.55)
     .to(vignette, { opacity: 0, duration: 0.45 }, 0.6);
+
+  // "You're in." payoff appears at scroll 75-100% of hero
+  if (insideCopy) {
+    tl.to(insideCopy, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.78);
+  }
 
   // Mouse parallax — 3 Z-layers drift with cursor
   if (!prefersReducedMotion && window.matchMedia("(pointer: fine)").matches) {
