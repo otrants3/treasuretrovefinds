@@ -1,8 +1,19 @@
 ---
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import Layout from "../layouts/Layout.astro";
 import SiteBar from "../components/SiteBar.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import items from "../data/cabinet.json";
+
+// Tag each item with whether a Gemini catalog-plate illustration exists.
+// (Some items hit copyright filters and have no .png in /cabinet/plates/.)
+const PLATES_DIR = fileURLToPath(new URL("../../public/cabinet/plates/", import.meta.url));
+const itemsWithPlates = (items as any[]).map((it) => ({
+  ...it,
+  hasPlate: existsSync(`${PLATES_DIR}${it.slug}.png`),
+  plate: `/cabinet/plates/${it.slug}.png`,
+}));
 
 // Categories in display order
 const CATEGORIES = [
@@ -16,7 +27,7 @@ const CATEGORIES = [
 ];
 
 const counts = CATEGORIES.reduce<Record<string, number>>((acc, c) => {
-  acc[c] = c === "All" ? items.length : items.filter((i: any) => i.category === c).length;
+  acc[c] = c === "All" ? itemsWithPlates.length : itemsWithPlates.filter((i: any) => i.category === c).length;
   return acc;
 }, {});
 ---
@@ -54,15 +65,21 @@ const counts = CATEGORIES.reduce<Record<string, number>>((acc, c) => {
           </button>
         ))}
       </div>
+
+      <div class="cab-view" role="radiogroup" aria-label="View style">
+        <span class="cab-view__label">— VIEW —</span>
+        <button type="button" class="cab-view__btn is-active" data-view="photos" role="radio" aria-checked="true">Real Photos</button>
+        <button type="button" class="cab-view__btn" data-view="plates" role="radio" aria-checked="false">Catalog Plates</button>
+      </div>
     </div>
   </section>
 
   <!-- =========================================================
        GRID — masonry cards
   ========================================================= -->
-  <section class="cab-grid-wrap">
+  <section class="cab-grid-wrap" data-view="photos">
     <div class="cab-grid">
-      {items.map((it: any, idx: number) => (
+      {itemsWithPlates.map((it: any, idx: number) => (
         <article
           class="cab-card"
           data-category={it.category}
@@ -72,12 +89,28 @@ const counts = CATEGORIES.reduce<Record<string, number>>((acc, c) => {
           <button class="cab-card__btn" type="button" aria-label={`Open ${it.displayName}`}>
             <div class="cab-card__photo">
               <img
+                class="cab-card__img cab-card__img--photo"
                 src={it.thumb}
                 alt={it.displayName}
                 loading={idx < 6 ? "eager" : "lazy"}
                 width="600"
                 height="600"
               />
+              {it.hasPlate && (
+                <img
+                  class="cab-card__img cab-card__img--plate"
+                  src={it.plate}
+                  alt={`Catalog illustration of ${it.displayName}`}
+                  loading="lazy"
+                  width="600"
+                  height="600"
+                />
+              )}
+              {!it.hasPlate && (
+                <div class="cab-card__no-plate" aria-hidden="true">
+                  <span>Plate<br/>not<br/>available</span>
+                </div>
+              )}
             </div>
             <div class="cab-card__tag">
               <span class="cab-card__tag-hole" aria-hidden="true"></span>
@@ -93,6 +126,9 @@ const counts = CATEGORIES.reduce<Record<string, number>>((acc, c) => {
     </div>
     <p class="cab-grid__empty" data-empty hidden>
       <em>Nothing in that drawer right now. Try another category.</em>
+    </p>
+    <p class="cab-grid__showcase-link">
+      <a href="/showcase">Or see the pieces arranged inside the cabinet →</a>
     </p>
   </section>
 
@@ -134,10 +170,24 @@ const counts = CATEGORIES.reduce<Record<string, number>>((acc, c) => {
   <!-- =========================================================
        DATA + LOGIC
   ========================================================= -->
-  <script is:inline define:vars={{ items }}>
+  <script is:inline define:vars={{ items: itemsWithPlates }}>
     window.__CAB_ITEMS__ = items;
   </script>
   <script>
+    // View toggle (Real Photos / Catalog Plates)
+    const viewBtns = document.querySelectorAll<HTMLButtonElement>(".cab-view__btn");
+    const gridWrap = document.querySelector<HTMLElement>(".cab-grid-wrap");
+    viewBtns.forEach((b) => {
+      b.addEventListener("click", () => {
+        const v = b.dataset.view || "photos";
+        viewBtns.forEach((x) => {
+          x.classList.toggle("is-active", x === b);
+          x.setAttribute("aria-checked", x === b ? "true" : "false");
+        });
+        if (gridWrap) gridWrap.dataset.view = v;
+      });
+    });
+
     // Category filter
     const chips = document.querySelectorAll<HTMLButtonElement>(".cab-chip");
     const cards = document.querySelectorAll<HTMLElement>(".cab-card");
@@ -250,6 +300,33 @@ const counts = CATEGORIES.reduce<Record<string, number>>((acc, c) => {
       max-width: 640px; margin: 0 auto 2rem;
     }
 
+    /* ============ VIEW TOGGLE ============ */
+    .cab-view {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      margin: 1.25rem auto 0; padding: 0.4rem 0.65rem;
+      background: var(--color-cream);
+      border: 1.5px solid var(--color-walnut);
+      box-shadow: 3px 3px 0 rgba(26,22,20,0.12);
+    }
+    .cab-view__label {
+      font-family: var(--font-label); letter-spacing: 0.22em;
+      text-transform: uppercase; font-size: 0.66rem;
+      color: var(--color-brass); padding-left: 0.25rem;
+    }
+    .cab-view__btn {
+      font-family: var(--font-label); letter-spacing: 0.18em;
+      text-transform: uppercase; font-size: 0.72rem;
+      padding: 0.45rem 0.85rem; cursor: pointer;
+      background: transparent; border: 1px solid transparent;
+      color: var(--color-ink);
+      transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    }
+    .cab-view__btn:hover { background: rgba(26,22,20,0.06); }
+    .cab-view__btn.is-active {
+      background: var(--color-ink); color: var(--color-cream);
+      border-color: var(--color-ink);
+    }
+
     /* ============ FILTER CHIPS ============ */
     .cab-filter {
       display: flex; gap: 0.5rem; flex-wrap: wrap;
@@ -296,6 +373,17 @@ const counts = CATEGORIES.reduce<Record<string, number>>((acc, c) => {
       font-family: var(--font-billing); font-style: italic;
       color: var(--color-smoke); font-size: 17px;
     }
+    .cab-grid__showcase-link {
+      max-width: 720px; margin: 3.5rem auto 0;
+      text-align: center;
+    }
+    .cab-grid__showcase-link a {
+      font-family: var(--font-label); letter-spacing: 0.24em;
+      text-transform: uppercase; font-size: 0.78rem;
+      color: var(--color-walnut); text-decoration: none;
+      padding-bottom: 4px; border-bottom: 1.5px solid var(--color-brass);
+    }
+    .cab-grid__showcase-link a:hover { color: var(--color-buddy-red); }
 
     /* ============ CARD ============ */
     .cab-card {
@@ -328,13 +416,41 @@ const counts = CATEGORIES.reduce<Record<string, number>>((acc, c) => {
     }
     .cab-card__photo::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
     .cab-card__photo::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-    .cab-card__photo img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: saturate(0.95) contrast(1.04);
-      border: 1px solid var(--color-walnut); display: block;
-      transition: transform 600ms ease;
+    .cab-card__img {
+      position: absolute; inset: 10px;
+      width: calc(100% - 20px); height: calc(100% - 20px);
+      object-fit: cover; display: block;
+      border: 1px solid var(--color-walnut);
+      transition: opacity 380ms ease, transform 600ms ease;
     }
-    .cab-card__btn:hover .cab-card__photo img { transform: scale(1.04); }
+    .cab-card__img--photo {
+      filter: saturate(0.95) contrast(1.04);
+      opacity: 1;
+    }
+    .cab-card__img--plate {
+      object-fit: contain;
+      background: var(--color-cream);
+      filter: contrast(1.05);
+      opacity: 0;
+    }
+    .cab-grid-wrap[data-view="plates"] .cab-card__img--photo { opacity: 0; }
+    .cab-grid-wrap[data-view="plates"] .cab-card__img--plate { opacity: 1; }
+    .cab-card__btn:hover .cab-card__img { transform: scale(1.04); }
+    /* Fallback for items without a plate illustration */
+    .cab-card__no-plate {
+      position: absolute; inset: 10px;
+      display: none; align-items: center; justify-content: center;
+      background: var(--color-cream);
+      border: 1px solid var(--color-walnut);
+      font-family: var(--font-label); letter-spacing: 0.18em;
+      text-transform: uppercase; font-size: 0.7rem;
+      color: var(--color-smoke); text-align: center;
+      pointer-events: none; opacity: 0;
+      transition: opacity 380ms ease;
+    }
+    .cab-grid-wrap[data-view="plates"] .cab-card__no-plate {
+      display: flex; opacity: 1;
+    }
 
     /* Handwritten tag attached to the bottom of each card */
     .cab-card__tag {
