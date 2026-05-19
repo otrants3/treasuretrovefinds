@@ -262,6 +262,31 @@ const TESTIMONIALS = [
   </section>
 
   <!-- =========================================================
+       SECTION — BROWSE THE CABINET (link to /cabinet)
+  ========================================================= -->
+  <section id="browse" class="ttf-browse" data-reveal>
+    <a class="ttf-browse__panel" href="/cabinet">
+      <div class="ttf-browse__strip" aria-hidden="true">
+        <img src="/cabinet/items/perfume-bottle-thumb.jpg" alt="" loading="lazy" />
+        <img src="/cabinet/items/firefighters-buckle-thumb.jpg" alt="" loading="lazy" />
+        <img src="/cabinet/items/crock-jugs-thumb.jpg" alt="" loading="lazy" />
+        <img src="/cabinet/items/red-rotary-phone-thumb.jpg" alt="" loading="lazy" />
+        <img src="/cabinet/items/ge-fan-thumb.jpg" alt="" loading="lazy" />
+        <img src="/cabinet/items/yoda-c3po-thumb.jpg" alt="" loading="lazy" />
+      </div>
+      <div class="ttf-browse__copy">
+        <p class="ttf-label">— THE WHOLE CABINET, ONLINE —</p>
+        <h2 class="ttf-browse__title">Open the Cabinet</h2>
+        <div class="ttf-billing-rules"></div>
+        <p class="ttf-browse__sub">
+          Twenty-four pieces from the shelf, every tag transcribed in Bill's own hand. Filter by category, click any piece for the full record, call to put it on hold.
+        </p>
+        <span class="ttf-browse__cta">Browse the Cabinet →</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- =========================================================
        SECTION — WORD FROM THE COUNTER (testimonials)
   ========================================================= -->
   <section id="counter" class="ttf-counter" data-reveal>
@@ -365,6 +390,8 @@ const TESTIMONIALS = [
         <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
       </p>
       <p class="ttf-foot__social">
+        <a href="/cabinet">Browse the Cabinet</a>
+        <span class="ttf-foot__sep">·</span>
         <a href="/contact">Send a Note</a>
         <span class="ttf-foot__sep">·</span>
         <a href={BOOTH.instagram} target="_blank" rel="noopener">Follow on Instagram</a>
@@ -1040,6 +1067,69 @@ const TESTIMONIALS = [
       box-shadow: 3px 3px 0 rgba(26,22,20,0.18); outline: none;
     }
     .ttf-etsy__form input:focus { border-color: var(--color-buddy-red); }
+
+    /* BROWSE THE CABINET — link section */
+    .ttf-browse {
+      padding: 5rem 1.5rem 5rem;
+      background:
+        linear-gradient(180deg, rgba(31,77,63,0.02), rgba(31,77,63,0)),
+        var(--color-cream);
+    }
+    .ttf-browse__panel {
+      display: block; text-decoration: none; color: inherit;
+      max-width: 1180px; margin: 0 auto;
+      background: var(--color-cream);
+      border: 1.5px solid var(--color-walnut);
+      box-shadow: 8px 8px 0 rgba(26,22,20,0.22);
+      position: relative; overflow: hidden;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .ttf-browse__panel::before, .ttf-browse__panel::after {
+      content: ""; position: absolute; width: 22px; height: 22px;
+      border: 1.5px solid var(--color-brass);
+    }
+    .ttf-browse__panel::before { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+    .ttf-browse__panel::after  { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+    .ttf-browse__panel:hover {
+      transform: translate(-2px, -3px);
+      box-shadow: 11px 11px 0 rgba(26,22,20,0.28);
+    }
+    .ttf-browse__strip {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px;
+      padding: 14px 14px 0;
+    }
+    .ttf-browse__strip img {
+      width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;
+      border: 1px solid var(--color-walnut);
+      filter: saturate(0.92) contrast(1.04);
+    }
+    .ttf-browse__copy {
+      padding: 2.25rem 2rem 2.25rem; text-align: center;
+    }
+    .ttf-browse__copy .ttf-label { color: var(--color-brass); margin: 0 0 0.5rem; }
+    .ttf-browse__title {
+      font-family: var(--font-display); color: var(--color-buddy-red);
+      font-size: clamp(34px, 5vw, 54px); line-height: 0.95;
+      margin: 0.25rem 0 0.5rem; letter-spacing: 0.005em;
+      text-shadow: 2px 2px 0 rgba(26,22,20,0.14);
+    }
+    .ttf-browse__sub {
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-ink); font-size: clamp(15px, 1.6vw, 18px);
+      line-height: 1.55; max-width: 620px;
+      margin: 0.5rem auto 1.25rem;
+    }
+    .ttf-browse__cta {
+      display: inline-block;
+      font-family: var(--font-label); letter-spacing: 0.24em;
+      text-transform: uppercase; font-size: 0.78rem;
+      color: var(--color-walnut);
+      padding-bottom: 4px; border-bottom: 1.5px solid var(--color-brass);
+    }
+    @media (max-width: 720px) {
+      .ttf-browse__strip { grid-template-columns: repeat(3, 1fr); }
+      .ttf-browse__strip img:nth-child(n+4) { display: none; }
+    }
 
     /* Brand assets */
     .ttf-foot__seal {
