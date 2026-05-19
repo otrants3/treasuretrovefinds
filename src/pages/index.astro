@@ -122,7 +122,7 @@ const TESTIMONIALS = [
         <h1 class="ttf-hero__wordmark">TreasureTrove<br/><span>FINDS</span></h1>
         <p class="ttf-hero__tag">Every piece has a record.</p>
         <div class="ttf-hero__rule"></div>
-        <p class="ttf-hero__sub"><em>a small American cabinet, kept honest</em></p>
+        <p class="ttf-hero__sub"><em>fifty years on the hunt — one booth on Flamingo Road</em></p>
         <div class="ttf-hero__cta">
           <a class="ttf-btn ttf-btn-primary" href="#find">Visit the Booth</a>
           <a class="ttf-btn ttf-btn-secondary" href={`tel:${BOOTH.phoneTel}`}>Call Ahead · {BOOTH.phoneDisplay}</a>
@@ -152,54 +152,22 @@ const TESTIMONIALS = [
   <section id="about" class="ttf-intro" data-reveal>
     <div class="ttf-intro__inner">
       <p class="ttf-label">— WHAT THIS IS —</p>
-      <h2 class="ttf-intro__title">A Cabinet of American Things</h2>
+      <h2 class="ttf-intro__title">Not a Shop. A Cabinet.</h2>
       <div class="ttf-intro__rule"></div>
       <p class="ttf-intro__body">
-        TreasureTroveFinds is a curated booth of pre-war American antiques and vintage collectibles —
-        toys, glass, advertising, oddities — kept on Flamingo Road in Las Vegas. Every piece in the
-        cabinet carries its record: maker, era, and provenance, set down by hand on the tag.
-      </p>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       SECTION — FROM THE CABINET (featured pieces)
-  ========================================================= -->
-  <section id="cabinet" class="ttf-pieces">
-    <div class="ttf-pieces__inner" data-reveal>
-      <header class="ttf-section-head">
-        <p class="ttf-label">— ON THE SHELF THIS WEEK —</p>
-        <div class="ttf-billing-rules"></div>
-        <h2 class="ttf-section-title">From the Cabinet</h2>
-        <p class="ttf-section-sub"><em>Three pieces worth the trip — pulled from the case and written up properly.</em></p>
-        <div class="ttf-billing-rules"></div>
-      </header>
-      <div class="ttf-pieces__grid">
-        {PIECES.map((it) => (
-          <article class="ttf-bplate" style={`--tilt: ${it.tilt}deg;`}>
-            <div class="ttf-bplate__frame">
-              <img src={it.photo} alt={it.item} loading="lazy" />
-              <span class="ttf-bplate__tag">
-                <span class="ttf-bplate__tag-twine"></span>
-                <span class="ttf-bplate__tag-hole"></span>
-                <span class="ttf-bplate__tag-era">{it.era}</span>
-                <span class="ttf-bplate__tag-note">{it.note}</span>
-                <span class="ttf-bplate__tag-price">{it.price}</span>
-              </span>
-            </div>
-            <p class="ttf-bplate__no">{it.plate}</p>
-            <h3 class="ttf-bplate__name">{it.item}</h3>
-          </article>
-        ))}
-      </div>
-      <p class="ttf-pieces__foot">
-        <em>The cabinet rotates — what's not pictured is on the shelf, waiting on the right buyer.</em>
+        Bill started in '73 with one auction and the wrong hat. Fifteen hundred pieces later
+        it's a booth at Paradise Mall — Buddy L trucks, art glass, advertising tins, Star Wars
+        from the '80s, pre-war Americana, the odd thing nobody's catalogued yet. If he could
+        track the story down, it's written on the tag in his own hand. If he couldn't, he tells
+        you that too.
       </p>
     </div>
   </section>
 
   <!-- =========================================================
        SECTION — MEET THE COLLECTOR (Bill at the case)
+       Moved before "From the Cabinet" in v6.4 — people want to know
+       WHO before WHAT.
   ========================================================= -->
   <section id="collector" class="ttf-collector" data-reveal>
     <div class="ttf-collector__inner">
@@ -230,6 +198,42 @@ const TESTIMONIALS = [
   </section>
 
   <!-- =========================================================
+       SECTION — FROM THE CABINET (featured pieces)
+  ========================================================= -->
+  <section id="cabinet" class="ttf-pieces">
+    <div class="ttf-pieces__inner" data-reveal>
+      <header class="ttf-section-head">
+        <p class="ttf-label">— ON THE SHELF THIS WEEK —</p>
+        <div class="ttf-billing-rules"></div>
+        <h2 class="ttf-section-title">From the Cabinet</h2>
+        <p class="ttf-section-sub"><em>Three from the case this week, written up the way Bill does. Stop in Wednesday or Sunday and the lineup'll be different — that's the point.</em></p>
+        <div class="ttf-billing-rules"></div>
+      </header>
+      <div class="ttf-pieces__grid">
+        {PIECES.map((it) => (
+          <article class="ttf-bplate" style={`--tilt: ${it.tilt}deg;`}>
+            <div class="ttf-bplate__frame">
+              <img src={it.photo} alt={it.item} loading="lazy" />
+              <span class="ttf-bplate__tag">
+                <span class="ttf-bplate__tag-twine"></span>
+                <span class="ttf-bplate__tag-hole"></span>
+                <span class="ttf-bplate__tag-era">{it.era}</span>
+                <span class="ttf-bplate__tag-note">{it.note}</span>
+                <span class="ttf-bplate__tag-price">{it.price}</span>
+              </span>
+            </div>
+            <p class="ttf-bplate__no">{it.plate}</p>
+            <h3 class="ttf-bplate__name">{it.item}</h3>
+          </article>
+        ))}
+      </div>
+      <p class="ttf-pieces__foot">
+        <em>What's not pictured is on the shelf, waiting on the right buyer.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
        SECTION — THE RECORD (emerald punch)
   ========================================================= -->
   <section id="record" class="ttf-record ttf-on-emerald" data-reveal>
@@ -238,7 +242,7 @@ const TESTIMONIALS = [
       <h2 class="ttf-record__title">The Record</h2>
       <div class="ttf-billing-rules"></div>
       <p class="ttf-record__sub">
-        Every piece leaves with its provenance — maker, era, and the story — set down by hand on the tag that came with it.
+        Every piece walks home with its record — maker, era, the part of the story Bill could verify — set down in his own hand on the tag. Not a sticker. Not a guess. Not a fairy tale.
       </p>
       <div class="ttf-record__row">
         <figure class="ttf-record__cell" style="--tilt: -2.5deg;">
@@ -266,6 +270,7 @@ const TESTIMONIALS = [
         <p class="ttf-label">— SAID AT THE BOOTH —</p>
         <div class="ttf-billing-rules"></div>
         <h2 class="ttf-section-title">Word From the Counter</h2>
+        <p class="ttf-section-sub"><em>Said at the booth — by people Bill hasn't paid.</em></p>
         <div class="ttf-billing-rules"></div>
       </header>
       <div class="ttf-counter__grid">
@@ -300,6 +305,7 @@ const TESTIMONIALS = [
       <aside class="ttf-find__card">
         <p class="ttf-label">— WHERE TO FIND IT —</p>
         <h2 class="ttf-find__name">Find the Joint</h2>
+        <p class="ttf-find__lede"><em>Booth №18, inside Paradise Mall.</em> Walk past the Polo Club sign, hang a right at the trunks, you can't miss it.</p>
         <div class="ttf-double-rule"></div>
         <p class="ttf-find__addr">
           {BOOTH.address1}<br/>
@@ -325,38 +331,6 @@ const TESTIMONIALS = [
   </section>
 
   <!-- =========================================================
-       SECTION — THREE DOORS (subpage links)
-  ========================================================= -->
-  <section id="doors" class="ttf-doors" data-reveal>
-    <div class="ttf-doors__inner">
-      <header class="ttf-section-head ttf-section-head--tight">
-        <p class="ttf-label">— FROM HERE —</p>
-        <h2 class="ttf-section-title ttf-section-title--sm">Three Doors</h2>
-      </header>
-      <div class="ttf-doors__grid">
-        <a class="ttf-door" href="/etsy">
-          <p class="ttf-door__eyebrow">— ONLINE —</p>
-          <h3 class="ttf-door__title">The Etsy Shop</h3>
-          <p class="ttf-door__desc">Listings go live soon — get on the list for first look.</p>
-          <span class="ttf-door__cta">Get on the List →</span>
-        </a>
-        <a class="ttf-door" href="/contact">
-          <p class="ttf-door__eyebrow">— REACH OUT —</p>
-          <h3 class="ttf-door__title">Get in Touch</h3>
-          <p class="ttf-door__desc">Questions, holds, special requests — the form gets to us same day.</p>
-          <span class="ttf-door__cta">Send a Note →</span>
-        </a>
-        <a class="ttf-door" href="#collector">
-          <p class="ttf-door__eyebrow">— THE BACKSTORY —</p>
-          <h3 class="ttf-door__title">Our Story</h3>
-          <p class="ttf-door__desc">Fifty years of collecting, one booth on Flamingo Road.</p>
-          <span class="ttf-door__cta">Read the Story →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
        SECTION — SUBSCRIBERS (Etsy launch list)
   ========================================================= -->
   <section id="etsy" class="ttf-etsy" data-reveal>
@@ -364,7 +338,7 @@ const TESTIMONIALS = [
       <p class="ttf-label">— EARLY ACCESS —</p>
       <h2 class="ttf-etsy__title">Etsy's Coming</h2>
       <p class="ttf-etsy__sub">
-        The cabinet opens online soon. Drop your email and you'll see the listings before anyone else does.
+        Pieces from the cabinet are headed online. Drop your email — you'll see them the day they post. No drip. No marketing.
       </p>
       <form class="ttf-etsy__form" action="https://formspree.io/f/placeholder" method="POST">
         <input type="email" name="email" required placeholder="your@email" aria-label="Email address" />
@@ -390,6 +364,8 @@ const TESTIMONIALS = [
         <a href={`tel:${BOOTH.phoneTel}`}>{BOOTH.phoneDisplay}</a>
       </p>
       <p class="ttf-foot__social">
+        <a href="/contact">Send a Note</a>
+        <span class="ttf-foot__sep">·</span>
         <a href={BOOTH.instagram} target="_blank" rel="noopener">Follow on Instagram</a>
       </p>
       <div class="ttf-foot__rule"></div>
@@ -536,9 +512,21 @@ const TESTIMONIALS = [
     }
     .ttf-hero__scrim {
       position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.0) 75%);
+      background:
+        radial-gradient(ellipse 70% 60% at center, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0.18) 85%, rgba(0,0,0,0) 100%),
+        linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0) 25%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.55) 100%);
     }
-    .ttf-hero__plate { position: relative; z-index: 2; max-width: 920px; }
+    .ttf-hero__plate {
+      position: relative; z-index: 2; max-width: 920px;
+    }
+    /* Soft dark halo directly behind the headline copy to push text off the photo */
+    .ttf-hero__plate::before {
+      content: "";
+      position: absolute; inset: -3.5rem -4rem;
+      background: radial-gradient(ellipse at center, rgba(14,10,7,0.6) 0%, rgba(14,10,7,0.0) 70%);
+      filter: blur(28px);
+      z-index: -1; pointer-events: none;
+    }
     .ttf-hero__eyebrow {
       font-family: var(--font-label); letter-spacing: 0.38em; text-transform: uppercase;
       color: var(--color-brass); font-size: 0.68rem; margin: 0 0 1.25rem;
@@ -855,42 +843,63 @@ const TESTIMONIALS = [
       .ttf-counter__grid { grid-template-columns: 1fr; }
       .ttf-counter__grid > .ttf-quote:nth-child(5) { grid-column: auto; max-width: none; }
     }
+    /* Testimonials styled as Bill's paper merchandise tags
+       — same tag-paper bg, twine + hole, handwritten body */
+    .ttf-counter__grid { gap: 2.5rem 1.75rem; padding-top: 1.5rem; }
     .ttf-quote {
-      position: relative; margin: 0;
-      background: var(--color-cream);
-      border: 1.5px solid var(--color-walnut);
-      padding: 2rem 1.6rem 1.4rem;
-      box-shadow: 4px 5px 0 rgba(26,22,20,0.18);
+      position: relative; margin: 1.5rem 0 0;
+      padding: 2rem 1.4rem 1.2rem;
+      background: var(--color-tag-paper);
+      background-image:
+        radial-gradient(rgba(61,42,30,0.10) 1px, transparent 1.2px),
+        radial-gradient(rgba(61,42,30,0.06) 1px, transparent 1.2px);
+      background-size: 5px 5px, 9px 9px;
+      background-position: 0 0, 2px 2px;
+      border: 1px solid rgba(61,42,30,0.45);
+      box-shadow: 5px 7px 0 rgba(26,22,20,0.28);
       transform: rotate(var(--qtilt, 0));
     }
-    .ttf-quote::before, .ttf-quote::after {
-      content: ""; position: absolute; width: 18px; height: 18px;
-      border: 1.5px solid var(--color-brass);
+    /* twine — short string going up from the hole */
+    .ttf-quote::before {
+      content: ""; position: absolute;
+      top: -22px; left: 50%;
+      transform: translateX(-50%) rotate(3deg);
+      width: 1.6px; height: 26px;
+      background: var(--color-walnut);
+      opacity: 0.72;
     }
-    .ttf-quote::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-    .ttf-quote::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-    .ttf-quote__mark {
-      position: absolute; top: -10px; left: 14px;
-      font-family: var(--font-billing); font-style: italic;
-      font-size: 64px; line-height: 1; color: var(--color-brass);
-      background: var(--color-cream); padding: 0 8px;
+    /* notched corners — like a real merchandise tag (string-tie eyelet shape) */
+    .ttf-quote::after {
+      content: ""; position: absolute;
+      top: 6px; left: 50%;
+      transform: translateX(-50%);
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--color-cream);
+      box-shadow: inset 0 0 0 1.6px rgba(61,42,30,0.7);
     }
+    /* hide the big quote mark — tags don't have quotation marks */
+    .ttf-quote__mark { display: none; }
     .ttf-quote__body {
-      font-family: var(--font-billing); font-style: italic;
-      color: var(--color-ink); font-size: 17px; line-height: 1.45;
-      margin: 0 0 1rem;
+      font-family: var(--font-hand);
+      color: var(--color-ink);
+      font-size: 17px; line-height: 1.4;
+      margin: 1.2rem 0 0.9rem;
+      text-align: left;
     }
     .ttf-quote__cite {
       display: flex; flex-direction: column; gap: 2px;
-      border-top: 1px solid rgba(61,42,30,0.25); padding-top: 0.75rem;
+      border-top: 1px dashed rgba(61,42,30,0.5);
+      padding-top: 0.65rem;
     }
     .ttf-quote__name {
       font-family: var(--font-label); letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--color-buddy-red); font-size: 0.78rem;
+      color: var(--color-buddy-red); font-size: 0.74rem;
     }
     .ttf-quote__role {
       font-family: var(--font-billing); font-style: italic;
-      color: var(--color-smoke); font-size: 13px;
+      color: var(--color-walnut); opacity: 0.85;
+      font-size: 12.5px;
     }
 
     /* FIND THE JOINT */
@@ -932,6 +941,17 @@ const TESTIMONIALS = [
       color: var(--color-ink);
       font-size: clamp(34px, 4vw, 48px); line-height: 0.95;
       margin: 0.5rem 0 0; letter-spacing: 0.005em;
+    }
+    .ttf-find__lede {
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-smoke); font-size: 15.5px;
+      line-height: 1.55; margin: 0.75rem 0 0;
+    }
+    .ttf-find__lede em {
+      font-style: normal;
+      font-family: var(--font-label); letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--color-buddy-red);
+      font-size: 0.78rem; display: block; margin-bottom: 0.35rem;
     }
     .ttf-find__addr, .ttf-find__hours, .ttf-find__phone {
       font-family: var(--font-serif); color: var(--color-ink);
@@ -1042,11 +1062,15 @@ const TESTIMONIALS = [
       color: var(--color-brass); font-family: var(--font-display);
       font-style: normal; font-size: 22px; text-decoration: none;
     }
-    .ttf-foot__social { margin: 0.75rem 0 0; }
+    .ttf-foot__social { margin: 0.75rem 0 0; display: flex; gap: 0.65rem; align-items: center; justify-content: center; flex-wrap: wrap; }
     .ttf-foot__social a {
       font-family: var(--font-label); letter-spacing: 0.28em; text-transform: uppercase;
       font-size: 0.7rem; color: var(--color-brass); text-decoration: none;
       border-bottom: 1px solid var(--color-brass); padding-bottom: 3px;
+    }
+    .ttf-foot__sep {
+      font-family: var(--font-billing); font-style: italic;
+      color: var(--color-brass); opacity: 0.55; font-size: 0.85rem;
     }
     .ttf-foot__rule {
       width: 200px; height: 1px; background: var(--color-brass);

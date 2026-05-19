@@ -40,20 +40,30 @@ const bannerJobs = [
   { src: '1000011949.jpg.jpeg', out: 'banner-aisle.jpg', maxEdge: 2400 },
 ];
 
+// v3: real cleanup — unsharp mask, normalize tones, mild contrast/saturation,
+// higher JPEG quality. These are phone snaps under mall fluorescents — they
+// need bite and contrast, not more compression.
+const FINISH = (pipeline) => pipeline
+  .normalise()              // stretch tonal range so the photo isn't flat
+  .modulate({ saturation: 1.08, brightness: 1.02 })  // pop the colors a touch
+  .linear(1.06, -6)         // mild contrast curve
+  .sharpen({ sigma: 1.0, m1: 0.5, m2: 2.0 })  // crisp edges without halos
+  .jpeg({ quality: 90, mozjpeg: true, chromaSubsampling: '4:4:4' });
+
 async function resizeMax(srcPath, outPath, maxEdge) {
-  await sharp(srcPath)
-    .rotate()
-    .resize({ width: maxEdge, height: maxEdge, fit: 'inside', withoutEnlargement: true })
-    .jpeg({ quality: 82, mozjpeg: true })
-    .toFile(outPath);
+  await FINISH(
+    sharp(srcPath)
+      .rotate()
+      .resize({ width: maxEdge, height: maxEdge, fit: 'inside', withoutEnlargement: true })
+  ).toFile(outPath);
 }
 
 async function cropExact(srcPath, outPath, w, h, fit, position) {
-  await sharp(srcPath)
-    .rotate()
-    .resize(w, h, { fit, position })
-    .jpeg({ quality: 82, mozjpeg: true })
-    .toFile(outPath);
+  await FINISH(
+    sharp(srcPath)
+      .rotate()
+      .resize(w, h, { fit, position })
+  ).toFile(outPath);
 }
 
 const all = [
