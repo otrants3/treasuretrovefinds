@@ -7,14 +7,13 @@ const SRC = 'C:/Users/ajotr/OneDrive/Desktop/TreasureTroveFinds/Real Shop Photos
 const OUT = 'C:/Users/ajotr/TreasureTroveFinds/public/shop';
 mkdirSync(OUT, { recursive: true });
 
-// HERO LAYERS — resize only, no crop. Let CSS object-cover compose per viewport.
+// HERO LAYERS — high-res sources only (the 1000011*.jpg.jpeg files were
+// texted thumbnails at ~600px and got pixelated when CSS scaled them up).
+// 20260516_* are the real phone shots at 4032×3024.
 const heroJobs = [
-  { src: '1000011950.jpg.jpeg', out: 'hero-aisle.jpg', maxEdge: 2400 },
-  { src: '1000011944.jpg.jpeg', out: 'hero-cabinet.jpg', maxEdge: 2400 },
-  { src: 'IMG_20260518_185231.jpg', out: 'hero-tags.jpg', maxEdge: 2400 },
-  // Backup hero candidates
-  { src: '1000011953.jpg.jpeg', out: 'hero-firetrucks.jpg', maxEdge: 2400 },
-  { src: '1000011949.jpg.jpeg', out: 'hero-aisle-wide.jpg', maxEdge: 2400 },
+  { src: '20260516_121613.jpg', out: 'hero-aisle.jpg', maxEdge: 2400 },
+  { src: '20260516_121044.jpg', out: 'hero-cabinet.jpg', maxEdge: 2400 },
+  { src: '20260516_121133.jpg', out: 'hero-tags.jpg', maxEdge: 2400 },
 ];
 
 // PORTRAIT — Bill at the case
@@ -34,10 +33,12 @@ const recordJobs = [
 
 const pieceJobs = [
   { src: '20260516_122116.jpg', out: 'piece-perfume-bottle.jpg', w: 1400, h: 1750, fit: 'cover', position: 'center' },
+  // Real GE Cast-Iron Oscillating Fan photo (replaces the perfume-y fan-perfumes.jpg)
+  { src: '20260516_121300.jpg', out: 'piece-ge-fan.jpg', w: 1400, h: 1750, fit: 'cover', position: 'center' },
 ];
 
 const bannerJobs = [
-  { src: '1000011949.jpg.jpeg', out: 'banner-aisle.jpg', maxEdge: 2400 },
+  { src: '20260516_121613.jpg', out: 'banner-aisle.jpg', maxEdge: 2400 },
 ];
 
 // v3: real cleanup — unsharp mask, normalize tones, mild contrast/saturation,
