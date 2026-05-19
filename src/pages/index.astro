@@ -335,6 +335,7 @@ const TESTIMONIALS = [
   ========================================================= -->
   <section id="etsy" class="ttf-etsy" data-reveal>
     <div class="ttf-etsy__inner">
+      <img class="ttf-etsy__seal" src="/brand/wax-seal.png" alt="TTF Booth №18 wax seal" loading="lazy" width="140" height="140" />
       <p class="ttf-label">— EARLY ACCESS —</p>
       <h2 class="ttf-etsy__title">Etsy's Coming</h2>
       <p class="ttf-etsy__sub">
@@ -352,7 +353,7 @@ const TESTIMONIALS = [
   ========================================================= -->
   <footer class="ttf-foot">
     <div class="ttf-foot__inner">
-      <SunburstSeal size={86} est="2022" since="'73" />
+      <img class="ttf-foot__seal" src="/brand/sunburst-seal.png" alt="TreasureTroveFinds brass seal — EST 1973" loading="lazy" width="120" height="120" />
       <p class="ttf-foot__name">TreasureTroveFinds</p>
       <p class="ttf-foot__line">
         Paradise Mall · Booth №18 · Las Vegas, NV
@@ -1039,6 +1040,19 @@ const TESTIMONIALS = [
       box-shadow: 3px 3px 0 rgba(26,22,20,0.18); outline: none;
     }
     .ttf-etsy__form input:focus { border-color: var(--color-buddy-red); }
+
+    /* Brand assets */
+    .ttf-foot__seal {
+      display: block; width: 120px; height: 120px;
+      margin: 0 auto 0.5rem; object-fit: contain;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35));
+    }
+    .ttf-etsy__seal {
+      display: block; width: 110px; height: 110px;
+      margin: 0 auto 1rem; object-fit: contain;
+      transform: rotate(-4deg);
+      filter: drop-shadow(2px 3px 0 rgba(26,22,20,0.15));
+    }
 
     /* FOOTER */
     .ttf-foot {
