@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treasure Trove Finds — three directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Barlow+Condensed:wght@400;600;700&family=Lora:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#141210;--card:#1D1917;--bone:#E7E1D5;--dim:#968D7F;--brass:#C9A227}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--bone);font-family:"Lora",Georgia,serif;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+header{padding:clamp(44px,7vw,88px) 0 clamp(28px,4vw,48px);border-bottom:1px solid rgba(201,162,39,.28)}
+.label{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.22em;font-size:12.5px;font-weight:600;color:var(--brass)}
+h1{font-family:"Bodoni Moda",Georgia,serif;font-weight:400;font-size:clamp(32px,5vw,58px);line-height:1.06;margin:14px 0 0}
+h1 em{font-style:italic;color:var(--brass)}
+header p{color:var(--dim);max-width:62ch;margin:20px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,34px);padding:clamp(34px,5vw,60px) 0}
+.card{background:var(--card);border:1px solid rgba(201,162,39,.22);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:border-color .2s ease,transform .2s ease}
+.card:hover,.card:focus-visible{border-color:var(--brass);transform:translateY(-3px)}
+.swatches{display:flex;height:9px}
+.swatches i{flex:1}
+.card .body{padding:22px 22px 26px;display:flex;flex-direction:column;flex:1}
+.n{font-family:"Barlow Condensed",sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:11.5px;color:var(--brass)}
+.card h2{font-family:"Bodoni Moda",Georgia,serif;font-weight:400;font-size:29px;margin:8px 0 12px;line-height:1.1}
+.card p{color:var(--dim);font-size:16px;margin:0 0 14px}
+.meta{margin-top:auto;font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:12.5px;color:var(--bone);border-top:1px solid rgba(201,162,39,.22);padding-top:14px}
+.risk{color:var(--dim);font-size:14.5px;font-style:italic;margin:0 0 16px}
+footer{border-top:1px solid rgba(201,162,39,.22);padding:30px 0 56px;color:var(--dim);font-size:14.5px}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <span class="label">Treasure Trove Finds · Redesign</span>
+    <h1>Three directions, <em>all built from the real booth</em></h1>
+    <p>Same content in all three: Bill's own words about what he collects, the real pieces with the tags he wrote for them, what is moving in the market, where the booth is, and how to reach him. What changes is the point of view. Open each one, then tell me which one feels like your parents.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+
+    <a class="card" href="01-litho.html">
+      <div class="swatches"><i style="background:#D8232A"></i><i style="background:#F2B302"></i><i style="background:#123C7B"></i><i style="background:#F4EBD9"></i><i style="background:#1B1714"></i></div>
+      <div class="body">
+        <span class="n">Direction 01</span>
+        <h2>The Litho</h2>
+        <p>Built like the box the toys came in. Fat 1930s advertising type, four colour litho printing, the booth's real reds and yellows turned up loud.</p>
+        <p class="risk">The risk: the headings print slightly out of register, the way real toy boxes did.</p>
+        <div class="meta">Loud · Toy forward · Hard to ignore</div>
+      </div>
+    </a>
+
+    <a class="card" href="02-keeper.html">
+      <div class="swatches"><i style="background:#EAE4D8"></i><i style="background:#1F3D8F"></i><i style="background:#A8862C"></i><i style="background:#DFCBA0"></i><i style="background:#17150F"></i></div>
+      <div class="body">
+        <span class="n">Direction 02</span>
+        <h2>The Keeper</h2>
+        <p>A magazine profile of your dad. Big photography, long captions, his handwriting reproduced on the tags, the whole thing filed like his own records.</p>
+        <p class="risk">The risk: every photo carries a typed accession line, like a museum that never got formal.</p>
+        <div class="meta">Quiet · Bill forward · Built to be trusted</div>
+      </div>
+    </a>
+
+    <a class="card" href="03-underglass.html">
+      <div class="swatches"><i style="background:#100D0B"></i><i style="background:#2A2018"></i><i style="background:#C9A227"></i><i style="background:#F3D9A4"></i><i style="background:#B3282A"></i></div>
+      <div class="body">
+        <span class="n">Direction 03</span>
+        <h2>Under Glass</h2>
+        <p>The website is the case. Dark walnut and brass, shelves that stay dim until you move along them, and the light comes up on whatever you are looking at.</p>
+        <p class="risk">The risk: the whole page is dark, and the shelf lighting is the thing people will remember.</p>
+        <div class="meta">Dark · Collector forward · The most unusual</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">Mockups only. Every photo, price and tag transcription is real. The “As featured on” rows and the three “Bill's take” lines are placeholders waiting on real content.</div>
+</footer>
+</body>
+</html>

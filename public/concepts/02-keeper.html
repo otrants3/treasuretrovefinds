@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treasure Trove Finds — Concept 2: The Keeper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Courier+Prime:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#17150F;
+  --ink-soft:#3E3A31;
+  --bone:#EAE4D8;
+  --bone-deep:#DCD4C4;
+  --cobalt:#1F3D8F;
+  --brass:#A8862C;
+  --tag:#DFCBA0;
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bone);color:var(--ink);
+  font-family:"Newsreader",Georgia,serif;font-size:18px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--cobalt)}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.wide{max-width:1420px;margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- the record strip: the signature device ---------- */
+/* every photograph on this site carries the same typed accession line */
+.record{
+  font-family:"Courier Prime",Courier,monospace;
+  font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;
+  border-top:1px solid var(--cobalt);
+  padding:9px 0 0;margin:12px 0 0;
+  display:flex;flex-wrap:wrap;gap:0 14px;color:var(--ink-soft);
+}
+.record span{white-space:nowrap}
+.record span::after{content:"·";margin-left:14px;color:var(--brass)}
+.record span:last-child::after{content:""}
+.record .amt{color:var(--ink);font-weight:700}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid rgba(23,21,15,.2)}
+.masthead .wide{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding-top:20px;padding-bottom:18px;flex-wrap:wrap}
+.mark{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:22px;letter-spacing:-.015em}
+.mast-meta{font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+.mast-meta a{text-decoration:none;border-bottom:1px solid var(--cobalt)}
+
+/* ---------- hero ---------- */
+.hero{border-bottom:1px solid rgba(23,21,15,.2)}
+.hero .wide{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4.5vw,72px);
+  align-items:center;padding-top:clamp(34px,5vw,64px);padding-bottom:clamp(40px,6vw,80px);
+}
+.hero figure{margin:0}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 35%}
+.hero h1{
+  font-family:"Fraunces",Georgia,serif;font-weight:300;
+  font-size:clamp(38px,5.2vw,72px);line-height:1.03;letter-spacing:-.022em;
+  margin:0 0 22px;
+}
+.hero h1 em{font-style:normal;font-weight:700}
+.eyebrow{
+  font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--cobalt);margin:0 0 18px;
+}
+.hero p{font-size:20px;max-width:44ch;color:var(--ink-soft);margin:0 0 12px}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  font-family:"Courier Prime",monospace;text-transform:uppercase;letter-spacing:.11em;
+  font-size:13px;font-weight:700;padding:14px 22px;text-decoration:none;
+  border:1px solid var(--ink);color:var(--ink);background:transparent;
+  transition:background .16s ease,color .16s ease;
+}
+.btn:hover,.btn:focus-visible{background:var(--ink);color:var(--bone)}
+.btn.solid{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.btn.solid:hover,.btn.solid:focus-visible{background:var(--ink);border-color:var(--ink)}
+
+/* ---------- the quote ---------- */
+.saying{background:var(--ink);color:var(--bone);padding:clamp(56px,8vw,116px) 0}
+.saying blockquote{
+  margin:0;font-family:"Fraunces",Georgia,serif;font-weight:300;
+  font-size:clamp(26px,4vw,52px);line-height:1.16;letter-spacing:-.018em;
+  max-width:19ch;
+}
+.saying .who{
+  font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brass);margin-top:34px;
+}
+.saying .who::before{content:"";display:block;width:52px;height:1px;background:var(--brass);margin-bottom:14px}
+.saying-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(28px,5vw,72px);align-items:end}
+.chase-list{margin:0;padding:0;list-style:none;font-family:"Courier Prime",monospace;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+.chase-list li{border-top:1px solid rgba(234,228,216,.25);padding:11px 0;display:flex;justify-content:space-between;gap:14px}
+.chase-list li:last-child{border-bottom:1px solid rgba(234,228,216,.25)}
+.chase-list .yr{color:var(--brass)}
+
+/* ---------- section headers ---------- */
+section{padding:clamp(52px,7.5vw,110px) 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(30px,4vw,56px)}
+h2{
+  font-family:"Fraunces",Georgia,serif;font-weight:300;
+  font-size:clamp(29px,4.1vw,54px);line-height:1.06;letter-spacing:-.02em;margin:0;
+  max-width:17ch;
+}
+h2 em{font-style:normal;font-weight:700}
+.head p{margin:0;max-width:40ch;color:var(--ink-soft);font-size:17px}
+
+/* ---------- the pieces ---------- */
+.piece{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,64px);
+  align-items:center;padding:clamp(34px,4.5vw,64px) 0;
+  border-top:1px solid rgba(23,21,15,.18);
+}
+.piece:nth-child(even) figure{order:2}
+.piece figure{margin:0}
+.piece img{width:100%;aspect-ratio:1;object-fit:cover}
+.piece h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:clamp(23px,2.6vw,34px);line-height:1.12;margin:0 0 6px;letter-spacing:-.012em}
+.piece .era{font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);margin:0 0 18px}
+.piece p{margin:0 0 18px;color:var(--ink-soft)}
+.hand{
+  background:var(--tag);border:1px solid rgba(23,21,15,.22);
+  padding:16px 18px;position:relative;max-width:38ch;
+}
+.hand::before{
+  content:"";position:absolute;top:12px;right:14px;width:9px;height:9px;
+  border-radius:50%;border:1px solid rgba(23,21,15,.4);
+}
+.hand .lbl{font-family:"Courier Prime",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+.hand .txt{font-family:"Permanent Marker",cursive;font-size:16px;line-height:1.55;color:#33291d}
+
+/* ---------- field notes ---------- */
+.notes{background:var(--bone-deep);border-top:1px solid rgba(23,21,15,.18);border-bottom:1px solid rgba(23,21,15,.18)}
+.notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.5vw,52px)}
+.note{border-top:2px solid var(--ink);padding-top:18px}
+.note .cat{font-family:"Courier Prime",monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt);margin-bottom:10px}
+.note h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:24px;line-height:1.14;margin:0 0 12px;letter-spacing:-.01em}
+.note p{margin:0 0 18px;font-size:16.5px;color:var(--ink-soft)}
+.note .take{border-left:2px solid var(--brass);padding-left:14px}
+.note .take .lbl{font-family:"Courier Prime",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+.note .take p{font-family:"Permanent Marker",cursive;font-size:15px;line-height:1.5;margin:0;color:#33291d}
+.dateline{font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- featured ---------- */
+.feat-list{border-top:1px solid rgba(23,21,15,.2)}
+.feat-item{
+  display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline;
+  border-bottom:1px solid rgba(23,21,15,.2);padding:22px 0;
+}
+.feat-item .n{font-family:"Courier Prime",monospace;font-size:12.5px;color:var(--brass);letter-spacing:.1em}
+.feat-item .t{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:clamp(19px,2.2vw,27px);letter-spacing:-.01em}
+.feat-item .c{font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- pair ---------- */
+.pair{background:var(--ink);color:var(--bone)}
+.pair h2{color:var(--bone)}
+.pair .wide{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,76px);align-items:center}
+.pair img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 30%}
+.pair p{color:#CFC7B7;max-width:44ch}
+.pair .record{border-top-color:var(--brass);color:#9E968A}
+.pair .record span::after{color:var(--brass)}
+.pair .record .amt{color:var(--bone)}
+
+/* ---------- booth strip ---------- */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.strip img{width:100%;aspect-ratio:4/5;object-fit:cover}
+
+/* ---------- find ---------- */
+.find{background:var(--cobalt);color:#fff}
+.find h2{color:#fff}
+.find .wide{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,76px);align-items:start}
+.find dl{margin:26px 0 0;display:grid;grid-template-columns:auto 1fr;gap:14px 26px}
+.find dt{font-family:"Courier Prime",monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#B9C6E8}
+.find dd{margin:0;font-size:19px}
+.find .phone{
+  font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:clamp(28px,3.6vw,44px);
+  color:#fff;text-decoration:none;display:inline-block;margin-top:30px;letter-spacing:-.02em;
+  border-bottom:2px solid rgba(255,255,255,.45);
+}
+.find .btn{border-color:#fff;color:#fff}
+.find .btn:hover,.find .btn:focus-visible{background:#fff;color:var(--cobalt)}
+.find img{width:100%;aspect-ratio:4/3;object-fit:cover}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#948C80;padding:46px 0;font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+footer .wide{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--brass)}
+
+.mocknote{background:#100F0C;color:#8E8779;font-family:"Courier Prime",monospace;font-size:12px;padding:16px 0;letter-spacing:.05em;line-height:1.6}
+.mocknote b{color:#DDD5C6}
+
+/* no scroll animation in this direction. the photographs carry it. */
+
+@media (max-width:900px){
+  .hero .wide,.piece,.pair .wide,.find .wide,.saying-grid{grid-template-columns:1fr}
+  .piece:nth-child(even) figure{order:0}
+  .notes-grid,.strip{grid-template-columns:1fr}
+  .feat-item{grid-template-columns:auto 1fr;gap:6px 18px}
+  .feat-item .c{grid-column:2}
+}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wide">
+    <div class="mark">Treasure Trove Finds</div>
+    <div class="mast-meta">Booth 18 · Paradise Antique Mall, Las Vegas · Wed + Sun, 10 to 6 · <a href="tel:+15164462693">(516) 446-2693</a></div>
+  </div>
+</header>
+
+<section class="hero" style="padding:0">
+  <div class="wide">
+    <figure>
+      <img src="../shop/bill-at-case.jpg" alt="Bill Otranto opening a tall glass display case packed with toys and glass.">
+      <div class="record">
+        <span>Booth 18</span><span>Paradise Antique Mall</span><span>Las Vegas</span><span class="amt">Bill, Wednesdays and Sundays</span>
+      </div>
+    </figure>
+    <div>
+      <p class="eyebrow">Bill and Lisa Otranto · Collecting since 1973</p>
+      <h1>Ask him about <em>anything</em> in the case.</h1>
+      <p>Most dealers write a price on the tag. Bill writes the year, the maker, the pattern, and whatever else he turned up before it went in the case. Then he hands it to you and tells you the rest out loud.</p>
+      <div class="actions">
+        <a class="btn solid" href="#find">Find the booth</a>
+        <a class="btn" href="tel:+15164462693">Call Bill</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="saying">
+  <div class="wide saying-grid">
+    <div>
+      <blockquote>“1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy diecast. Along with Christmas and Halloween from the 1920s to the 1960s.”</blockquote>
+      <div class="who">Bill Otranto, asked what he actually loves</div>
+    </div>
+    <ul class="chase-list">
+      <li><span>Pressed steel trucks</span><span class="yr">1920–50</span></li>
+      <li><span>Cast iron and diecast cars</span><span class="yr">1920–50</span></li>
+      <li><span>Lionel trains and stations</span><span class="yr">1920–50</span></li>
+      <li><span>Christmas</span><span class="yr">1920s–60s</span></li>
+      <li><span>Halloween</span><span class="yr">1920s–60s</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <h2>Three things in the case <em>this week</em></h2>
+      <p>Twenty four pieces are catalogued. Each one keeps the tag Bill wrote for it, in his handwriting, exactly as it sits in the booth.</p>
+    </div>
+  </div>
+  <div class="wrap">
+
+    <article class="piece rv">
+      <figure>
+        <img style="object-position:58% 52%" src="../photos/tag-detail.jpg" alt="Green Hubley Kiddie diecast race car, paint worn to bare metal, with Bill's handwritten tag beside it.">
+        <div class="record"><span>1930–1940s</span><span>Hubley</span><span>Diecast</span><span class="amt">$65.00</span></div>
+      </figure>
+      <div>
+        <p class="era">No. S / 457</p>
+        <h3>Hubley Kiddie race car</h3>
+        <p>Cast in the years when a toy car was expected to survive being thrown at a wall. The paint is worn through to the metal along every edge that ever met a floor, which is exactly the condition collectors now pay more for than a repaint.</p>
+        <div class="hand">
+          <div class="lbl">The tag, in Bill's hand</div>
+          <div class="txt">1930-1940’s Hubley Kiddie diecast race car #S/#457 &nbsp;$65.00</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece rv">
+      <figure>
+        <img src="../cabinet/items/teddy-school-desk.jpg" alt="Pre-war mohair teddy bear seated at a small wooden school desk.">
+        <div class="record"><span>Pre-war</span><span>Mohair</span><span>With desk</span><span class="amt">$125.00</span></div>
+      </figure>
+      <div>
+        <p class="era">Textiles and dolls</p>
+        <h3>Pre-war teddy at the school desk</h3>
+        <p>Mohair, jointed, worn thin at the muzzle where a child held it. Bill sat it at the school desk because that is how it turned up, and he has not been able to bring himself to separate the two.</p>
+        <div class="hand">
+          <div class="lbl">The tag, in Bill's hand</div>
+          <div class="txt">Pre-war teddy, mohair &nbsp;$125.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece rv">
+      <figure>
+        <img src="../cabinet/items/perfume-bottle.jpg" alt="1934 Ludwig Scherk Renaissance perfume bottle in filigree metal with a Marie Antoinette picture on the front.">
+        <div class="record"><span>1934</span><span>Ludwig Scherk</span><span>Marie Antoinette</span><span class="amt">$225.00</span></div>
+      </figure>
+      <div>
+        <p class="era">Jewelry and adornment</p>
+        <h3>Scherk “Renaissance” perfume, 1934</h3>
+        <p>Filigree metal over glass, pink cabochons at the corners, and a hand coloured Marie Antoinette portrait set into the front panel. Bill's tag names the house, the year and the picture, which is the difference between a nice old bottle and a dated one.</p>
+        <div class="hand">
+          <div class="lbl">The tag, in Bill's hand</div>
+          <div class="txt">1934 Ludwig Scherk Renaissance perfume bottle w/ Marie Antoinette picture &nbsp;$225.00</div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="notes" id="trending">
+  <div class="wrap">
+    <div class="head">
+      <h2>What is <em>moving</em> right now</h2>
+      <p class="dateline">Field notes · Updated monthly</p>
+    </div>
+    <div class="notes-grid">
+
+      <article class="note">
+        <div class="cat">Christmas</div>
+        <h3>German blown glass keeps climbing</h3>
+        <p>Ornaments from the 1920s through the 1950s have been going up steadily. Buyers want originals, not the later reproductions that copied the shapes.</p>
+        <div class="take">
+          <div class="lbl">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>Check the cap and the wire hook first. That is where the fakes give themselves up.</p>
+        </div>
+      </article>
+
+      <article class="note">
+        <div class="cat">Halloween</div>
+        <h3>Pre-1960 pulp beats anything plastic</h3>
+        <p>Demand got strong enough that new decorations are now manufactured to look old. The people hunting the real thing have gotten good at telling the difference.</p>
+        <div class="take">
+          <div class="lbl">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>German pulp jack o’ lanterns walk out the fastest. Every year, same story.</p>
+        </div>
+      </article>
+
+      <article class="note">
+        <div class="cat">Toys</div>
+        <h3>Original paint over restoration</h3>
+        <p>Buddy L, Hubley, Lionel and Tootsietoy all still trade steadily at auction. Honest wear on original paint holds its value better than a clean repaint.</p>
+        <div class="take">
+          <div class="lbl">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>A repaint kills it. I would rather have the chips and the honest wear.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <h2>Somebody brought <em>a camera</em></h2>
+      <p>The booth has turned up on a few channels. Clips and full episodes below.</p>
+    </div>
+    <!-- PLACEHOLDER: real channel names, episode titles, dates and links needed -->
+    <div class="feat-list">
+      <div class="feat-item"><span class="n">01</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
+      <div class="feat-item"><span class="n">02</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
+      <div class="feat-item"><span class="n">03</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2025</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pair">
+  <div class="wide">
+    <figure style="margin:0">
+      <img src="../shop/hero-cabinet.jpg" alt="A tall wooden display cabinet in the booth, shelves lit and packed with toys and glass.">
+      <div class="record"><span>Booth 18</span><span>Two people</span><span class="amt">Fifty three years of it</span></div>
+    </figure>
+    <div>
+      <p class="eyebrow" style="color:var(--brass)">Who you are buying from</p>
+      <h2>Bill and Lisa <em>Otranto</em></h2>
+      <p>Bill started in 1973 and never stopped. He handles the toys, the trucks, the trains, the advertising tin, and the research that ends up on every tag. If you ask him where a piece came from, plan on staying a while.</p>
+      <p>Lisa runs the other half: the glass, the jewelry, the textiles, and the part of the operation that keeps a booth full of small objects findable.</p>
+      <div class="actions">
+        <a class="btn" href="tel:+15164462693" style="border-color:var(--bone);color:var(--bone)">Call the booth</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <h2>The booth, <em>as it stands</em></h2>
+      <p>Cases on both sides, floor to ceiling, all the way to the back wall.</p>
+    </div>
+    <div class="strip">
+      <img src="../shop/hero-aisle.jpg" alt="The aisle of the booth with glass cases on both sides.">
+      <img src="../photos/signage.jpg" alt="Shelves of advertising tins, crates and old signage along the booth wall.">
+      <img src="../shop/hero-tags.jpg" alt="Close view of handwritten paper tags tied to pieces in the booth.">
+    </div>
+  </div>
+</section>
+
+<section class="find" id="find">
+  <div class="wide">
+    <div>
+      <p class="eyebrow" style="color:#B9C6E8">Find the booth</p>
+      <h2>All the way to <em>the back</em></h2>
+      <dl>
+        <dt>Where</dt><dd>Paradise Antique Mall<br>3565 E. Flamingo Rd, Las Vegas, NV 89121</dd>
+        <dt>Booth</dt><dd>Number 18</dd>
+        <dt>When</dt><dd>Wednesday and Sunday, 10 a.m. to 6 p.m.</dd>
+        <dt>Ask for</dt><dd>Bill</dd>
+      </dl>
+      <a class="phone" href="tel:+15164462693">(516) 446-2693</a>
+      <div class="actions">
+        <a class="btn" href="https://maps.google.com/?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121">Open in Maps</a>
+      </div>
+    </div>
+    <figure style="margin:0">
+      <img src="../shop/banner-aisle.jpg" alt="Wide view down the booth aisle toward the back wall.">
+      <div class="record" style="border-top-color:rgba(255,255,255,.45);color:#C6D2EE"><span>3565 E. Flamingo Rd</span><span class="amt" style="color:#fff">Booth 18</span></div>
+    </figure>
+  </div>
+</section>
+
+<footer>
+  <div class="wide">
+    <div>Treasure Trove Finds · Booth 18 · Las Vegas</div>
+    <div><a href="tel:+15164462693">(516) 446-2693</a></div>
+    <div>© 2026 Treasure Trove Finds &middot; An Otranto Labs project</div>
+  </div>
+</footer>
+
+<div class="mocknote">
+  <div class="wide"><span><b>Concept 2 · The Keeper.</b> Placeholder content in this mockup: the “As featured on” list needs real channel names, episode titles and links, and the three “Bill's take” lines need Bill's actual words. The piece descriptions are drafted and need his sign off. Photos, prices and tag transcriptions are real.</span></div>
+</div>
+
+</body>
+</html>

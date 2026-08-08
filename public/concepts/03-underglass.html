@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treasure Trove Finds — Concept 3: Under Glass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Barlow+Condensed:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cabinet:#100D0B;
+  --walnut:#2A2018;
+  --walnut-lit:#3A2C20;
+  --glass:#161C1A;
+  --glow:#F3D9A4;
+  --brass:#C9A227;
+  --brass-dim:#8A6F1E;
+  --red:#B3282A;
+  --bone:#E6DFD2;
+  --bone-dim:#9C9384;
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--cabinet);color:var(--bone);
+  font-family:"Lora",Georgia,serif;font-size:17.5px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--brass)}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--pad)}
+
+.label{
+  font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
+  letter-spacing:.22em;font-size:12.5px;font-weight:600;color:var(--brass);
+}
+.mono{font-family:"Space Mono",monospace;font-size:12.5px;letter-spacing:.06em}
+
+/* ---------- brass rail ---------- */
+.rail{
+  border-bottom:1px solid rgba(201,162,39,.32);
+  background:linear-gradient(180deg,#191411,#120E0C);
+}
+.rail .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:13px;padding-bottom:13px}
+.rail .mono{color:var(--bone-dim)}
+.rail a{text-decoration:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid rgba(201,162,39,.25)}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 80% at 72% 42%, rgba(243,217,164,.16), transparent 62%);
+}
+.hero .wrap{
+  position:relative;display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(28px,5vw,80px);align-items:center;
+  padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(48px,7vw,96px);
+}
+h1{
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:400;
+  font-size:clamp(40px,6.4vw,86px);line-height:1.02;letter-spacing:-.012em;
+  margin:22px 0 0;color:var(--bone);
+}
+h1 em{font-style:italic;color:var(--brass)}
+.hero p.sub{color:var(--bone-dim);max-width:40ch;font-size:19px;margin:26px 0 0}
+.actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}
+.btn{
+  font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.16em;
+  font-size:14px;font-weight:600;padding:14px 26px;text-decoration:none;
+  border:1px solid var(--brass);color:var(--brass);background:transparent;
+  transition:background .18s ease,color .18s ease;
+}
+.btn:hover,.btn:focus-visible{background:var(--brass);color:var(--cabinet)}
+.btn.solid{background:var(--brass);color:var(--cabinet)}
+.btn.solid:hover,.btn.solid:focus-visible{background:var(--bone);border-color:var(--bone)}
+
+/* the hero case: a lit cabinet with glass over it */
+.vitrine{
+  position:relative;border:12px solid var(--walnut);
+  box-shadow:0 0 0 1px rgba(201,162,39,.3), 0 40px 70px -30px #000;
+  background:var(--glass);
+}
+.vitrine img{width:100%;aspect-ratio:3/4;object-fit:cover}
+/* glass: a sheen that tracks the pointer */
+.vitrine::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,
+    transparent 0%,
+    rgba(255,255,255,.10) calc(var(--sheen,50%) - 16%),
+    rgba(255,255,255,.16) var(--sheen,50%),
+    rgba(255,255,255,.05) calc(var(--sheen,50%) + 12%),
+    transparent 62%);
+  transition:background .12s linear;
+}
+.plaque{
+  position:absolute;left:-14px;bottom:26px;background:linear-gradient(180deg,var(--brass),#9C7C18);
+  color:#171106;padding:9px 18px;font-family:"Barlow Condensed",sans-serif;
+  text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:13px;
+  box-shadow:0 6px 18px -6px #000;
+}
+
+/* ---------- placard (bill's words) ---------- */
+.placard-sec{background:var(--walnut);border-bottom:1px solid rgba(201,162,39,.25)}
+.placard{
+  border:1px solid var(--brass-dim);padding:clamp(28px,4vw,54px);
+  background:linear-gradient(180deg,rgba(243,217,164,.05),transparent);
+  display:grid;grid-template-columns:1.35fr .65fr;gap:clamp(26px,4vw,60px);align-items:center;
+}
+blockquote{
+  margin:0;font-family:"Bodoni Moda",Georgia,serif;font-style:italic;font-weight:400;
+  font-size:clamp(22px,3.1vw,38px);line-height:1.24;color:var(--bone);max-width:22ch;
+}
+.attrib{margin-top:26px}
+.attrib .mono{color:var(--brass);display:block;letter-spacing:.14em;text-transform:uppercase}
+.chases{list-style:none;margin:0;padding:0}
+.chases li{
+  display:flex;justify-content:space-between;gap:14px;
+  border-bottom:1px solid rgba(201,162,39,.22);padding:11px 0;
+  font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:15px;
+}
+.chases li:first-child{border-top:1px solid rgba(201,162,39,.22)}
+.chases .yr{color:var(--brass);font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0}
+
+/* ---------- sections ---------- */
+section{padding:clamp(56px,7.5vw,110px) 0}
+.head{margin-bottom:clamp(30px,4vw,54px)}
+h2{
+  font-family:"Bodoni Moda",Georgia,serif;font-weight:400;
+  font-size:clamp(30px,4.6vw,58px);line-height:1.06;margin:10px 0 0;color:var(--bone);
+}
+h2 em{font-style:italic;color:var(--brass)}
+.head p{color:var(--bone-dim);max-width:52ch;margin:16px 0 0}
+
+/* ---------- THE CASE: the signature ---------- */
+.case{border:14px solid var(--walnut);background:var(--glass);box-shadow:0 0 0 1px rgba(201,162,39,.25), 0 50px 80px -40px #000;padding:0}
+.shelf{position:relative;border-bottom:1px solid rgba(201,162,39,.22)}
+.shelf:last-child{border-bottom:0}
+/* the shelf lamp */
+.shelf::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:100%;pointer-events:none;
+  background:linear-gradient(180deg, rgba(243,217,164,.20), rgba(243,217,164,.02) 55%, transparent);
+  opacity:0;transition:opacity .45s ease;
+}
+.shelf.lit::before{opacity:.55}
+.shelf:hover::before,.shelf:focus-within::before{opacity:1}
+.shelf-inner{position:relative;display:grid;grid-template-columns:repeat(4,1fr);z-index:1}
+.obj{
+  position:relative;display:block;text-align:left;background:transparent;border:0;
+  border-right:1px solid rgba(201,162,39,.14);padding:0;cursor:pointer;color:inherit;
+  font:inherit;overflow:hidden;
+}
+.obj:last-child{border-right:0}
+.obj img{
+  width:100%;aspect-ratio:1;object-fit:cover;
+  filter:brightness(.5) saturate(.75) contrast(1.02);
+  transition:filter .45s ease, transform .6s cubic-bezier(.2,.8,.3,1);
+}
+.shelf.lit .obj img{filter:brightness(.78) saturate(.92)}
+.obj:hover img,.obj:focus-visible img{filter:brightness(1.04) saturate(1.05);transform:scale(1.04)}
+/* the record slides up out of the shelf */
+.obj .rec{
+  position:absolute;left:0;right:0;bottom:0;
+  background:linear-gradient(180deg,rgba(16,13,11,0),rgba(16,13,11,.94) 42%);
+  padding:44px 15px 15px;transform:translateY(calc(100% - 70px));
+  transition:transform .42s cubic-bezier(.2,.8,.3,1);
+}
+.obj .rec > span{display:block}
+.obj:hover .rec,.obj:focus-visible .rec{transform:translateY(0)}
+.obj .nm{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:15.5px;font-weight:600;line-height:1.18;color:var(--bone)}
+.obj .er{font-family:"Space Mono",monospace;font-size:11px;color:var(--brass);letter-spacing:.04em;margin-top:3px}
+.obj .tg{font-family:"Permanent Marker",cursive;font-size:13.5px;color:#CFC3AC;line-height:1.45;margin-top:11px}
+.obj .pr{font-family:"Bodoni Moda",Georgia,serif;font-size:21px;color:#fff;margin-top:9px}
+.case-note{margin-top:18px;color:var(--bone-dim);font-size:15px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+/* ---------- moving ---------- */
+.moving{background:var(--walnut)}
+.mv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.4vw,52px)}
+.mv{border-top:1px solid var(--brass-dim);padding-top:20px}
+.mv h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:400;font-size:25px;line-height:1.14;margin:12px 0 12px}
+.mv p{color:#BDB3A2;font-size:16.5px;margin:0 0 18px}
+.mv .take{background:rgba(0,0,0,.28);border-left:2px solid var(--brass);padding:13px 15px}
+.mv .take .who{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:11.5px;color:var(--brass);margin-bottom:6px}
+.mv .take p{font-family:"Permanent Marker",cursive;font-size:14.5px;color:#DDD2BD;margin:0;line-height:1.5}
+
+/* ---------- featured ---------- */
+.feat{border-top:1px solid rgba(201,162,39,.3)}
+.feat-row{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(201,162,39,.18)}
+.feat-row .n{font-family:"Space Mono",monospace;font-size:12px;color:var(--brass-dim)}
+.feat-row .t{font-family:"Bodoni Moda",Georgia,serif;font-size:clamp(19px,2.2vw,28px)}
+.feat-row .c{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;color:var(--bone-dim)}
+
+/* ---------- counter ---------- */
+.counter .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,76px);align-items:center}
+.counter figure{margin:0;position:relative;border:10px solid var(--walnut);box-shadow:0 0 0 1px rgba(201,162,39,.25)}
+.counter img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 32%}
+.counter p{color:#BDB3A2;max-width:44ch}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:30px}
+.stats div{border-left:1px solid var(--brass);padding-left:15px}
+.stats .k{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:11.5px;color:var(--brass)}
+.stats .v{font-family:"Bodoni Moda",Georgia,serif;font-size:26px;color:var(--bone)}
+
+/* ---------- find ---------- */
+.find{background:var(--walnut);border-top:1px solid rgba(201,162,39,.28)}
+.find .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,76px);align-items:start}
+.brassplate{
+  border:1px solid var(--brass);background:linear-gradient(180deg,rgba(243,217,164,.07),transparent);
+  padding:clamp(26px,3.4vw,42px);
+}
+.brassplate dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:14px 28px}
+.brassplate dt{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.18em;font-size:11.5px;color:var(--brass)}
+.brassplate dd{margin:0;font-size:18px}
+.phone{
+  font-family:"Bodoni Moda",Georgia,serif;font-size:clamp(28px,3.5vw,42px);
+  color:var(--bone);text-decoration:none;display:inline-block;margin-top:28px;
+  border-bottom:1px solid var(--brass);
+}
+.find figure{margin:0;border:10px solid var(--cabinet)}
+.find img{width:100%;aspect-ratio:4/3;object-fit:cover}
+
+footer{background:var(--cabinet);border-top:1px solid rgba(201,162,39,.25);padding:42px 0;color:var(--bone-dim)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .fm{font-family:"Bodoni Moda",Georgia,serif;font-size:21px;color:var(--bone)}
+
+.mocknote{background:#0A0908;color:#7C7466;font-family:"Space Mono",monospace;font-size:11.5px;padding:16px 0;line-height:1.7}
+.mocknote b{color:#C0B7A6}
+
+@media (max-width:1000px){
+  .shelf-inner{grid-template-columns:repeat(2,1fr)}
+  .obj:nth-child(2n){border-right:0}
+}
+@media (max-width:900px){
+  .hero .wrap,.placard,.mv-grid,.counter .wrap,.find .wrap{grid-template-columns:1fr}
+  /* no hover on touch, so the record sits under the photo instead of over it */
+  .obj .rec{position:static;transform:none;background:rgba(0,0,0,.34);padding:14px 15px 16px}
+  .obj img{filter:brightness(.92) saturate(1);aspect-ratio:4/3}
+  .obj{border-bottom:1px solid rgba(201,162,39,.14)}
+  .feat-row{grid-template-columns:auto 1fr;gap:6px 20px}
+  .feat-row .c{grid-column:2}
+}
+@media (max-width:700px){
+  .shelf-inner{grid-template-columns:1fr}
+  .obj{border-right:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="rail">
+  <div class="wrap">
+    <span class="mono">Booth 18 · Paradise Antique Mall · 3565 E. Flamingo Rd, Las Vegas</span>
+    <span class="mono">Wed + Sun, 10 to 6 · <a href="tel:+15164462693">(516) 446-2693</a></span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="label">Bill and Lisa Otranto · Collecting since 1973</span>
+      <h1>Treasure Trove <em>Finds</em></h1>
+      <p class="sub">A booth full of glass cases on East Flamingo. Tin toys, cast iron trucks, Lionel trains, old advertising, and Christmas that predates your grandmother. Every piece carries a tag with the history written on it by hand.</p>
+      <div class="actions">
+        <a class="btn solid" href="#case">Look in the case</a>
+        <a class="btn" href="tel:+15164462693">Call Bill</a>
+      </div>
+    </div>
+    <div class="vitrine" id="vitrine">
+      <img src="../photos/case-buddy-l-trucks.jpg" alt="A tall glass case lit from above, filled with red fire engines and pressed steel trucks.">
+      <div class="plaque">Case 1A · Trucks</div>
+    </div>
+  </div>
+</header>
+
+<section class="placard-sec">
+  <div class="wrap">
+    <div class="placard">
+      <div>
+        <span class="label">What Bill collects</span>
+        <blockquote>“1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy diecast. Along with Christmas and Halloween from the 1920s to the 1960s.”</blockquote>
+        <div class="attrib"><span class="mono">Bill Otranto, asked what he actually loves</span></div>
+      </div>
+      <ul class="chases">
+        <li><span>Pressed steel trucks</span><span class="yr">1920–50</span></li>
+        <li><span>Diecast and cast iron cars</span><span class="yr">1920–50</span></li>
+        <li><span>Lionel trains</span><span class="yr">1920–50</span></li>
+        <li><span>Christmas</span><span class="yr">1920s–60s</span></li>
+        <li><span>Halloween</span><span class="yr">1920s–60s</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="case">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">The case</span>
+      <h2>Move along the shelf and <em>the light follows</em></h2>
+      <p>Twenty four pieces are catalogued from the booth. Point at any one to bring the light up and read the tag Bill tied to it.</p>
+    </div>
+
+    <div class="case">
+      <div class="shelf" data-shelf>
+        <div class="shelf-inner">
+
+          <button class="obj" type="button">
+            <img style="object-position:58% 52%" src="../photos/tag-detail.jpg" alt="Green Hubley Kiddie diecast race car with worn paint and Bill's handwritten tag beside it.">
+            <span class="rec">
+              <span class="nm">Hubley Kiddie race car</span>
+              <span class="er">1930–1940s · No. S/457</span>
+              <span class="tg">1930-1940’s Hubley Kiddie diecast race car #S/#457</span>
+              <span class="pr">$65.00</span>
+            </span>
+          </button>
+
+          <button class="obj" type="button">
+            <img src="../shop/record-bluebottle.jpg" alt="Large dark cobalt glass apothecary jar with a handwritten tag tied to its neck.">
+            <span class="rec">
+              <span class="nm">Cobalt apothecary jar</span>
+              <span class="er">Antique · No. 233</span>
+              <span class="tg">Apothecary jar, chemists jar, dark cobalt glass</span>
+              <span class="pr">$160.00</span>
+            </span>
+          </button>
+
+          <button class="obj" type="button">
+            <img src="../shop/record-locks.jpg" alt="Antique brass railway signal padlock with key on a display shelf.">
+            <span class="rec">
+              <span class="nm">E.T. Fraim signal lock</span>
+              <span class="er">Railway brass · w/ key</span>
+              <span class="tg">Antique E.T. Fraim Co. Railway Signal Co. lock, brass w/ key</span>
+              <span class="pr">$65.00</span>
+            </span>
+          </button>
+
+          <button class="obj" type="button">
+            <img src="../shop/record-crocks.jpg" alt="Stoneware crock jugs on a lit glass shelf with handwritten tags.">
+            <span class="rec">
+              <span class="nm">Stoneware crock jug</span>
+              <span class="er">1900–10</span>
+              <span class="tg">Stoneware jug. Old handle. Crackle</span>
+              <span class="pr">$75.00</span>
+            </span>
+          </button>
+
+        </div>
+      </div>
+
+      <div class="shelf" data-shelf>
+        <div class="shelf-inner">
+
+          <button class="obj" type="button">
+            <img src="../cabinet/items/teddy-school-desk.jpg" alt="Pre-war mohair teddy bear at a wooden school desk.">
+            <span class="rec">
+              <span class="nm">Teddy at the school desk</span>
+              <span class="er">Pre-war · Mohair</span>
+              <span class="tg">Pre-war teddy, mohair, sat at the desk</span>
+              <span class="pr">$125.00</span>
+            </span>
+          </button>
+
+          <button class="obj" type="button">
+            <img src="../cabinet/items/perfume-bottle.jpg" alt="1934 Ludwig Scherk Renaissance perfume bottle with a Marie Antoinette picture on the front.">
+            <span class="rec">
+              <span class="nm">Scherk “Renaissance”</span>
+              <span class="er">1934 · Ludwig Scherk</span>
+              <span class="tg">1934 Ludwig Scherk Renaissance perfume bottle w/ Marie Antoinette picture</span>
+              <span class="pr">$225.00</span>
+            </span>
+          </button>
+
+          <button class="obj" type="button">
+            <img src="../shop/record-buckle.jpg" alt="America's Firefighters pewter belt buckle on a black display shelf.">
+            <span class="rec">
+              <span class="nm">America’s Firefighters</span>
+              <span class="er">Belt buckle</span>
+              <span class="tg">Ever ready, ever willing</span>
+              <span class="pr">$34.00</span>
+            </span>
+          </button>
+
+          <button class="obj" type="button">
+            <img src="../shop/piece-ge-fan.jpg" alt="Cast iron General Electric oscillating fan with black steel blades and the GE badge.">
+            <span class="rec">
+              <span class="nm">GE oscillating fan</span>
+              <span class="er">Cast iron</span>
+              <span class="tg">General Electric, cast iron, steel blades</span>
+              <span class="pr">Ask in person</span>
+            </span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="case-note">
+      <span class="mono">Case 1A and 1B · Booth 18</span>
+      <span class="mono">Prices as tagged. If it sold, Bill will tell you what it went for.</span>
+    </div>
+  </div>
+</section>
+
+<section class="moving" id="trending">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">What is moving</span>
+      <h2>The market, from <em>behind the counter</em></h2>
+    </div>
+    <div class="mv-grid">
+
+      <article class="mv">
+        <span class="label" style="color:var(--bone-dim)">Christmas</span>
+        <h3>German blown glass keeps climbing</h3>
+        <p>Ornaments from the 1920s through the 1950s have been going up steadily. Buyers want originals, not the later reproductions that copied the shapes.</p>
+        <div class="take">
+          <div class="who">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>Check the cap and the wire hook first. That is where the fakes give themselves up.</p>
+        </div>
+      </article>
+
+      <article class="mv">
+        <span class="label" style="color:var(--bone-dim)">Halloween</span>
+        <h3>Pre-1960 pulp beats anything plastic</h3>
+        <p>Demand got strong enough that new decorations are manufactured to look old. The people hunting the real thing have gotten good at telling the difference.</p>
+        <div class="take">
+          <div class="who">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>German pulp jack o’ lanterns walk out the fastest. Every year, same story.</p>
+        </div>
+      </article>
+
+      <article class="mv">
+        <span class="label" style="color:var(--bone-dim)">Toys</span>
+        <h3>Original paint over restoration</h3>
+        <p>Buddy L, Hubley, Lionel and Tootsietoy all still trade steadily at auction. Honest wear on original paint holds value better than a clean repaint.</p>
+        <div class="take">
+          <div class="who">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>A repaint kills it. I would rather have the chips and the honest wear.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <span class="label">As featured on</span>
+      <h2>Somebody brought <em>a camera</em></h2>
+    </div>
+    <!-- PLACEHOLDER: real channel names, episode titles, dates and links needed -->
+    <div class="feat">
+      <div class="feat-row"><span class="n">01</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
+      <div class="feat-row"><span class="n">02</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
+      <div class="feat-row"><span class="n">03</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2025</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="counter">
+  <div class="wrap">
+    <figure>
+      <img src="../shop/bill-at-case.jpg" alt="Bill Otranto opening the door of a tall glass display case in his booth.">
+    </figure>
+    <div>
+      <span class="label">Behind the counter</span>
+      <h2>Bill knows where <em>every piece came from</em></h2>
+      <p>He started in 1973 and has not stopped since. Most dealers write a price on the tag. Bill writes the year, the maker, the pattern, and whatever else he dug up, then ties it on by hand.</p>
+      <p>Lisa runs the other half of the booth: the glass, the jewelry, the textiles, and the organizing that keeps a case full of small objects findable.</p>
+      <div class="stats">
+        <div><div class="k">In the booth</div><div class="v">Wed + Sun</div></div>
+        <div><div class="k">Hours</div><div class="v">10 to 6</div></div>
+        <div><div class="k">Since</div><div class="v">1973</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="find" id="find">
+  <div class="wrap">
+    <div class="brassplate">
+      <span class="label">Find the booth</span>
+      <h2 style="margin-bottom:22px">Booth 18, <em>at the back</em></h2>
+      <dl>
+        <dt>Where</dt><dd>Paradise Antique Mall<br>3565 E. Flamingo Rd<br>Las Vegas, NV 89121</dd>
+        <dt>When</dt><dd>Wednesday and Sunday, 10 a.m. to 6 p.m.</dd>
+        <dt>Ask for</dt><dd>Bill</dd>
+      </dl>
+      <a class="phone" href="tel:+15164462693">(516) 446-2693</a>
+      <div class="actions">
+        <a class="btn" href="https://maps.google.com/?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121">Open in Maps</a>
+      </div>
+    </div>
+    <figure>
+      <img src="../shop/hero-aisle.jpg" alt="The aisle of the booth with glass cases on both sides packed with toys, tins and glass.">
+    </figure>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fm">Treasure Trove Finds</div>
+    <div class="mono">Booth 18 · Paradise Antique Mall · Las Vegas · <a href="tel:+15164462693">(516) 446-2693</a></div>
+    <div class="mono">© 2026 Treasure Trove Finds &middot; An Otranto Labs project</div>
+  </div>
+</footer>
+
+<div class="mocknote">
+  <div class="wrap"><span><b>Concept 3 · Under Glass.</b> Placeholder content in this mockup: the “As featured on” rows need real channel names, episode titles and links, and the three “Bill's take” lines need Bill's actual words. Photos, prices and tag transcriptions are real.</span></div>
+</div>
+
+<script>
+  // the glass sheen tracks the pointer across the hero case
+  const vitrine = document.getElementById('vitrine');
+  if (vitrine && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    vitrine.addEventListener('pointermove', (e) => {
+      const r = vitrine.getBoundingClientRect();
+      vitrine.style.setProperty('--sheen', (((e.clientX - r.left) / r.width) * 100).toFixed(1) + '%');
+    });
+  }
+
+  // shelf lamps come up in sequence the first time the case is reached
+  const shelves = [...document.querySelectorAll('[data-shelf]')];
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      const i = shelves.indexOf(e.target);
+      setTimeout(() => e.target.classList.add('lit'), i * 260);
+      io.unobserve(e.target);
+    }
+  }, { rootMargin: '0px 0px -18% 0px' });
+  shelves.forEach((s) => io.observe(s));
+</script>
+</body>
+</html>
