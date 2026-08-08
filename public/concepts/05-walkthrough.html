@@ -320,6 +320,16 @@ p{margin:0 0 1em}
 .bigphone{display:inline-flex;align-items:center;min-height:60px;font-size:29px;font-weight:600;
   color:#F4E9D2;text-decoration:none;border-bottom:2px solid var(--brass-lit)}
 .find-grid img{width:100%;aspect-ratio:4/3;object-fit:cover}
+/* used by the find section below the room */
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:54px;padding:0 22px;text-decoration:none;
+  border:2px solid var(--ink);color:var(--ink);background:transparent;
+  font-family:inherit;font-size:16.5px;cursor:pointer;
+  transition:background .16s ease,color .16s ease;
+}
+.btn:hover,.btn:focus-visible{background:var(--brass-lit);color:var(--ink);border-color:var(--brass-lit)}
 .sitefoot{background:#100A05;color:#8E8067;padding:26px 0 34px;font-size:15px}
 .sitefoot .wrap{max-width:1100px;margin:0 auto;padding:0 var(--pad)}
 .sitefoot a{color:var(--brass-lit)}
