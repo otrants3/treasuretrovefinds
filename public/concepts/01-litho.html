@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Treasure Trove Finds, Booth 18 at Paradise Antique Mall, Las Vegas. Tin toys, cast iron trucks, old glass and Christmas that predates your grandmother.">
+<link rel="icon" href="../favicon.svg">
 <title>Treasure Trove Finds · Concept 1: The Litho</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +68,11 @@ a{color:inherit}
   font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   font-size:13px;padding:9px 0;overflow:hidden;white-space:nowrap;
 }
-.ticker span{display:inline-block;padding-right:2.5rem}
+/* two identical halves sliding left by exactly half: a seamless loop */
+.ticker-track{display:inline-block;white-space:nowrap;animation:tick 60s linear infinite}
+.ticker-track span{display:inline-block;padding-right:2.5rem}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
 
 /* ---------- hero ---------- */
 .hero{
@@ -291,7 +297,7 @@ footer a{color:var(--yellow)}
 </head>
 <body>
 
-<div class="ticker" aria-hidden="true"><span>Booth No. 18 · Paradise Antique Mall · 3565 E. Flamingo Rd, Las Vegas · Wednesday + Sunday, 10 to 6 · (516) 446-2693 · Booth No. 18 · Paradise Antique Mall · 3565 E. Flamingo Rd, Las Vegas · Wednesday + Sunday, 10 to 6</span></div>
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Booth No. 18 · Paradise Antique Mall · 3565 E. Flamingo Rd, Las Vegas · Wednesday + Sunday, 10 to 6 · (516) 446-2693 ·</span><span>Booth No. 18 · Paradise Antique Mall · 3565 E. Flamingo Rd, Las Vegas · Wednesday + Sunday, 10 to 6 · (516) 446-2693 ·</span></div></div>
 
 <header class="hero">
   <div class="wrap">
@@ -487,6 +493,39 @@ footer a{color:var(--yellow)}
     </a>
     <!-- PLACEHOLDER: more appearances drop in here in the same shape -->
     <p style="margin-top:16px;font-size:15.5px">More on the way. If you filmed at the booth and want it listed, call Bill.</p>
+  </div>
+</section>
+
+<section class="shops-sec" id="shops">
+<style>
+.shops-sec{background:var(--paper-deep);border-top:8px solid var(--ink)}
+.shops{display:grid;grid-template-columns:1fr;gap:18px;margin-top:36px}
+@media(min-width:820px){.shops{grid-template-columns:1fr 1fr}}
+.shopcard{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--paper);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:22px 22px 24px}
+.shopcard .k{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:13px;font-weight:700;color:var(--red)}
+.shopcard .big{font-family:"Ultra",Georgia,serif;font-size:clamp(20px,2.6vw,28px);line-height:1.15;margin:8px 0 10px}
+.shopcard p{margin:0 0 18px;font-size:15.5px}
+.shopcard .go{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;min-height:48px;padding:0 20px;background:var(--yellow);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:15px}
+.shopcard:hover .go,.shopcard:focus-visible .go{background:var(--red);color:var(--paper)}
+</style>
+  <div class="wrap">
+    <p class="eyebrow">Beyond the booth</p>
+    <h2>Can't get to Vegas?</h2>
+    <p class="lede">Two more doors, both open every day.</p>
+    <div class="shops">
+      <a class="shopcard" href="https://www.etsy.com/shop/ttrovefinds">
+        <span class="k">Etsy · ttrovefinds</span>
+        <span class="big">5.0 stars across 63 reviews</span>
+        <p>183 sales and eight years on Etsy. A small shelf of pieces that ship, and Bill will list what you ask him to.</p>
+        <span class="go">See the Etsy shop</span>
+      </a>
+      <a class="shopcard" href="https://www.instagram.com/treasuretrovefinds/">
+        <span class="k">Instagram · @treasuretrovefinds</span>
+        <span class="big">New finds, as they come in</span>
+        <p>229 posts of pieces and booth walks, before anything makes it to a shelf online.</p>
+        <span class="go">Follow along</span>
+      </a>
+    </div>
   </div>
 </section>
 

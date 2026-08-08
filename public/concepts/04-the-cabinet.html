@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The whole booth lives in the cabinets. Open them one shelf at a time and read the tag Bill wrote for every piece.">
+<link rel="icon" href="../favicon.svg">
 <title>Treasure Trove Finds · Concept 4: The Cabinet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -724,6 +726,40 @@ footer a{color:var(--ink-soft);display:inline-block;min-height:44px;padding:11px
   </section>
 
   <!-- ---------- find ---------- -->
+  <section class="shops-sec" id="shops">
+<style>
+.shops-sec{background:var(--page-deep);padding:44px 0}
+@media(min-width:760px){.shops-sec{padding:76px 0}}
+.shops{display:grid;grid-template-columns:1fr;gap:14px;margin-top:26px}
+@media(min-width:760px){.shops{grid-template-columns:1fr 1fr;gap:20px}}
+.shopcard{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--paper);border:1px solid rgba(78,50,24,.32);padding:22px 22px 24px;transition:border-color .18s ease}
+.shopcard:hover,.shopcard:focus-visible{border-color:var(--brass)}
+.shopcard .k{font-family:"Cinzel",Georgia,serif;text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:600;color:var(--brass)}
+.shopcard .big{font-size:24px;font-weight:600;line-height:1.2;margin:8px 0 10px}
+.shopcard p{margin:0 0 18px;font-size:17px;color:var(--ink-soft)}
+.shopcard .go{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;min-height:50px;padding:0 20px;background:var(--ink);color:var(--page);font-size:16px}
+.shopcard:hover .go,.shopcard:focus-visible .go{background:var(--red)}
+</style>
+    <div class="wrap">
+      <p class="label">Beyond the booth</p>
+      <h2 style="font-size:clamp(26px,6.4vw,42px);margin-bottom:4px">Can't get to Vegas?</h2>
+      <div class="shops">
+        <a class="shopcard" href="https://www.etsy.com/shop/ttrovefinds">
+          <span class="k">Etsy · ttrovefinds</span>
+          <span class="big">5.0 stars across 63 reviews</span>
+          <p>183 sales and eight years on Etsy. A small shelf of pieces that ship, and Bill will list what you ask him to.</p>
+          <span class="go">See the Etsy shop</span>
+        </a>
+        <a class="shopcard" href="https://www.instagram.com/treasuretrovefinds/">
+          <span class="k">Instagram · @treasuretrovefinds</span>
+          <span class="big">New finds, as they come in</span>
+          <p>229 posts of pieces and booth walks, before anything makes it to a shelf online.</p>
+          <span class="go">Follow along</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="find" id="find">
     <div class="wrap">
       <div class="find-grid">
@@ -978,6 +1014,11 @@ footer a{color:var(--ink-soft);display:inline-block;min-height:44px;padding:11px
     if (has('where', 'address', 'directions', 'located', 'find you', 'parking')) {
       return '<p>Booth 18 at Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas, NV 89121. All the way to the back. ' +
              '<a href="https://maps.google.com/?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121">Open it in Maps</a>.</p>';
+    }
+    /* the episode comes before the who-is check, since both mention Bill */
+    if (has('youtube', 'video', 'picker', 'episode', 'filmed', 'featured', 'camera', 'watch')) {
+      return '<p>Yes. Picker Road filmed at the booth. Bill and Lisa are on from 14:23 to 29:50, with a long walk through the cases. ' +
+             '<a href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&t=862s">Watch their part on YouTube</a>.</p>';
     }
     if (has('who is', 'who are', 'bill', 'lisa', 'story', 'how did', 'about you')) {
       return '<p>Bill and Lisa Otranto. Bill has been collecting since 1973 and handles the toys, the trucks, the trains and the research that ends up on every tag. ' +

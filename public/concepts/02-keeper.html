@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Bill Otranto has been collecting since 1973. Every piece in Booth 18 carries a tag with the history written in his hand.">
+<link rel="icon" href="../favicon.svg">
 <title>Treasure Trove Finds · Concept 2: The Keeper</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,7 +161,15 @@ h2 em{font-style:normal;font-weight:700}
 .ep{display:grid;grid-template-columns:1fr;gap:clamp(22px,3vw,44px);text-decoration:none;color:inherit;
   border-top:1px solid rgba(23,21,15,.2);padding-top:clamp(24px,3vw,40px);align-items:center}
 .ep figure{margin:0}
-.ep img{width:100%;aspect-ratio:16/9;object-fit:cover}
+/* the episode thumbnail is loud and this design is not. filed as an
+   archival print: it takes its colour back when you reach for it */
+.ep img{
+  width:100%;aspect-ratio:16/9;object-fit:cover;
+  filter:grayscale(1) sepia(.14) contrast(.96);
+  transition:filter .4s ease;
+}
+.ep:hover img,.ep:focus-visible img{filter:none}
+@media (prefers-reduced-motion:reduce){.ep img{transition:none}}
 .ep h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:clamp(24px,3vw,38px);line-height:1.1;margin:0 0 12px;letter-spacing:-.014em}
 .ep .era{font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);margin:0 0 14px}
 .ep-body p{color:var(--ink-soft);margin:0 0 20px}
@@ -396,6 +406,39 @@ footer a{color:var(--brass)}
     </a>
     <!-- PLACEHOLDER: more appearances drop in here in the same shape -->
     <p style="margin-top:22px;color:var(--ink-soft);font-size:16.5px">More on the way. If you filmed at the booth and want it listed, call Bill.</p>
+  </div>
+</section>
+
+<section class="shops-sec" id="shops">
+<style>
+.shops-sec{background:var(--bone-deep);border-top:1px solid rgba(23,21,15,.18)}
+.shops{display:grid;grid-template-columns:1fr;gap:clamp(24px,3.5vw,52px);margin-top:34px}
+@media(min-width:820px){.shops{grid-template-columns:1fr 1fr}}
+.shopcard{display:flex;flex-direction:column;text-decoration:none;color:inherit;border-top:2px solid var(--ink);padding-top:18px}
+.shopcard h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:26px;line-height:1.14;margin:10px 0 12px;letter-spacing:-.01em}
+.shopcard p{margin:0 0 18px;font-size:16.5px;color:var(--ink-soft)}
+.shopcard .go{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;min-height:50px;padding:0 22px;background:var(--cobalt);color:#fff;font-family:"Courier Prime",monospace;text-transform:uppercase;letter-spacing:.11em;font-size:13px;font-weight:700}
+.shopcard:hover .go,.shopcard:focus-visible .go{background:var(--ink)}
+</style>
+  <div class="wrap">
+    <div class="head">
+      <h2>Two more <em>doors</em></h2>
+      <p>For anyone who cannot get to the booth. Both open every day.</p>
+    </div>
+    <div class="shops">
+      <a class="shopcard" href="https://www.etsy.com/shop/ttrovefinds">
+        <div class="record"><span>Etsy · ttrovefinds</span><span>8 years</span><span>183 sales</span><span class="amt">5.0 across 63 reviews</span></div>
+        <h3>The shelf that ships</h3>
+        <p>A small, careful selection of pieces that travel well. Sixty three reviews, not one below five stars, and Bill will list what you ask him to.</p>
+        <span class="go">See the Etsy shop</span>
+      </a>
+      <a class="shopcard" href="https://www.instagram.com/treasuretrovefinds/">
+        <div class="record"><span>Instagram</span><span>@treasuretrovefinds</span><span class="amt">229 posts</span></div>
+        <h3>The finds, as they happen</h3>
+        <p>New pieces and booth walks, posted before anything makes it to a shelf online.</p>
+        <span class="go">Follow along</span>
+      </a>
+    </div>
   </div>
 </section>
 
