@@ -43,7 +43,35 @@ everything is locked.
 
 Price band seen on camera: roughly $25 to $100.
 
-## A clip of Bill speaking exists but is locked
+## Bill's voice, finally on tape
+
+The clip is downloaded (docs/bill-clip.mp4, kept out of git) and transcribed at
+docs/bill-clip-transcript.txt. Filmed inside the mall with the owner presenting
+Bill to a group. This IS a voice source. What it shows:
+
+- **He helped build the mall itself.** The owner ran out of labor during the
+  build and Bill screwed the booth walls together. "There's 84 booths here."
+  Now in the story section of all five designs.
+- **How he talks:** short factual sentences anchored on dates and makers.
+  "Marx is they were 1919, that's when they first came into play."
+  "This was made in 1928. Of course, Charles Lindbergh's flight was in 1927."
+  "On auction, recent auction prices, it sold for $450."
+  "This piece is not a reproduction, it is original, and it's in great shape."
+  He explains mechanisms ("it's on a spring... the plane would come out") and
+  defines terms plainly ("it's a pottery. It's not a porcelain because a
+  porcelain would be glazed").
+- **His own mission statement, verbatim:** "I like to branch out because I
+  learn the history of something when I learn about it. Because I can study it
+  and then I'm pretty good at it." And: "we're a shop here of just a mixture
+  of everything."
+- Inventory seen: Gescha Spirit of St. Louis wind-up (Germany, 1928, ~$450 at
+  recent auction), Marx March of the Wooden Soldiers wind-ups, Amelia Earhart
+  celluloid, bisque penny dolls (Japan the most famous maker, hand painted,
+  from 1880; he bought a collection upstate New York), Gilbert, Hubley, Buddy L.
+- Copy rule going forward: every "Bill says" line on the site gets rewritten
+  against this transcript's cadence, or replaced with a real quote from it.
+
+## An earlier Facebook link to a clip was locked (superseded, clip obtained)
 
 A.J. shared a Facebook clip of Bill talking: https://www.facebook.com/share/v/1HZVV6bKNt/
 (resolves to facebook.com/reel/1297142958535654). Facebook returns "this page
