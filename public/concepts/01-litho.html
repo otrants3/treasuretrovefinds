@@ -217,6 +217,24 @@ blockquote{
 }
 .feat .show{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;font-weight:700;font-size:19px;letter-spacing:.04em}
 .feat .meta{font-family:"Barlow Condensed",sans-serif;font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--red);font-weight:600}
+/* a real appearance, deep linked to their segment */
+.ep{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--paper);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);margin-top:32px}
+.ep img{width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:3px solid var(--ink)}
+.ep-body{padding:18px 20px 22px}
+.ep-chan{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:13px;font-weight:700;color:var(--red)}
+.ep-title{font-family:"Ultra",Georgia,serif;font-size:clamp(22px,3.4vw,34px);margin:7px 0 9px;line-height:1.05}
+.ep-note{margin:0 0 16px;font-size:16px}
+.ep-go{
+  display:inline-flex;align-items:center;min-height:48px;padding:0 20px;
+  background:var(--yellow);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:15px;
+}
+.ep:hover .ep-go,.ep:focus-visible .ep-go{background:var(--red);color:var(--paper)}
+@media(min-width:760px){
+  .ep{flex-direction:row}
+  .ep img{width:44%;max-width:440px;border-bottom:0;border-right:3px solid var(--ink);aspect-ratio:auto;object-fit:cover}
+  .ep-body{display:flex;flex-direction:column;justify-content:center;padding:26px 30px}
+}
 
 /* ---------- the man ---------- */
 .man{background:var(--ink);color:var(--paper)}
@@ -268,6 +286,8 @@ footer a{color:var(--yellow)}
   html{scroll-behavior:auto}
 }
 </style>
+<link rel="stylesheet" href="_switch.css">
+<script src="_switch.js" defer></script>
 </head>
 <body>
 
@@ -456,12 +476,17 @@ footer a{color:var(--yellow)}
   <div class="wrap">
     <p class="eyebrow">As featured on</p>
     <h2>Somebody brought a camera</h2>
-    <div class="feat-row">
-      <!-- PLACEHOLDER: real show names, channels and episode links needed -->
-      <div class="feat"><div class="meta">YouTube · Channel name</div><div class="show">Episode title</div></div>
-      <div class="feat"><div class="meta">YouTube · Channel name</div><div class="show">Episode title</div></div>
-      <div class="feat"><div class="meta">YouTube · Channel name</div><div class="show">Episode title</div></div>
-    </div>
+    <a class="ep" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">
+      <img src="../featured/picker-road.jpg" alt="The Picker Road hosts outside Paradise Mall, from the episode thumbnail." loading="lazy">
+      <div class="ep-body">
+        <span class="ep-chan">Picker Road · YouTube</span>
+        <h3 class="ep-title">Picking in Paradise</h3>
+        <p class="ep-note">Bill and Lisa are on from <b>14:23 to 29:50</b>, with a long walk through the booth.</p>
+        <span class="ep-go">Watch their part</span>
+      </div>
+    </a>
+    <!-- PLACEHOLDER: more appearances drop in here in the same shape -->
+    <p style="margin-top:16px;font-size:15.5px">More on the way. If you filmed at the booth and want it listed, call Bill.</p>
   </div>
 </section>
 
@@ -471,8 +496,9 @@ footer a{color:var(--yellow)}
     <div>
       <p class="eyebrow" style="color:var(--yellow)">The man at the counter</p>
       <h2 class="litho" data-text="Bill knows where it came from"><span>Bill knows where it came from</span></h2>
-      <p>He started in 1973 and has not stopped since. Most dealers write a price on the tag. Bill writes the year, the maker, the pattern and whatever else he dug up, then signs off on it. Ask him about anything in the case and you will be there a while.</p>
-      <p>Lisa runs the other half of the booth: the glass, the jewelry, the textiles, and the part of the operation that keeps it organized.</p>
+      <p>Most dealers write a price on the tag. Bill writes the year, the maker, the pattern and whatever else he dug up, then signs off on it. He has been doing it since 1973.</p>
+      <p>For most of those years it was his own thing. Then the kids got older and started leaving the house, and the weekends opened up. Bill and Lisa started filling them together. An estate sale on a Saturday. Somebody's garage on a Sunday. Two people in a car with coffee, driving out to look at other people's old things.</p>
+      <p>They talked about opening a shop for decades. Booth 18 is that conversation, finally, a long way from where it started. There are still New York plates hanging on the back wall of it.</p>
       <div class="pair">
         <div><div class="k">In the booth</div><div class="v">Wed + Sun</div></div>
         <div><div class="k">Hours</div><div class="v">10 to 6</div></div>

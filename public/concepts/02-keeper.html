@@ -155,6 +155,21 @@ h2 em{font-style:normal;font-weight:700}
 .feat-item .n{font-family:"Courier Prime",monospace;font-size:12.5px;color:var(--brass);letter-spacing:.1em}
 .feat-item .t{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:clamp(19px,2.2vw,27px);letter-spacing:-.01em}
 .feat-item .c{font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+/* a real appearance, deep linked to their segment */
+.ep{display:grid;grid-template-columns:1fr;gap:clamp(22px,3vw,44px);text-decoration:none;color:inherit;
+  border-top:1px solid rgba(23,21,15,.2);padding-top:clamp(24px,3vw,40px);align-items:center}
+.ep figure{margin:0}
+.ep img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.ep h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:clamp(24px,3vw,38px);line-height:1.1;margin:0 0 12px;letter-spacing:-.014em}
+.ep .era{font-family:"Courier Prime",monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);margin:0 0 14px}
+.ep-body p{color:var(--ink-soft);margin:0 0 20px}
+.ep-go{
+  display:inline-flex;align-items:center;min-height:50px;padding:0 22px;
+  background:var(--cobalt);color:#fff;font-family:"Courier Prime",monospace;
+  text-transform:uppercase;letter-spacing:.11em;font-size:13px;font-weight:700;
+}
+.ep:hover .ep-go,.ep:focus-visible .ep-go{background:var(--ink)}
+@media(min-width:900px){ .ep{grid-template-columns:.95fr 1.05fr} }
 
 /* ---------- pair ---------- */
 .pair{background:var(--ink);color:var(--bone)}
@@ -208,6 +223,8 @@ footer a{color:var(--brass)}
   html{scroll-behavior:auto}
 }
 </style>
+<link rel="stylesheet" href="_switch.css">
+<script src="_switch.js" defer></script>
 </head>
 <body>
 
@@ -363,14 +380,22 @@ footer a{color:var(--brass)}
   <div class="wrap">
     <div class="head">
       <h2>Somebody brought <em>a camera</em></h2>
-      <p>The booth has turned up on a few channels. Clips and full episodes below.</p>
+      <p>One so far, and it is a good one. Their part is deep linked, so you land straight on it.</p>
     </div>
-    <!-- PLACEHOLDER: real channel names, episode titles, dates and links needed -->
-    <div class="feat-list">
-      <div class="feat-item"><span class="n">01</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
-      <div class="feat-item"><span class="n">02</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
-      <div class="feat-item"><span class="n">03</span><span class="t">Episode title goes here</span><span class="c">Channel name · 2025</span></div>
-    </div>
+    <a class="ep" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">
+      <figure>
+        <img src="../featured/picker-road.jpg" alt="The Picker Road hosts outside Paradise Mall, from the episode thumbnail." loading="lazy">
+        <div class="record"><span>Picker Road</span><span>YouTube</span><span class="amt">14:23 to 29:50</span></div>
+      </figure>
+      <div class="ep-body">
+        <p class="era">Picker Road · YouTube</p>
+        <h3>Picking in Paradise</h3>
+        <p>Bill and Lisa are on from 14:23 to 29:50. It is the closest thing to a walk through the booth that exists on film, and the reason a lot of people have heard of Booth 18 at all.</p>
+        <span class="ep-go">Watch their part</span>
+      </div>
+    </a>
+    <!-- PLACEHOLDER: more appearances drop in here in the same shape -->
+    <p style="margin-top:22px;color:var(--ink-soft);font-size:16.5px">More on the way. If you filmed at the booth and want it listed, call Bill.</p>
   </div>
 </section>
 
@@ -383,8 +408,10 @@ footer a{color:var(--brass)}
     <div>
       <p class="eyebrow" style="color:var(--brass)">Who you are buying from</p>
       <h2>Bill and Lisa <em>Otranto</em></h2>
-      <p>Bill started in 1973 and never stopped. He handles the toys, the trucks, the trains, the advertising tin, and the research that ends up on every tag. If you ask him where a piece came from, plan on staying a while.</p>
-      <p>Lisa runs the other half: the glass, the jewelry, the textiles, and the part of the operation that keeps a booth full of small objects findable.</p>
+      <p>Bill started in 1973 and never stopped. He handles the toys, the trucks, the trains, the advertising tin, and the research that ends up on every tag. Lisa runs the other half: the glass, the jewelry, the textiles, and the part that keeps a booth full of small objects findable.</p>
+      <p>For most of those years it was his own thing, done on his own time. Then the kids got older and started leaving the house, the way kids do, and the weekends opened up. They started filling them together. An estate sale on a Saturday. Somebody's garage on a Sunday. Two people in a car with coffee, driving out to look at other people's old things.</p>
+      <p>Come by the house on any given night and Bill is at the kitchen table with a tag in one hand and a reference book in the other, working out what something is and what it is worth.</p>
+      <p>They talked about opening a shop for decades. It stayed a conversation, because life kept happening the way it does. Booth 18 is that conversation, finally, a long way from where it started. There are still New York plates hanging on the back wall of it.</p>
       <div class="actions">
         <a class="btn" href="tel:+15164462693" style="border-color:var(--bone);color:var(--bone)">Call the booth</a>
       </div>

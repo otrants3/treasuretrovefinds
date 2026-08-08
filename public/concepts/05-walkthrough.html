@@ -275,6 +275,65 @@ p{margin:0 0 1em}
 .flat .lede{color:var(--ink-soft);max-width:52ch}
 .flat .cv-grid{margin-top:26px}
 
+/* ---------------- the rest of the site, below the room ---------------- */
+.sec{padding:46px 0}
+.sec .wrap{max-width:1100px;margin:0 auto;padding:0 var(--pad)}
+.sec h2{font-size:clamp(26px,6vw,42px);margin-bottom:16px;max-width:18ch}
+.sec .lede{max-width:54ch}
+.dark{background:var(--room);color:#EADFC8}
+.dark h2{color:#F4E9D2}
+.dark p{color:#D6C8AC}
+.dark .label{color:var(--brass-lit)}
+.tint{background:var(--page-deep);color:var(--ink)}
+.lite{background:var(--page);color:var(--ink)}
+.lite .label,.tint .label{color:var(--brass)}
+
+.story-grid{display:grid;grid-template-columns:1fr;gap:26px;align-items:center}
+.story-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 34%}
+.pull{border-left:3px solid var(--brass-lit);padding-left:18px;margin:24px 0;
+  font-size:20px;font-style:italic;color:#F4E9D2;max-width:36ch}
+
+.mv-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:26px}
+.mv{border-top:2px solid var(--ink);padding-top:16px}
+.mv h3{font-size:21px;margin:8px 0 10px}
+.mv p{color:var(--ink-soft);font-size:17px}
+.take{background:var(--paper);border:1px solid rgba(78,50,24,.28);padding:14px 16px}
+.take .who{font-family:"Cinzel",serif;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:6px}
+.take p{font-family:"Permanent Marker",cursive;font-size:15px;line-height:1.5;margin:0;color:#3A2E1C}
+
+.ep{display:flex;flex-direction:column;text-decoration:none;color:inherit;
+  border:1px solid rgba(78,50,24,.3);background:var(--paper);margin-top:8px}
+.ep:hover,.ep:focus-visible{border-color:var(--brass)}
+.ep img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.ep-body{display:flex;flex-direction:column;gap:6px;padding:18px 20px 22px}
+.ep-chan{font-family:"Cinzel",serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+.ep-title{font-size:23px;font-weight:600;line-height:1.2}
+.ep-note{font-size:17px;color:var(--ink-soft)}
+.ep-go{margin-top:10px;align-self:flex-start;min-height:48px;display:inline-flex;align-items:center;
+  padding:0 20px;background:var(--ink);color:var(--page);font-size:16px}
+.ep:hover .ep-go,.ep:focus-visible .ep-go{background:var(--red)}
+
+.find-grid{display:grid;grid-template-columns:1fr;gap:26px;align-items:start}
+.find-grid dl{margin:0 0 22px;display:grid;gap:3px}
+.find-grid dt{font-family:"Cinzel",serif;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-lit);margin-top:14px}
+.find-grid dd{margin:0;font-size:19px;color:#EADFC8}
+.bigphone{display:inline-flex;align-items:center;min-height:60px;font-size:29px;font-weight:600;
+  color:#F4E9D2;text-decoration:none;border-bottom:2px solid var(--brass-lit)}
+.find-grid img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.sitefoot{background:#100A05;color:#8E8067;padding:26px 0 34px;font-size:15px}
+.sitefoot .wrap{max-width:1100px;margin:0 auto;padding:0 var(--pad)}
+.sitefoot a{color:var(--brass-lit)}
+
+@media (min-width:760px){
+  .sec{padding:76px 0}
+  .story-grid{grid-template-columns:1.1fr .9fr;gap:52px}
+  .mv-grid{grid-template-columns:repeat(3,1fr);gap:34px}
+  .find-grid{grid-template-columns:1fr 1fr;gap:52px}
+  .ep{flex-direction:row;align-items:stretch}
+  .ep img{width:44%;max-width:420px;aspect-ratio:auto}
+  .ep-body{justify-content:center;padding:26px 30px}
+}
+
 @media (prefers-reduced-motion:reduce){
   .world{transition:none}
   .case-view{transition:none}
@@ -296,6 +355,8 @@ p{margin:0 0 1em}
   .stage{perspective:820px;perspective-origin:50% 46%}
 }
 </style>
+<link rel="stylesheet" href="_switch.css">
+<script src="_switch.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#flat">Skip the walk and see the list</a>
@@ -408,6 +469,119 @@ p{margin:0 0 1em}
     <div class="cv-grid" id="flat-grid"></div>
   </div>
 </section>
+
+<!-- ---------- their story ---------- -->
+<section class="sec dark" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div>
+        <p class="label">How they got here</p>
+        <h2>The house got quiet, so they filled the weekends with this.</h2>
+        <p>Bill has been collecting since 1973. For most of those years it was his own thing, done on his own time.</p>
+        <p>Then the kids got older and started leaving the house, the way kids do, and the weekends opened up. Bill and Lisa started filling them together. An estate sale on a Saturday. Somebody's garage on a Sunday. Two people in a car with coffee, driving out to look at other people's old things.</p>
+        <p>Come by the house on any given night and Bill is at the kitchen table with a tag in one hand and a reference book in the other, working out what something is and what it is worth. Lisa is usually a room away with her own half of it.</p>
+        <blockquote class="pull">They had talked about opening a shop for decades. It stayed a conversation, because life kept happening the way it does.</blockquote>
+        <p>Booth 18 is that conversation, finally, a long way from where it started. There are still New York plates hanging on the back wall of it.</p>
+      </div>
+      <figure style="margin:0">
+        <img src="../shop/bill-at-case.jpg" alt="Bill Otranto opening the door of a tall glass display case in the booth.">
+        <figcaption style="font-size:14.5px;color:#9C8E76;margin-top:9px">Bill, in the booth, on a Wednesday.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- what is moving ---------- -->
+<section class="sec tint" id="moving">
+  <div class="wrap">
+    <p class="label">What is moving</p>
+    <h2>The market, from behind the counter</h2>
+    <div class="mv-grid">
+      <article class="mv">
+        <p class="label" style="color:var(--ink-faint)">Christmas</p>
+        <h3>German blown glass keeps climbing</h3>
+        <p>Ornaments from the 1920s through the 1950s have been going up steadily. Buyers want originals, not the later reproductions that copied the shapes.</p>
+        <div class="take">
+          <div class="who">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>Check the cap and the wire hook first. That is where the fakes give themselves up.</p>
+        </div>
+      </article>
+      <article class="mv">
+        <p class="label" style="color:var(--ink-faint)">Halloween</p>
+        <h3>Pre-1960 pulp beats anything plastic</h3>
+        <p>Demand got strong enough that new decorations are manufactured to look old. The people hunting the real thing have gotten good at telling the difference.</p>
+        <div class="take">
+          <div class="who">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>German pulp jack o' lanterns walk out the fastest. Every year, same story.</p>
+        </div>
+      </article>
+      <article class="mv">
+        <p class="label" style="color:var(--ink-faint)">Toys</p>
+        <h3>Original paint over restoration</h3>
+        <p>Buddy L, Hubley, Lionel and Tootsietoy all still trade steadily at auction. Honest wear on original paint holds value better than a clean repaint.</p>
+        <div class="take">
+          <div class="who">Bill's take</div>
+          <!-- PLACEHOLDER: needs Bill's actual words -->
+          <p>A repaint kills it. I would rather have the chips and the honest wear.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- as featured on ---------- -->
+<section class="sec lite" id="featured">
+  <div class="wrap">
+    <p class="label">As featured on</p>
+    <h2>Somebody brought a camera</h2>
+    <a class="ep" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">
+      <img src="../featured/picker-road.jpg" alt="The Picker Road hosts outside Paradise Mall, from the episode thumbnail." loading="lazy">
+      <span class="ep-body">
+        <span class="ep-chan">Picker Road · YouTube</span>
+        <span class="ep-title">Picking in Paradise</span>
+        <span class="ep-note">Bill and Lisa are on from 14:23 to 29:50, with a long walk through the booth.</span>
+        <span class="ep-go">Watch their part</span>
+      </span>
+    </a>
+    <!-- PLACEHOLDER: more appearances drop in here in the same shape -->
+    <p style="margin-top:18px;color:var(--ink-faint);font-size:16px">More on the way. If you filmed at the booth and want it listed, call Bill.</p>
+  </div>
+</section>
+
+<!-- ---------- find the booth ---------- -->
+<section class="sec dark" id="find">
+  <div class="wrap">
+    <div class="find-grid">
+      <div>
+        <p class="label">Find the booth</p>
+        <h2>Booth 18, all the way to the back.</h2>
+        <dl>
+          <dt>Where</dt>
+          <dd>Paradise Antique Mall<br>3565 E. Flamingo Rd<br>Las Vegas, NV 89121</dd>
+          <dt>When</dt>
+          <dd>Wednesday and Sunday, 10 a.m. to 6 p.m.</dd>
+          <dt>Ask for</dt>
+          <dd>Bill</dd>
+        </dl>
+        <a class="bigphone" href="tel:+15164462693">(516) 446-2693</a>
+        <div class="actions" style="margin-top:22px">
+          <a class="btn" href="https://maps.google.com/?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121" style="border-color:#EADFC8;color:#EADFC8">Open in Maps</a>
+        </div>
+      </div>
+      <img src="../shop/hero-aisle.jpg" alt="The aisle of the booth with glass cases on both sides packed with toys, tins and glass.">
+    </div>
+  </div>
+</section>
+
+<footer class="sitefoot">
+  <div class="wrap">
+    Treasure Trove Finds · Booth 18 · Paradise Antique Mall, Las Vegas ·
+    <a href="tel:+15164462693">(516) 446-2693</a><br>
+    © 2026 Treasure Trove Finds &middot; An Otranto Labs project
+  </div>
+</footer>
 
 <div style="background:#1B150D;color:#8E8067;padding:16px 0;font-size:14px;line-height:1.6">
   <div style="max-width:1100px;margin:0 auto;padding:0 18px">
