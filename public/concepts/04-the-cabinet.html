@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treasure Trove Finds · Concept 4: The Cabinet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THE CABINET
+   Mobile first. Every size below is set for a small screen,
+   then opened up at min-width. Body copy never drops under 18px,
+   tap targets never under 48px, because the people using this
+   are not twenty five.
+   ============================================================ */
+:root{
+  /* the paper the engravings are printed on, sampled from the plates */
+  --paper:#F1D9B5;
+  --page:#F7EBD5;
+  --page-deep:#EEDFC2;
+  --ink:#241C12;
+  --ink-soft:#5C4B35;
+  --ink-faint:#8A7554;
+  --oak:#7B5228;
+  --oak-dark:#452C13;
+  --oak-light:#A87542;
+  --brass:#8E7020;
+  --brass-lit:#C9A227;
+  --red:#A32F26;
+  --pad:18px;
+  --radius:3px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  margin:0;background:var(--page);color:var(--ink);
+  font-family:"Spectral",Georgia,serif;
+  font-size:18px;line-height:1.65;
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;line-height:1.15;font-weight:600;text-wrap:balance}
+p{margin:0 0 1em}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--brass-lit);outline-offset:3px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.skip{
+  position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--page);
+  padding:12px 18px;z-index:200;text-decoration:none;
+}
+.skip:focus{top:8px}
+
+.label{
+  font-family:"Cinzel",Georgia,serif;text-transform:uppercase;
+  letter-spacing:.16em;font-size:12px;font-weight:600;color:var(--brass);
+}
+
+/* ---------------- header ---------------- */
+.site-head{
+  position:sticky;top:0;z-index:60;background:var(--page);
+  border-bottom:1px solid rgba(36,28,18,.18);
+}
+.head-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+.mark{font-family:"Cinzel",Georgia,serif;font-size:16px;letter-spacing:.05em;font-weight:600;line-height:1.2}
+.mark span{display:block;font-family:"Spectral",serif;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:400;margin-top:2px}
+.head-call{
+  display:inline-flex;align-items:center;min-height:48px;padding:0 16px;
+  background:var(--ink);color:var(--page);text-decoration:none;
+  font-size:15px;letter-spacing:.04em;white-space:nowrap;
+}
+.head-call:hover,.head-call:focus-visible{background:var(--red)}
+.head-nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.head-nav::-webkit-scrollbar{display:none}
+.head-nav a{
+  display:inline-flex;align-items:center;min-height:44px;padding:0 12px;
+  white-space:nowrap;text-decoration:none;color:var(--ink-soft);font-size:15.5px;
+  border-bottom:2px solid transparent;
+}
+.head-nav a:hover,.head-nav a:focus-visible{color:var(--ink);border-bottom-color:var(--brass)}
+
+/* ---------------- hero ---------------- */
+.hero{padding:30px 0 8px;text-align:left}
+.hero h1{
+  font-size:clamp(30px,8vw,58px);font-weight:600;letter-spacing:-.015em;
+  margin:14px 0 0;max-width:16ch;
+}
+.hero .lede{font-size:19.5px;color:var(--ink-soft);margin:18px 0 0;max-width:44ch}
+.hero-cta{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.hero-shot{margin:30px 0 0}
+.shot-frame{
+  background:linear-gradient(180deg,var(--oak-light),var(--oak) 22%,var(--oak-dark));
+  padding:12px;box-shadow:0 18px 34px -22px rgba(20,12,4,.85);
+}
+.shot-frame img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.hero-shot .nameplate{margin-top:0}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:54px;padding:0 22px;text-decoration:none;text-align:center;
+  font-size:17px;letter-spacing:.03em;border:2px solid var(--ink);
+  background:transparent;color:var(--ink);cursor:pointer;font-family:inherit;
+  transition:background .16s ease,color .16s ease;
+}
+.btn:hover,.btn:focus-visible{background:var(--ink);color:var(--page)}
+.btn-primary{background:var(--ink);color:var(--page)}
+.btn-primary:hover,.btn-primary:focus-visible{background:var(--red);border-color:var(--red)}
+
+/* ---------------- the cabinet ---------------- */
+/* clip, not hidden, so the sticky header keeps working */
+.aisle{padding:26px 0 8px;overflow-x:clip}
+.cabinet{margin:0 0 40px;scroll-margin-top:100px}
+.nameplate{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(180deg,#D9B44A,#9A7B22 55%,#7A5F16);
+  color:#241B05;font-family:"Cinzel",Georgia,serif;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;
+  padding:9px 14px;text-align:center;
+  box-shadow:0 2px 0 rgba(0,0,0,.28);
+  border:1px solid #6E5514;
+}
+.nameplate b{font-weight:600}
+.nameplate .no{color:#4A390B;font-size:11px;letter-spacing:.18em}
+
+.cab-frame{
+  position:relative;
+  background:
+    linear-gradient(180deg,var(--oak-light),var(--oak) 22%,var(--oak-dark));
+  padding:14px;
+  box-shadow:0 18px 34px -22px rgba(20,12,4,.85);
+  perspective:1400px;
+}
+/* the wood grain */
+.cab-frame::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;
+  background-image:repeating-linear-gradient(
+    91deg, rgba(0,0,0,.16) 0 1px, transparent 1px 5px,
+    rgba(255,255,255,.05) 5px 6px, transparent 6px 11px);
+}
+.cab-inner{
+  position:relative;background:var(--paper);
+  box-shadow:inset 0 0 34px rgba(78,50,24,.34), inset 0 2px 0 rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.shelf{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  border-bottom:9px solid transparent;
+  border-image:linear-gradient(180deg,var(--oak-light),var(--oak-dark)) 1;
+  position:relative;
+}
+.shelf:last-child{border-bottom:0}
+
+.obj{
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  background:transparent;border:0;cursor:pointer;font-family:inherit;color:inherit;
+  padding:12px 8px 14px;text-align:center;
+  border-right:1px solid rgba(78,50,24,.16);
+}
+.obj:nth-child(2n){border-right:0}
+.obj img{
+  width:100%;max-width:190px;aspect-ratio:1;object-fit:contain;
+  mix-blend-mode:multiply;
+  transition:transform .4s cubic-bezier(.2,.8,.3,1);
+}
+.obj:hover img,.obj:focus-visible img{transform:scale(1.05)}
+.obj .nm{font-size:15.5px;font-weight:600;line-height:1.25;margin-top:2px}
+.obj .er{font-size:13px;color:var(--ink-faint);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.obj .pr{font-size:16.5px;color:var(--red);font-weight:600;margin-top:5px}
+.obj .more{
+  font-size:13.5px;color:var(--ink-soft);margin-top:6px;
+  border-bottom:1px solid rgba(92,75,53,.45);
+}
+@keyframes flash{
+  0%,100%{box-shadow:inset 0 0 0 0 rgba(201,162,39,0)}
+  25%,75%{box-shadow:inset 0 0 0 4px rgba(201,162,39,.95)}
+}
+.obj.flash{animation:flash 1.7s ease}
+
+/* the glass doors */
+.doors{position:absolute;inset:0;pointer-events:none;z-index:3}
+.door{
+  position:absolute;top:0;bottom:0;width:50%;
+  background:
+    linear-gradient(102deg, rgba(255,255,255,.34) 0%, rgba(255,255,255,.06) 26%,
+                    rgba(255,255,255,.20) 44%, rgba(255,255,255,.03) 62%, rgba(255,255,255,.16) 100%),
+    rgba(214,232,226,.10);
+  border:5px solid;
+  border-image:linear-gradient(160deg,var(--oak-light),var(--oak-dark)) 1;
+  transition:transform 1.15s cubic-bezier(.22,.85,.28,1);
+  backface-visibility:hidden;
+}
+.door.l{left:0;transform-origin:left center}
+.door.r{right:0;transform-origin:right center}
+.door::after{
+  content:"";position:absolute;top:50%;width:9px;height:9px;border-radius:50%;
+  background:linear-gradient(180deg,#E0BC55,#8E7020);box-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+.door.l::after{right:7px;margin-top:-4px}
+.door.r::after{left:7px;margin-top:-4px}
+/* stop at just past square so the doors read as open and edge on,
+   instead of swinging out past the edge of the page */
+.cabinet.open .door.l{transform:rotateY(-93deg)}
+.cabinet.open .door.r{transform:rotateY(93deg)}
+
+.cab-foot{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-size:14.5px;color:var(--ink-faint);padding:10px 2px 0;
+}
+
+/* ---------------- aisle rail (desktop only) ---------------- */
+.rail{display:none}
+
+/* ---------------- the story ---------------- */
+.story{background:var(--ink);color:#EADFC8;padding:44px 0}
+.story h2{font-size:clamp(26px,6.4vw,44px);color:#F4E9D2;max-width:15ch;margin-bottom:20px}
+.story p{font-size:19px;color:#D6C8AC;max-width:56ch}
+.story .label{color:var(--brass-lit)}
+.story figure{margin:26px 0 0}
+.story img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 34%}
+.story figcaption{font-size:14.5px;color:#9C8E76;margin-top:9px}
+.pull{
+  border-left:3px solid var(--brass-lit);padding-left:18px;margin:26px 0;
+  font-size:21px;font-style:italic;color:#F4E9D2;max-width:36ch;
+}
+
+/* ---------------- what's moving ---------------- */
+.moving{background:var(--page-deep);padding:44px 0}
+.mv{border-top:2px solid var(--ink);padding-top:16px;margin-bottom:28px}
+.mv h3{font-size:21px;margin:8px 0 10px}
+.mv p{color:var(--ink-soft);font-size:17.5px}
+.take{background:var(--paper);border:1px solid rgba(78,50,24,.28);padding:14px 16px}
+.take .who{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:6px;font-family:"Cinzel",serif}
+.take p{font-family:"Permanent Marker",cursive;font-size:15.5px;line-height:1.5;margin:0;color:#3A2E1C}
+
+/* ---------------- featured ---------------- */
+.feat{padding:44px 0}
+.feat-row{
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  border-bottom:1px solid rgba(36,28,18,.2);padding:16px 0;
+}
+.feat-row .t{font-size:19px;font-weight:600}
+.feat-row .c{font-size:14.5px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase}
+
+/* ---------------- find ---------------- */
+.find{background:var(--ink);color:#EADFC8;padding:44px 0 40px}
+.find h2{color:#F4E9D2;font-size:clamp(26px,6.4vw,44px);margin-bottom:22px}
+.find dl{margin:0 0 24px;display:grid;gap:4px 0}
+.find dt{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-lit);font-family:"Cinzel",serif;margin-top:14px}
+.find dd{margin:0;font-size:19.5px;color:#EADFC8}
+.find .phone{
+  display:inline-flex;align-items:center;min-height:60px;
+  font-size:30px;font-weight:600;color:#F4E9D2;text-decoration:none;
+  border-bottom:2px solid var(--brass-lit);
+}
+.find .btn{border-color:#EADFC8;color:#EADFC8}
+.find .btn:hover,.find .btn:focus-visible{background:#EADFC8;color:var(--ink)}
+.find img{width:100%;aspect-ratio:4/3;object-fit:cover;margin-top:26px}
+
+footer{padding:26px 0 110px;font-size:15px;color:var(--ink-faint);background:var(--page)}
+/* big enough to hit with a thumb, because people will call from the car */
+footer a{color:var(--ink-soft);display:inline-block;min-height:44px;padding:11px 0}
+
+/* ---------------- sticky bottom bar (mobile) ---------------- */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:rgba(36,28,18,.25);
+  border-top:1px solid rgba(36,28,18,.3);
+}
+.dock a,.dock button{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  min-height:58px;border:0;cursor:pointer;text-decoration:none;
+  font-family:inherit;font-size:16.5px;letter-spacing:.02em;
+  background:var(--page);color:var(--ink);
+}
+.dock .ask{background:var(--ink);color:var(--page)}
+.dock a:hover,.dock button:hover,.dock a:focus-visible,.dock button:focus-visible{background:var(--brass-lit);color:var(--ink)}
+
+/* ---------------- the assistant ---------------- */
+.ask-panel{
+  position:fixed;inset:auto 0 0 0;z-index:90;
+  background:var(--page);border-top:3px solid var(--ink);
+  box-shadow:0 -18px 44px -18px rgba(20,12,4,.6);
+  max-height:92vh;display:flex;flex-direction:column;
+  transform:translateY(101%);transition:transform .34s cubic-bezier(.22,.85,.28,1);
+  visibility:hidden;
+}
+.ask-panel.open{transform:translateY(0);visibility:visible}
+.ask-head{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  padding:16px var(--pad) 12px;border-bottom:1px solid rgba(36,28,18,.2);
+}
+.ask-head h2{font-size:21px}
+.ask-head p{margin:4px 0 0;font-size:15.5px;color:var(--ink-soft)}
+.ask-close{
+  flex:none;min-width:48px;min-height:48px;border:2px solid var(--ink);
+  background:transparent;font-size:22px;line-height:1;cursor:pointer;color:var(--ink);
+  font-family:inherit;
+}
+.ask-close:hover,.ask-close:focus-visible{background:var(--ink);color:var(--page)}
+.ask-log{flex:1;overflow-y:auto;padding:16px var(--pad);display:flex;flex-direction:column;gap:16px}
+.msg{max-width:62ch}
+.msg.you{align-self:flex-end;background:var(--ink);color:var(--page);padding:12px 16px;font-size:17px}
+.msg.booth{background:var(--paper);border:1px solid rgba(78,50,24,.3);padding:14px 16px;font-size:17.5px}
+.msg.booth p:last-child{margin-bottom:0}
+.hits{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.hit{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  /* the paper matches the plates so the engraving blends into the card */
+  background:var(--paper);border:1px solid rgba(78,50,24,.35);
+  padding:10px;cursor:pointer;font-family:inherit;color:inherit;min-height:64px;
+}
+.hit:hover,.hit:focus-visible{border-color:var(--brass);box-shadow:inset 0 0 0 2px var(--brass-lit)}
+.hit img{width:58px;height:58px;object-fit:contain;mix-blend-mode:multiply;flex:none}
+.hit .hn{font-size:16.5px;font-weight:600;line-height:1.2}
+.hit .hp{font-size:15px;color:var(--red);font-weight:600}
+.hit .go{margin-left:auto;font-size:14px;color:var(--ink-soft);white-space:nowrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 var(--pad) 12px}
+.chip{
+  min-height:44px;padding:0 14px;border:1px solid rgba(78,50,24,.45);
+  background:var(--paper);font-family:inherit;font-size:15.5px;cursor:pointer;color:var(--ink);
+}
+.chip:hover,.chip:focus-visible{background:var(--ink);color:var(--page)}
+.ask-form{display:flex;gap:8px;padding:12px var(--pad);border-top:1px solid rgba(36,28,18,.2);background:var(--page-deep)}
+.ask-form input{
+  flex:1;min-height:52px;padding:0 14px;font-family:inherit;font-size:17px;
+  border:2px solid var(--ink);background:var(--page);color:var(--ink);
+}
+.ask-form button{
+  min-height:52px;padding:0 20px;border:2px solid var(--ink);background:var(--ink);
+  color:var(--page);font-family:inherit;font-size:16.5px;cursor:pointer;
+}
+.ask-form button:hover,.ask-form button:focus-visible{background:var(--red);border-color:var(--red)}
+.ask-note{padding:0 var(--pad) 14px;font-size:13.5px;color:var(--ink-faint);background:var(--page-deep);margin:0}
+.scrim{
+  position:fixed;inset:0;background:rgba(20,12,4,.5);z-index:80;
+  opacity:0;visibility:hidden;transition:opacity .3s ease;
+}
+.scrim.open{opacity:1;visibility:visible}
+
+/* on a phone the dock carries the ask action, so the floating button stays away */
+.ask-fab{display:none}
+
+.mocknote{background:#1B150D;color:#8E8067;padding:16px 0;font-size:14px;line-height:1.6}
+.mocknote b{color:#D8CBB1}
+
+/* ============================================================
+   DESKTOP
+   ============================================================ */
+@media (min-width:760px){
+  :root{--pad:32px}
+  body{font-size:19px}
+  .head-top{padding:16px 0}
+  .mark{font-size:20px}
+  .hero{padding:52px 0 16px}
+  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+  .hero-shot{margin:0}
+  .hero-cta{flex-direction:row}
+  .btn{min-width:210px}
+  .shelf{grid-template-columns:repeat(4,1fr)}
+  .obj:nth-child(2n){border-right:1px solid rgba(78,50,24,.16)}
+  .obj:nth-child(4n),.obj:last-child{border-right:0}
+  .obj img{max-width:230px}
+  .cab-frame{padding:18px}
+  .cabinet{margin-bottom:64px}
+  .nameplate{font-size:14px;padding:11px 18px}
+  .story,.moving,.find,.feat{padding:76px 0}
+  .story-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center}
+  .story figure{margin:0}
+  .mv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+  .mv{margin-bottom:0}
+  .find-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+  .find img{margin-top:0}
+  .dock{display:none}
+  footer{padding-bottom:40px}
+  .ask-panel{
+    inset:auto 32px 32px auto;width:min(520px,calc(100vw - 64px));
+    max-height:min(760px,86vh);border:3px solid var(--ink);
+    transform:translateY(24px) scale(.98);opacity:0;
+  }
+  .ask-panel.open{transform:none;opacity:1}
+  .ask-fab{
+    position:fixed;right:32px;bottom:32px;z-index:70;
+    display:inline-flex;align-items:center;gap:10px;min-height:60px;padding:0 24px;
+    background:var(--ink);color:var(--page);border:0;cursor:pointer;
+    font-family:inherit;font-size:17.5px;letter-spacing:.02em;
+    box-shadow:0 14px 30px -14px rgba(20,12,4,.8);
+  }
+  .ask-fab:hover,.ask-fab:focus-visible{background:var(--red)}
+  .ask-fab.hidden{display:none}
+  /* the aisle rail: where you are in the shop */
+  .rail{
+    display:block;position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:50;
+  }
+  /* the aisle you are walking down */
+  .rail::before{
+    content:"";position:absolute;left:11px;top:14px;bottom:14px;width:1px;
+    background:rgba(138,117,84,.55);
+  }
+  .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;position:relative}
+  .rail a{
+    display:flex;align-items:center;gap:10px;min-height:44px;padding:0 6px;
+    text-decoration:none;color:var(--ink-faint);font-size:13px;
+    letter-spacing:.1em;text-transform:uppercase;font-family:"Cinzel",serif;
+  }
+  .rail .dot{
+    width:11px;height:11px;border:2px solid var(--ink-faint);border-radius:50%;flex:none;
+    transition:background .25s ease,border-color .25s ease;
+  }
+  .rail a:hover,.rail a:focus-visible{color:var(--ink)}
+  .rail a[aria-current="true"]{color:var(--ink)}
+  .rail a[aria-current="true"] .dot{background:var(--brass-lit);border-color:var(--ink)}
+  .rail .txt{opacity:0;transition:opacity .25s ease}
+  .rail:hover .txt,.rail a:focus-visible .txt,.rail a[aria-current="true"] .txt{opacity:1}
+}
+@media (min-width:1180px){
+  .rail{left:calc(50vw - 640px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .door{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the cabinets</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <div class="head-top">
+      <div class="mark">Treasure Trove Finds<span>Booth 18 · Las Vegas</span></div>
+      <a class="head-call" href="tel:+15164462693">Call Bill</a>
+    </div>
+    <nav class="head-nav" aria-label="Sections">
+      <a href="#cabinets">The cabinets</a>
+      <a href="#story">Their story</a>
+      <a href="#moving">What is moving</a>
+      <a href="#featured">As featured on</a>
+      <a href="#find">Find the booth</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Where you are">
+  <ol>
+    <li><a href="#cab-1"><span class="dot"></span><span class="txt">His side</span></a></li>
+    <li><a href="#cab-2"><span class="dot"></span><span class="txt">Her side</span></a></li>
+    <li><a href="#cab-3"><span class="dot"></span><span class="txt">On the shelf</span></a></li>
+    <li><a href="#story"><span class="dot"></span><span class="txt">Their story</span></a></li>
+  </ol>
+</nav>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="label">Bill and Lisa Otranto · Collecting since 1973</p>
+        <h1>The whole thing lives in the cabinets.</h1>
+        <p class="lede">Booth 18 at Paradise Antique Mall is a wall of glass cases packed floor to ceiling. Open them here, one shelf at a time, and read the tag Bill wrote for every piece.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#cabinets">Open the cabinets</a>
+          <button class="btn" type="button" data-ask-open>Ask about a piece</button>
+        </div>
+      </div>
+      <figure class="hero-shot">
+        <div class="shot-frame">
+          <img src="../shop/hero-cabinet.jpg" alt="A tall wooden display cabinet in Booth 18, shelves packed with toys, glass and tins.">
+        </div>
+        <figcaption class="nameplate"><span class="no">Case 1A</span> <b>Booth 18, as it stands</b></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="aisle" id="cabinets">
+    <div class="wrap">
+
+      <!-- ---------- cabinet 1 ---------- -->
+      <article class="cabinet" id="cab-1" data-cab data-rail="#cab-1">
+        <div class="nameplate"><span class="no">No. 1</span> <b>What Bill chased first</b></div>
+        <div class="cab-frame">
+          <div class="cab-inner">
+            <div class="shelf">
+              <button class="obj" type="button" id="it-racecar" data-item="racecar">
+                <img src="../cabinet/plates/army-jeep.png" alt="Engraving of a diecast toy race car with worn paint.">
+                <span class="nm">Hubley Kiddie race car</span>
+                <span class="er">1930–1940s</span>
+                <span class="pr">$65.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-teddy" data-item="teddy">
+                <img src="../cabinet/plates/teddy-school-desk.png" alt="Engraving of a mohair teddy bear seated at a school desk.">
+                <span class="nm">Teddy at the school desk</span>
+                <span class="er">Pre-war</span>
+                <span class="pr">$125.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-pepsi" data-item="pepsi">
+                <img src="../cabinet/plates/pepsi-crate.png" alt="Engraving of a wooden Pepsi-Cola shipping crate.">
+                <span class="nm">Pepsi-Cola crate</span>
+                <span class="er">Advertising</span>
+                <span class="pr">Ask in person</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-owl" data-item="owl">
+                <img src="../cabinet/plates/steiff-menagerie.png" alt="Engraving of a small plush owl.">
+                <span class="nm">Plush owl</span>
+                <span class="er">Menagerie</span>
+                <span class="pr">$80.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+            </div>
+          </div>
+          <div class="doors" aria-hidden="true"><span class="door l"></span><span class="door r"></span></div>
+        </div>
+        <div class="cab-foot">
+          <span>Toys, trucks, trains and the advertising that went with them.</span>
+          <span>Case 1A</span>
+        </div>
+      </article>
+
+      <!-- ---------- cabinet 2 ---------- -->
+      <article class="cabinet" id="cab-2" data-cab data-rail="#cab-2">
+        <div class="nameplate"><span class="no">No. 2</span> <b>What Lisa keeps</b></div>
+        <div class="cab-frame">
+          <div class="cab-inner">
+            <div class="shelf">
+              <button class="obj" type="button" id="it-perfume" data-item="perfume">
+                <img src="../cabinet/plates/perfume-bottle.png" alt="Engraving of a filigree perfume bottle with a portrait panel.">
+                <span class="nm">Scherk “Renaissance”</span>
+                <span class="er">1934</span>
+                <span class="pr">$225.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-crock" data-item="crock">
+                <img src="../cabinet/plates/crock-jugs.png" alt="Engraving of a lidded stoneware crock jug with a wire bail.">
+                <span class="nm">Stoneware crock jug</span>
+                <span class="er">1900–10</span>
+                <span class="pr">$75.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-phone" data-item="phone">
+                <img src="../cabinet/plates/red-rotary-phone.png" alt="Engraving of rotary dial telephones with coiled cords.">
+                <span class="nm">Red rotary telephone</span>
+                <span class="er">Curiosities</span>
+                <span class="pr">$135.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-fan" data-item="fan">
+                <img src="../cabinet/plates/ge-fan.png" alt="Engraving of a cast iron General Electric oscillating fan.">
+                <span class="nm">GE oscillating fan</span>
+                <span class="er">Cast iron</span>
+                <span class="pr">Ask in person</span>
+                <span class="more">Read the tag</span>
+              </button>
+            </div>
+          </div>
+          <div class="doors" aria-hidden="true"><span class="door l"></span><span class="door r"></span></div>
+        </div>
+        <div class="cab-foot">
+          <span>Glass, jewelry, textiles and the things nobody else bothered to keep.</span>
+          <span>Case 1B</span>
+        </div>
+      </article>
+
+      <!-- ---------- cabinet 3 ---------- -->
+      <article class="cabinet" id="cab-3" data-cab data-rail="#cab-3">
+        <div class="nameplate"><span class="no">No. 3</span> <b>On the shelf today</b></div>
+        <div class="cab-frame">
+          <div class="cab-inner">
+            <div class="shelf">
+              <button class="obj" type="button" id="it-cobalt" data-item="cobalt">
+                <img src="../cabinet/plates/cobalt-bottle.png" alt="Engraving of a stoppered apothecary bottle.">
+                <span class="nm">Cobalt apothecary jar</span>
+                <span class="er">No. 233</span>
+                <span class="pr">$160.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-buckle" data-item="buckle">
+                <img src="../cabinet/plates/firefighters-buckle.png" alt="Engraving of an America's Firefighters belt buckle.">
+                <span class="nm">America’s Firefighters</span>
+                <span class="er">Belt buckle</span>
+                <span class="pr">$34.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-shasta" data-item="shasta">
+                <img src="../cabinet/plates/shasta-bitters.png" alt="Engraving of a Shasta Bitters wooden crate holding glass bottles.">
+                <span class="nm">Shasta Bitters crate</span>
+                <span class="er">Advertising</span>
+                <span class="pr">$175.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+              <button class="obj" type="button" id="it-dressform" data-item="dressform">
+                <img src="../cabinet/plates/dress-form.png" alt="Engraving of a burlap dress form wearing a lace collar.">
+                <span class="nm">Burlap dress form</span>
+                <span class="er">Textiles</span>
+                <span class="pr">$175.00</span>
+                <span class="more">Read the tag</span>
+              </button>
+            </div>
+          </div>
+          <div class="doors" aria-hidden="true"><span class="door l"></span><span class="door r"></span></div>
+        </div>
+        <div class="cab-foot">
+          <span>Twenty four pieces are catalogued. These two came in most recently.</span>
+          <span>Case 2A</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ---------- the story ---------- -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-grid">
+        <div>
+          <p class="label">How they got here</p>
+          <h2>The house got quiet, so they filled the weekends with this.</h2>
+          <p>Bill has been collecting since 1973. For most of those years it was his own thing, done on his own time.</p>
+          <p>Then the kids got older and started leaving the house, the way kids do, and the weekends opened up. Bill and Lisa started filling them together. An estate sale on a Saturday. Somebody's garage on a Sunday. Two people in a car with coffee, driving out to look at other people's old things.</p>
+          <p>Come by the house on any given night and Bill is at the kitchen table with a tag in one hand and a reference book in the other, working out what something is and what it is worth. Lisa is usually a room away with her own half of it.</p>
+          <blockquote class="pull">They had talked about opening a shop for decades. It stayed a conversation, because life kept happening the way it does.</blockquote>
+          <p>Booth 18 is that conversation, finally, a long way from where it started. There are still New York plates hanging on the back wall of it.</p>
+        </div>
+        <figure>
+          <img src="../shop/bill-at-case.jpg" alt="Bill Otranto opening the door of a tall glass display case in the booth.">
+          <figcaption>Bill, in the booth, on a Wednesday.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- what's moving ---------- -->
+  <section class="moving" id="moving">
+    <div class="wrap">
+      <p class="label">What is moving</p>
+      <h2 style="font-size:clamp(26px,6.4vw,42px);margin-bottom:28px;max-width:18ch">The market, from behind the counter</h2>
+      <div class="mv-grid">
+
+        <article class="mv">
+          <p class="label" style="color:var(--ink-faint)">Christmas</p>
+          <h3>German blown glass keeps climbing</h3>
+          <p>Ornaments from the 1920s through the 1950s have been going up steadily. Buyers want originals, not the later reproductions that copied the shapes.</p>
+          <div class="take">
+            <div class="who">Bill's take</div>
+            <!-- PLACEHOLDER: needs Bill's actual words -->
+            <p>Check the cap and the wire hook first. That is where the fakes give themselves up.</p>
+          </div>
+        </article>
+
+        <article class="mv">
+          <p class="label" style="color:var(--ink-faint)">Halloween</p>
+          <h3>Pre-1960 pulp beats anything plastic</h3>
+          <p>Demand got strong enough that new decorations are manufactured to look old. The people hunting the real thing have gotten good at telling the difference.</p>
+          <div class="take">
+            <div class="who">Bill's take</div>
+            <!-- PLACEHOLDER: needs Bill's actual words -->
+            <p>German pulp jack o’ lanterns walk out the fastest. Every year, same story.</p>
+          </div>
+        </article>
+
+        <article class="mv">
+          <p class="label" style="color:var(--ink-faint)">Toys</p>
+          <h3>Original paint over restoration</h3>
+          <p>Buddy L, Hubley, Lionel and Tootsietoy all still trade steadily at auction. Honest wear on original paint holds value better than a clean repaint.</p>
+          <div class="take">
+            <div class="who">Bill's take</div>
+            <!-- PLACEHOLDER: needs Bill's actual words -->
+            <p>A repaint kills it. I would rather have the chips and the honest wear.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- featured ---------- -->
+  <section class="feat" id="featured">
+    <div class="wrap">
+      <p class="label">As featured on</p>
+      <h2 style="font-size:clamp(26px,6.4vw,42px);margin-bottom:22px">Somebody brought a camera</h2>
+      <!-- PLACEHOLDER: real channel names, episode titles, dates and links needed -->
+      <div class="feat-row"><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
+      <div class="feat-row"><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
+      <div class="feat-row"><span class="t">Episode title goes here</span><span class="c">Channel name · 2025</span></div>
+    </div>
+  </section>
+
+  <!-- ---------- find ---------- -->
+  <section class="find" id="find">
+    <div class="wrap">
+      <div class="find-grid">
+        <div>
+          <p class="label" style="color:var(--brass-lit)">Find the booth</p>
+          <h2>Booth 18, all the way to the back.</h2>
+          <dl>
+            <dt>Where</dt>
+            <dd>Paradise Antique Mall<br>3565 E. Flamingo Rd<br>Las Vegas, NV 89121</dd>
+            <dt>When</dt>
+            <dd>Wednesday and Sunday, 10 a.m. to 6 p.m.</dd>
+            <dt>Ask for</dt>
+            <dd>Bill</dd>
+          </dl>
+          <a class="phone" href="tel:+15164462693">(516) 446-2693</a>
+          <div class="hero-cta">
+            <a class="btn" href="https://maps.google.com/?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121">Open in Maps</a>
+          </div>
+        </div>
+        <img src="../shop/hero-aisle.jpg" alt="The aisle of the booth with glass cases on both sides packed with toys, tins and glass.">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Treasure Trove Finds · Booth 18 · Paradise Antique Mall, Las Vegas ·
+    <a href="tel:+15164462693">(516) 446-2693</a><br>
+    © 2026 Treasure Trove Finds &middot; An Otranto Labs project
+  </div>
+</footer>
+
+<button class="ask-fab" type="button" data-ask-open>Ask about the booth</button>
+
+<nav class="dock" aria-label="Quick actions">
+  <a href="tel:+15164462693">Call Bill</a>
+  <button class="ask" type="button" data-ask-open>Ask the booth</button>
+</nav>
+
+<div class="scrim" data-ask-close hidden></div>
+
+<section class="ask-panel" id="ask" role="dialog" aria-modal="true" aria-labelledby="ask-title" aria-hidden="true">
+  <div class="ask-head">
+    <div>
+      <h2 id="ask-title">Ask the booth</h2>
+      <p>Anything about what Bill and Lisa have in the cases.</p>
+    </div>
+    <button class="ask-close" type="button" data-ask-close aria-label="Close">×</button>
+  </div>
+
+  <div class="ask-log" id="ask-log" aria-live="polite">
+    <div class="msg booth">
+      <p>Ask me what is in the cases and I will point you at it. Try one of these, or type your own question.</p>
+    </div>
+  </div>
+
+  <div class="chips">
+    <button class="chip" type="button" data-q="Do you have any toy cars?">Any toy cars?</button>
+    <button class="chip" type="button" data-q="What is the oldest thing you have?">Oldest piece?</button>
+    <button class="chip" type="button" data-q="Anything under fifty dollars?">Under $50?</button>
+    <button class="chip" type="button" data-q="When are you open?">When are you open?</button>
+  </div>
+
+  <form class="ask-form" id="ask-form">
+    <label class="sr" for="ask-input">Your question</label>
+    <input id="ask-input" type="text" autocomplete="off" placeholder="Do you have any Lionel trains?">
+    <button type="submit">Ask</button>
+  </form>
+  <p class="ask-note">Demo. The answers here come from a small script in this page. Wired up for real, this runs on Claude Haiku over the live catalogue.</p>
+</section>
+
+<div class="mocknote">
+  <div class="wrap"><b>Concept 4 · The Cabinet.</b> Placeholder content: the “As featured on” rows need real channel names and links, and the three “Bill's take” lines need Bill's actual words. Every engraving, price and tag is real. The assistant is a scripted demo, not a live model.</div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- the cabinet doors open as you reach them ---------- */
+  var cabs = [].slice.call(document.querySelectorAll('[data-cab]'));
+  if (reduce) {
+    cabs.forEach(function (c) { c.classList.add('open'); });
+  } else {
+    var doorObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('open');
+        doorObs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -14% 0px' });
+    cabs.forEach(function (c) { doorObs.observe(c); });
+  }
+
+  /* ---------- the aisle rail marks where you are ---------- */
+  var railLinks = [].slice.call(document.querySelectorAll('.rail a'));
+  var marks = railLinks
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+  if (marks.length) {
+    var railObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        railLinks.forEach(function (a) {
+          a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false');
+        });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    marks.forEach(function (m) { railObs.observe(m); });
+  }
+
+  /* ---------- what is actually in the cases ---------- */
+  /* one list, used by the shelves above and by the assistant below */
+  var ITEMS = [
+    { id: 'racecar', el: 'it-racecar', name: 'Hubley Kiddie race car', era: '1930–1940s',
+      price: '$65.00', priceNum: 65, plate: '../cabinet/plates/army-jeep.png',
+      tag: "1930-1940's Hubley Kiddie diecast race car #S/#457",
+      words: 'hubley kiddie race car cars toy toys diecast die cast racer racing vehicle automobile buddy l tootsietoy metal 1930 1940 truck' },
+    { id: 'teddy', el: 'it-teddy', name: 'Pre-war teddy at the school desk', era: 'Pre-war',
+      price: '$125.00', priceNum: 125, plate: '../cabinet/plates/teddy-school-desk.png',
+      tag: 'Pre-war teddy, mohair, sat at the desk',
+      words: 'teddy bear mohair plush stuffed animal toy toys school desk prewar pre-war doll childhood' },
+    { id: 'pepsi', el: 'it-pepsi', name: 'Pepsi-Cola wooden crate', era: 'Advertising',
+      price: 'Ask in person', priceNum: null, plate: '../cabinet/plates/pepsi-crate.png',
+      tag: 'Pepsi-Cola wooden shipping crate',
+      words: 'pepsi cola crate wood wooden box advertising sign soda pop bottle carrier' },
+    { id: 'owl', el: 'it-owl', name: 'Plush owl', era: 'From the menagerie',
+      price: '$80.00', priceNum: 80, plate: '../cabinet/plates/steiff-menagerie.png',
+      tag: 'Plush menagerie, owl, lion and bears',
+      words: 'owl plush steiff stuffed animal menagerie lion bear toy toys bird' },
+    { id: 'perfume', el: 'it-perfume', name: 'Scherk “Renaissance” perfume bottle', era: '1934',
+      price: '$225.00', priceNum: 225, plate: '../cabinet/plates/perfume-bottle.png',
+      tag: '1934 Ludwig Scherk Renaissance perfume bottle w/ Marie Antoinette picture',
+      words: 'perfume bottle scherk ludwig renaissance marie antoinette glass filigree vanity jewelry 1934 scent' },
+    { id: 'crock', el: 'it-crock', name: 'Stoneware crock jug', era: '1900–10',
+      price: '$75.00', priceNum: 75, plate: '../cabinet/plates/crock-jugs.png',
+      tag: 'Stoneware jug. Old handle. Crackle',
+      words: 'stoneware crock jug pottery ceramic kitchen farmhouse crackle handle 1900 primitive' },
+    { id: 'phone', el: 'it-phone', name: 'Red rotary telephone', era: 'Curiosities',
+      price: '$135.00', priceNum: 135, plate: '../cabinet/plates/red-rotary-phone.png',
+      tag: 'Red rotary phone, leather pouch phone',
+      words: 'phone telephone rotary dial red leather pouch curiosity midcentury' },
+    { id: 'fan', el: 'it-fan', name: 'GE cast iron oscillating fan', era: 'Cast iron',
+      price: 'Ask in person', priceNum: null, plate: '../cabinet/plates/ge-fan.png',
+      tag: 'General Electric, cast iron, steel blades',
+      words: 'fan ge general electric cast iron oscillating blades machine industrial curiosity' },
+    { id: 'cobalt', el: 'it-cobalt', name: 'Cobalt apothecary jar', era: 'Antique, No. 233',
+      price: '$160.00', priceNum: 160, plate: '../cabinet/plates/cobalt-bottle.png',
+      tag: 'Antique 233. Apothecary jar, chemists jar, dark cobalt glass',
+      words: 'cobalt blue glass apothecary chemist jar bottle pharmacy druggist medicine antique' },
+    { id: 'buckle', el: 'it-buckle', name: 'America’s Firefighters belt buckle', era: 'Belt buckle',
+      price: '$34.00', priceNum: 34, plate: '../cabinet/plates/firefighters-buckle.png',
+      tag: 'America’s Firefighters. Ever ready, ever willing',
+      words: 'belt buckle firefighter fireman fire truck engine pewter americana jewelry' },
+    { id: 'shasta', el: 'it-shasta', name: 'Shasta Bitters crate', era: 'Advertising',
+      price: '$175.00', priceNum: 175, plate: '../cabinet/plates/shasta-bitters.png',
+      tag: 'Shasta Bitters wooden crate',
+      words: 'shasta bitters crate wood wooden box bottles advertising soda apothecary' },
+    { id: 'dressform', el: 'it-dressform', name: 'Burlap dress form', era: 'Textiles',
+      price: '$175.00', priceNum: 175, plate: '../cabinet/plates/dress-form.png',
+      tag: 'Burlap dress form',
+      words: 'dress form mannequin burlap sewing tailor textile lace collar clothing display' }
+  ];
+
+  /* ---------- the assistant ---------- */
+  var panel = document.getElementById('ask');
+  var scrim = document.querySelector('.scrim');
+  var fab = document.querySelector('.ask-fab');
+  var log = document.getElementById('ask-log');
+  var form = document.getElementById('ask-form');
+  var input = document.getElementById('ask-input');
+  var lastFocus = null;
+
+  function openAsk() {
+    lastFocus = document.activeElement;
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden', 'false');
+    scrim.hidden = false;
+    scrim.classList.add('open');
+    if (fab) fab.classList.add('hidden');
+    setTimeout(function () { input.focus(); }, 260);
+  }
+  function closeAsk() {
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden', 'true');
+    scrim.classList.remove('open');
+    if (fab) fab.classList.remove('hidden');
+    setTimeout(function () { scrim.hidden = true; }, 300);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-ask-open]').forEach(function (b) { b.addEventListener('click', openAsk); });
+  document.querySelectorAll('[data-ask-close]').forEach(function (b) { b.addEventListener('click', closeAsk); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && panel.classList.contains('open')) closeAsk();
+  });
+
+  function say(who, html) {
+    var d = document.createElement('div');
+    d.className = 'msg ' + who;
+    d.innerHTML = html;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    return d;
+  }
+
+  function cards(list) {
+    if (!list.length) return '';
+    var h = '<div class="hits">';
+    list.forEach(function (it) {
+      h += '<button class="hit" type="button" data-go="' + it.el + '">' +
+           '<img src="' + it.plate + '" alt="">' +
+           '<span><span class="hn">' + it.name + '</span><br><span class="hp">' + it.price + '</span></span>' +
+           '<span class="go">Show me &rsaquo;</span>' +
+           '</button>';
+    });
+    return h + '</div>';
+  }
+
+  function goTo(elId) {
+    closeAsk();
+    var el = document.getElementById(elId);
+    if (!el) return;
+    var cab = el.closest('[data-cab]');
+    if (cab) cab.classList.add('open');
+    setTimeout(function () {
+      el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      el.classList.remove('flash');
+      void el.offsetWidth;
+      el.classList.add('flash');
+      el.focus({ preventScroll: true });
+    }, 320);
+  }
+  log.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-go]');
+    if (b) goTo(b.getAttribute('data-go'));
+  });
+
+  function answer(qRaw) {
+    var q = qRaw.toLowerCase();
+    var has = function () {
+      for (var i = 0; i < arguments.length; i++) if (q.indexOf(arguments[i]) > -1) return true;
+      return false;
+    };
+
+    if (has('open', 'hours', 'when are you', 'what time', 'what day')) {
+      return '<p>Wednesday and Sunday, 10 a.m. to 6 p.m. Bill is usually the one behind the counter. ' +
+             'If you want to check something is still there before you drive out, call <a href="tel:+15164462693">(516) 446-2693</a>.</p>';
+    }
+    if (has('where', 'address', 'directions', 'located', 'find you', 'parking')) {
+      return '<p>Booth 18 at Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas, NV 89121. All the way to the back. ' +
+             '<a href="https://maps.google.com/?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121">Open it in Maps</a>.</p>';
+    }
+    if (has('who is', 'who are', 'bill', 'lisa', 'story', 'how did', 'about you')) {
+      return '<p>Bill and Lisa Otranto. Bill has been collecting since 1973 and handles the toys, the trucks, the trains and the research that ends up on every tag. ' +
+             'Lisa handles the glass, the jewelry and the textiles. <a href="#story" data-close-scroll>Read how they got here</a>.</p>';
+    }
+    if (has('ship', 'deliver', 'mail', 'online', 'buy online', 'website')) {
+      return '<p>Everything is sold in person at the booth right now. Call Bill on <a href="tel:+15164462693">(516) 446-2693</a> and he will hold a piece for you.</p>';
+    }
+
+    /* price questions. people write "under $50" and "under fifty dollars" */
+    var WORDNUM = { ten: 10, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60,
+                    seventy: 70, eighty: 80, ninety: 90, hundred: 100 };
+    var under = null, cap = 50;
+    var mDigit = q.match(/(?:under|below|less than|cheaper than)\s*\$?\s*(\d+)/);
+    var mWord = q.match(/(?:under|below|less than|cheaper than)\s*\$?\s*([a-z]+)/);
+    if (mDigit) { under = true; cap = parseInt(mDigit[1], 10); }
+    else if (mWord && WORDNUM[mWord[1]]) { under = true; cap = WORDNUM[mWord[1]]; }
+    else if (has('cheap', 'inexpensive', 'affordable', 'budget')) { under = true; cap = 50; }
+    if (under) {
+      var cheap = ITEMS.filter(function (i) { return i.priceNum !== null && i.priceNum <= cap; })
+                       .sort(function (a, b) { return a.priceNum - b.priceNum; });
+      if (cheap.length) {
+        return '<p>Here is what is tagged at $' + cap + ' or under right now.</p>' + cards(cheap);
+      }
+      return '<p>Nothing under $' + cap + ' in the catalogued pieces, but the booth has plenty that never makes it online. Worth a look in person.</p>';
+    }
+    if (has('oldest', 'earliest', 'how old')) {
+      var oldest = ITEMS.filter(function (i) { return i.id === 'crock' || i.id === 'racecar'; });
+      return '<p>The stoneware crock jug is the earliest thing catalogued, tagged 1900 to 1910. The Hubley race car is close behind at 1930 to 1940.</p>' + cards(oldest);
+    }
+    if (has('expensive', 'most valuable', 'priciest', 'highest')) {
+      var dear = ITEMS.filter(function (i) { return i.priceNum !== null; })
+                      .sort(function (a, b) { return b.priceNum - a.priceNum; }).slice(0, 2);
+      return '<p>The 1934 Scherk perfume bottle is the top of the catalogued pieces.</p>' + cards(dear);
+    }
+
+    /* keyword match against the case */
+    var scored = ITEMS.map(function (it) {
+      var hay = (it.name + ' ' + it.era + ' ' + it.tag + ' ' + it.words).toLowerCase();
+      var score = 0;
+      q.replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).forEach(function (w) {
+        if (w.length < 3) return;
+        if (hay.indexOf(w) > -1) score += w.length;
+      });
+      return { it: it, score: score };
+    }).filter(function (s) { return s.score > 0; })
+      .sort(function (a, b) { return b.score - a.score; })
+      .slice(0, 3)
+      .map(function (s) { return s.it; });
+
+    if (scored.length) {
+      return '<p>Yes. Here is what is in the case that matches.</p>' + cards(scored);
+    }
+
+    /* things Bill collects but that are not catalogued online */
+    if (has('lionel', 'train', 'buddy', 'tootsietoy', 'christmas', 'halloween', 'ornament')) {
+      return '<p>That is squarely Bill\'s thing. He chases 1920 to 1950 trucks, cars and trains, Buddy L, Hubley, Lionel and Tootsietoy, ' +
+             'plus Christmas and Halloween from the 1920s to the 1960s. Not all of it is catalogued online, so the stock in the booth is deeper than what you see here. ' +
+             'Call <a href="tel:+15164462693">(516) 446-2693</a> and ask him directly.</p>';
+    }
+
+    return '<p>I could not find that in the catalogued pieces, and the booth holds a lot more than what is listed here. ' +
+           'Call Bill on <a href="tel:+15164462693">(516) 446-2693</a> or come by on a Wednesday or Sunday and ask him.</p>';
+  }
+
+  function ask(q) {
+    if (!q.trim()) return;
+    say('you', q.replace(/</g, '&lt;'));
+    var typing = say('booth', '<p>Looking in the case…</p>');
+    setTimeout(function () {
+      typing.innerHTML = answer(q);
+      log.scrollTop = log.scrollHeight;
+    }, reduce ? 0 : 420);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    ask(input.value);
+    input.value = '';
+  });
+  document.querySelectorAll('.chip').forEach(function (c) {
+    c.addEventListener('click', function () { ask(c.getAttribute('data-q')); });
+  });
+  log.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-close-scroll]');
+    if (a) closeAsk();
+  });
+
+  /* the shelf pieces open the assistant with their own tag read out */
+  document.querySelectorAll('.obj').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var it = ITEMS.filter(function (i) { return i.id === b.getAttribute('data-item'); })[0];
+      if (!it) return;
+      openAsk();
+      say('you', 'Tell me about the ' + it.name.toLowerCase() + '.');
+      var t = say('booth', '<p>Reading the tag…</p>');
+      setTimeout(function () {
+        t.innerHTML = '<p><strong>' + it.name + '</strong>, ' + it.era + '. Tagged ' + it.price + '.</p>' +
+                      '<p>Bill wrote this on it, word for word:</p>' +
+                      '<p style="font-family:\'Permanent Marker\',cursive;font-size:16px;line-height:1.5">' + it.tag + '</p>';
+        log.scrollTop = log.scrollHeight;
+      }, reduce ? 0 : 380);
+    });
+  });
+})();
+</script>
+</body>
+</html>
