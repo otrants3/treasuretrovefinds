@@ -43,6 +43,16 @@ everything is locked.
 
 Price band seen on camera: roughly $25 to $100.
 
+## A clip of Bill speaking exists but is locked
+
+A.J. shared a Facebook clip of Bill talking: https://www.facebook.com/share/v/1HZVV6bKNt/
+(resolves to facebook.com/reel/1297142958535654). Facebook returns "this page
+isn't available" even from a logged in session, so its audience setting is
+restricted. Two ways to unlock it: A.J. downloads the video file and drops it
+in the repo, or whoever posted it changes the audience to public. Once the
+file exists, Gemini (the API key already in the repo's .env.local) can
+transcribe it, and that transcript becomes the voice source for the site copy.
+
 ## Still missing
 
 Bill's own voice on tape. The weekly card's thirty second voice note is how we
