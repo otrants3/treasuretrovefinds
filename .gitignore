@@ -28,3 +28,4 @@ pnpm-debug.log*
 
 # playwright screenshot output
 .playwright-mcp/
+serve.mjs
