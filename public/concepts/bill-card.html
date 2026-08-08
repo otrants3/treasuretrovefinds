@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Booth 18 · The weekly three</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THE WEEKLY THREE
+   A card for Bill. Print it and tape it inside the booth, and
+   save a photo of it on his phone.
+
+   Everything here is sized for reading at arm's length by
+   someone who is not going to put their glasses on for it.
+   No app, no login, no website. He takes photos and sends a
+   text, which is a thing he already does.
+   ============================================================ */
+:root{
+  --paper:#F7EBD5;
+  --ink:#221A10;
+  --ink-soft:#57462F;
+  --oak:#7B5228;
+  --brass:#8A6B18;
+  --red:#A32F26;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:#3A2614;color:var(--ink);
+  font-family:"Spectral",Georgia,serif;font-size:20px;line-height:1.55;
+  padding:20px;
+}
+.card{
+  max-width:760px;margin:0 auto;background:var(--paper);
+  border:3px solid var(--oak);padding:34px 30px 38px;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.8);
+}
+.top{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:26px}
+.eyebrow{
+  font-family:"Cinzel",Georgia,serif;text-transform:uppercase;letter-spacing:.18em;
+  font-size:14px;color:var(--brass);font-weight:600;margin:0 0 8px;
+}
+h1{font-size:44px;line-height:1.05;margin:0;font-weight:600;letter-spacing:-.01em}
+.sub{font-size:21px;color:var(--ink-soft);margin:12px 0 0}
+
+ol{list-style:none;counter-reset:step;margin:0;padding:0}
+ol li{
+  counter-increment:step;position:relative;
+  padding:0 0 0 74px;margin:0 0 30px;
+}
+ol li::before{
+  content:counter(step);
+  position:absolute;left:0;top:-4px;
+  width:54px;height:54px;border-radius:50%;
+  background:var(--ink);color:var(--paper);
+  font-family:"Cinzel",serif;font-size:27px;font-weight:600;
+  display:grid;place-content:center;
+}
+ol li h2{font-size:27px;margin:0 0 6px;font-weight:600;line-height:1.2}
+ol li p{margin:0;font-size:20px;color:var(--ink-soft)}
+ol li p b{color:var(--ink)}
+
+.rule{height:3px;background:var(--ink);margin:34px 0 28px}
+
+h3{
+  font-family:"Cinzel",Georgia,serif;text-transform:uppercase;letter-spacing:.16em;
+  font-size:15px;color:var(--brass);margin:0 0 14px;font-weight:600;
+}
+ul{margin:0 0 26px;padding-left:26px}
+ul li{margin-bottom:10px;font-size:19.5px;color:var(--ink-soft)}
+ul li b{color:var(--ink)}
+
+.talk{
+  background:#EFDFC0;border-left:5px solid var(--brass);
+  padding:22px 24px;margin:0 0 26px;
+}
+.talk h3{margin-bottom:10px}
+.talk p{margin:0 0 12px;font-size:19.5px}
+/* plain numbers in here, not the big step circles from the main list */
+.talk .qs{margin:0;padding-left:26px;list-style:decimal;counter-reset:none}
+.talk .qs li{margin-bottom:7px;font-size:19.5px;color:var(--ink);padding-left:0;counter-increment:none}
+.talk .qs li::before{content:none;position:static;width:auto;height:auto;background:none}
+.talk .qs li::marker{font-weight:600}
+
+.foot{
+  border-top:3px solid var(--ink);padding-top:20px;margin-top:8px;
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:baseline;
+}
+.foot .big{font-size:23px;font-weight:600}
+.foot .small{font-size:17px;color:var(--ink-soft)}
+.stamp{
+  display:inline-block;border:3px solid var(--red);color:var(--red);
+  font-family:"Cinzel",serif;text-transform:uppercase;letter-spacing:.14em;
+  font-size:15px;font-weight:600;padding:8px 16px;transform:rotate(-2deg);
+}
+
+@media print{
+  body{background:#fff;padding:0;font-size:12.5pt}
+  .card{border:2px solid #000;box-shadow:none;max-width:none;padding:22pt}
+  ol li::before{background:#000;color:#fff;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .talk{background:#f2f2f2;border-left-color:#000;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .eyebrow,h3{color:#000}
+  .stamp{border-color:#000;color:#000}
+  .no-print{display:none}
+}
+.no-print{max-width:760px;margin:16px auto 0;color:#C9B893;font-size:16px;text-align:center}
+.no-print button{
+  font-family:inherit;font-size:16px;min-height:46px;padding:0 20px;cursor:pointer;
+  background:var(--paper);border:2px solid var(--paper);color:var(--ink);
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="top">
+    <p class="eyebrow">Booth 18 · Paradise Antique Mall</p>
+    <h1>The weekly three</h1>
+    <p class="sub">Before you leave the booth on Wednesday or Sunday. Takes about five minutes.</p>
+  </div>
+
+  <ol>
+    <li>
+      <h2>Pick three pieces</h2>
+      <p>Anything new in the case, or anything you enjoyed finding. <b>It does not have to be the expensive stuff.</b> The odd ones are usually the ones people ask about.</p>
+    </li>
+    <li>
+      <h2>Take two photos of each</h2>
+      <p>One of the whole piece. One up close on <b>your tag</b>, so the writing is easy to read. Six photos in total.</p>
+    </li>
+    <li>
+      <h2>Text them to A.J.</h2>
+      <p>All six in one message. <b>That is the whole job.</b> He does the rest, and you never have to open a computer.</p>
+    </li>
+  </ol>
+
+  <div class="rule"></div>
+
+  <h3>What makes a photo work</h3>
+  <ul>
+    <li><b>No flash.</b> The case light or the daylight is better, and the flash blows out the glass.</li>
+    <li><b>Get closer than feels right.</b> Fill the whole screen with the piece.</li>
+    <li><b>Take two of each</b> and send both. One is always sharper.</li>
+    <li><b>Tag right side up</b> and in focus. If you can read it on the phone, so can we.</li>
+    <li><b>Set it on the counter</b> rather than shooting through the glass, if it is easy to reach.</li>
+  </ul>
+
+  <div class="talk">
+    <h3>If you feel like it, talk for thirty seconds</h3>
+    <p>Hold the phone up and just say it out loud, no script, then send that too. This is the part people actually want.</p>
+    <ol class="qs">
+      <li>What is it, and roughly what years is it from?</li>
+      <li>Where did you come across it?</li>
+      <li>What should somebody know before they buy one?</li>
+    </ol>
+  </div>
+
+  <h3>Once in a while, not every week</h3>
+  <ul>
+    <li>A photo of <b>the booth itself</b> when it looks good after you have tidied it.</li>
+    <li>Anything that <b>sold</b>, and what it went for. People like knowing.</li>
+    <li>Anything you <b>turned down</b> and why. That is a good story every time.</li>
+  </ul>
+
+  <div class="foot">
+    <div>
+      <div class="big">Send to A.J.</div>
+      <div class="small">Wednesday or Sunday, whichever you get to.</div>
+    </div>
+    <span class="stamp">Six photos. One text.</span>
+  </div>
+</div>
+
+<div class="no-print">
+  <p>Print this and tape it inside the booth. Take a photo of it for his phone too.</p>
+  <button type="button" onclick="window.print()">Print the card</button>
+</div>
+
+</body>
+</html>

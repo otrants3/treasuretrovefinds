@@ -55,6 +55,20 @@ It handles hours, location, who Bill and Lisa are, shipping, price questions (`u
 
 Right now it is **a script inside the page**, not a model. The item list it searches is the `ITEMS` array at the bottom of the file. Wired up for real this would be Claude Haiku over the live catalogue, and the `ITEMS` array becomes the tool it searches.
 
+## bill-card.html
+
+A card for Bill, not for visitors. Print it, tape it inside the booth, and save a photo of it on his phone. Open `bill-card.html` and hit Print.
+
+It asks him for one thing a week: pick three pieces, take two photos of each (one of the piece, one of his tag), text all six to A.J. in a single message. He already photographs pieces and writes the tags, so the card is direction rather than new work. There is an optional thirty second voice note with three prompts, which is the part that turns a photo into content.
+
+The whole point is that Bill never opens a computer. All the technology lives on A.J.'s side.
+
+## As featured on, now real
+
+The placeholder is filled in direction 04. **Picker Road** on YouTube, episode *"PICKING IN PARADISE!!! Join the Journey on Picker Road!"*, Bill and Lisa from **14:23 to 29:50**. The card deep links straight to their segment at `?v=u0U7ZoHl1FE&t=862s`.
+
+The thumbnail in `public/featured/picker-road.jpg` is the episode's own thumbnail and shows the Picker Road hosts outside Paradise Mall, not Bill and Lisa. Linking a channel's thumbnail to their video is normal etiquette. **Using frames from inside the episode on the site is a different thing and should be asked for first.**
+
 ## What is real and what is not
 
 **Real** in all four: every photograph, every engraving, every price, and every tag transcription comes from the booth. Bill's quote about what he collects is his own words, lightly cleaned up for punctuation.

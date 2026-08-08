@@ -241,6 +241,28 @@ a{color:var(--ink)}
 }
 .feat-row .t{font-size:19px;font-weight:600}
 .feat-row .c{font-size:14.5px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase}
+/* a real appearance, with a deep link straight to their segment */
+.feature{
+  display:flex;flex-direction:column;gap:0;text-decoration:none;color:inherit;
+  border:1px solid rgba(78,50,24,.32);background:var(--paper);
+  transition:border-color .18s ease;
+}
+.feature:hover,.feature:focus-visible{border-color:var(--brass)}
+.feature img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.feature .fbody{display:flex;flex-direction:column;padding:18px 20px 20px;gap:5px}
+.feature .fchan{font-family:"Cinzel",serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+.feature .ftitle{font-size:23px;font-weight:600;line-height:1.2}
+.feature .fnote{font-size:17px;color:var(--ink-soft)}
+.feature .fgo{
+  margin-top:10px;align-self:flex-start;min-height:48px;display:inline-flex;align-items:center;
+  padding:0 20px;background:var(--ink);color:var(--page);font-size:16px;
+}
+.feature:hover .fgo,.feature:focus-visible .fgo{background:var(--red)}
+@media (min-width:760px){
+  .feature{flex-direction:row;align-items:stretch}
+  .feature img{width:44%;max-width:420px;aspect-ratio:16/9}
+  .feature .fbody{justify-content:center;padding:26px 30px}
+}
 
 /* ---------------- find ---------------- */
 .find{background:var(--ink);color:#EADFC8;padding:44px 0 40px}
@@ -683,10 +705,19 @@ footer a{color:var(--ink-soft);display:inline-block;min-height:44px;padding:11px
     <div class="wrap">
       <p class="label">As featured on</p>
       <h2 style="font-size:clamp(26px,6.4vw,42px);margin-bottom:22px">Somebody brought a camera</h2>
-      <!-- PLACEHOLDER: real channel names, episode titles, dates and links needed -->
-      <div class="feat-row"><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
-      <div class="feat-row"><span class="t">Episode title goes here</span><span class="c">Channel name · 2026</span></div>
-      <div class="feat-row"><span class="t">Episode title goes here</span><span class="c">Channel name · 2025</span></div>
+
+      <a class="feature" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">
+        <img src="../featured/picker-road.jpg" alt="The Picker Road hosts outside Paradise Mall, from the episode thumbnail." loading="lazy">
+        <span class="fbody">
+          <span class="fchan">Picker Road · YouTube</span>
+          <span class="ftitle">Picking in Paradise</span>
+          <span class="fnote">Bill and Lisa are on from <b>14:23 to 29:50</b>, with a long walk through the booth.</span>
+          <span class="fgo">Watch their part</span>
+        </span>
+      </a>
+
+      <!-- PLACEHOLDER: more appearances go here as they happen, same shape -->
+      <p style="color:var(--ink-faint);font-size:16px;margin-top:18px">More on the way. If you filmed at the booth and want it listed, call Bill.</p>
     </div>
   </section>
 
