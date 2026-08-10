@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Treasure Trove Finds, Booth 18 at Paradise Antique Mall, Las Vegas. Antique toys, bottles, and a mixture of everything. Decades in the collecting.">
+<link rel="icon" href="../favicon.svg">
+<title>Treasure Trove Finds · Booth 18, Las Vegas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitter:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   D5 · THE ROADSIDE SIGN
+   Painted steel and sun-faded enamel off an American highway.
+   Cream field, enamel red, brown-black, one rare faded teal.
+   Laws: 18px+ body, 44px+ taps, captions everywhere, serif body
+   dark-on-light, nothing behind hover, no em dashes.
+   ========================================================= */
+:root{
+  --cream:#F2E8D0;
+  --cream-deep:#EADCBB;
+  --red:#9E2A2B;
+  --red-deep:#7E1F20;
+  --ink:#2a1613;
+  --teal:#37655c;
+  --shadow:rgba(42,22,19,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;
+  font-family:'Bitter',Georgia,serif;
+  font-size:19px;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--cream);
+  /* sun-faded field: gentle wash plus grain */
+  background-image:
+    radial-gradient(120% 70% at 50% 0%, rgba(255,252,240,.55), rgba(255,252,240,0) 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .18 0 0 0 0 .1 0 0 0 0 .08 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  padding-bottom:64px;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+figure{margin:0}
+p{margin:0 0 18px}
+a{color:var(--red);text-decoration-thickness:2px;text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
+
+.col{max-width:680px;margin:0 auto;padding:0 20px}
+.wide{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+
+/* ---------- painted trim rules ---------- */
+.rule{
+  border:0;height:9px;margin:0 auto;max-width:1120px;
+  background:
+    linear-gradient(var(--red),var(--red)) 0 0/100% 3px no-repeat,
+    linear-gradient(var(--ink),var(--ink)) 0 7px/100% 2px no-repeat;
+  opacity:.9;
+}
+.rule.teal{background:
+    linear-gradient(var(--teal),var(--teal)) 0 0/100% 3px no-repeat,
+    linear-gradient(var(--ink),var(--ink)) 0 7px/100% 2px no-repeat;}
+
+/* ---------- section plates (small painted route markers) ---------- */
+.plate{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);background:var(--ink);
+  padding:8px 16px;border-radius:3px;
+  box-shadow:0 2px 0 var(--shadow);
+  margin:0 0 18px;
+}
+.plate .no{
+  color:var(--cream);background:var(--red);
+  font-size:13px;padding:2px 7px;border-radius:2px;letter-spacing:.08em;
+}
+.plate.teal .no{background:var(--teal)}
+
+h1,h2{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;color:var(--ink);margin:0}
+h2{font-size:clamp(30px,6.4vw,46px);line-height:1.08;margin-bottom:18px;letter-spacing:.01em}
+h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:.14em;text-transform:uppercase;margin:34px 0 14px;color:var(--red)}
+
+/* ---------- buttons: enamel tokens with painted double border ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:13px 26px;margin:4px 12px 8px 0;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  color:var(--cream);background:linear-gradient(180deg,#AF3436,var(--red) 55%,var(--red-deep));
+  border:2px solid var(--ink);border-radius:5px;
+  box-shadow:inset 0 0 0 2px var(--cream), inset 0 0 0 3px rgba(42,22,19,.35), 0 3px 0 var(--shadow);
+  cursor:pointer;
+}
+.btn:active{transform:translateY(2px);box-shadow:inset 0 0 0 2px var(--cream), inset 0 0 0 3px rgba(42,22,19,.35), 0 1px 0 var(--shadow)}
+.btn.alt{
+  color:var(--red);background:linear-gradient(180deg,#FBF4E1,var(--cream) 60%,var(--cream-deep));
+  box-shadow:inset 0 0 0 2px var(--red), inset 0 0 0 3px rgba(158,42,43,.18), 0 3px 0 var(--shadow);
+}
+.btn.tealbtn{
+  color:var(--cream);background:linear-gradient(180deg,#41756b,var(--teal) 55%,#2b5049);
+  box-shadow:inset 0 0 0 2px var(--cream), inset 0 0 0 3px rgba(42,22,19,.3), 0 3px 0 var(--shadow);
+}
+
+/* ---------- figures: painted steel frames, caption plaques ---------- */
+figure.framed{margin:0 0 26px}
+figure.framed img, figure.framed video{
+  border:3px solid var(--ink);border-radius:4px;
+  box-shadow:inset 0 0 0 3px var(--cream), 0 4px 0 var(--shadow);
+  background:#000;width:100%;
+}
+figcaption{
+  font-size:16.5px;line-height:1.5;color:var(--ink);
+  background:var(--cream-deep);
+  border-left:4px solid var(--red);
+  padding:10px 14px;margin-top:8px;border-radius:0 3px 3px 0;
+}
+figcaption .cap-label{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--red);
+  display:block;margin-bottom:2px;
+}
+
+/* ---------- quotes ---------- */
+.quote{
+  font-size:23px;line-height:1.5;font-style:italic;font-weight:600;
+  margin:0 0 8px;color:var(--ink);
+  padding-left:18px;border-left:5px solid var(--red);
+}
+.attr{
+  font-size:16px;font-style:normal;font-family:'Oswald',sans-serif;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:0 0 18px;padding-left:23px;
+}
+.facts{font-size:20px;line-height:1.75;margin:0 0 20px}
+.facts a{color:var(--ink);font-weight:700}
+.facts strong{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:16px;color:var(--red)}
+
+/* =========================================================
+   1. MASTHEAD: the hanging painted sign
+   ========================================================= */
+.masthead{padding:34px 0 56px;position:relative}
+.sign-hanger{
+  /* the post the sign hangs from: a painted bar across the top */
+  height:14px;max-width:860px;margin:0 auto 26px;
+  background:
+    linear-gradient(var(--ink),var(--ink)) 0 2px/100% 4px no-repeat,
+    linear-gradient(var(--red),var(--red)) 0 9px/100% 3px no-repeat;
+}
+.sign{
+  position:relative;max-width:760px;margin:0 auto;
+  background:linear-gradient(178deg,#B23638 0%,var(--red) 42%,var(--red-deep) 100%);
+  border:3px solid var(--ink);border-radius:10px;
+  box-shadow:inset 0 0 0 4px var(--cream), inset 0 0 0 6px rgba(42,22,19,.35), 0 8px 0 var(--shadow);
+  padding:38px 22px 34px;text-align:center;
+  transform-origin:50% -30px;
+  will-change:transform;
+}
+.sign::after{ /* sun glare across the enamel */
+  content:"";position:absolute;inset:0;border-radius:8px;pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,250,235,.22) 0%,rgba(255,250,235,0) 38%);
+}
+.bolt{
+  position:absolute;width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #f7ecd2 0%, #c9b98e 40%, #6b5a3c 100%);
+  box-shadow:0 1px 2px rgba(0,0,0,.5), inset 0 -1px 1px rgba(0,0,0,.35);
+}
+.bolt.b1{top:11px;left:11px}.bolt.b2{top:11px;right:11px}
+.bolt.b3{bottom:11px;left:11px}.bolt.b4{bottom:11px;right:11px}
+.sign .over{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--cream);
+  margin:0 0 10px;opacity:.95;
+}
+.sign h1{
+  font-size:clamp(40px,10.5vw,84px);line-height:.98;color:var(--cream);
+  text-shadow:0 3px 0 rgba(42,22,19,.45);
+  margin:0 0 12px;letter-spacing:.01em;
+}
+.sign .under{
+  font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--cream);margin:0;
+}
+.sign .under .star{color:var(--cream-deep);padding:0 8px}
+.tagline{
+  font-size:22px;line-height:1.45;font-style:italic;text-align:center;
+  max-width:600px;margin:26px auto 6px;padding:0 20px;
+}
+.mast-grid{max-width:1120px;margin:26px auto 0;padding:0 20px;
+  display:grid;gap:26px;align-items:start}
+@media (min-width:920px){
+  .mast-grid{grid-template-columns:1.05fr .95fr;gap:44px}
+  .mast-grid .who{order:2}
+  .mast-grid .come{order:1;padding-top:8px}
+}
+
+/* ---------- painted arrows between sections ---------- */
+.arrow-wrap{display:flex;justify-content:center;padding:0 0 8px}
+.arrow{width:46px;height:88px;overflow:visible}
+.arrow path{
+  fill:none;stroke:var(--red);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:100;stroke-dashoffset:100;
+  transition:stroke-dashoffset 1s ease .15s;
+}
+.arrow.teal path{stroke:var(--teal)}
+.arrow.draw path{stroke-dashoffset:0}
+@media (prefers-reduced-motion: reduce){
+  .arrow path{stroke-dashoffset:0 !important;transition:none !important}
+}
+
+/* ---------- gentle rise-in for figures ---------- */
+.rise{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .rise{opacity:1 !important;transform:none !important;transition:none !important}
+}
+
+/* =========================================================
+   4. GOODS
+   ========================================================= */
+.goods-grid{display:grid;grid-template-columns:1fr;gap:22px;margin:26px 0 8px}
+@media (min-width:560px){.goods-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:980px){.goods-grid{grid-template-columns:1fr 1fr 1fr}}
+.goods-grid figure.framed{margin:0}
+
+.pricelist{list-style:none;margin:0 0 22px;padding:0}
+.pricelist li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:13px 2px;border-bottom:2px dashed rgba(42,22,19,.3);
+  font-size:19px;line-height:1.5;
+}
+.pricelist li:first-child{border-top:2px dashed rgba(42,22,19,.3)}
+.token{
+  flex:none;font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;
+  letter-spacing:.06em;color:var(--cream);
+  background:linear-gradient(180deg,#AF3436,var(--red) 55%,var(--red-deep));
+  border:2px solid var(--ink);border-radius:4px;
+  box-shadow:inset 0 0 0 2px var(--cream), 0 2px 0 var(--shadow);
+  padding:3px 11px;white-space:nowrap;
+}
+.openline{
+  font-size:21px;font-weight:600;text-align:center;
+  border-top:3px solid var(--red);border-bottom:3px solid var(--red);
+  padding:16px 10px;margin:26px 0 0;
+}
+
+/* =========================================================
+   5. TOO FAR / mail order
+   ========================================================= */
+.far{background:var(--cream-deep);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .18 0 0 0 0 .1 0 0 0 0 .08 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+}
+.plaques{display:flex;flex-wrap:wrap;gap:12px;margin:4px 0 20px}
+.plaque{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cream);background:var(--teal);
+  border:2px solid var(--ink);border-radius:4px;
+  box-shadow:inset 0 0 0 2px var(--cream), 0 2px 0 var(--shadow);
+  padding:9px 14px;
+}
+form.mail{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;margin-top:6px}
+input[type=email]{
+  font-family:'Bitter',Georgia,serif;font-size:19px;color:var(--ink);
+  background:#FBF4E1;border:3px solid var(--ink);border-radius:5px;
+  padding:12px 14px;min-height:52px;flex:1 1 240px;max-width:360px;
+  box-shadow:inset 0 2px 3px rgba(42,22,19,.15);
+}
+form.mail .btn{margin:0}
+
+/* =========================================================
+   6. CLOSE
+   ========================================================= */
+.close-grid{display:grid;gap:28px;margin-top:8px}
+@media (min-width:920px){.close-grid{grid-template-columns:1.1fr .9fr;align-items:start}}
+.mapframe{border:3px solid var(--ink);border-radius:4px;
+  box-shadow:inset 0 0 0 3px var(--cream), 0 4px 0 var(--shadow);
+  width:100%;height:340px;display:block;background:var(--cream-deep)}
+.footline{
+  font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--red);
+  text-align:center;margin:44px 0 0;
+}
+
+/* =========================================================
+   PERSISTENT DOCK
+   ========================================================= */
+.dock{
+  position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;
+  background:linear-gradient(180deg,#3a221e,var(--ink));
+  border-top:3px solid var(--red);
+  box-shadow:0 -3px 8px rgba(42,22,19,.3);
+}
+.dock a{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+  min-height:56px;padding:8px 6px;
+  color:var(--cream);text-decoration:none;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;
+  letter-spacing:.1em;text-transform:uppercase;
+  border-right:1px solid rgba(242,232,208,.25);
+}
+.dock a:last-child{border-right:0}
+.dock a.home{flex:1.5;letter-spacing:.06em}
+.dock a .dot{color:var(--red);font-size:14px}
+@media (max-width:420px){.dock a{font-size:16px;letter-spacing:.06em}}
+</style>
+</head>
+<body id="top">
+
+<!-- ============ 1. THE TOP: serves the already-sold ============ -->
+<header class="masthead">
+  <div class="sign-hanger" aria-hidden="true"></div>
+
+  <!-- Signature: the layered enamel sign. Sways a degree or two with scroll, like it hangs off the hanger bar. -->
+  <div class="sign" id="sign">
+    <span class="bolt b1" aria-hidden="true"></span><span class="bolt b2" aria-hidden="true"></span>
+    <span class="bolt b3" aria-hidden="true"></span><span class="bolt b4" aria-hidden="true"></span>
+    <p class="over">Booth 18 · Paradise Antique Mall</p>
+    <h1>Treasure<br>Trove Finds</h1>
+    <p class="under">Las Vegas <span class="star" aria-hidden="true">&#9670;</span> Nevada</p>
+  </div>
+
+  <p class="tagline">Antique toys, bottles, and a mixture of everything. Decades in the collecting.</p>
+
+  <div class="mast-grid">
+    <div class="who">
+      <!-- AWAITING: replacement photo of Bill facing the camera. This one has him turned away. -->
+      <figure class="framed rise">
+        <img src="../shop/bill-at-case.jpg" alt="Bill at the display case in Booth 18" width="1200" height="800">
+        <figcaption><span class="cap-label">The proprietor</span>Bill at the case, Booth 18. Ask about anything and the case opens.</figcaption>
+      </figure>
+    </div>
+    <div class="come">
+      <p class="facts">
+        <strong>Find the booth</strong><br>
+        Booth 18, Paradise Antique Mall<br>
+        3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+        Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+        <!-- AWAITING: confirm whether booth is browsable daily; adjust hours line -->
+        <a href="tel:+15164462693">(516) 446-2693</a>
+      </p>
+      <p>
+        <a class="btn" href="tel:+15164462693">Call Bill</a>
+        <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+      </p>
+    </div>
+  </div>
+</header>
+
+<hr class="rule">
+<div class="arrow-wrap" aria-hidden="true">
+  <svg class="arrow" viewBox="0 0 46 88"><path pathLength="100" d="M23 4 C26 26 20 48 23 68 M10 56 C14 62 19 68 23 74 C27 68 32 62 36 56"/></svg>
+</div>
+
+<!-- ============ 2. THE STORY: the main sell ============ -->
+<section id="story">
+  <div class="col">
+    <p class="plate"><span class="no">No. 2</span> The story</p>
+    <h2>Decades of homework</h2>
+    <!-- AWAITING: Bill and Lisa's read of this copy before it ships. -->
+    <!-- AWAITING: Lisa's side of the story, in her words. -->
+    <!-- AWAITING: confirm 2025 opening and Bill's actual collecting start year. -->
+    <p>Bill has been collecting for decades. For most of them it was his alone.</p>
+    <p>Then the kids grew up and moved out, and the weekends went quiet. Bill and Lisa started filling them together: estate sales, garage sales, anywhere old things turn up. It became how they reconnected.</p>
+    <p>Stop by the house any night and you will find Bill at the kitchen table, a tag in one hand and a reference book in the other. Lisa is a room away, working her side of it.</p>
+    <p>For years they talked about opening a shop someday. It stayed talk. In 2025 the talk finally happened: Booth 18, moved from Long Island to Las Vegas. The New York plates still hang on the back wall.</p>
+    <figure class="framed rise">
+      <img src="../photos/signage.jpg" alt="New York license plates hanging on the booth's back wall" loading="lazy">
+      <figcaption><span class="cap-label">Long Island to Las Vegas</span>The New York plates, still on the back wall of a Vegas booth.</figcaption>
+    </figure>
+    <figure class="framed rise">
+      <img src="../photos/tag-detail.jpg" alt="A handwritten price tag on an antique piece" loading="lazy">
+      <figcaption><span class="cap-label">The homework</span>Every piece gets the same treatment: Bill reads up on it, writes what he found on the tag by hand, and prices it plain.</figcaption>
+    </figure>
+    <figure class="framed rise">
+      <video controls playsinline preload="none" poster="../video/bill-mission-poster.jpg" style="max-height:70vh">
+        <source src="../video/bill-mission.mp4" type="video/mp4">
+      </video>
+      <figcaption><span class="cap-label">Hear it from him</span>Bill, on why the booth has a little bit of everything. 30 seconds, filmed at the mall.</figcaption>
+    </figure>
+    <p class="quote">"I like to branch out because I learn the history of something when I learn about it. Because I can study it and then I'm pretty good at it."</p>
+    <p class="attr">Bill, in the clip above</p>
+  </div>
+</section>
+
+<hr class="rule">
+<div class="arrow-wrap" aria-hidden="true">
+  <svg class="arrow" viewBox="0 0 46 88"><path pathLength="100" d="M23 4 C20 26 26 48 23 68 M10 56 C14 62 19 68 23 74 C27 68 32 62 36 56"/></svg>
+</div>
+
+<!-- ============ 3. PROOF OF BILL: Picker Road ============ -->
+<section id="proof">
+  <div class="col">
+    <p class="plate"><span class="no">No. 3</span> Proof</p>
+    <h2>Don't take it from us</h2>
+    <figure class="framed rise">
+      <img src="../featured/picker-road.jpg" alt="The Picker Road hosts filming their episode at Paradise Antique Mall" loading="lazy">
+      <figcaption><span class="cap-label">As seen on Picker Road</span>Picker Road filmed at the mall and spent fifteen minutes in Booth 18. They bought five pieces on camera. Pictured: the show's hosts.</figcaption>
+    </figure>
+    <p class="quote">"This is a vendor who really knows his stuff."</p>
+    <p class="attr">Picker Road, on camera</p>
+    <p style="margin-top:18px"><a class="btn alt" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">Watch the episode from 14:17</a></p>
+  </div>
+</section>
+
+<hr class="rule">
+<div class="arrow-wrap" aria-hidden="true">
+  <svg class="arrow" viewBox="0 0 46 88"><path pathLength="100" d="M23 4 C26 26 20 48 23 68 M10 56 C14 62 19 68 23 74 C27 68 32 62 36 56"/></svg>
+</div>
+
+<!-- ============ 4. WHAT'S IN THE BOOTH ============ -->
+<section id="goods">
+  <div class="wide">
+    <div class="col" style="padding:0">
+      <p class="plate"><span class="no">No. 4</span> The goods</p>
+      <h2>What's in the booth</h2>
+      <p class="quote">"1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy diecast. Along with Christmas and Halloween from the 1920s to the 1960s."</p>
+      <p class="attr">Bill, asked what he collects</p>
+    </div>
+    <figure class="framed rise" style="margin-top:8px">
+      <img src="../photos/booth-wide.jpg" alt="Booth 18 seen wide, cases and shelves stocked" loading="lazy">
+      <figcaption><span class="cap-label">The spread</span>Booth 18, wall to wall.</figcaption>
+    </figure>
+    <div class="goods-grid">
+      <figure class="framed rise">
+        <img src="../photos/case-buddy-l-trucks.jpg" alt="Pressed steel Buddy L trucks in the display case" loading="lazy">
+        <figcaption><span class="cap-label">Pressed steel</span>Buddy L pressed-steel trucks.</figcaption>
+      </figure>
+      <figure class="framed rise">
+        <img src="../photos/case-toys.jpg" alt="A jointed teddy bear in saddle shoes, with a Standard Crayon tin and ten cent valentines" loading="lazy">
+        <figcaption><span class="cap-label">Bears and small things</span>A jointed teddy bear in saddle shoes, a Standard Crayon tin, and ten cent valentines.</figcaption>
+      </figure>
+      <figure class="framed rise">
+        <img src="../photos/shelves-bottles.jpg" alt="Shelves of collector bottles" loading="lazy">
+        <figcaption><span class="cap-label">Bottles</span>Collector bottles, 1860 to 1900 and up. Dating guides with magnifying glasses tied on, so you can check for yourself.</figcaption>
+      </figure>
+      <figure class="framed rise">
+        <img src="../photos/americana.jpg" alt="Milk bottles, oil cans, and old tools on open wood shelves, next to a case of plush animals and dolls" loading="lazy">
+        <figcaption><span class="cap-label">Open shelves</span>Milk bottles, oil cans, and old tools on the open shelves.</figcaption>
+      </figure>
+      <figure class="framed rise">
+        <img src="../photos/jewelry.jpg" alt="The lighted counter case at the front of Booth 18" loading="lazy">
+        <figcaption><span class="cap-label">The counter</span>The lighted counter case at the front of the booth.</figcaption>
+      </figure>
+      <figure class="framed rise">
+        <img src="../photos/curiosities.jpg" alt="An aisle of the booth: steamer trunk, teddy bear on a school chair, license plates and crates" loading="lazy">
+        <figcaption><span class="cap-label">Everything else</span>"We're a shop here of just a mixture of everything."</figcaption>
+      </figure>
+    </div>
+    <div class="col" style="padding:0">
+      <h3>Seen in the cases lately</h3>
+      <ul class="pricelist">
+        <li><span>Gescha Spirit of St. Louis wind-up, Germany, 1928. Recent auction price:</span> <span class="token">$450</span></li>
+        <li><span>Steiff woolen pompom squirrel, 1967.</span> <span class="token">$38</span></li>
+        <li><span>Mercury dime vanity tray.</span> <span class="token">$50</span></li>
+        <li><span>1950s Stardust casino piece.</span> <span class="token">$35</span></li>
+        <li><span>Roslyn Savings Bank duck, 1950s.</span> <span class="token">$33</span></li>
+        <li><span>Brass mailbox, Metal Product Corp, West Haven CT, 1930s to 40s.</span> <span class="token">$25</span></li>
+      </ul>
+      <figure class="framed rise">
+        <video controls playsinline preload="none" poster="../video/bill-gescha-poster.jpg" style="max-height:70vh">
+          <source src="../video/bill-gescha.mp4" type="video/mp4">
+        </video>
+        <figcaption><span class="cap-label">The standout</span>Bill on the Gescha Spirit of St. Louis wind-up. 58 seconds, filmed at the booth.</figcaption>
+      </figure>
+      <p class="openline">Most pieces run $25 to $100. All the cases are open. Ask, and anything comes out.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule teal">
+<div class="arrow-wrap" aria-hidden="true">
+  <svg class="arrow teal" viewBox="0 0 46 88"><path pathLength="100" d="M23 4 C20 26 26 48 23 68 M10 56 C14 62 19 68 23 74 C27 68 32 62 36 56"/></svg>
+</div>
+
+<!-- ============ 5. TOO FAR TO VISIT ============ -->
+<section id="far" class="far">
+  <div class="col">
+    <p class="plate teal"><span class="no">No. 5</span> By mail</p>
+    <h2>Too far to visit?</h2>
+    <div class="plaques" aria-hidden="true">
+      <span class="plaque">8 years on Etsy</span>
+      <span class="plaque">183 sales</span>
+      <span class="plaque">5.0 stars · 63 reviews</span>
+    </div>
+    <p>The Etsy shop has been open eight years: 183 sales, 5.0 stars across 63 reviews.</p>
+    <p>
+      <a class="btn tealbtn" href="https://www.etsy.com/shop/ttrovefinds">Visit the Etsy shop</a>
+      <a class="btn alt" href="https://www.instagram.com/treasuretrovefinds/">Follow on Instagram</a>
+    </p>
+    <p style="margin-top:26px">Want first look when new pieces land?</p>
+    <!-- AWAITING: wire form to email provider. Email only, no other fields, forgiving input. -->
+    <form class="mail" action="#" method="post">
+      <input type="email" name="email" placeholder="you@email.com" aria-label="Email address">
+      <button class="btn" type="submit">Get the word</button>
+    </form>
+  </div>
+</section>
+
+<div class="arrow-wrap" aria-hidden="true" style="padding-top:10px">
+  <svg class="arrow" viewBox="0 0 46 88"><path pathLength="100" d="M23 4 C26 26 20 48 23 68 M10 56 C14 62 19 68 23 74 C27 68 32 62 36 56"/></svg>
+</div>
+
+<!-- ============ 6. THE BOTTOM: closes ============ -->
+<section id="visit" style="padding-top:20px">
+  <div class="wide">
+    <div class="col" style="padding:0">
+      <p class="plate"><span class="no">No. 6</span> Find us</p>
+      <h2>Come see it</h2>
+    </div>
+    <div class="close-grid">
+      <iframe class="mapframe" title="Map to Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas" src="https://maps.google.com/maps?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121&amp;output=embed" loading="lazy"></iframe>
+      <div>
+        <p class="facts">
+          Booth 18, Paradise Antique Mall<br>
+          3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+          Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+          <a href="tel:+15164462693">(516) 446-2693</a><br>
+          <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+        </p>
+        <p>
+          <a class="btn" href="tel:+15164462693">Call Bill</a>
+          <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+        </p>
+      </div>
+    </div>
+    <p class="footline">Treasure Trove Finds · Bill and Lisa Otranto · Long Island to Las Vegas</p>
+  </div>
+</section>
+
+<!-- Persistent dock: name is the trunk-test anchor, actions under the thumb -->
+<nav class="dock" aria-label="Quick actions">
+  <a class="home" href="#top">Treasure Trove Finds</a>
+  <a href="tel:+15164462693"><span class="dot" aria-hidden="true">&#9670;</span> Call</a>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121"><span class="dot" aria-hidden="true">&#9670;</span> Directions</a>
+</nav>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Painted arrows draw themselves as they arrive; figures rise in. */
+  var targets = document.querySelectorAll('.arrow, .rise');
+  if ('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add(e.target.classList.contains('arrow') ? 'draw' : 'in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {rootMargin:'0px 0px -12% 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+  } else {
+    targets.forEach(function(t){
+      t.classList.add(t.classList.contains('arrow') ? 'draw' : 'in');
+    });
+  }
+
+  /* Signature: the enamel sign sways a hair with scroll, hinged at the hanger bar. */
+  var sign = document.getElementById('sign');
+  if (sign && !reduce){
+    var lastY = window.scrollY, vel = 0, rot = 0, raf = null;
+    var tick = function(){
+      var y = window.scrollY;
+      vel += ((y - lastY) * 0.05 - vel) * 0.2;
+      lastY = y;
+      var target = Math.max(-1.6, Math.min(1.6, vel));
+      rot += (target - rot) * 0.08;
+      vel *= 0.9;
+      sign.style.transform = 'rotate(' + rot.toFixed(3) + 'deg)';
+      if (Math.abs(rot) > 0.002 || Math.abs(vel) > 0.002){
+        raf = requestAnimationFrame(tick);
+      } else {
+        sign.style.transform = '';
+        raf = null;
+      }
+    };
+    window.addEventListener('scroll', function(){
+      if (raf === null) raf = requestAnimationFrame(tick);
+    }, {passive:true});
+  }
+
+  /* Dock home link scrolls to top without a jump-hash in the URL. */
+  var home = document.querySelector('.dock .home');
+  if (home){
+    home.addEventListener('click', function(ev){
+      ev.preventDefault();
+      window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

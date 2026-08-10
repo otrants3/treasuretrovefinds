@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Treasure Trove Finds, Booth 18 at Paradise Antique Mall, Las Vegas. Antique toys, bottles, and a mixture of everything. Decades in the collecting.">
+<link rel="icon" href="../favicon.svg">
+<title>The Gallery · Treasure Trove Finds</title>
+
+<!-- ============================================================
+     DIRECTION 6: THE GALLERY
+     A modern gallery hung with old things. The photography talks.
+     Palette: gallery white #FAF9F6, ink #1a1a1a, oxblood #7a2e2e.
+     Type: Source Serif 4 (display + body), Archivo (labels).
+     Signature: the caption rail. Full-bleed photos scroll past a
+     wall card that holds still and swaps, like labels in a gallery.
+     Reduced-motion and no-JS get normal captions under each photo.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&amp;display=swap" rel="stylesheet">
+
+<style>
+/* ---------- foundations ---------- */
+*{box-sizing:border-box}
+:root{
+  --paper:#FAF9F6;
+  --ink:#1a1a1a;
+  --ox:#7a2e2e;
+  --hair:#E2DFD8;
+  --mut:#5c584f;
+  --dock-h:56px;
+}
+html{scroll-padding-top:24px}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+body{
+  margin:0;
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:19px;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--paper);
+  padding-bottom:var(--dock-h);
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%;height:auto;display:block}
+figure{margin:0}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--ox);outline-offset:3px}
+
+/* measure columns */
+.wrap{max-width:660px;margin:0 auto;padding:0 22px}
+.wide{max-width:1160px;margin:0 auto;padding:0 22px}
+
+/* Archivo small-caps label */
+.lbl{
+  font-family:Archivo,Verdana,sans-serif;
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--mut);
+}
+.lbl .no{color:var(--ox)}
+
+/* section rhythm: the whitespace IS the design */
+section{padding:clamp(72px,12vw,140px) 0}
+section + section{border-top:1px solid var(--hair)}
+
+/* headings */
+h1,h2{font-weight:600;margin:0}
+h2{
+  font-size:clamp(30px,5vw,44px);
+  line-height:1.12;
+  letter-spacing:-.01em;
+  margin:14px 0 clamp(24px,4vw,40px);
+}
+.sec-head{margin-bottom:0}
+
+/* prose */
+p{margin:0 0 18px}
+.lead{font-size:clamp(20px,2.4vw,23px)}
+
+/* wall-card captions */
+figcaption{
+  font-size:17px;
+  line-height:1.5;
+  color:var(--mut);
+  padding:12px 22px 0;
+  max-width:560px;
+}
+figcaption .cap-no{
+  font-family:Archivo,Verdana,sans-serif;
+  font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ox);display:block;margin-bottom:4px;
+}
+
+/* full-bleed exhibits */
+.bleed{width:100%}
+.bleed img{width:100%;max-height:84vh;object-fit:cover}
+.bleed figcaption{margin:0 auto;text-align:center}
+
+/* quotes: big, centered, quiet */
+blockquote{margin:clamp(36px,6vw,64px) auto;max-width:720px;padding:0 22px;text-align:center}
+blockquote p.q{
+  font-size:clamp(23px,3.4vw,32px);
+  line-height:1.35;
+  font-style:italic;
+  margin:0 0 14px;
+}
+blockquote .attr{
+  font-family:Archivo,Verdana,sans-serif;font-style:normal;font-weight:600;
+  font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);
+}
+
+/* buttons: obviously buttons, 48px+ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:12px 28px;
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;font-size:16px;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  background:var(--ox);color:#FAF9F6;border:2px solid var(--ox);border-radius:2px;
+  margin:6px 12px 6px 0;
+}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
+@media (max-width:480px){
+  .btn{display:flex;width:100%;margin:0 0 12px}
+}
+
+/* facts block */
+.facts{font-size:20px;line-height:1.75;margin:0 0 22px}
+.facts a{color:var(--ink)}
+
+/* ---------- 1 · masthead ---------- */
+.mast{text-align:center;padding:clamp(56px,9vw,110px) 22px clamp(36px,6vw,64px)}
+.mast .lbl{display:block;margin-bottom:22px}
+.mast h1{
+  font-size:clamp(42px,9vw,96px);
+  line-height:1.02;
+  letter-spacing:-.015em;
+  margin:0 0 20px;
+}
+.mast .tagline{
+  font-style:italic;
+  font-size:clamp(20px,2.6vw,24px);
+  color:var(--mut);
+  max-width:34ch;margin:0 auto 34px;
+}
+.mast .rule{width:56px;height:1px;background:var(--ink);margin:0 auto 34px;border:0}
+.mast .facts{max-width:420px;margin:0 auto 26px;text-align:center}
+.mast .cta{margin-bottom:clamp(40px,7vw,72px)}
+@media (min-width:481px){.mast .cta .btn{margin:6px 6px}}
+
+/* ---------- story ---------- */
+.story-fig{margin:clamp(36px,6vw,64px) 0}
+video{width:100%;max-height:70vh;background:#000;display:block}
+
+/* ---------- the caption rail (signature) ---------- */
+.rail-wrap{position:relative}
+.exhibit{margin:0 0 clamp(40px,7vw,88px)}
+.exhibit img{width:100%}
+.exhibit .ex-no{
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;
+  font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ox);
+  padding:0 22px 10px;
+}
+/* the wall card itself: hidden until JS opts in */
+.rail-card{display:none}
+
+/* JS + motion OK: html.rail engages the rail */
+.rail .exhibit figcaption{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+.rail .rail-card{
+  display:block;background:var(--paper);
+  border:1px solid var(--hair);border-left:3px solid var(--ox);
+  padding:18px 20px;
+}
+.rail .rail-card .rail-num{
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;
+  font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ox);
+  margin:0 0 8px;
+}
+.rail .rail-card .rail-txt{font-size:18px;line-height:1.5;margin:0}
+.rail .rail-card .inner{transition:opacity .18s ease}
+.rail .rail-card.swap .inner{opacity:0}
+
+/* phone: the card pins just above the dock while the exhibits pass */
+@media (max-width:979px){
+  .rail .rail-card{
+    position:fixed;left:14px;right:14px;
+    bottom:calc(var(--dock-h) + 12px + env(safe-area-inset-bottom,0px));
+    z-index:9;opacity:0;pointer-events:none;transform:translateY(8px);
+    transition:opacity .25s ease,transform .25s ease;
+    box-shadow:0 6px 24px rgba(26,26,26,.10);
+  }
+  .rail .rail-card.show{opacity:1;transform:none}
+}
+/* desktop: photos left, the card holds still on the right */
+@media (min-width:980px){
+  .rail .rail-wrap{
+    display:grid;grid-template-columns:minmax(0,1fr) 300px;
+    gap:56px;align-items:start;
+    max-width:1160px;margin:0 auto;padding:0 22px;
+  }
+  .rail .rail-photos{min-width:0}
+  .rail .exhibit .ex-no,.rail .exhibit img{padding-left:0;padding-right:0}
+  .rail .rail-card{position:sticky;top:38vh}
+}
+
+/* ---------- price list ---------- */
+.pricelist{list-style:none;margin:0 0 26px;padding:0}
+.pricelist li{
+  padding:16px 0;border-bottom:1px solid var(--hair);
+  font-size:19px;line-height:1.5;
+}
+.pricelist li:first-child{border-top:1px solid var(--hair)}
+.price{color:var(--ox);font-weight:600;white-space:nowrap}
+
+/* ---------- email form ---------- */
+form{margin:0}
+input[type=email]{
+  font-family:inherit;font-size:19px;color:var(--ink);
+  padding:13px 14px;min-height:48px;
+  border:2px solid var(--ink);border-radius:2px;background:#fff;
+  width:100%;max-width:340px;margin:0 12px 12px 0;
+}
+button.btn{cursor:pointer}
+
+/* ---------- map ---------- */
+iframe{border:1px solid var(--hair);width:100%;height:340px;display:block}
+
+/* ---------- footer line ---------- */
+.colophon{
+  font-family:Archivo,Verdana,sans-serif;font-weight:500;
+  font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mut);text-align:center;margin-top:clamp(40px,6vw,64px);
+}
+
+/* ---------- dock ---------- */
+.dock{
+  position:fixed;bottom:0;left:0;right:0;z-index:10;
+  background:var(--ink);display:flex;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.dock a{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  min-height:var(--dock-h);padding:8px;
+  color:var(--paper);text-decoration:none;
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;
+  font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+  border-right:1px solid #3a3a3a;
+}
+.dock a:last-child{border-right:0}
+.dock a.home{flex:1.6;letter-spacing:.06em}
+@media (max-width:400px){.dock a.home{font-size:12px}}
+
+/* ---------- whisper-quiet scroll fades (motion-gated) ---------- */
+.anim .fade{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.anim .fade.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .anim .fade{opacity:1;transform:none;transition:none}
+}
+
+/* skip link */
+.skip{
+  position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);
+  padding:12px 18px;z-index:20;font-family:Archivo,sans-serif;
+}
+.skip:focus{left:0}
+</style>
+</head>
+<body id="top">
+
+<a class="skip" href="#visit">Skip to booth address and hours</a>
+
+<!-- ============ No. 1 · THE TOP: serves the already-sold ============ -->
+<header>
+  <div class="mast">
+    <span class="lbl"><span class="no">No. 1</span> &nbsp;·&nbsp; Booth 18 · Las Vegas</span>
+    <h1>Treasure Trove Finds</h1>
+    <p class="tagline">Antique toys, bottles, and a mixture of everything. Decades in the collecting.</p>
+    <hr class="rule">
+    <p class="facts">
+      Booth 18, Paradise Antique Mall<br>
+      3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+      Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+      <!-- AWAITING: confirm whether booth is browsable daily; adjust hours line -->
+      <a href="tel:+15164462693">(516) 446-2693</a>
+    </p>
+    <p class="cta">
+      <a class="btn" href="tel:+15164462693">Call Bill</a>
+      <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+    </p>
+  </div>
+  <!-- AWAITING: replacement photo of Bill facing the camera. This one has him turned away. -->
+  <figure class="bleed fade">
+    <img src="../shop/bill-at-case.jpg" alt="Bill at the display case in Booth 18" width="1200" height="800">
+    <figcaption>Bill at the case, Booth 18. Ask about anything and the case opens.</figcaption>
+  </figure>
+</header>
+
+<!-- ============ No. 2 · THE STORY: the main sell ============ -->
+<section aria-labelledby="h-story">
+  <div class="wrap sec-head">
+    <span class="lbl"><span class="no">No. 2</span></span>
+    <h2 id="h-story">Decades of homework</h2>
+  </div>
+  <div class="wrap">
+    <!-- AWAITING: Bill and Lisa's read of this copy before it ships. -->
+    <!-- AWAITING: Lisa's side of the story, in her words. -->
+    <!-- AWAITING: confirm 2025 opening and Bill's actual collecting start year. -->
+    <p class="lead fade">Bill has been collecting for decades. For most of them it was his alone.</p>
+    <p class="fade">Then the kids grew up and moved out, and the weekends went quiet. Bill and Lisa started filling them together: estate sales, garage sales, anywhere old things turn up. It became how they reconnected.</p>
+    <p class="fade">Stop by the house any night and you will find Bill at the kitchen table, a tag in one hand and a reference book in the other. Lisa is a room away, working her side of it.</p>
+    <p class="fade">For years they talked about opening a shop someday. It stayed talk. In 2025 the talk finally happened: Booth 18, moved from Long Island to Las Vegas. The New York plates still hang on the back wall.</p>
+  </div>
+  <figure class="bleed story-fig fade">
+    <img src="../photos/signage.jpg" alt="New York license plates hanging on the back wall of Booth 18" loading="lazy">
+    <figcaption>The New York plates, on the back wall of a Las Vegas booth.</figcaption>
+  </figure>
+  <figure class="bleed story-fig fade">
+    <img src="../photos/tag-detail.jpg" alt="A handwritten price tag on an antique piece" loading="lazy">
+    <figcaption>Every piece gets the same treatment: Bill reads up on it, writes what he found on the tag by hand, and prices it plain.</figcaption>
+  </figure>
+  <div class="wrap">
+    <figure class="story-fig fade">
+      <video controls playsinline preload="none" poster="../video/bill-mission-poster.jpg">
+        <source src="../video/bill-mission.mp4" type="video/mp4">
+      </video>
+      <figcaption>Bill, on why the booth has a little bit of everything. 30 seconds, filmed at the mall.</figcaption>
+    </figure>
+  </div>
+  <blockquote class="fade">
+    <p class="q">"I like to branch out because I learn the history of something when I learn about it. Because I can study it and then I'm pretty good at it."</p>
+    <footer class="attr">Bill, in the clip above</footer>
+  </blockquote>
+</section>
+
+<!-- ============ No. 3 · PROOF OF BILL: Picker Road ============ -->
+<section aria-labelledby="h-proof">
+  <div class="wrap sec-head">
+    <span class="lbl"><span class="no">No. 3</span></span>
+    <h2 id="h-proof">Don't take it from us</h2>
+  </div>
+  <figure class="bleed story-fig fade">
+    <img src="../featured/picker-road.jpg" alt="The Picker Road hosts filming their episode at Paradise Antique Mall. Pictured are the show's hosts, not Bill and Lisa." loading="lazy">
+    <figcaption>Picker Road filmed at the mall and spent fifteen minutes in Booth 18. They bought five pieces on camera.</figcaption>
+  </figure>
+  <blockquote class="fade">
+    <p class="q">"This is a vendor who really knows his stuff."</p>
+    <footer class="attr">Picker Road, on camera</footer>
+  </blockquote>
+  <div class="wrap" style="text-align:center">
+    <p><a class="btn alt" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">Watch the episode from 14:17</a></p>
+  </div>
+</section>
+
+<!-- ============ No. 4 · WHAT'S IN THE BOOTH ============ -->
+<section aria-labelledby="h-booth">
+  <figure class="bleed fade" style="margin-bottom:clamp(48px,8vw,96px)">
+    <img src="../photos/booth-wide.jpg" alt="Booth 18 seen from the aisle, cases and shelves in view" loading="lazy">
+    <figcaption>Booth 18, from the aisle.</figcaption>
+  </figure>
+  <div class="wrap sec-head">
+    <span class="lbl"><span class="no">No. 4</span></span>
+    <h2 id="h-booth">What's in the booth</h2>
+  </div>
+  <blockquote class="fade" style="margin-top:0">
+    <p class="q">"1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy diecast. Along with Christmas and Halloween from the 1920s to the 1960s."</p>
+    <footer class="attr">Bill, asked what he collects</footer>
+  </blockquote>
+
+  <!-- THE CAPTION RAIL: six exhibits pass, the wall card holds still.
+       No-JS and reduced-motion get plain captions under each photo. -->
+  <div class="rail-wrap" id="railWrap">
+    <div class="rail-photos">
+      <figure class="exhibit fade">
+        <p class="ex-no">No. 1 of 6</p>
+        <img src="../photos/case-buddy-l-trucks.jpg" alt="Pressed steel Buddy L trucks in the display case" loading="lazy">
+        <figcaption>Buddy L pressed-steel trucks.</figcaption>
+      </figure>
+      <figure class="exhibit fade">
+        <p class="ex-no">No. 2 of 6</p>
+        <img src="../photos/case-toys.jpg" alt="A jointed teddy bear in saddle shoes, with a Standard Crayon tin and ten cent valentines" loading="lazy">
+        <figcaption>A jointed teddy bear in saddle shoes, a Standard Crayon tin, and ten cent valentines.</figcaption>
+      </figure>
+      <figure class="exhibit fade">
+        <p class="ex-no">No. 3 of 6</p>
+        <img src="../photos/shelves-bottles.jpg" alt="Shelves of collector bottles" loading="lazy">
+        <figcaption>Collector bottles, 1860 to 1900 and up. Dating guides with magnifying glasses tied on, so you can check for yourself.</figcaption>
+      </figure>
+      <figure class="exhibit fade">
+        <p class="ex-no">No. 4 of 6</p>
+        <img src="../photos/americana.jpg" alt="Milk bottles, oil cans, and old tools on open wood shelves, next to a case of plush animals and dolls" loading="lazy">
+        <figcaption>Milk bottles, oil cans, and old tools on the open shelves.</figcaption>
+      </figure>
+      <figure class="exhibit fade">
+        <p class="ex-no">No. 5 of 6</p>
+        <img src="../photos/jewelry.jpg" alt="The lighted counter case at the front of Booth 18" loading="lazy">
+        <figcaption>The lighted counter case at the front of the booth.</figcaption>
+      </figure>
+      <figure class="exhibit fade">
+        <p class="ex-no">No. 6 of 6</p>
+        <img src="../photos/curiosities.jpg" alt="An aisle of the booth: steamer trunk, teddy bear on a school chair, license plates and crates" loading="lazy">
+        <figcaption>"We're a shop here of just a mixture of everything."</figcaption>
+      </figure>
+    </div>
+    <aside class="rail-card" id="railCard" aria-hidden="true">
+      <div class="inner">
+        <p class="rail-num">No. 1 of 6</p>
+        <p class="rail-txt">Buddy L pressed-steel trucks.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="wrap" style="margin-top:clamp(24px,4vw,48px)">
+    <h2 style="font-size:clamp(23px,3vw,28px);margin-top:0">Seen in the cases lately</h2>
+    <ul class="pricelist fade">
+      <li>Gescha Spirit of St. Louis wind-up, Germany, 1928. Recent auction price: <span class="price">$450</span>.</li>
+      <li>Steiff woolen pompom squirrel, 1967. <span class="price">$38</span>.</li>
+      <li>Mercury dime vanity tray. <span class="price">$50</span>.</li>
+      <li>1950s Stardust casino piece. <span class="price">$35</span>.</li>
+      <li>Roslyn Savings Bank duck, 1950s. <span class="price">$33</span>.</li>
+      <li>Brass mailbox, Metal Product Corp, West Haven CT, 1930s to 40s. <span class="price">$25</span>.</li>
+    </ul>
+    <figure class="story-fig fade">
+      <video controls playsinline preload="none" poster="../video/bill-gescha-poster.jpg">
+        <source src="../video/bill-gescha.mp4" type="video/mp4">
+      </video>
+      <figcaption>Bill, on the Gescha Spirit of St. Louis. 58 seconds, filmed at the case.</figcaption>
+    </figure>
+    <p class="lead">Most pieces run $25 to $100. All the cases are open. Ask, and anything comes out.</p>
+  </div>
+</section>
+
+<!-- ============ No. 5 · TOO FAR TO VISIT ============ -->
+<section aria-labelledby="h-far">
+  <div class="wrap sec-head">
+    <span class="lbl"><span class="no">No. 5</span></span>
+    <h2 id="h-far">Too far to visit?</h2>
+  </div>
+  <div class="wrap">
+    <p class="lead fade">The Etsy shop has been open eight years: 183 sales, 5.0 stars across 63 reviews.</p>
+    <p style="margin:26px 0 34px">
+      <a class="btn" href="https://www.etsy.com/shop/ttrovefinds">Visit the Etsy shop</a>
+      <a class="btn alt" href="https://www.instagram.com/treasuretrovefinds/">Follow on Instagram</a>
+    </p>
+    <p>Want first look when new pieces land?</p>
+    <!-- AWAITING: wire form to email provider. Email only, no other fields, forgiving input. -->
+    <form action="#" method="post">
+      <input type="email" name="email" placeholder="you@email.com" aria-label="Email address">
+      <button class="btn" type="submit">Get the word</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ No. 6 · THE BOTTOM: closes ============ -->
+<section aria-labelledby="h-visit" id="visit">
+  <div class="wrap sec-head">
+    <span class="lbl"><span class="no">No. 6</span></span>
+    <h2 id="h-visit">Come see it</h2>
+  </div>
+  <div class="wide fade">
+    <iframe title="Map to Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas" src="https://maps.google.com/maps?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121&amp;output=embed" loading="lazy"></iframe>
+  </div>
+  <div class="wrap">
+    <p class="facts" style="margin-top:28px">
+      Booth 18, Paradise Antique Mall<br>
+      3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+      Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+      <a href="tel:+15164462693">(516) 446-2693</a><br>
+      <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+    </p>
+    <p>
+      <a class="btn" href="tel:+15164462693">Call Bill</a>
+      <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+    </p>
+    <p class="colophon">Treasure Trove Finds · Bill and Lisa Otranto · Long Island to Las Vegas</p>
+  </div>
+</section>
+
+<!-- Persistent dock: name is the trunk-test anchor, actions under the thumb -->
+<nav class="dock" aria-label="Quick actions">
+  <a class="home" href="#top">Treasure Trove Finds</a>
+  <a href="tel:+15164462693">Call</a>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Directions</a>
+</nav>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* Whisper-quiet fades. Only engaged when JS runs AND motion is welcome,
+     so no-JS and reduced-motion visitors never see hidden content. */
+  if (!reduce && 'IntersectionObserver' in window) {
+    root.classList.add('anim');
+    var faders = document.querySelectorAll('.fade');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -6% 0px' });
+    faders.forEach(function(el){ io.observe(el); });
+  }
+
+  /* THE CAPTION RAIL. Six exhibits pass; the wall card holds still and swaps.
+     Desktop: sticky card beside the photos. Phone: card pinned above the dock.
+     Gated on JS + motion; everyone else keeps plain captions. */
+  if (!reduce && 'IntersectionObserver' in window) {
+    var wrap = document.getElementById('railWrap');
+    var card = document.getElementById('railCard');
+    if (wrap && card) {
+      root.classList.add('rail');
+      var figs = Array.prototype.slice.call(wrap.querySelectorAll('.exhibit'));
+      var numEl = card.querySelector('.rail-num');
+      var txtEl = card.querySelector('.rail-txt');
+      var current = 0, pending = null;
+
+      function setActive(i){
+        if (i === current || i < 0) return;
+        current = i;
+        card.classList.add('swap');
+        clearTimeout(pending);
+        pending = setTimeout(function(){
+          numEl.textContent = 'No. ' + (i + 1) + ' of ' + figs.length;
+          txtEl.textContent = figs[i].querySelector('figcaption').textContent;
+          card.classList.remove('swap');
+        }, 180);
+      }
+
+      /* which exhibit is crossing the middle of the screen */
+      var mid = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) setActive(figs.indexOf(e.target));
+        });
+      }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+      figs.forEach(function(f){ mid.observe(f); });
+
+      /* phone: only show the pinned card while the exhibits are on screen */
+      var vis = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          card.classList.toggle('show', e.isIntersecting);
+        });
+      }, { rootMargin: '-15% 0px -15% 0px', threshold: 0 });
+      vis.observe(wrap);
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

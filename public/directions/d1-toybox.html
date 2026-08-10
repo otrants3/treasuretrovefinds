@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Treasure Trove Finds, Booth 18 at Paradise Antique Mall, Las Vegas. Antique toys, bottles, and a mixture of everything. Decades in the collecting.">
+<link rel="icon" href="../favicon.svg">
+<title>The Toy Box · Treasure Trove Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ultra&family=Barlow+Condensed:wght@500;600;700&family=Bitter:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   DIRECTION 1: THE TOY BOX
+   The printed cardboard box a 1930s Buddy L truck shipped in.
+   Paper #F4EBD9 · litho red #D8232A · chrome yellow #F2B302 ·
+   box blue #123C7B · ink #1B1714.
+   Signature: the masthead prints off-register like a real litho box,
+   then the color plates pull into register as the page loads.
+   ========================================================================== */
+:root{
+  --paper:#F4EBD9;
+  --red:#D8232A;
+  --yellow:#F2B302;
+  --blue:#123C7B;
+  --ink:#1B1714;
+  --paper-deep:#EBDDC2;
+  --plate-paper:#F1D9B5;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{
+  margin:0;
+  font-family:'Bitter',Georgia,serif;
+  font-size:19px;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--paper);
+  padding-bottom:60px; /* room for the dock */
+}
+
+/* Halftone: the litho dot screen that makes the paper breathe */
+.halftone{
+  background-image:radial-gradient(circle, rgba(27,23,20,.075) 1px, transparent 1.45px);
+  background-size:9px 9px;
+}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.copy{max-width:660px}
+p{margin:0 0 16px}
+img{max-width:100%;height:auto;display:block}
+figure{margin:0}
+h1,h2{font-family:'Ultra',Georgia,serif;font-weight:400;margin:0}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* Kickers: little printed box labels */
+.kicker{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:16px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--red);
+  margin:0 0 10px;
+}
+.kicker .no{
+  display:inline-block;
+  background:var(--ink);
+  color:var(--paper);
+  padding:2px 9px 1px;
+  margin-right:8px;
+  letter-spacing:.14em;
+}
+
+/* Section headings */
+h2{
+  font-size:clamp(30px,5.4vw,44px);
+  line-height:1.08;
+  margin:0 0 20px;
+  letter-spacing:.01em;
+}
+
+/* Buttons: rubber-stamped printing blocks. 48px+ tall, obvious, no hover tricks */
+.btn{
+  display:inline-block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:21px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  text-decoration:none;
+  text-align:center;
+  padding:14px 28px 13px;
+  min-height:48px;
+  border:3px solid var(--ink);
+  border-radius:3px;
+  box-shadow:4px 4px 0 var(--ink);
+  background:var(--red);
+  color:var(--paper);
+  margin:6px 14px 10px 0;
+  cursor:pointer;
+}
+.btn.alt{background:var(--paper);color:var(--blue);border-color:var(--blue);box-shadow:4px 4px 0 var(--blue)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt:active{box-shadow:1px 1px 0 var(--blue)}
+
+/* ============================ MASTHEAD ============================ */
+.topstrip{
+  background:var(--blue);
+  color:var(--paper);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  text-align:center;
+  padding:9px 14px;
+  margin:0;
+}
+.masthead{padding:44px 0 40px;border-bottom:6px solid var(--ink)}
+.mast-head-block{text-align:center;margin-bottom:36px}
+
+/* THE SIGNATURE: off-register litho wordmark.
+   The red type carries blue and yellow "plates" as text shadows.
+   On load the plates travel from badly misprinted to almost-registered. */
+.mis{
+  font-size:clamp(44px,10.5vw,118px);
+  line-height:.98;
+  text-transform:uppercase;
+  color:var(--red);
+  letter-spacing:.005em;
+  text-shadow:4px 3px 0 var(--yellow), -3px -2px 0 var(--blue);
+  margin:6px 0 18px;
+}
+.mis span{display:block}
+@media (prefers-reduced-motion:no-preference){
+  .mis{animation:register 1.4s cubic-bezier(.2,.8,.25,1) both}
+  @keyframes register{
+    0%{text-shadow:14px 11px 0 var(--yellow), -12px -8px 0 var(--blue)}
+    60%{text-shadow:2px 1px 0 var(--yellow), -1px -1px 0 var(--blue)}
+    100%{text-shadow:4px 3px 0 var(--yellow), -3px -2px 0 var(--blue)}
+  }
+}
+.tagline{
+  display:inline-block;
+  background:var(--yellow);
+  border:2px solid var(--ink);
+  box-shadow:3px 3px 0 rgba(27,23,20,.25);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:600;
+  font-size:22px;
+  line-height:1.35;
+  padding:8px 18px;
+  margin:0;
+  transform:rotate(-.6deg);
+}
+
+.mast-grid{display:grid;gap:30px;align-items:start;margin-top:8px}
+@media (min-width:900px){.mast-grid{grid-template-columns:7fr 5fr;gap:44px}}
+
+/* Photos framed like the picture printed on the box lid */
+.boxframe{background:#fff;border:3px solid var(--ink);box-shadow:6px 6px 0 rgba(27,23,20,.22);padding:10px}
+.boxframe img{border:1px solid rgba(27,23,20,.35)}
+figcaption{
+  font-size:16px;
+  line-height:1.5;
+  color:#463f37;
+  padding-top:10px;
+}
+.boxframe figcaption{padding:12px 4px 2px}
+
+/* The shipping-label card that holds the facts */
+.label-card{
+  background:var(--paper);
+  border:3px dashed var(--ink);
+  padding:22px 24px 18px;
+  position:relative;
+}
+.label-head{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:18px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--blue);
+  margin:0 0 12px;
+}
+.facts{font-size:20px;line-height:1.75;margin:0 0 18px}
+.facts a{color:var(--ink);text-decoration-color:var(--red);text-decoration-thickness:2px}
+.stamp-corner{
+  position:absolute;top:-16px;right:14px;
+  background:var(--red);color:var(--paper);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 12px 4px;border:2px solid var(--ink);
+  transform:rotate(2.5deg);
+}
+
+/* ============================ FOLD DIVIDERS ============================ */
+.fold{
+  display:flex;align-items:center;gap:14px;
+  max-width:1100px;margin:0 auto;padding:26px 20px;
+  color:rgba(27,23,20,.5);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:600;font-size:13px;letter-spacing:.34em;text-transform:uppercase;
+}
+.fold::before,.fold::after{content:"";flex:1;border-top:2px dashed rgba(27,23,20,.3)}
+
+/* ============================ SECTIONS ============================ */
+section{padding:30px 0 46px}
+.panel-blue{background:var(--blue);padding:52px 0 56px}
+.panel-yellow{background:var(--yellow);padding:52px 0 56px;border-top:6px solid var(--ink);border-bottom:6px solid var(--ink)}
+.panel-yellow .kicker{color:var(--ink)}
+
+/* Pull quotes: big type off the box side */
+.quote{
+  font-size:23px;line-height:1.45;font-style:italic;font-weight:600;
+  border-left:6px solid var(--red);
+  padding:4px 0 4px 18px;
+  margin:0 0 10px;
+}
+.attr{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:17px;letter-spacing:.16em;text-transform:uppercase;
+  color:#463f37;font-style:normal;margin:0 0 16px;
+}
+
+/* Media figures */
+.media-row{display:grid;gap:26px;margin:26px 0}
+@media (min-width:820px){.media-row{grid-template-columns:1fr 1fr;align-items:start}}
+video{width:100%;display:block;background:#000;border:1px solid rgba(27,23,20,.35)}
+
+/* Pasted-in engraving clippings (decorative only) */
+.clipping{
+  background:var(--plate-paper);
+  border:2px solid var(--ink);
+  box-shadow:4px 4px 0 rgba(27,23,20,.2);
+  padding:8px;
+  width:150px;
+  transform:rotate(-2.4deg);
+  float:right;
+  margin:4px 0 14px 20px;
+}
+.clipping.tilt-r{transform:rotate(2deg)}
+@media (max-width:520px){.clipping{width:118px;margin-left:14px}}
+
+/* ============================ PICKER ROAD (blue panel) ============================ */
+.proof-card{
+  background:var(--paper);
+  border:3px solid var(--ink);
+  box-shadow:8px 8px 0 rgba(0,0,0,.28);
+  padding:26px 24px 22px;
+  max-width:760px;
+}
+@media (min-width:820px){.proof-card{padding:34px 38px 28px}}
+.panel-blue .kicker{color:var(--yellow)}
+.panel-blue h2{color:var(--paper);text-shadow:3px 2px 0 rgba(0,0,0,.35)}
+
+/* ============================ THE GOODS ============================ */
+.collect-ticket{
+  background:var(--paper-deep);
+  border:2px solid var(--ink);
+  padding:18px 20px 12px;
+  margin:0 0 30px;
+  max-width:760px;
+}
+.goods-grid{display:grid;gap:24px;margin:0 0 14px}
+@media (min-width:640px){.goods-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:980px){.goods-grid{grid-template-columns:1fr 1fr 1fr}}
+
+/* Catalog price rows with sticker-tag roundels */
+.pricelist{list-style:none;padding:0;margin:0 0 26px;max-width:760px}
+.pricelist li{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:13px 2px;
+  border-bottom:2px dotted rgba(27,23,20,.4);
+  font-size:19px;line-height:1.45;
+}
+.roundel{
+  flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+  width:64px;height:64px;border-radius:50%;
+  background:var(--yellow);
+  border:2px solid var(--ink);
+  box-shadow:2px 3px 0 rgba(27,23,20,.28);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;
+  transform:rotate(-6deg);
+}
+.pricelist li:nth-child(even) .roundel{transform:rotate(5deg);background:var(--paper)}
+.cases-open{
+  background:var(--red);
+  color:var(--paper);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:600;font-size:22px;letter-spacing:.03em;
+  border:3px solid var(--ink);
+  box-shadow:5px 5px 0 rgba(27,23,20,.25);
+  padding:16px 22px;
+  max-width:760px;
+  margin:8px 0 0;
+  transform:rotate(-.4deg);
+}
+
+/* ============================ MAIL ORDER (yellow panel) ============================ */
+.mailorder p{max-width:660px}
+input[type=email]{
+  font-family:'Bitter',Georgia,serif;
+  font-size:19px;
+  padding:13px 15px;
+  min-height:48px;
+  border:3px solid var(--ink);
+  border-radius:3px;
+  background:var(--paper);
+  color:var(--ink);
+  width:100%;
+  max-width:360px;
+  margin:0 14px 12px 0;
+}
+input[type=email]::placeholder{color:#6b6355}
+
+/* ============================ CLOSE ============================ */
+.close-grid{display:grid;gap:30px;margin-top:8px}
+@media (min-width:900px){.close-grid{grid-template-columns:6fr 5fr;align-items:start}}
+iframe{border:0;width:100%;height:320px;display:block}
+.mapframe{background:#fff;border:3px solid var(--ink);box-shadow:6px 6px 0 rgba(27,23,20,.22);padding:8px}
+.colophon{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:17px;letter-spacing:.14em;text-transform:uppercase;
+  color:#463f37;margin-top:34px;
+}
+
+/* ============================ DOCK ============================ */
+.dock{
+  position:fixed;bottom:0;left:0;right:0;z-index:20;
+  background:var(--blue);
+  border-top:3px solid var(--ink);
+  display:flex;
+}
+.dock a{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  min-height:54px;padding:8px 6px;
+  color:var(--paper);text-decoration:none;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:19px;letter-spacing:.1em;text-transform:uppercase;
+  border-right:1px solid rgba(244,235,217,.3);
+}
+.dock a:last-child{border-right:0}
+.dock a.dock-name{flex:1.6;background:rgba(0,0,0,.18)}
+
+/* ============================ SCROLL REVEAL (motion-guarded) ============================ */
+.motion .rev{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.motion .rev.in{opacity:1;transform:none}
+.motion .goods-grid .rev:nth-child(2){transition-delay:.08s}
+.motion .goods-grid .rev:nth-child(3){transition-delay:.16s}
+.motion .goods-grid .rev:nth-child(5){transition-delay:.08s}
+.motion .goods-grid .rev:nth-child(6){transition-delay:.16s}
+</style>
+</head>
+<body>
+
+<!-- ============ 1. THE TOP: serves the already-sold ============ -->
+<header id="top">
+  <p class="topstrip">Booth 18 &middot; Paradise Antique Mall &middot; Las Vegas, Nevada</p>
+  <section class="masthead halftone">
+    <div class="wrap">
+      <div class="mast-head-block">
+        <h1 class="mis"><span>Treasure</span><span>Trove Finds</span></h1>
+        <p class="tagline">Antique toys, bottles, and a mixture of everything. Decades in the collecting.</p>
+      </div>
+      <div class="mast-grid">
+        <!-- AWAITING: replacement photo of Bill facing the camera. This one has him turned away. -->
+        <figure class="boxframe rev">
+          <img src="../shop/bill-at-case.jpg" alt="Bill at the display case in Booth 18" width="1200" height="800">
+          <figcaption>Bill at the case, Booth 18. Ask about anything and the case opens.</figcaption>
+        </figure>
+        <div class="label-card rev">
+          <span class="stamp-corner" aria-hidden="true">Open the box</span>
+          <p class="label-head">Visit the booth</p>
+          <p class="facts">
+            Booth 18, Paradise Antique Mall<br>
+            3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+            Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+            <!-- AWAITING: confirm whether booth is browsable daily; adjust hours line -->
+            <a href="tel:+15164462693">(516) 446-2693</a>
+          </p>
+          <p style="margin:0">
+            <a class="btn" href="tel:+15164462693">Call Bill</a>
+            <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<main>
+
+<!-- ============ 2. THE STORY: the main sell ============ -->
+<section id="story">
+  <div class="wrap">
+    <div class="copy">
+      <p class="kicker"><span class="no" aria-hidden="true">Panel 2</span>The story</p>
+      <h2>Decades of homework</h2>
+      <img class="clipping" src="../cabinet/plates/army-jeep.png" alt="" aria-hidden="true" loading="lazy">
+      <!-- AWAITING: Bill and Lisa's read of this copy before it ships. -->
+      <!-- AWAITING: Lisa's side of the story, in her words. -->
+      <!-- AWAITING: confirm 2025 opening and Bill's actual collecting start year. -->
+      <p>Bill has been collecting for decades. For most of them it was his alone.</p>
+      <p>Then the kids grew up and moved out, and the weekends went quiet. Bill and Lisa started filling them together: estate sales, garage sales, anywhere old things turn up. It became how they reconnected.</p>
+      <p>Stop by the house any night and you will find Bill at the kitchen table, a tag in one hand and a reference book in the other. Lisa is a room away, working her side of it.</p>
+      <p>For years they talked about opening a shop someday. It stayed talk. In 2025 the talk finally happened: Booth 18, moved from Long Island to Las Vegas. The New York plates still hang on the back wall.</p>
+    </div>
+    <div class="media-row">
+      <figure class="boxframe rev">
+        <img src="../photos/tag-detail.jpg" alt="A handwritten price tag on an antique piece" loading="lazy">
+        <figcaption>Every piece gets the same treatment: Bill reads up on it, writes what he found on the tag by hand, and prices it plain.</figcaption>
+      </figure>
+      <figure class="boxframe rev">
+        <img src="../photos/signage.jpg" alt="New York license plates hanging on the booth's back wall" loading="lazy">
+        <figcaption>The New York plates on the back wall. Long Island came along for the move.</figcaption>
+      </figure>
+    </div>
+    <div class="copy">
+      <figure class="boxframe rev" style="margin-bottom:26px">
+        <video controls playsinline preload="none" poster="../video/bill-mission-poster.jpg">
+          <source src="../video/bill-mission.mp4" type="video/mp4">
+        </video>
+        <figcaption>Bill, on why the booth has a little bit of everything. 30 seconds, filmed at the mall.</figcaption>
+      </figure>
+      <p class="quote">"I like to branch out because I learn the history of something when I learn about it. Because I can study it and then I'm pretty good at it."</p>
+      <p class="attr">Bill, in the clip above</p>
+    </div>
+  </div>
+</section>
+
+<div class="fold" aria-hidden="true">fold</div>
+
+<!-- ============ 3. PROOF OF BILL: Picker Road ============ -->
+<section id="proof" class="panel-blue halftone">
+  <div class="wrap">
+    <p class="kicker"><span class="no" aria-hidden="true">Panel 3</span>Proof</p>
+    <h2>Don't take it from us</h2>
+    <div class="proof-card rev">
+      <figure class="boxframe" style="box-shadow:none;border-width:2px;margin-bottom:18px">
+        <img src="../featured/picker-road.jpg" alt="The Picker Road hosts filming their episode at Paradise Antique Mall. Pictured: the show's hosts, not Bill and Lisa." loading="lazy">
+        <figcaption>Picker Road filmed at the mall and spent fifteen minutes in Booth 18. They bought five pieces on camera.</figcaption>
+      </figure>
+      <p class="quote">"This is a vendor who really knows his stuff."</p>
+      <p class="attr">Picker Road, on camera</p>
+      <p style="margin:14px 0 0"><a class="btn alt" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">Watch the episode from 14:17</a></p>
+    </div>
+  </div>
+</section>
+
+<div class="fold" aria-hidden="true">fold</div>
+
+<!-- ============ 4. WHAT'S IN THE BOOTH ============ -->
+<section id="goods" class="halftone">
+  <div class="wrap">
+    <p class="kicker"><span class="no" aria-hidden="true">Panel 4</span>The goods</p>
+    <h2>What's in the booth</h2>
+    <div class="collect-ticket rev">
+      <p class="quote" style="border-color:var(--blue)">"1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy diecast. Along with Christmas and Halloween from the 1920s to the 1960s."</p>
+      <p class="attr">Bill, asked what he collects</p>
+    </div>
+    <div class="goods-grid">
+      <figure class="boxframe rev">
+        <img src="../photos/case-buddy-l-trucks.jpg" alt="Pressed steel Buddy L trucks in the display case" loading="lazy">
+        <figcaption>Buddy L pressed-steel trucks.</figcaption>
+      </figure>
+      <figure class="boxframe rev">
+        <img src="../photos/case-toys.jpg" alt="A jointed teddy bear in saddle shoes, with a Standard Crayon tin and ten cent valentines" loading="lazy">
+        <figcaption>A jointed teddy bear in saddle shoes, a Standard Crayon tin, and ten cent valentines.</figcaption>
+      </figure>
+      <figure class="boxframe rev">
+        <img src="../photos/shelves-bottles.jpg" alt="Shelves of collector bottles" loading="lazy">
+        <figcaption>Collector bottles, 1860 to 1900 and up. Dating guides with magnifying glasses tied on, so you can check for yourself.</figcaption>
+      </figure>
+      <figure class="boxframe rev">
+        <img src="../photos/americana.jpg" alt="Milk bottles, oil cans, and old tools on open wood shelves, next to a case of plush animals and dolls" loading="lazy">
+        <figcaption>Milk bottles, oil cans, and old tools on the open shelves.</figcaption>
+      </figure>
+      <figure class="boxframe rev">
+        <img src="../photos/jewelry.jpg" alt="The lighted counter case at the front of Booth 18" loading="lazy">
+        <figcaption>The lighted counter case at the front of the booth.</figcaption>
+      </figure>
+      <figure class="boxframe rev">
+        <img src="../photos/curiosities.jpg" alt="An aisle of the booth: steamer trunk, teddy bear on a school chair, license plates and crates" loading="lazy">
+        <figcaption>"We're a shop here of just a mixture of everything."</figcaption>
+      </figure>
+    </div>
+
+    <h3 style="font-family:'Ultra',Georgia,serif;font-weight:400;font-size:26px;margin:30px 0 6px">Seen in the cases lately</h3>
+    <ul class="pricelist">
+      <li><span>Gescha Spirit of St. Louis wind-up, Germany, 1928. Recent auction price:</span> <span class="roundel">$450</span></li>
+      <li><span>Steiff woolen pompom squirrel, 1967.</span> <span class="roundel">$38</span></li>
+      <li><span>Mercury dime vanity tray.</span> <span class="roundel">$50</span></li>
+      <li><span>1950s Stardust casino piece.</span> <span class="roundel">$35</span></li>
+      <li><span>Roslyn Savings Bank duck, 1950s.</span> <span class="roundel">$33</span></li>
+      <li><span>Brass mailbox, Metal Product Corp, West Haven CT, 1930s to 40s.</span> <span class="roundel">$25</span></li>
+    </ul>
+
+    <div class="copy">
+      <figure class="boxframe rev" style="margin-bottom:26px">
+        <video controls playsinline preload="none" poster="../video/bill-gescha-poster.jpg">
+          <source src="../video/bill-gescha.mp4" type="video/mp4">
+        </video>
+        <figcaption>Bill walks through the Gescha Spirit of St. Louis wind-up, Germany, 1928. 58 seconds, filmed at the mall.</figcaption>
+      </figure>
+    </div>
+
+    <p class="cases-open rev">Most pieces run $25 to $100. All the cases are open. Ask, and anything comes out.</p>
+  </div>
+</section>
+
+<div class="fold" aria-hidden="true">fold</div>
+
+<!-- ============ 5. TOO FAR TO VISIT ============ -->
+<section id="mail" class="panel-yellow halftone mailorder">
+  <div class="wrap">
+    <p class="kicker"><span class="no" aria-hidden="true">Panel 5</span>Mail order</p>
+    <h2>Too far to visit?</h2>
+    <img class="clipping tilt-r" src="../cabinet/plates/pepsi-crate.png" alt="" aria-hidden="true" loading="lazy">
+    <p>The Etsy shop has been open eight years: 183 sales, 5.0 stars across 63 reviews.</p>
+    <p>
+      <a class="btn" href="https://www.etsy.com/shop/ttrovefinds">Visit the Etsy shop</a>
+      <a class="btn alt" href="https://www.instagram.com/treasuretrovefinds/">Follow on Instagram</a>
+    </p>
+    <p style="margin-top:26px">Want first look when new pieces land?</p>
+    <!-- AWAITING: wire form to email provider. Email only, no other fields, forgiving input. -->
+    <form action="#" method="post">
+      <input type="email" name="email" placeholder="you@email.com" aria-label="Email address">
+      <button class="btn" type="submit">Get the word</button>
+    </form>
+  </div>
+</section>
+
+<div class="fold" aria-hidden="true">fold</div>
+
+<!-- ============ 6. THE BOTTOM: closes ============ -->
+<section id="visit">
+  <div class="wrap">
+    <p class="kicker"><span class="no" aria-hidden="true">Panel 6</span>Find us</p>
+    <h2>Come see it</h2>
+    <div class="close-grid">
+      <div>
+        <div class="mapframe rev">
+          <iframe title="Map to Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas" src="https://maps.google.com/maps?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121&amp;output=embed" loading="lazy"></iframe>
+        </div>
+        <figure class="boxframe rev" style="margin-top:26px">
+          <img src="../photos/booth-wide.jpg" alt="A wide view of Booth 18 at Paradise Antique Mall" loading="lazy">
+          <figcaption>Booth 18, the whole spread.</figcaption>
+        </figure>
+      </div>
+      <div class="label-card rev">
+        <span class="stamp-corner" aria-hidden="true">Ship to</span>
+        <p class="label-head">The address on the box</p>
+        <p class="facts">
+          Booth 18, Paradise Antique Mall<br>
+          3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+          Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+          <a href="tel:+15164462693">(516) 446-2693</a><br>
+          <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+        </p>
+        <p style="margin:0">
+          <a class="btn" href="tel:+15164462693">Call Bill</a>
+          <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+        </p>
+      </div>
+    </div>
+    <p class="colophon">Treasure Trove Finds &middot; Bill and Lisa Otranto &middot; Long Island to Las Vegas</p>
+  </div>
+</section>
+
+</main>
+
+<!-- Persistent dock: name is the trunk-test anchor, actions under the thumb -->
+<nav class="dock" aria-label="Quick actions">
+  <a class="dock-name" href="#top">Treasure Trove Finds</a>
+  <a href="tel:+15164462693">Call</a>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Directions</a>
+</nav>
+
+<script>
+/* Scroll reveal, fully guarded: without JS or with reduced motion,
+   everything is simply visible. No content ever depends on this. */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('motion');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rev').forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Treasure Trove Finds, Booth 18 at Paradise Antique Mall, Las Vegas. Antique toys, bottles, and a mixture of everything. Decades in the collecting.">
+<link rel="icon" href="../favicon.svg">
+<title>Treasure Trove Finds · Booth 18, Paradise Antique Mall, Las Vegas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DIRECTION 3: WOOD AND BRASS
+   Standing inside a lamplit oak curio cabinet at night.
+   Walnut #241C12 · Oak #452C13 · Brass #C9A227 · Paper #F1D9B5
+   All long reading sits on paper cards. Dark holds the frames.
+   ============================================================ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  margin:0;
+  font-family:'Spectral',Georgia,serif;
+  font-size:19px;
+  line-height:1.6;
+  color:#F1D9B5;
+  background-color:#241C12;
+  /* walnut grain: faint vertical figure + a warm ceiling glow */
+  background-image:
+    radial-gradient(1100px 500px at 50% -120px, rgba(201,162,39,.07), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(0,0,0,.10) 0 2px, transparent 2px 9px),
+    repeating-linear-gradient(88deg, rgba(69,44,19,.14) 0 14px, transparent 14px 46px);
+  padding-bottom:64px; /* room for the dock */
+}
+
+.col{max-width:680px;margin:0 auto;padding:0 20px}
+.wide{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* ---------- each section is a shelf ---------- */
+.shelf{position:relative;padding:52px 0 60px}
+/* the lamp glow that blooms across the shelf as it scrolls into view */
+.shelf::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(720px 340px at 50% 0, rgba(201,162,39,.14), transparent 72%);
+  opacity:0;transition:opacity 1.6s ease;
+}
+.shelf.lit::before{opacity:1}
+
+/* the shelf ledge between sections: a run of oak board */
+.ledge{
+  height:18px;
+  background:linear-gradient(180deg,#6b4a24 0%,#452C13 45%,#2a1a0c 100%);
+  border-top:1px solid #8a6534;
+  box-shadow:0 8px 18px rgba(0,0,0,.55);
+}
+
+/* content rises gently under the lamp; JS-gated so no-JS shows everything */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
+.js .lit .reveal{opacity:1;transform:none}
+.js .lit .reveal.d2{transition-delay:.12s}
+.js .lit .reveal.d3{transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){
+  .shelf::before{opacity:1;transition:none}
+  .js .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ---------- type ---------- */
+h1{
+  font-family:'Cinzel',Georgia,serif;font-weight:700;
+  font-size:clamp(36px,9vw,60px);line-height:1.08;
+  margin:0 0 10px;color:#C9A227;text-align:center;
+  text-shadow:0 1px 0 rgba(0,0,0,.6),0 0 34px rgba(201,162,39,.25);
+}
+.overline{
+  font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:15px;
+  letter-spacing:.22em;color:#cbb794;text-align:center;margin:0 0 14px;
+}
+.tagline{
+  font-size:21px;font-style:italic;color:#F1D9B5;text-align:center;
+  max-width:34em;margin:0 auto 8px;
+}
+
+/* brass hairline with a diamond stud */
+.rule{display:flex;align-items:center;gap:12px;margin:20px auto 30px;max-width:420px}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#C9A227,transparent)}
+.rule i{width:8px;height:8px;background:#C9A227;transform:rotate(45deg);box-shadow:0 0 10px rgba(201,162,39,.6)}
+
+/* section heading: an engraved brass nameplate screwed to the shelf */
+.plaque-row{text-align:center;margin:0 0 30px}
+h2.plaque{
+  display:inline-block;position:relative;
+  font-family:'Cinzel',Georgia,serif;font-weight:700;
+  font-size:clamp(21px,4.6vw,27px);letter-spacing:.05em;
+  color:#241C12;margin:0;padding:12px 40px;border-radius:4px;
+  background:linear-gradient(180deg,#e8c95e 0%,#C9A227 52%,#96761a 100%);
+  box-shadow:0 3px 0 rgba(0,0,0,.45),0 10px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,248,220,.55);
+  text-shadow:0 1px 0 rgba(255,246,214,.5);
+}
+h2.plaque::before,h2.plaque::after{
+  content:"";position:absolute;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#f4e2a0,#8f6f14 70%);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.5);
+}
+h2.plaque::before{left:14px}
+h2.plaque::after{right:14px}
+
+h3.case-head{
+  font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:22px;
+  color:#241C12;margin:0 0 14px;letter-spacing:.03em;
+}
+
+/* ---------- paper cards: typed cards propped on the shelf ---------- */
+.card{
+  background:#F1D9B5;
+  background-image:linear-gradient(180deg,rgba(255,255,255,.25),rgba(255,255,255,0) 60px),radial-gradient(120% 90% at 50% 0,rgba(93,63,26,0),rgba(93,63,26,.10));
+  color:#2a2118;
+  padding:26px 24px;border-radius:3px;
+  box-shadow:0 14px 30px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35);
+  margin:0 0 26px;
+}
+.card p{margin:0 0 16px;font-size:19px;line-height:1.62}
+.card p:last-child{margin-bottom:0}
+.card a{color:#7a3d10;text-decoration:underline;text-underline-offset:2px}
+.card ul{padding-left:22px;margin:0 0 16px}
+.card li{margin-bottom:10px;font-size:19px;line-height:1.55}
+.card .price{font-weight:600;white-space:nowrap}
+
+.facts{font-size:20px;line-height:1.75;margin:0 0 16px}
+
+.quote{font-size:22px;line-height:1.5;font-style:italic;margin:0 0 10px}
+.quote::before{
+  content:"\201C";display:block;font-family:'Cinzel',serif;font-size:44px;line-height:.5;
+  color:#a5851b;margin:6px 0 12px;
+}
+.attr{font-size:18px;color:#5c4a33;font-style:normal;margin:0}
+
+/* decorative pen-and-ink engravings, drawn on paper; they melt into the cards */
+.engraving{display:block;margin:18px auto 0;width:120px;max-width:40%;mix-blend-mode:darken;opacity:.9}
+
+/* ---------- oak frames with brass nameplate captions ---------- */
+figure{margin:0 0 28px}
+.frame{
+  background:linear-gradient(135deg,#6b4a24 0%,#452C13 42%,#2f1e0c 100%);
+  border:1px solid #7a5526;border-radius:4px;padding:12px;
+  box-shadow:inset 0 1px 0 rgba(255,235,180,.15),0 16px 34px rgba(0,0,0,.55);
+}
+.frame img,.frame video,.frame iframe{
+  display:block;width:100%;height:auto;border:1px solid rgba(201,162,39,.45);
+  background:#000;
+}
+.frame video{max-height:70vh}
+figcaption.plate{
+  margin-top:12px;padding:11px 16px;border-radius:3px;text-align:center;
+  font-size:18px;line-height:1.45;color:#241C12;
+  background:linear-gradient(180deg,#e0bc4e 0%,#C9A227 55%,#9c7b17 100%);
+  box-shadow:0 2px 0 rgba(0,0,0,.4),inset 0 1px 0 rgba(255,248,220,.5);
+  text-shadow:0 1px 0 rgba(255,246,214,.35);
+}
+
+/* a small brass picture-lamp hood over the showpiece frames */
+.lamp{position:relative;width:130px;height:12px;margin:0 auto;z-index:1;
+  background:linear-gradient(180deg,#eed172,#C9A227 55%,#8f6f14);
+  border-radius:10px 10px 3px 3px;
+  box-shadow:0 0 26px 8px rgba(201,162,39,.3);
+}
+.lamp::after{content:"";position:absolute;left:50%;top:100%;width:300px;height:120px;transform:translateX(-50%);
+  background:radial-gradient(60% 100% at 50% 0,rgba(201,162,39,.28),transparent 75%);
+  pointer-events:none;
+}
+.lamped{margin-top:-6px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:12px 28px;margin:4px 10px 6px 0;
+  font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:18px;letter-spacing:.05em;
+  color:#241C12;text-decoration:none;border-radius:4px;border:0;cursor:pointer;
+  background:linear-gradient(180deg,#e8c95e 0%,#C9A227 52%,#96761a 100%);
+  box-shadow:0 3px 0 rgba(0,0,0,.45),0 8px 18px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,248,220,.55);
+  text-shadow:0 1px 0 rgba(255,246,214,.45);
+}
+.btn.alt{
+  background:transparent;color:#F1D9B5;border:2px solid #C9A227;
+  box-shadow:none;text-shadow:none;
+}
+.btn.alt.on-paper{color:#452C13;border-color:#8f6f14}
+.btn:active{transform:translateY(1px)}
+
+input[type=email]{
+  font-family:inherit;font-size:19px;color:#2a2118;
+  padding:13px 14px;min-height:48px;border:2px solid #452C13;border-radius:4px;
+  background:#faeed2;width:100%;max-width:340px;margin:0 10px 12px 0;
+}
+input[type=email]::placeholder{color:#7d6a4d}
+
+/* ---------- layout helpers ---------- */
+.grid{display:grid;grid-template-columns:1fr;gap:26px}
+@media (min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.grid{grid-template-columns:1fr 1fr 1fr}}
+
+.top-grid{display:grid;grid-template-columns:1fr;gap:26px;align-items:start}
+@media (min-width:960px){.top-grid{grid-template-columns:1.15fr .85fr;gap:36px}}
+
+/* ---------- the persistent dock ---------- */
+.dock{
+  position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;
+  background:#180f07;border-top:2px solid #C9A227;
+  box-shadow:0 -8px 24px rgba(0,0,0,.6);
+}
+.dock a{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  min-height:56px;padding:8px;color:#F1D9B5;text-decoration:none;
+  font-size:18px;border-right:1px solid #3a2410;
+}
+.dock a:last-child{border-right:0}
+.dock a.home{font-family:'Cinzel',Georgia,serif;font-weight:600;letter-spacing:.03em}
+.dock a.brassy{color:#e8c95e}
+
+.smallprint{font-size:18px;color:#cbb794;text-align:center;margin-top:28px}
+
+:focus-visible{outline:3px solid #C9A227;outline-offset:2px}
+</style>
+</head>
+<body id="top">
+
+<!-- ============ 1. THE TOP: serves the already-sold ============ -->
+<section class="shelf" aria-label="Treasure Trove Finds, the essentials">
+  <div class="wide">
+    <header class="reveal">
+      <p class="overline">BOOTH 18 · PARADISE ANTIQUE MALL · LAS VEGAS</p>
+      <h1>Treasure Trove Finds</h1>
+      <p class="tagline">Antique toys, bottles, and a mixture of everything. Decades in the collecting.</p>
+      <div class="rule" aria-hidden="true"><i></i></div>
+    </header>
+    <div class="top-grid">
+      <!-- AWAITING: replacement photo of Bill facing the camera. This one has him turned away. -->
+      <figure class="reveal d2">
+        <div class="lamp" aria-hidden="true"></div>
+        <div class="frame lamped">
+          <img src="../shop/bill-at-case.jpg" alt="Bill at the display case in Booth 18" width="1200" height="800">
+        </div>
+        <figcaption class="plate">Bill at the case, Booth 18. Ask about anything and the case opens.</figcaption>
+      </figure>
+      <div class="reveal d3">
+        <div class="card">
+          <p class="facts">
+            Booth 18, Paradise Antique Mall<br>
+            3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+            Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+            <!-- AWAITING: confirm whether booth is browsable daily; adjust hours line -->
+            <a href="tel:+15164462693">(516) 446-2693</a>
+          </p>
+        </div>
+        <p>
+          <a class="btn" href="tel:+15164462693">Call Bill</a>
+          <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ledge" aria-hidden="true"></div>
+
+<!-- ============ 2. THE STORY: the main sell ============ -->
+<section class="shelf" aria-label="The story">
+  <div class="col">
+    <div class="plaque-row reveal"><h2 class="plaque">Decades of Homework</h2></div>
+    <!-- AWAITING: Bill and Lisa's read of this copy before it ships. -->
+    <!-- AWAITING: Lisa's side of the story, in her words. -->
+    <!-- AWAITING: confirm 2025 opening and Bill's actual collecting start year. -->
+    <div class="card reveal d2">
+      <p>Bill has been collecting for decades. For most of them it was his alone.</p>
+      <p>Then the kids grew up and moved out, and the weekends went quiet. Bill and Lisa started filling them together: estate sales, garage sales, anywhere old things turn up. It became how they reconnected.</p>
+      <p>Stop by the house any night and you will find Bill at the kitchen table, a tag in one hand and a reference book in the other. Lisa is a room away, working her side of it.</p>
+      <p>For years they talked about opening a shop someday. It stayed talk. In 2025 the talk finally happened: Booth 18, moved from Long Island to Las Vegas. The New York plates still hang on the back wall.</p>
+    </div>
+    <figure class="reveal">
+      <div class="frame">
+        <img src="../photos/tag-detail.jpg" alt="A handwritten price tag on an antique piece" loading="lazy">
+      </div>
+      <figcaption class="plate">Every piece gets the same treatment: Bill reads up on it, writes what he found on the tag by hand, and prices it plain.</figcaption>
+    </figure>
+    <figure class="reveal">
+      <div class="lamp" aria-hidden="true"></div>
+      <div class="frame lamped">
+        <video controls playsinline preload="none" poster="../video/bill-mission-poster.jpg">
+          <source src="../video/bill-mission.mp4" type="video/mp4">
+        </video>
+      </div>
+      <figcaption class="plate">Bill, on why the booth has a little bit of everything. 30 seconds, filmed at the mall.</figcaption>
+    </figure>
+    <div class="card reveal">
+      <p class="quote">"I like to branch out because I learn the history of something when I learn about it. Because I can study it and then I'm pretty good at it."</p>
+      <p class="attr">Bill, in the clip above</p>
+    </div>
+  </div>
+</section>
+
+<div class="ledge" aria-hidden="true"></div>
+
+<!-- ============ 3. PROOF OF BILL: Picker Road ============ -->
+<section class="shelf" aria-label="Picker Road, third party proof">
+  <div class="col">
+    <div class="plaque-row reveal"><h2 class="plaque">Don't Take It From Us</h2></div>
+    <figure class="reveal d2">
+      <div class="frame">
+        <img src="../featured/picker-road.jpg" alt="The Picker Road hosts filming their episode at Paradise Antique Mall" loading="lazy">
+      </div>
+      <figcaption class="plate">Picker Road filmed at the mall and spent fifteen minutes in Booth 18. They bought five pieces on camera.</figcaption>
+    </figure>
+    <div class="card reveal d3">
+      <p class="quote">"This is a vendor who really knows his stuff."</p>
+      <p class="attr">Picker Road, on camera</p>
+    </div>
+    <p class="reveal d3" style="text-align:center"><a class="btn alt" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">Watch the episode from 14:17</a></p>
+  </div>
+</section>
+
+<div class="ledge" aria-hidden="true"></div>
+
+<!-- ============ 4. WHAT'S IN THE BOOTH ============ -->
+<section class="shelf" aria-label="What is in the booth">
+  <div class="wide">
+    <div class="plaque-row reveal"><h2 class="plaque">What's in the Booth</h2></div>
+    <div class="col" style="padding:0">
+      <div class="card reveal d2">
+        <p class="quote">"1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy diecast. Along with Christmas and Halloween from the 1920s to the 1960s."</p>
+        <p class="attr">Bill, asked what he collects</p>
+      </div>
+    </div>
+    <div class="grid">
+      <figure class="reveal">
+        <div class="frame">
+          <img src="../photos/case-buddy-l-trucks.jpg" alt="Pressed steel Buddy L trucks in the display case" loading="lazy">
+        </div>
+        <figcaption class="plate">Buddy L pressed-steel trucks.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="frame">
+          <img src="../photos/case-toys.jpg" alt="A jointed teddy bear in saddle shoes, with a Standard Crayon tin and ten cent valentines" loading="lazy">
+        </div>
+        <figcaption class="plate">A jointed teddy bear in saddle shoes, a Standard Crayon tin, and ten cent valentines.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="frame">
+          <img src="../photos/shelves-bottles.jpg" alt="Shelves of collector bottles" loading="lazy">
+        </div>
+        <figcaption class="plate">Collector bottles, 1860 to 1900 and up. Dating guides with magnifying glasses tied on, so you can check for yourself.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="frame">
+          <img src="../photos/americana.jpg" alt="Milk bottles, oil cans, and old tools on open wood shelves, next to a case of plush animals and dolls" loading="lazy">
+        </div>
+        <figcaption class="plate">Milk bottles, oil cans, and old tools on the open shelves.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="frame">
+          <img src="../photos/jewelry.jpg" alt="The lighted counter case at the front of Booth 18" loading="lazy">
+        </div>
+        <figcaption class="plate">The lighted counter case at the front of the booth.</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="frame">
+          <img src="../photos/curiosities.jpg" alt="An aisle of the booth: steamer trunk, teddy bear on a school chair, license plates and crates" loading="lazy">
+        </div>
+        <figcaption class="plate">"We're a shop here of just a mixture of everything."</figcaption>
+      </figure>
+    </div>
+    <div class="col" style="padding:0">
+      <figure class="reveal">
+        <div class="frame">
+          <video controls playsinline preload="none" poster="../video/bill-gescha-poster.jpg">
+            <source src="../video/bill-gescha.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption class="plate">Bill on the Gescha Spirit of St. Louis wind-up, Germany, 1928. 58 seconds.</figcaption>
+      </figure>
+      <div class="card reveal">
+        <h3 class="case-head">Seen in the cases lately</h3>
+        <ul>
+          <li>Gescha Spirit of St. Louis wind-up, Germany, 1928. Recent auction price: <span class="price">$450</span>.</li>
+          <li>Steiff woolen pompom squirrel, 1967. <span class="price">$38</span>.</li>
+          <li>Mercury dime vanity tray. <span class="price">$50</span>.</li>
+          <li>1950s Stardust casino piece. <span class="price">$35</span>.</li>
+          <li>Roslyn Savings Bank duck, 1950s. <span class="price">$33</span>.</li>
+          <li>Brass mailbox, Metal Product Corp, West Haven CT, 1930s to 40s. <span class="price">$25</span>.</li>
+        </ul>
+        <p>Most pieces run $25 to $100. All the cases are open. Ask, and anything comes out.</p>
+        <img class="engraving" src="../cabinet/plates/pepsi-crate-bottles.png" alt="" aria-hidden="true" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ledge" aria-hidden="true"></div>
+
+<!-- ============ 5. TOO FAR TO VISIT ============ -->
+<section class="shelf" aria-label="Shop from far away">
+  <div class="col">
+    <div class="plaque-row reveal"><h2 class="plaque">Too Far to Visit?</h2></div>
+    <div class="card reveal d2">
+      <p>The Etsy shop has been open eight years: 183 sales, 5.0 stars across 63 reviews.</p>
+      <p>
+        <a class="btn" href="https://www.etsy.com/shop/ttrovefinds">Visit the Etsy shop</a>
+        <a class="btn alt on-paper" href="https://www.instagram.com/treasuretrovefinds/">Follow on Instagram</a>
+      </p>
+      <p style="margin-top:14px">Want first look when new pieces land?</p>
+      <!-- AWAITING: wire form to email provider. Email only, no other fields, forgiving input. -->
+      <form action="#" method="post">
+        <input type="email" name="email" placeholder="you@email.com" aria-label="Email address">
+        <button class="btn" type="submit">Get the word</button>
+      </form>
+      <img class="engraving" src="../cabinet/plates/cobalt-bottle.png" alt="" aria-hidden="true" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="ledge" aria-hidden="true"></div>
+
+<!-- ============ 6. THE BOTTOM: closes ============ -->
+<section class="shelf" aria-label="Find the booth">
+  <div class="col">
+    <div class="plaque-row reveal"><h2 class="plaque">Come See It</h2></div>
+    <figure class="reveal d2">
+      <div class="lamp" aria-hidden="true"></div>
+      <div class="frame lamped">
+        <iframe title="Map to Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas" src="https://maps.google.com/maps?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121&amp;output=embed" loading="lazy" style="height:320px;border:1px solid rgba(201,162,39,.45)"></iframe>
+      </div>
+      <figcaption class="plate">Paradise Antique Mall, 3565 E. Flamingo Rd. Booth 18 is inside.</figcaption>
+    </figure>
+    <div class="card reveal d3">
+      <p class="facts">
+        Booth 18, Paradise Antique Mall<br>
+        3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+        Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+        <a href="tel:+15164462693">(516) 446-2693</a><br>
+        <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+      </p>
+    </div>
+    <p class="reveal d3" style="text-align:center">
+      <a class="btn" href="tel:+15164462693">Call Bill</a>
+      <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+    </p>
+    <p class="smallprint">Treasure Trove Finds · Bill and Lisa Otranto · Long Island to Las Vegas</p>
+  </div>
+</section>
+
+<!-- Persistent dock: name is the trunk-test anchor, actions under the thumb -->
+<nav class="dock" aria-label="Quick actions">
+  <a class="home" href="#top">Treasure Trove Finds</a>
+  <a class="brassy" href="tel:+15164462693">Call</a>
+  <a class="brassy" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Directions</a>
+</nav>
+
+<script>
+// Lamp-glow reveal. JS-gated: with no JS everything is simply visible.
+document.documentElement.classList.add('js');
+(function(){
+  var shelves=document.querySelectorAll('.shelf');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){
+    shelves.forEach(function(s){s.classList.add('lit')});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('lit');io.unobserve(e.target);}
+    });
+  },{rootMargin:'0px 0px -12% 0px',threshold:0});
+  shelves.forEach(function(s){io.observe(s)});
+})();
+</script>
+
+</body>
+</html>

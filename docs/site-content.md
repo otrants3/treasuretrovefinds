@@ -29,7 +29,8 @@ Companion docs: `booth-facts.md` (Picker Road distillation), `bill-clip-transcri
   reviews. Only 3 items listed as of 2026-08, so show the trust numbers, not a
   listings grid, until inventory grows.
 - Instagram: @treasuretrovefinds. 229 posts. Business account.
-- Email: ttrovefinds@gmail.com
+- Email: ttrovefinds@gmail.com (the public contact email for now, per A.J.
+  2026-08-09; goes in the site's close section, mailto: linked)
 - The old "Etsy's Coming / get on the list" framing is DEAD. Etsy is live and has
   been for 8 years.
 
@@ -108,9 +109,15 @@ diecast. Along with Christmas and Halloween from the 1920s to the 1960s."
 
 ## Photo assets on hand
 
-- `public/photos/` — 12 booth photos: booth-wide, case-buddy-l-trucks, case-toys,
-  shelves-bottles, americana, jewelry, curiosities, fan-perfumes, signage (the NY
-  plates), tag-detail, tag-perfume-bottle, tag-race-car.
+- `public/photos/` — 12 booth photos, recompressed to 1600px web size 2026-08-09.
+  FILENAMES LIE, captions were verified by eye 2026-08-09: case-toys.jpg is a
+  jointed TEDDY BEAR with a crayon tin and valentines (not wind-ups);
+  americana.jpg is milk bottles, oil cans, and tools on open shelves;
+  jewelry.jpg is the lighted counter case at the BOOTH ENTRANCE (Booth 18 sign
+  visible); curiosities.jpg is an aisle shot (trunk, teddy on school chair,
+  plates). Verified as named: booth-wide, case-buddy-l-trucks, shelves-bottles,
+  signage (NY plates), tag-detail (green race car with tag), tag-perfume-bottle,
+  tag-race-car, fan-perfumes. Eyeball any photo before writing a new caption.
 - `public/shop/` — bill-at-case.jpg (the ONLY Bill photo; he is turned away from
   camera, being replaced, see AWAITING), hero/banner shots, 6 close-up record/tag
   photos (record-*.jpg), 2 piece photos.

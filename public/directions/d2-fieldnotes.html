@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Treasure Trove Finds, Booth 18 at Paradise Antique Mall, Las Vegas. Antique toys, bottles, and a mixture of everything. Decades in the collecting.">
+<link rel="icon" href="../favicon.svg">
+<title>Field Notes · Treasure Trove Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DIRECTION 2: FIELD NOTES
+   A magazine profile of a collector crossed with his own
+   research files. Paper, ink, cobalt, old brass. The binder
+   Bill keeps at the kitchen table.
+   Palette: bone #EAE4D8 · ink #17150F · cobalt #1F3D8F · brass #A8862C
+   ============================================================ */
+:root{
+  --bone:#EAE4D8;
+  --ink:#17150F;
+  --cobalt:#1F3D8F;
+  --brass:#A8862C;
+  --paper:#F1D9B5;      /* file-tab and card paper; matches the engravings */
+  --bone-deep:#DFD7C6;
+  --faint:rgba(23,21,15,.16);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+body{
+  margin:0;
+  font-family:'Newsreader',Georgia,serif;
+  font-size:19px;
+  line-height:1.62;
+  color:var(--ink);
+  background:var(--bone);
+  padding-bottom:64px; /* clears the dock */
+}
+/* paper grain, very quiet */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* ledger margin rule, desktop only */
+@media (min-width:1240px){
+  body::after{
+    content:"";position:fixed;top:0;bottom:0;left:calc(50% - 596px);width:8px;z-index:1;pointer-events:none;
+    border-left:2px solid rgba(31,61,143,.28);
+    border-right:1px solid rgba(31,61,143,.18);
+  }
+}
+img{max-width:100%;height:auto;display:block}
+figure{margin:0}
+a{color:var(--cobalt)}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+
+/* ---------- layout shells ---------- */
+.shell{max-width:1100px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
+.prose{max-width:660px}
+.prose p{margin:0 0 17px}
+section{padding:52px 0 58px}
+@media (min-width:900px){ section{padding:72px 0 78px} }
+
+/* ---------- type ---------- */
+h1{
+  font-family:'Fraunces',Georgia,serif;font-weight:900;
+  font-size:clamp(44px,10vw,92px);line-height:.98;letter-spacing:-.015em;
+  margin:14px 0 10px;
+}
+h2{
+  font-family:'Fraunces',Georgia,serif;font-weight:700;
+  font-size:clamp(30px,5vw,44px);line-height:1.08;letter-spacing:-.01em;
+  margin:26px 0 18px;
+}
+.h-minor{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:24px;margin:34px 0 10px}
+.mono{font-family:'Courier Prime',Courier,monospace}
+.kicker{
+  font-family:'Courier Prime',Courier,monospace;font-size:14px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt);
+}
+.tagline{font-size:22px;font-style:italic;line-height:1.5;max-width:34ch;margin:0 0 8px}
+
+/* ---------- masthead strip ---------- */
+.topbar{
+  border-top:6px solid var(--cobalt);
+  border-bottom:2px solid var(--ink);
+  background:var(--bone);
+}
+.topbar .shell{
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding-top:10px;padding-bottom:10px;
+  font-family:'Courier Prime',Courier,monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+}
+.brassrule{height:3px;background:var(--brass);border:0;max-width:220px;margin:18px 0 22px}
+
+/* ---------- file-folder section tabs ---------- */
+.sechead{display:flex;align-items:flex-end;border-bottom:2px solid var(--ink);margin:0 0 30px}
+.tab{
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:13px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+  background:var(--paper);
+  border:2px solid var(--ink);border-bottom:2px solid var(--paper);
+  border-radius:10px 10px 0 0;
+  padding:10px 18px 8px;margin-bottom:-2px;position:relative;
+}
+.sechead .ref{
+  margin-left:auto;padding:0 2px 8px 12px;
+  font-family:'Courier Prime',Courier,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(23,21,15,.55);
+}
+@media (max-width:560px){ .sechead .ref{display:none} }
+
+/* ---------- accession strips (the signature) ---------- */
+.acc{
+  font-family:'Courier Prime',Courier,monospace;font-size:13px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink);
+  background:var(--paper);
+  border:1px solid var(--faint);border-top:2px solid var(--ink);
+  padding:8px 10px 7px;line-height:1.5;
+}
+.acc.typing::after{content:"▌";color:var(--cobalt);margin-left:1px}
+figcaption .note{
+  display:block;font-family:'Newsreader',Georgia,serif;font-size:17px;font-style:italic;
+  line-height:1.5;color:rgba(23,21,15,.82);padding:9px 2px 0;
+}
+
+/* ---------- photos as taped-in prints ---------- */
+.print{position:relative;background:#fff;padding:8px 8px 0;border:1px solid var(--faint);
+  box-shadow:0 2px 10px rgba(23,21,15,.12), 0 12px 28px rgba(23,21,15,.07);}
+.print img,.print video{display:block;width:100%}
+.print .acc{margin:8px -9px -1px;border-left:0;border-right:0}
+.tape::before,.tape::after{
+  content:"";position:absolute;top:-11px;width:74px;height:24px;z-index:3;
+  background:rgba(241,217,181,.75);border:1px solid rgba(23,21,15,.12);
+  box-shadow:0 1px 3px rgba(23,21,15,.12);
+}
+.tape::before{left:14px;transform:rotate(-5deg)}
+.tape::after{right:14px;transform:rotate(4deg)}
+
+/* ---------- quotes ---------- */
+.quote{
+  font-family:'Fraunces',Georgia,serif;font-size:clamp(23px,3.4vw,29px);font-style:italic;font-weight:500;
+  line-height:1.4;margin:30px 0 10px;padding-left:18px;border-left:4px solid var(--cobalt);
+}
+.attr{font-family:'Courier Prime',Courier,monospace;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(23,21,15,.65);margin:0 0 8px;padding-left:22px}
+
+/* ---------- facts card ---------- */
+.card{
+  background:var(--paper);border:2px solid var(--ink);padding:22px 22px 20px;position:relative;
+  box-shadow:0 3px 0 var(--ink);
+}
+.card .kicker{color:var(--ink)}
+.facts{font-size:20px;line-height:1.7;margin:10px 0 18px}
+.facts a{color:var(--cobalt);font-weight:600}
+.facts .lbl{font-family:'Courier Prime',Courier,monospace;font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(23,21,15,.6);display:block;margin-top:10px}
+.facts .lbl:first-child{margin-top:0}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:12px 24px;margin:4px 10px 6px 0;
+  background:var(--ink);color:var(--bone);text-decoration:none;
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:18px;
+  letter-spacing:.08em;text-transform:uppercase;
+  border:2px solid var(--ink);border-radius:3px;
+  box-shadow:2px 2px 0 rgba(23,21,15,.35);
+  cursor:pointer;
+}
+.btn:hover{background:var(--cobalt);border-color:var(--cobalt)}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:2px 2px 0 rgba(23,21,15,.2)}
+.btn.alt:hover{background:rgba(23,21,15,.06);border-color:var(--ink);color:var(--ink)}
+
+/* ---------- masthead grid ---------- */
+.masthead{padding-top:34px}
+.mast-grid{display:grid;gap:34px;margin-top:26px}
+@media (min-width:960px){ .mast-grid{grid-template-columns:1.2fr .9fr;align-items:start} }
+.filestrip{
+  font-family:'Courier Prime',Courier,monospace;font-size:13px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);
+  border:1px dashed rgba(23,21,15,.4);background:rgba(241,217,181,.5);
+  display:inline-block;padding:7px 12px 6px;margin-top:4px;
+}
+
+/* ---------- goods grid ---------- */
+.goods-grid{display:grid;gap:30px;margin:28px 0 8px}
+@media (min-width:680px){ .goods-grid{grid-template-columns:1fr 1fr} }
+@media (min-width:1040px){ .goods-grid{grid-template-columns:1fr 1fr 1fr} }
+
+/* ---------- ledger list ---------- */
+ul.ledger{list-style:none;margin:14px 0 22px;padding:0;max-width:720px;counter-reset:ledger}
+ul.ledger li{
+  counter-increment:ledger;
+  border-bottom:1px dotted rgba(23,21,15,.45);
+  padding:12px 2px 12px 52px;position:relative;margin:0;
+}
+ul.ledger li::before{
+  content:counter(ledger,decimal-leading-zero);
+  position:absolute;left:2px;top:14px;
+  font-family:'Courier Prime',Courier,monospace;font-size:14px;font-weight:700;color:var(--brass);
+}
+.pr{font-weight:700;color:var(--cobalt);white-space:nowrap}
+.openline{font-size:21px;font-weight:600;max-width:640px}
+
+/* ---------- email form ---------- */
+input[type=email]{
+  font-family:'Courier Prime',Courier,monospace;font-size:18px;color:var(--ink);
+  padding:12px 14px;min-height:48px;background:#fff;
+  border:2px solid var(--ink);border-radius:3px;width:100%;max-width:340px;margin:0 10px 10px 0;
+}
+input[type=email]::placeholder{color:rgba(23,21,15,.45)}
+
+/* ---------- map ---------- */
+.mapframe{border:2px solid var(--ink);background:#fff;padding:8px;box-shadow:0 3px 0 var(--ink)}
+.mapframe iframe{border:0;width:100%;height:320px;display:block}
+
+/* ---------- decorative engravings (taped clippings, desktop only) ---------- */
+.plate{display:none}
+@media (min-width:1150px){
+  .plate{display:block;position:absolute;width:150px;z-index:2;pointer-events:none;
+    border:1px solid rgba(23,21,15,.18);box-shadow:0 3px 12px rgba(23,21,15,.16)}
+}
+
+/* ---------- footer line ---------- */
+.colophon{
+  font-family:'Courier Prime',Courier,monospace;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(23,21,15,.62);margin-top:30px;line-height:1.8;
+}
+
+/* ---------- persistent dock ---------- */
+.dock{position:fixed;bottom:0;left:0;right:0;background:var(--ink);display:flex;z-index:10;
+  border-top:3px solid var(--brass)}
+.dock a{
+  flex:1;display:flex;align-items:center;justify-content:center;min-height:52px;
+  color:var(--bone);text-decoration:none;padding:8px 6px;
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:16px;
+  letter-spacing:.1em;text-transform:uppercase;
+  border-right:1px solid rgba(234,228,216,.25);
+}
+.dock a:first-child{flex:1.5}
+.dock a:last-child{border-right:0}
+.dock a:hover{background:rgba(31,61,143,.55)}
+
+/* ---------- scroll reveal (only when JS runs and motion allowed) ---------- */
+.anim .rev{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.anim .rev.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .anim .rev{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ============ 1. THE TOP: serves the already-sold ============ -->
+<header class="topbar">
+  <div class="shell">
+    <span>Field notes · A collector's file</span>
+    <span>Las Vegas, Nevada</span>
+  </div>
+</header>
+
+<section class="masthead">
+  <div class="shell">
+    <p class="kicker">Booth 18 · Paradise Antique Mall</p>
+    <h1>Treasure Trove Finds</h1>
+    <hr class="brassrule">
+    <p class="tagline">Antique toys, bottles, and a mixture of everything. Decades in the collecting.</p>
+    <p class="filestrip acc" style="border-top:0;background:rgba(241,217,181,.5)">File · Booth no. 18 · Paradise Antique Mall · Las Vegas, NV</p>
+
+    <div class="mast-grid">
+      <!-- AWAITING: replacement photo of Bill facing the camera. This one has him turned away. -->
+      <figure class="rev">
+        <div class="print tape">
+          <img src="../shop/bill-at-case.jpg" alt="Bill at the display case in Booth 18" width="1200" height="800">
+          <p class="acc">No. 001 · Bill at the case · Booth 18</p>
+        </div>
+        <figcaption><span class="note">Bill at the case, Booth 18. Ask about anything and the case opens.</span></figcaption>
+      </figure>
+
+      <div class="card rev">
+        <p class="kicker">The particulars</p>
+        <p class="facts">
+          <span class="lbl">Where</span>
+          Booth 18, Paradise Antique Mall<br>
+          3565 E. Flamingo Rd, Las Vegas, NV 89121
+          <span class="lbl">When</span>
+          Bill is in the booth Wednesdays and Sundays, 10 to 6.
+          <!-- AWAITING: confirm whether booth is browsable daily; adjust hours line -->
+          <span class="lbl">Phone</span>
+          <a href="tel:+15164462693">(516) 446-2693</a>
+        </p>
+        <p style="margin:0">
+          <a class="btn" href="tel:+15164462693">Call Bill</a>
+          <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. THE STORY: the main sell ============ -->
+<section>
+  <div class="shell" style="position:relative">
+    <img class="plate" src="../cabinet/plates/ge-fan.png" alt="" aria-hidden="true" loading="lazy" style="right:-30px;top:120px;transform:rotate(3deg)">
+    <div class="sechead">
+      <span class="tab">02 · The story</span>
+      <span class="ref">Cross-ref: bill-mission.mp4</span>
+    </div>
+    <div class="prose rev">
+      <h2 style="margin-top:0">Decades of homework</h2>
+      <!-- AWAITING: Bill and Lisa's read of this copy before it ships. -->
+      <!-- AWAITING: Lisa's side of the story, in her words. -->
+      <!-- AWAITING: confirm 2025 opening and Bill's actual collecting start year. -->
+      <p>Bill has been collecting for decades. For most of them it was his alone.</p>
+      <p>Then the kids grew up and moved out, and the weekends went quiet. Bill and Lisa started filling them together: estate sales, garage sales, anywhere old things turn up. It became how they reconnected.</p>
+      <p>Stop by the house any night and you will find Bill at the kitchen table, a tag in one hand and a reference book in the other. Lisa is a room away, working her side of it.</p>
+      <p>For years they talked about opening a shop someday. It stayed talk. In 2025 the talk finally happened: Booth 18, moved from Long Island to Las Vegas. The New York plates still hang on the back wall.</p>
+    </div>
+
+    <figure class="rev" style="max-width:660px;margin-top:30px">
+      <div class="print tape">
+        <img src="../photos/tag-detail.jpg" alt="A handwritten price tag on an antique piece" loading="lazy">
+        <p class="acc">No. 002 · Handwritten tag · Priced plain</p>
+      </div>
+      <figcaption><span class="note">Every piece gets the same treatment: Bill reads up on it, writes what he found on the tag by hand, and prices it plain.</span></figcaption>
+    </figure>
+
+    <figure class="rev" style="max-width:760px;margin-top:34px">
+      <div class="print">
+        <video controls playsinline preload="none" poster="../video/bill-mission-poster.jpg" style="width:100%;max-height:70vh;background:#000">
+          <source src="../video/bill-mission.mp4" type="video/mp4">
+        </video>
+        <p class="acc">No. 003 · Bill on film · 32 seconds</p>
+      </div>
+      <figcaption><span class="note">Bill, on why the booth has a little bit of everything. 30 seconds, filmed at the mall.</span></figcaption>
+    </figure>
+
+    <div class="rev">
+      <p class="quote">"I like to branch out because I learn the history of something when I learn about it. Because I can study it and then I'm pretty good at it."</p>
+      <p class="attr">Bill, in the clip above</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. PROOF OF BILL: Picker Road ============ -->
+<section>
+  <div class="shell">
+    <div class="sechead">
+      <span class="tab">03 · Proof</span>
+      <span class="ref">Third-party · On camera</span>
+    </div>
+    <h2 style="margin-top:0">Don't take it from us</h2>
+    <figure class="rev" style="max-width:760px">
+      <div class="print tape">
+        <img src="../featured/picker-road.jpg" alt="The Picker Road hosts filming their episode at Paradise Antique Mall" loading="lazy">
+        <p class="acc">No. 004 · Picker Road · Episode still</p>
+      </div>
+      <figcaption><span class="note">Picker Road filmed at the mall and spent fifteen minutes in Booth 18. They bought five pieces on camera.</span></figcaption>
+    </figure>
+    <div class="rev">
+      <p class="quote">"This is a vendor who really knows his stuff."</p>
+      <p class="attr">Picker Road, on camera</p>
+      <p style="margin-top:20px"><a class="btn alt" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">Watch the episode from 14:17</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. WHAT'S IN THE BOOTH ============ -->
+<section>
+  <div class="shell" style="position:relative">
+    <img class="plate" src="../cabinet/plates/cobalt-bottle.png" alt="" aria-hidden="true" loading="lazy" style="right:-34px;top:340px;transform:rotate(-3deg)">
+    <div class="sechead">
+      <span class="tab">04 · The goods</span>
+      <span class="ref">Inventory · Priced on the tag</span>
+    </div>
+    <h2 style="margin-top:0">What's in the booth</h2>
+    <div class="rev">
+      <p class="quote" style="margin-top:14px">"1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy diecast. Along with Christmas and Halloween from the 1920s to the 1960s."</p>
+      <p class="attr" style="margin-bottom:6px">Bill, asked what he collects</p>
+    </div>
+
+    <div class="goods-grid">
+      <figure class="rev">
+        <div class="print">
+          <img src="../photos/case-buddy-l-trucks.jpg" alt="Pressed steel Buddy L trucks in the display case" loading="lazy">
+          <p class="acc">No. 005 · Buddy L trucks · Pressed steel</p>
+        </div>
+        <figcaption><span class="note">Buddy L pressed-steel trucks.</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="print">
+          <img src="../photos/case-toys.jpg" alt="A jointed teddy bear in saddle shoes, with a Standard Crayon tin and ten cent valentines" loading="lazy">
+          <p class="acc">No. 006 · Teddy bear, crayon tin, valentines</p>
+        </div>
+        <figcaption><span class="note">A jointed teddy bear in saddle shoes, a Standard Crayon tin, and ten cent valentines.</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="print">
+          <img src="../photos/shelves-bottles.jpg" alt="Shelves of collector bottles" loading="lazy">
+          <p class="acc">No. 007 · Collector bottles · 1860 to 1900+</p>
+        </div>
+        <figcaption><span class="note">Collector bottles, 1860 to 1900 and up. Dating guides with magnifying glasses tied on, so you can check for yourself.</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="print">
+          <img src="../photos/americana.jpg" alt="Milk bottles, oil cans, and old tools on open wood shelves, next to a case of plush animals and dolls" loading="lazy">
+          <p class="acc">No. 008 · Americana · Advertising</p>
+        </div>
+        <figcaption><span class="note">Milk bottles, oil cans, and old tools on the open shelves.</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="print">
+          <img src="../photos/jewelry.jpg" alt="The lighted counter case at the front of Booth 18" loading="lazy">
+          <p class="acc">No. 009 · The counter case · Front of booth</p>
+        </div>
+        <figcaption><span class="note">The lighted counter case at the front of the booth.</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="print">
+          <img src="../photos/curiosities.jpg" alt="An aisle of the booth: steamer trunk, teddy bear on a school chair, license plates and crates" loading="lazy">
+          <p class="acc">No. 010 · Curiosities · A mixture of everything</p>
+        </div>
+        <figcaption><span class="note">"We're a shop here of just a mixture of everything."</span></figcaption>
+      </figure>
+    </div>
+
+    <p class="h-minor">Seen in the cases lately</p>
+    <ul class="ledger rev">
+      <li>Gescha Spirit of St. Louis wind-up, Germany, 1928. Recent auction price: <span class="pr">$450.</span></li>
+      <li>Steiff woolen pompom squirrel, 1967. <span class="pr">$38.</span></li>
+      <li>Mercury dime vanity tray. <span class="pr">$50.</span></li>
+      <li>1950s Stardust casino piece. <span class="pr">$35.</span></li>
+      <li>Roslyn Savings Bank duck, 1950s. <span class="pr">$33.</span></li>
+      <li>Brass mailbox, Metal Product Corp, West Haven CT, 1930s to 40s. <span class="pr">$25.</span></li>
+    </ul>
+
+    <figure class="rev" style="max-width:760px;margin:26px 0 30px">
+      <div class="print">
+        <video controls playsinline preload="none" poster="../video/bill-gescha-poster.jpg" style="width:100%;max-height:70vh;background:#000">
+          <source src="../video/bill-gescha.mp4" type="video/mp4">
+        </video>
+        <p class="acc">No. 011 · Gescha Spirit of St. Louis · 58 seconds</p>
+      </div>
+      <figcaption><span class="note">Bill with the Gescha Spirit of St. Louis wind-up, Germany, 1928. The full explanation runs just under a minute.</span></figcaption>
+    </figure>
+
+    <p class="openline rev">Most pieces run $25 to $100. All the cases are open. Ask, and anything comes out.</p>
+  </div>
+</section>
+
+<!-- ============ 5. TOO FAR TO VISIT ============ -->
+<section>
+  <div class="shell">
+    <div class="sechead">
+      <span class="tab">05 · From anywhere</span>
+      <span class="ref">Etsy · Instagram · The list</span>
+    </div>
+    <div class="prose rev">
+      <h2 style="margin-top:0">Too far to visit?</h2>
+      <p>The Etsy shop has been open eight years: 183 sales, 5.0 stars across 63 reviews.</p>
+      <p>
+        <a class="btn" href="https://www.etsy.com/shop/ttrovefinds">Visit the Etsy shop</a>
+        <a class="btn alt" href="https://www.instagram.com/treasuretrovefinds/">Follow on Instagram</a>
+      </p>
+      <p style="margin-top:26px">Want first look when new pieces land?</p>
+      <!-- AWAITING: wire form to email provider. Email only, no other fields, forgiving input. -->
+      <form action="#" method="post">
+        <input type="email" name="email" placeholder="you@email.com" aria-label="Email address">
+        <button class="btn" type="submit">Get the word</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. THE BOTTOM: closes ============ -->
+<section>
+  <div class="shell">
+    <div class="sechead">
+      <span class="tab">06 · Come see it</span>
+      <span class="ref">No. 012 · 3565 E. Flamingo Rd</span>
+    </div>
+    <h2 style="margin-top:0">Come see it</h2>
+    <div class="mapframe rev" style="max-width:760px">
+      <iframe title="Map to Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas" src="https://maps.google.com/maps?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121&amp;output=embed" loading="lazy"></iframe>
+    </div>
+    <p class="facts rev" style="margin-top:24px;max-width:660px">
+      Booth 18, Paradise Antique Mall<br>
+      3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+      Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+      <a href="tel:+15164462693">(516) 446-2693</a><br>
+      <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+    </p>
+    <p>
+      <a class="btn" href="tel:+15164462693">Call Bill</a>
+      <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+    </p>
+    <p class="colophon">Treasure Trove Finds · Bill and Lisa Otranto · Long Island to Las Vegas</p>
+  </div>
+</section>
+
+<!-- Persistent dock: name is the trunk-test anchor, actions under the thumb -->
+<nav class="dock" aria-label="Quick actions">
+  <a href="#top">Treasure Trove Finds</a>
+  <a href="tel:+15164462693">Call</a>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Directions</a>
+</nav>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return; // static fallback: everything already in the markup
+
+  document.documentElement.classList.add("anim");
+
+  /* ---- scroll reveal ---- */
+  var revs = document.querySelectorAll(".rev");
+  var revIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add("in"); revIO.unobserve(e.target); }
+    });
+  }, {rootMargin:"0px 0px -8% 0px", threshold:0.05});
+  revs.forEach(function(el){ revIO.observe(el); });
+
+  /* ---- accession strips: type themselves in ---- */
+  var strips = document.querySelectorAll(".acc");
+  strips.forEach(function(el){
+    var full = el.textContent.replace(/\s+/g," ").trim();
+    el.dataset.full = full;
+    el.style.minHeight = el.offsetHeight + "px"; // no layout shift while typing
+    el.textContent = "";
+  });
+  function typeStrip(el){
+    var full = el.dataset.full || "";
+    var i = 0;
+    el.classList.add("typing");
+    var t = setInterval(function(){
+      i++;
+      el.textContent = full.slice(0, i);
+      if (i >= full.length){ clearInterval(t); el.classList.remove("typing"); }
+    }, 17);
+  }
+  var accIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ accIO.unobserve(e.target); typeStrip(e.target); }
+    });
+  }, {rootMargin:"0px 0px -12% 0px", threshold:0.4});
+  strips.forEach(function(el){ accIO.observe(el); });
+})();
+</script>
+
+</body>
+</html>
