@@ -164,3 +164,12 @@ Top serves the already-sold. Middle sells everyone else. Bottom closes.
 5. Too far to visit: Etsy trust numbers, Instagram, email list.
 6. Bottom: map, address, hours, Call button again.
 Persistent: slim bar with name + Call/Directions.
+
+PLANNED (A.J. 2026-08-10, from reviewing rauantiques.com): a "New in the booth
+this week" strip between sections 4 and 5, fed by Bill's weekly photos. Modeled
+on M.S. Rau's "Just Acquired". Not built yet.
+
+TASTE SIGNALS (A.J., from comparing competitor sites 2026-08-10): "salesy" and
+"dated/old-looking" are disqualifiers. Antique Archaeology = too salesy. He
+responds to fresh, non-pushy, editorial. The site's goal is not immediate
+selling.
