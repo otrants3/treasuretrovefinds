@@ -17,7 +17,9 @@ Companion docs: `booth-facts.md` (Picker Road distillation), `bill-clip-transcri
   Wed/Sun? If yes, the hours block should say both. Typical for antique malls.)
 - Phone: (516) 446-2693 (always tel: linked)
 - The mall has 84 booths (Bill's own count, on tape)
-- Collecting since 1973 (CONFIRM year with Bill before it goes in print)
+- The booth opened in 2025 (A.J. believes; CONFIRM). Bill has been collecting for
+  DECADES; never print a specific start year until Bill confirms one. The old
+  "since 1973" assumption is RETIRED (A.J., 2026-08-09: "it's not since 1973").
 - Owners: Bill and Lisa Otranto. Long Island, NY to Las Vegas. New York license
   plates hang on the booth's back wall (visible in photos/signage.jpg).
 
@@ -54,7 +56,7 @@ diecast. Along with Christmas and Halloween from the 1920s to the 1960s."
 
 ## The family story (canonical beats; drafted, AWAITING Bill and Lisa's read)
 
-- Bill collecting since 1973, most of it on his own.
+- Bill has been collecting for decades, most of it on his own.
 - The kids grew up and left; the weekends went quiet. Bill and Lisa filled them
   together with estate sales and garage sales. It became how they reconnected.
 - Any night: Bill at the kitchen table, tag in one hand, reference book in the
@@ -131,7 +133,8 @@ diecast. Along with Christmas and Halloween from the 1920s to the 1960s."
 3. Three "Bill's take" market lines in his actual words (voice notes). Until
    then, placeholders stay marked and nothing is invented.
 4. Bill and Lisa's read/approval of the family story copy.
-5. Confirm: exact mall name, whether booth is browsable daily, EST year 1973.
+5. Confirm: exact mall name, whether booth is browsable daily, the booth's 2025
+   opening date, and what year Bill actually started collecting.
 6. Any other "as featured on" appearances beyond Picker Road.
 7. Optional: Picker Road's permission to use stills or clips beyond the thumbnail.
 

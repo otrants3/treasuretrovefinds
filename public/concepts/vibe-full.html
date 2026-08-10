@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="One vibe for Treasure Trove Finds, built out to a full page.">
+<link rel="icon" href="../favicon.svg">
+<title>Vibe, built out · Treasure Trove Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ultra&family=Barlow+Condensed:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Courier+Prime:wght@400;700&family=Cinzel:wght@500;600&family=Spectral:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,800;1,500&family=Oswald:wght@500;600&family=Alfa+Slab+One&family=Bitter:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* One content flow, themed six ways via body.v1..v6. Same words in every vibe. */
+*{box-sizing:border-box}
+body{margin:0;font-size:19px;line-height:1.55;background:var(--bg);color:var(--ink);font-family:var(--body)}
+.col{max-width:640px;margin:0 auto;padding:0 22px}
+section{padding:46px 0}
+h1{font-family:var(--display);font-size:var(--h1size,40px);line-height:1.06;margin:0 0 8px;color:var(--headink,var(--ink))}
+h2{font-family:var(--display);font-size:var(--h2size,30px);line-height:1.12;margin:0 0 16px;color:var(--headink,var(--ink))}
+p{margin:0 0 16px}
+img{max-width:100%;height:auto;display:block;width:100%}
+figure{margin:0 0 20px}
+figcaption{font-size:16px;line-height:1.45}
+.sub{margin:0 0 22px}
+.quote{font-size:22px;line-height:1.45;font-style:italic;margin:0 0 8px}
+.attr{font-size:16px;opacity:.75;font-style:normal;margin:0 0 4px}
+.facts{font-size:20px;line-height:1.7;margin:0 0 16px}
+.facts a{color:inherit}
+ul{padding-left:22px;margin:0 0 16px}
+li{margin-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.btn{display:inline-block;text-decoration:none;min-height:44px;padding:13px 24px;margin:6px 10px 0 0;font-size:18px;background:var(--btnbg);color:var(--btnink);border-radius:var(--radius,4px)}
+.btn.alt{background:transparent;color:var(--btnbg);border:2px solid var(--btnbg)}
+.rule{border:0;border-top:1px solid var(--line);margin:0}
+.footline{font-size:16px;opacity:.75;margin-top:26px}
+:focus-visible{outline:3px solid var(--btnbg);outline-offset:2px}
+
+/* vibe nav (not part of the design, just for browsing vibes) */
+.vnav{position:fixed;bottom:0;left:0;right:0;background:#141210;color:#E7E1D5;display:flex;align-items:center;z-index:20;font-family:"Archivo",sans-serif;font-size:14px}
+.vnav a{color:#C9A227;text-decoration:none;padding:14px 16px;min-height:44px;display:flex;align-items:center}
+.vnav .lbl{flex:1;text-align:center;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+body{padding-bottom:52px}
+
+/* ---- V1 TOY BOX ---- */
+.v1{--bg:#F4EBD9;--ink:#1B1714;--display:"Ultra",serif;--body:"Barlow Condensed",sans-serif;--headink:#D8232A;--btnbg:#D8232A;--btnink:#F4EBD9;--line:#123C7B;--radius:0;--h1size:42px;--h2size:30px;font-size:20px}
+.v1 h2{text-transform:uppercase}
+.v1 .sub{font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#123C7B}
+.v1 figure{border:6px solid #123C7B;background:#fff}
+.v1 figcaption{padding:8px 10px;background:#F2B302;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.v1 .quote{color:#123C7B}
+.v1 .btn.alt{border-width:3px}
+
+/* ---- V2 FIELD NOTES ---- */
+.v2{--bg:#EAE4D8;--ink:#17150F;--display:"Fraunces",Georgia,serif;--body:"Newsreader",Georgia,serif;--btnbg:#1F3D8F;--btnink:#EAE4D8;--line:#b7ad9c;--radius:3px}
+.v2 h1,.v2 h2{font-weight:600}
+.v2 .sub{font-style:italic;color:#3d3930}
+.v2 figcaption{font-family:"Courier Prime",monospace;font-size:14.5px;padding:9px 2px;border-bottom:2px solid #17150F}
+.v2 .quote{color:#1F3D8F}
+
+/* ---- V3 WOOD AND BRASS ---- */
+.v3{--bg:#241C12;--ink:#F1D9B5;--display:"Cinzel",serif;--body:"Spectral",Georgia,serif;--headink:#C9A227;--btnbg:#C9A227;--btnink:#241C12;--line:#4b3a24;--radius:3px;--h1size:36px;--h2size:27px}
+.v3 figure{border:10px solid #452C13;outline:2px solid #C9A227;background:#452C13}
+.v3 figcaption{padding:10px 4px 0;color:#cbb794}
+.v3 .sub{font-style:italic;color:#cbb794}
+.v3 .attr{color:#cbb794;opacity:1}
+
+/* ---- V4 NEWSPRINT ---- */
+.v4{--bg:#F0EDE4;--ink:#111;--display:"Playfair Display",Georgia,serif;--body:"Newsreader",Georgia,serif;--btnbg:#111;--btnink:#F0EDE4;--line:#999;--radius:0;--h1size:44px}
+.v4 h1,.v4 h2{font-weight:800;letter-spacing:-.01em}
+.v4 .sub{font-size:15px;text-transform:uppercase;letter-spacing:.14em;border-top:2px solid #111;border-bottom:2px solid #111;padding:7px 0;font-family:"Archivo",sans-serif}
+.v4 img{filter:grayscale(1) contrast(1.05)}
+.v4 figcaption{font-style:italic;padding:8px 0;border-bottom:1px solid #999}
+.v4 section{border-bottom:1px solid #ccc}
+
+/* ---- V5 ROADSIDE ---- */
+.v5{--bg:#F2E8D0;--ink:#2a1613;--display:"Alfa Slab One",serif;--body:"Bitter",Georgia,serif;--headink:#9E2A2B;--btnbg:#9E2A2B;--btnink:#F2E8D0;--line:#d3b98e;--radius:8px;--h1size:36px;--h2size:27px}
+.v5 h1,.v5 h2{text-transform:uppercase}
+.v5 .sub{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:16px}
+.v5 figure{border:4px solid #9E2A2B;border-radius:10px;overflow:hidden;background:#9E2A2B}
+.v5 figcaption{padding:9px 12px;background:#9E2A2B;color:#F2E8D0;letter-spacing:.04em;text-transform:uppercase;font-family:"Oswald",sans-serif;font-size:15px}
+.v5 .btn{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.07em}
+.v5 .btn.alt{border-width:3px}
+
+/* ---- V6 GALLERY ---- */
+.v6{--bg:#FAF9F6;--ink:#1a1a1a;--display:"Source Serif 4",Georgia,serif;--body:"Source Serif 4",Georgia,serif;--btnbg:#1a1a1a;--btnink:#FAF9F6;--line:#ddd;--radius:4px;--h1size:38px}
+.v6 h1,.v6 h2{font-weight:600}
+.v6 .sub{color:#666}
+.v6 figcaption{font-family:"Archivo",sans-serif;font-size:13.5px;letter-spacing:.04em;color:#666;padding:9px 0;text-transform:uppercase}
+.v6 .btn{font-family:"Archivo",sans-serif;font-size:16px}
+.v6 .attr{color:#666;opacity:1}
+</style>
+</head>
+<body class="v2">
+
+<!-- 1 TOP -->
+<section>
+  <div class="col">
+    <h1>Treasure Trove Finds</h1>
+    <p class="sub">Antique toys, bottles, and a mixture of everything</p>
+    <figure>
+      <img src="../shop/bill-at-case.jpg" alt="Bill at the display case in Booth 18">
+      <figcaption>Bill at the case, Booth 18. Ask about anything and the case opens.</figcaption>
+    </figure>
+    <p class="facts">
+      Booth 18, Paradise Antique Mall<br>
+      3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+      Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+      <a href="tel:+15164462693">(516) 446-2693</a>
+    </p>
+    <p>
+      <a class="btn" href="tel:+15164462693">Call Bill</a>
+      <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+    </p>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- 2 STORY -->
+<section>
+  <div class="col">
+    <h2>Decades of homework</h2>
+    <p>Bill has been collecting for decades. For most of them it was his alone.</p>
+    <p>Then the kids grew up and moved out, and the weekends went quiet. Bill and Lisa started filling them together: estate sales, garage sales, anywhere old things turn up. It became how they reconnected.</p>
+    <p>For years they talked about opening a shop someday. It stayed talk. In 2025 the talk finally happened: Booth 18, moved from Long Island to Las Vegas. The New York plates still hang on the back wall.</p>
+    <figure>
+      <img src="../photos/tag-detail.jpg" alt="A handwritten price tag on an antique piece" loading="lazy">
+      <figcaption>Every piece gets the same treatment: Bill reads up on it, writes what he found on the tag by hand, and prices it plain.</figcaption>
+    </figure>
+    <p class="quote">"I like to branch out because I learn the history of something when I learn about it. Because I can study it and then I'm pretty good at it."</p>
+    <p class="attr">Bill</p>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- 3 PROOF -->
+<section>
+  <div class="col">
+    <h2>Don't take it from us</h2>
+    <figure>
+      <img src="../featured/picker-road.jpg" alt="The Picker Road hosts filming their episode at Paradise Antique Mall" loading="lazy">
+      <figcaption>Picker Road filmed at the mall and spent fifteen minutes in Booth 18. They bought five pieces on camera.</figcaption>
+    </figure>
+    <p class="quote">"This is a vendor who really knows his stuff."</p>
+    <p class="attr">Picker Road, on camera</p>
+    <p style="margin-top:16px"><a class="btn alt" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">Watch the episode</a></p>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- 4 GOODS -->
+<section>
+  <div class="col">
+    <h2>What's in the booth</h2>
+    <p class="quote">"1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy diecast. Along with Christmas and Halloween from the 1920s to the 1960s."</p>
+    <p class="attr" style="margin-bottom:20px">Bill, asked what he collects</p>
+    <div class="grid">
+      <figure>
+        <img src="../photos/case-buddy-l-trucks.jpg" alt="Pressed steel Buddy L trucks in the display case" loading="lazy">
+        <figcaption>Buddy L pressed-steel trucks.</figcaption>
+      </figure>
+      <figure>
+        <img src="../photos/shelves-bottles.jpg" alt="Shelves of collector bottles" loading="lazy">
+        <figcaption>Collector bottles, 1860 to 1900 and up.</figcaption>
+      </figure>
+      <figure>
+        <img src="../photos/case-toys.jpg" alt="Tin and wind-up toys in the front case" loading="lazy">
+        <figcaption>Wind-ups and tin toys in the front case.</figcaption>
+      </figure>
+      <figure>
+        <img src="../photos/curiosities.jpg" alt="A shelf of curiosities" loading="lazy">
+        <figcaption>"A mixture of everything."</figcaption>
+      </figure>
+    </div>
+    <ul>
+      <li>Gescha Spirit of St. Louis wind-up, Germany, 1928. Recent auction price: $450.</li>
+      <li>Steiff woolen pompom squirrel, 1967. $38.</li>
+      <li>1950s Stardust casino piece. $35.</li>
+    </ul>
+    <p>Most pieces run $25 to $100. All the cases are open. Ask, and anything comes out.</p>
+  </div>
+</section>
+<hr class="rule">
+
+<!-- 5 CLOSE -->
+<section>
+  <div class="col">
+    <h2>Come see it</h2>
+    <p class="facts">
+      Booth 18, Paradise Antique Mall<br>
+      3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+      Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+      <a href="tel:+15164462693">(516) 446-2693</a>
+    </p>
+    <p>
+      <a class="btn" href="tel:+15164462693">Call Bill</a>
+      <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+    </p>
+    <p class="footline">Treasure Trove Finds · Bill and Lisa Otranto · Long Island to Las Vegas</p>
+  </div>
+</section>
+
+<nav class="vnav" aria-label="Vibe browser">
+  <a id="prev" href="#">&larr; Prev</a>
+  <span class="lbl" id="lbl"></span>
+  <a href="vibes.html">All six</a>
+  <a id="next" href="#">Next &rarr;</a>
+</nav>
+
+<script>
+var NAMES = ['The Toy Box','Field Notes','Wood and Brass','The Newsprint','The Roadside Sign','The Gallery'];
+var v = parseInt(new URLSearchParams(location.search).get('v'), 10);
+if (!(v >= 1 && v <= 6)) v = 1;
+document.body.className = 'v' + v;
+document.title = 'Vibe ' + v + ' · ' + NAMES[v-1] + ' · Treasure Trove Finds';
+document.getElementById('lbl').textContent = 'Vibe ' + v + ' · ' + NAMES[v-1];
+document.getElementById('prev').href = 'vibe-full.html?v=' + (v === 1 ? 6 : v - 1);
+document.getElementById('next').href = 'vibe-full.html?v=' + (v === 6 ? 1 : v + 1);
+</script>
+</body>
+</html>
