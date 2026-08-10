@@ -123,6 +123,12 @@ diecast. Along with Christmas and Halloween from the 1920s to the 1960s."
   reuse only if the chosen direction wants them).
 - `public/featured/picker-road.jpg` — episode thumbnail.
 - `docs/bill-clip.mp4` — 72MB, local only, gitignored.
+- `public/video/` — web-ready cuts from the clip, IN the repo: bill-mission.mp4
+  (32s, the "I learn the history" quote, 3.5MB) and bill-gescha.mp4 (58s, the
+  Spirit of St. Louis explanation, 6.4MB), each with a -poster.jpg. The mission
+  clip is the story section's centerpiece. Next level: run these through the
+  WedVis Remotion pipeline for typed captions in site typography, title cards,
+  and square Instagram crops.
 
 ## AWAITING (the complete missing-content list)
 
