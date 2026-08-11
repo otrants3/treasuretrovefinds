@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Find Booth 18 at Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas. Bill is in the booth Wednesdays and Sundays, 10 to 6.">
+<link rel="icon" href="../../favicon.svg">
+<title>Visit · Treasure Trove Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitter:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="index.html">Treasure Trove Finds</a>
+  <nav class="topnav" aria-label="Primary">
+    <a href="story.html">Story</a>
+    <a href="booth.html">The booth</a>
+    <a href="visit.html" aria-current="page">Visit</a>
+    <a href="shop.html">Shop online</a>
+  </nav>
+  <a class="btn call" href="tel:+15164462693">Call</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+<div class="menu" id="menu" hidden>
+  <div class="menu-top">
+    <a class="menu-brand" href="index.html">Treasure Trove Finds</a>
+    <button class="menu-close" type="button">Close</button>
+  </div>
+  <nav aria-label="Menu">
+    <a href="index.html">Home</a>
+    <a href="story.html">Story</a>
+    <a href="booth.html">The booth</a>
+    <a href="visit.html" aria-current="page">Visit</a>
+    <a href="shop.html">Shop online</a>
+  </nav>
+  <p class="menu-actions">
+    <a class="btn" href="tel:+15164462693">Call Bill</a>
+    <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+  </p>
+</div>
+
+<!-- ============ FIND THE BOOTH ============ -->
+<section>
+  <div class="wide">
+    <p class="plate"><span class="no">No. 1</span> Find us</p>
+    <h1 class="pagehead">Come see it</h1>
+  </div>
+  <div class="wide split wtext center" style="margin-top:8px">
+    <div class="cell media-left">
+      <iframe class="mapframe" title="Map to Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas" src="https://maps.google.com/maps?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121&amp;output=embed" loading="lazy"></iframe>
+    </div>
+    <div>
+      <div class="arrow-wrap" aria-hidden="true" style="justify-content:flex-start;padding-left:6px">
+        <svg class="arrow" viewBox="0 0 46 88"><path pathLength="100" d="M23 4 C26 26 20 48 23 68 M10 56 C14 62 19 68 23 74 C27 68 32 62 36 56"/></svg>
+      </div>
+      <p class="facts">
+        <strong>Find the booth</strong><br>
+        Booth 18, Paradise Antique Mall<br>
+        3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+        Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+        <!-- AWAITING: confirm whether booth is browsable daily; adjust hours line -->
+        <a href="tel:+15164462693">(516) 446-2693</a><br>
+        <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+      </p>
+      <p>The mall runs 84 booths. Ours is number 18.</p>
+      <p>
+        <a class="btn" href="tel:+15164462693">Call Bill</a>
+        <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ WHAT YOU'LL FIND WHEN YOU GET THERE ============ -->
+<section>
+  <div class="col" style="text-align:center">
+    <p class="openline" style="margin:0 0 26px">Most pieces run $25 to $100. All the cases are open. Ask, and anything comes out.</p>
+    <p>
+      <a class="btn alt" href="booth.html">See what's in the booth</a>
+    </p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wide foot-grid">
+    <div>
+      <p class="foot-brand">Treasure Trove Finds</p>
+      <p class="foot-line">Bill and Lisa Otranto · Long Island to Las Vegas</p>
+    </div>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="story.html">Story</a>
+      <a href="booth.html">The booth</a>
+      <a href="visit.html">Visit</a>
+      <a href="shop.html">Shop online</a>
+    </nav>
+    <p class="foot-facts">
+      <span class="foot-label">Find the booth</span>
+      Booth 18, Paradise Antique Mall<br>
+      3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+      Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+      <a href="tel:+15164462693">(516) 446-2693</a> · <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a><br>
+      <a href="https://www.etsy.com/shop/ttrovefinds">Etsy</a> · <a href="https://www.instagram.com/treasuretrovefinds/">Instagram</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar = document.getElementById('topbar');
+  var onScroll = function(){ bar.classList.toggle('scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  var btn = document.querySelector('.menu-btn');
+  var menu = document.getElementById('menu');
+  var closeBtn = menu.querySelector('.menu-close');
+  function setMenu(open){
+    if (open){ menu.removeAttribute('hidden'); document.body.classList.add('menu-open'); }
+    else { menu.setAttribute('hidden',''); document.body.classList.remove('menu-open'); }
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(){ setMenu(menu.hasAttribute('hidden')); });
+  closeBtn.addEventListener('click', function(){ setMenu(false); btn.focus(); });
+  var targets = document.querySelectorAll('.arrow, .rise');
+  if ('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add(e.target.classList.contains('arrow') ? 'draw' : 'in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {rootMargin:'0px 0px -12% 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+  } else {
+    targets.forEach(function(t){
+      t.classList.add(t.classList.contains('arrow') ? 'draw' : 'in');
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

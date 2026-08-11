@@ -1,0 +1,431 @@
+/* =========================================================
+   D5 · THE ROADSIDE SIGN · multi-page build
+   Painted steel and sun-faded enamel off an American highway.
+   Cream field, enamel red, brown-black, one rare faded teal.
+   Laws: 18px+ body, 44px+ taps, captions everywhere, serif body
+   dark-on-light, nothing behind hover, no em dashes.
+   ========================================================= */
+:root{
+  --cream:#F2E8D0;
+  --cream-deep:#EADCBB;
+  --red:#9E2A2B;
+  --red-deep:#7E1F20;
+  --ink:#2a1613;
+  --teal:#37655c;
+  --shadow:rgba(42,22,19,.28);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .18 0 0 0 0 .1 0 0 0 0 .08 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;
+  font-family:'Bitter',Georgia,serif;
+  font-size:19px;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--cream);
+  background-image:
+    radial-gradient(120% 70% at 50% 0%, rgba(255,252,240,.55), rgba(255,252,240,0) 60%),
+    var(--grain);
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+figure{margin:0}
+p{margin:0 0 18px}
+a{color:var(--red);text-decoration-thickness:2px;text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
+
+.col{max-width:680px;margin:0 auto;padding:0 20px}
+.wide{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+
+h1,h2{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;color:var(--ink);margin:0}
+h1.pagehead{font-size:clamp(34px,6.8vw,54px);line-height:1.06;margin-bottom:18px}
+h2{font-size:clamp(28px,5.4vw,42px);line-height:1.08;margin-bottom:18px;letter-spacing:.01em}
+h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:.14em;text-transform:uppercase;margin:34px 0 14px;color:var(--red)}
+
+/* ---------- painted trim rules ---------- */
+.rule{
+  border:0;height:9px;margin:0 auto;max-width:1120px;
+  background:
+    linear-gradient(var(--red),var(--red)) 0 0/100% 3px no-repeat,
+    linear-gradient(var(--ink),var(--ink)) 0 7px/100% 2px no-repeat;
+  opacity:.9;
+}
+.rule.teal{background:
+    linear-gradient(var(--teal),var(--teal)) 0 0/100% 3px no-repeat,
+    linear-gradient(var(--ink),var(--ink)) 0 7px/100% 2px no-repeat;}
+
+/* ---------- route-marker plates ---------- */
+.plate{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);background:var(--ink);
+  padding:8px 16px;border-radius:3px;
+  box-shadow:0 2px 0 var(--shadow);
+  margin:0 0 18px;
+}
+.plate .no{
+  color:var(--cream);background:var(--red);
+  font-size:13px;padding:2px 7px;border-radius:2px;letter-spacing:.08em;
+}
+.plate.teal .no{background:var(--teal)}
+
+/* ---------- enamel-token buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;padding:13px 26px;margin:4px 12px 8px 0;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  color:var(--cream);background:linear-gradient(180deg,#AF3436,var(--red) 55%,var(--red-deep));
+  border:2px solid var(--ink);border-radius:5px;
+  box-shadow:inset 0 0 0 2px var(--cream), inset 0 0 0 3px rgba(42,22,19,.35), 0 3px 0 var(--shadow);
+  cursor:pointer;
+}
+.btn:hover{background:linear-gradient(180deg,#BA3E40,#A93335 55%,var(--red-deep))}
+.btn:active{transform:translateY(2px);box-shadow:inset 0 0 0 2px var(--cream), inset 0 0 0 3px rgba(42,22,19,.35), 0 1px 0 var(--shadow)}
+.btn.alt{
+  color:var(--red);background:linear-gradient(180deg,#FBF4E1,var(--cream) 60%,var(--cream-deep));
+  box-shadow:inset 0 0 0 2px var(--red), inset 0 0 0 3px rgba(158,42,43,.18), 0 3px 0 var(--shadow);
+}
+.btn.alt:hover{background:linear-gradient(180deg,#FFFBEF,#F7EDD7 60%,var(--cream-deep))}
+.btn.tealbtn{
+  color:var(--cream);background:linear-gradient(180deg,#41756b,var(--teal) 55%,#2b5049);
+  box-shadow:inset 0 0 0 2px var(--cream), inset 0 0 0 3px rgba(42,22,19,.3), 0 3px 0 var(--shadow);
+}
+.btn.tealbtn:hover{background:linear-gradient(180deg,#4a8176,#3d6f65 55%,#2b5049)}
+
+/* =========================================================
+   STICKY HEADER: the shield's slim painted-steel sibling
+   ========================================================= */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  display:flex;align-items:center;gap:14px;
+  min-height:68px;padding:0 18px;
+  background:linear-gradient(180deg,#3a221e,var(--ink));
+  border-bottom:3px solid var(--red);
+  box-shadow:none;
+  transition:box-shadow .25s ease;
+}
+.topbar.scrolled{box-shadow:0 4px 12px rgba(42,22,19,.35)}
+.topbar .brand{
+  font-family:'Alfa Slab One',Georgia,serif;font-size:19px;line-height:1.1;
+  color:var(--cream);text-decoration:none;letter-spacing:.02em;
+  display:flex;align-items:center;min-height:44px;
+  text-shadow:0 2px 0 rgba(0,0,0,.35);
+  margin-right:auto;white-space:nowrap;
+}
+.topbar .brand:hover{color:#FBF4E1}
+.topnav{display:none}
+.topbar .btn.call{
+  min-height:44px;padding:8px 18px;margin:0;font-size:17px;
+}
+.menu-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;min-width:44px;padding:8px 14px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cream);background:transparent;
+  border:2px solid var(--cream);border-radius:4px;cursor:pointer;
+}
+.menu-btn:hover{background:rgba(242,232,208,.12)}
+@media (max-width:560px){
+  .topbar{gap:8px;padding:0 12px}
+  .topbar .brand{font-size:15px;flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;display:block;line-height:64px}
+  .topbar .btn.call{padding:8px 12px;font-size:15px;flex:0 0 auto}
+  .menu-btn{padding:8px 10px;font-size:14px;letter-spacing:.08em;flex:0 0 auto}
+}
+@media (min-width:880px){
+  .topbar{padding:0 26px;gap:22px}
+  .topnav{display:flex;align-items:stretch;gap:2px}
+  .topnav a{
+    display:flex;align-items:center;min-height:68px;padding:0 15px;
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--cream);text-decoration:none;
+    border-bottom:4px solid transparent;
+  }
+  .topnav a:hover{color:#FBF4E1;border-bottom-color:rgba(242,232,208,.45)}
+  .topnav a[aria-current="page"]{color:var(--cream);border-bottom-color:var(--red);
+    background:linear-gradient(180deg,rgba(158,42,43,.22),rgba(158,42,43,0) 70%)}
+  .menu-btn{display:none}
+}
+
+/* full-screen mobile menu: painted steel */
+.menu{
+  position:fixed;inset:0;z-index:50;
+  background:linear-gradient(180deg,#3a221e,var(--ink));
+  background-image:var(--grain),linear-gradient(180deg,#3a221e,var(--ink));
+  display:flex;flex-direction:column;padding:14px 18px 30px;
+  overflow-y:auto;
+}
+.menu[hidden]{display:none}
+.menu .menu-top{display:flex;align-items:center;justify-content:space-between;min-height:54px;margin-bottom:26px}
+.menu .menu-brand{font-family:'Alfa Slab One',Georgia,serif;font-size:19px;color:var(--cream);text-decoration:none;display:flex;align-items:center;min-height:44px}
+.menu-close{
+  min-height:44px;min-width:44px;padding:8px 14px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cream);background:transparent;border:2px solid var(--cream);
+  border-radius:4px;cursor:pointer;
+}
+.menu-close:hover{background:rgba(242,232,208,.12)}
+.menu nav{display:flex;flex-direction:column;gap:6px}
+.menu nav a{
+  display:flex;align-items:center;min-height:58px;padding:8px 12px;
+  font-family:'Alfa Slab One',Georgia,serif;font-size:clamp(26px,7vw,36px);
+  color:var(--cream);text-decoration:none;
+  border-bottom:2px dashed rgba(242,232,208,.28);
+}
+.menu nav a:hover{color:#FBF4E1}
+.menu nav a[aria-current="page"]{color:var(--cream)}
+.menu nav a[aria-current="page"]::after{
+  content:"HERE";font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.18em;
+  color:var(--cream);background:var(--red);border-radius:2px;
+  padding:3px 8px;margin-left:14px;
+}
+.menu .menu-actions{margin-top:28px}
+body.menu-open{overflow:hidden}
+
+/* =========================================================
+   THE ENAMEL SHIELD (index hero signature)
+   ========================================================= */
+.sign-hanger{
+  height:14px;max-width:640px;margin:0 auto 26px;
+  background:
+    linear-gradient(var(--ink),var(--ink)) 0 2px/100% 4px no-repeat,
+    linear-gradient(var(--red),var(--red)) 0 9px/100% 3px no-repeat;
+}
+.sign{
+  position:relative;max-width:640px;margin:0 auto;
+  background:linear-gradient(178deg,#B23638 0%,var(--red) 42%,var(--red-deep) 100%);
+  border:3px solid var(--ink);border-radius:10px;
+  box-shadow:inset 0 0 0 4px var(--cream), inset 0 0 0 6px rgba(42,22,19,.35), 0 8px 0 var(--shadow);
+  padding:34px 22px 30px;text-align:center;
+  transform-origin:50% -30px;
+  will-change:transform;
+}
+.sign::after{
+  content:"";position:absolute;inset:0;border-radius:8px;pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,250,235,.22) 0%,rgba(255,250,235,0) 38%);
+}
+.bolt{
+  position:absolute;width:13px;height:13px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #f7ecd2 0%, #c9b98e 40%, #6b5a3c 100%);
+  box-shadow:0 1px 2px rgba(0,0,0,.5), inset 0 -1px 1px rgba(0,0,0,.35);
+}
+.bolt.b1{top:11px;left:11px}.bolt.b2{top:11px;right:11px}
+.bolt.b3{bottom:11px;left:11px}.bolt.b4{bottom:11px;right:11px}
+.sign .over{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--cream);
+  margin:0 0 10px;opacity:.95;
+}
+.sign h1{
+  font-size:clamp(36px,8vw,62px);line-height:.98;color:var(--cream);
+  text-shadow:0 3px 0 rgba(42,22,19,.45);
+  margin:0 0 12px;letter-spacing:.01em;
+}
+.sign .under{
+  font-family:'Oswald',sans-serif;font-weight:500;font-size:15px;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--cream);margin:0;
+}
+.sign .under .star{color:var(--cream-deep);padding:0 8px}
+
+/* composed hero */
+.hero{padding:34px 0 56px}
+.hero-grid{max-width:1120px;margin:0 auto;padding:0 20px;display:grid;gap:30px;align-items:start}
+.hero .tagline{
+  font-size:21px;line-height:1.45;font-style:italic;text-align:center;
+  max-width:520px;margin:24px auto 20px;
+}
+.hero-facts{text-align:center}
+.hero-photo figure.framed{margin:0}
+.hero-photo img{max-height:70vh;object-fit:cover;aspect-ratio:4/3;width:100%}
+@media (min-width:960px){
+  .hero-grid{grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+  .hero-left{padding-top:6px}
+  .hero .tagline,.hero-facts{text-align:left;margin-left:0}
+  .sign,.sign-hanger{margin-left:0}
+}
+
+/* ---------- figures: painted steel frames, caption plaques ---------- */
+figure.framed{margin:0 0 26px}
+figure.framed img, figure.framed video{
+  border:3px solid var(--ink);border-radius:4px;
+  box-shadow:inset 0 0 0 3px var(--cream), 0 4px 0 var(--shadow);
+  background:#000;width:100%;
+}
+figcaption{
+  font-size:16.5px;line-height:1.5;color:var(--ink);
+  background:var(--cream-deep);
+  border-left:4px solid var(--red);
+  padding:10px 14px;margin-top:8px;border-radius:0 3px 3px 0;
+}
+figcaption .cap-label{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--red);
+  display:block;margin-bottom:2px;
+}
+
+/* ---------- quotes and facts ---------- */
+.quote{
+  font-size:23px;line-height:1.5;font-style:italic;font-weight:600;
+  margin:0 0 8px;color:var(--ink);
+  padding-left:18px;border-left:5px solid var(--red);
+}
+.attr{
+  font-size:16px;font-style:normal;font-family:'Oswald',sans-serif;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:0 0 18px;padding-left:23px;
+}
+.facts{font-size:20px;line-height:1.75;margin:0 0 20px}
+.facts a{color:var(--ink);font-weight:700}
+.facts strong{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:16px;color:var(--red)}
+
+/* ---------- painted arrows ---------- */
+.arrow-wrap{display:flex;justify-content:center;padding:0 0 8px}
+.arrow{width:46px;height:88px;overflow:visible}
+.arrow path{
+  fill:none;stroke:var(--red);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:100;stroke-dashoffset:100;
+  transition:stroke-dashoffset 1s ease .15s;
+}
+.arrow.teal path{stroke:var(--teal)}
+.arrow.draw path{stroke-dashoffset:0}
+@media (prefers-reduced-motion: reduce){
+  .arrow path{stroke-dashoffset:0 !important;transition:none !important}
+}
+
+/* ---------- rise-in ---------- */
+.rise{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .rise{opacity:1 !important;transform:none !important;transition:none !important}
+}
+
+/* =========================================================
+   EDITORIAL LAYOUTS (the desktop fix)
+   ========================================================= */
+.split{display:grid;gap:30px;align-items:start}
+@media (min-width:960px){
+  .split{grid-template-columns:1fr 1fr;gap:52px}
+  .split.wtext{grid-template-columns:1.15fr .85fr}
+  .split.wmedia{grid-template-columns:.85fr 1.15fr}
+  .split .media-right{order:2}
+  .split .media-left{order:-1}
+  .split.center{align-items:center}
+}
+.split figure.framed{margin-bottom:0}
+.split .cell img{aspect-ratio:4/3;object-fit:cover}
+.split .cell.tall img{aspect-ratio:3/4;object-fit:cover}
+
+/* full-bleed color bands */
+.band-deep{
+  background:var(--cream-deep);
+  background-image:var(--grain);
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+}
+.band-red{
+  background:linear-gradient(178deg,#A93335 0%,var(--red) 45%,var(--red-deep) 100%);
+  border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  color:var(--cream);
+}
+.band-red h2{color:var(--cream);text-shadow:0 2px 0 rgba(42,22,19,.4)}
+.band-red .plate{background:var(--cream);color:var(--ink)}
+.band-red .plate .no{background:var(--ink)}
+
+/* goods grids */
+.goods-grid{display:grid;grid-template-columns:1fr;gap:22px;margin:26px 0 8px}
+@media (min-width:560px){.goods-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:980px){.goods-grid{grid-template-columns:1fr 1fr 1fr}}
+.goods-grid figure.framed{margin:0}
+.goods-grid img{aspect-ratio:4/3;object-fit:cover}
+.goods-grid.four{margin-top:8px}
+@media (min-width:980px){.goods-grid.four{grid-template-columns:repeat(4,1fr)}}
+
+/* price list */
+.pricelist{list-style:none;margin:0 0 22px;padding:0}
+.pricelist li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:13px 2px;border-bottom:2px dashed rgba(42,22,19,.3);
+  font-size:19px;line-height:1.5;
+}
+.pricelist li:first-child{border-top:2px dashed rgba(42,22,19,.3)}
+.token{
+  flex:none;font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;
+  letter-spacing:.06em;color:var(--cream);
+  background:linear-gradient(180deg,#AF3436,var(--red) 55%,var(--red-deep));
+  border:2px solid var(--ink);border-radius:4px;
+  box-shadow:inset 0 0 0 2px var(--cream), 0 2px 0 var(--shadow);
+  padding:3px 11px;white-space:nowrap;
+}
+.openline{
+  font-size:21px;font-weight:600;text-align:center;
+  border-top:3px solid var(--red);border-bottom:3px solid var(--red);
+  padding:16px 10px;margin:26px 0 0;
+}
+
+/* teal plaques (trust numbers) */
+.plaques{display:flex;flex-wrap:wrap;gap:12px;margin:4px 0 20px}
+.plaque{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--cream);background:var(--teal);
+  border:2px solid var(--ink);border-radius:4px;
+  box-shadow:inset 0 0 0 2px var(--cream), 0 2px 0 var(--shadow);
+  padding:9px 14px;
+}
+
+/* forms */
+form.mail{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;margin-top:6px}
+input[type=email]{
+  font-family:'Bitter',Georgia,serif;font-size:19px;color:var(--ink);
+  background:#FBF4E1;border:3px solid var(--ink);border-radius:5px;
+  padding:12px 14px;min-height:52px;flex:1 1 240px;max-width:360px;
+  box-shadow:inset 0 2px 3px rgba(42,22,19,.15);
+}
+form.mail .btn{margin:0}
+
+/* map */
+.mapframe{border:3px solid var(--ink);border-radius:4px;
+  box-shadow:inset 0 0 0 3px var(--cream), 0 4px 0 var(--shadow);
+  width:100%;height:380px;display:block;background:var(--cream-deep)}
+
+/* teaser link row */
+.more-row{margin-top:26px}
+
+/* =========================================================
+   FOOTER: painted steel, every page
+   ========================================================= */
+.foot{
+  margin-top:24px;
+  background:linear-gradient(180deg,#3a221e,var(--ink));
+  background-image:var(--grain),linear-gradient(180deg,#3a221e,var(--ink));
+  border-top:3px solid var(--red);
+  color:var(--cream);
+  padding:44px 0 34px;
+}
+.foot a{color:var(--cream);text-decoration-thickness:2px;text-underline-offset:3px}
+.foot a:hover{color:#FBF4E1}
+.foot-grid{display:grid;gap:30px}
+@media (min-width:880px){.foot-grid{grid-template-columns:1.2fr .8fr 1.2fr;gap:44px}}
+.foot-brand{
+  font-family:'Alfa Slab One',Georgia,serif;font-size:24px;line-height:1.15;
+  margin:0 0 10px;text-shadow:0 2px 0 rgba(0,0,0,.35);
+}
+.foot-line{font-size:16.5px;margin:0;opacity:.92}
+.foot-nav{display:flex;flex-direction:column;gap:2px}
+.foot-nav a{
+  display:inline-flex;align-items:center;min-height:44px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+}
+.foot-nav a:hover{text-decoration:underline}
+.foot-facts{font-size:18px;line-height:1.8;margin:0}
+.foot-facts .foot-label{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--cream-deep);
+  display:block;margin-bottom:4px;
+}

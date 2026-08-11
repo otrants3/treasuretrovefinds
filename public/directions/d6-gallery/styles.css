@@ -1,0 +1,334 @@
+/* ============================================================
+   DIRECTION 6: THE GALLERY · multi-page rebuild
+   A modern gallery hung with old things. The photography talks.
+   Palette: gallery white #FAF9F6, ink #1a1a1a, oxblood #7a2e2e.
+   Type: Source Serif 4 (display + body), Archivo (labels).
+   Architecture: five pages, sticky header, composed grids.
+   Signature kept: wall-card captions, exhibition numbering,
+   the caption rail (desktop, booth page), restraint.
+   ============================================================ */
+
+*{box-sizing:border-box}
+:root{
+  --paper:#FAF9F6;
+  --ink:#1a1a1a;
+  --ox:#7a2e2e;
+  --hair:#E2DFD8;
+  --mut:#5c584f;
+  --hdr-h:68px;
+}
+html{scroll-padding-top:calc(var(--hdr-h) + 16px)}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+body{
+  margin:0;
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:19px;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%;height:auto;display:block}
+figure{margin:0}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--ox);outline-offset:3px}
+
+/* ---------- measure and containers ---------- */
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+.prose{max-width:660px}
+.prose p{margin:0 0 18px}
+.lead{font-size:clamp(20px,2.4vw,23px)}
+
+/* ---------- Archivo small-caps label ---------- */
+.lbl{
+  font-family:Archivo,Verdana,sans-serif;
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--mut);
+}
+.lbl .no{color:var(--ox)}
+
+/* ---------- headings ---------- */
+h1,h2,h3{font-weight:600;margin:0}
+h1{font-size:clamp(38px,5.5vw,64px);line-height:1.06;letter-spacing:-.015em;margin:14px 0 clamp(20px,3vw,32px)}
+h2{font-size:clamp(28px,3.6vw,40px);line-height:1.12;letter-spacing:-.01em;margin:12px 0 clamp(20px,3vw,32px)}
+h3{font-size:clamp(21px,2.4vw,25px);line-height:1.2;margin:0 0 16px}
+
+/* ---------- section rhythm: whitespace does the structure work ---------- */
+.sec{padding:clamp(64px,9vw,120px) 0}
+.sec + .sec{border-top:1px solid var(--hair)}
+.sec-head{margin-bottom:clamp(24px,4vw,44px)}
+.sec-head h2{margin-bottom:0}
+
+/* ---------- wall-card captions (the signature, kept) ---------- */
+figcaption{
+  font-size:17px;
+  line-height:1.5;
+  color:var(--mut);
+  padding:12px 2px 0;
+  max-width:560px;
+}
+figcaption .cap-no{
+  font-family:Archivo,Verdana,sans-serif;
+  font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ox);display:block;margin-bottom:4px;
+}
+
+/* ---------- quotes: big, centered, quiet ---------- */
+blockquote{margin:clamp(36px,6vw,64px) auto;max-width:720px;padding:0;text-align:center}
+blockquote p.q{
+  font-size:clamp(23px,3.2vw,31px);
+  line-height:1.35;
+  font-style:italic;
+  margin:0 0 14px;
+}
+blockquote .attr{
+  font-family:Archivo,Verdana,sans-serif;font-style:normal;font-weight:600;
+  font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);
+}
+/* left-set variant for quotes living inside a two-column row */
+blockquote.bq-left{text-align:left;margin:0 0 26px;max-width:none;padding:0}
+
+/* ---------- buttons: obviously buttons, 48px+ ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:12px 28px;
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;font-size:16px;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  background:var(--ox);color:#FAF9F6;border:2px solid var(--ox);border-radius:2px;
+  transition:background .15s ease,color .15s ease;
+}
+.btn:hover{background:#5e2323;border-color:#5e2323}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--paper)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 0}
+@media (max-width:480px){.cta .btn{flex:1 1 100%}}
+
+/* ---------- facts block ---------- */
+.facts{font-size:20px;line-height:1.75;margin:0 0 8px}
+.facts a{color:var(--ink)}
+
+/* ============================================================
+   STICKY HEADER · every page
+   ============================================================ */
+.hdr{
+  position:sticky;top:0;z-index:50;
+  background:var(--paper);
+  border-bottom:1px solid var(--hair);
+  transition:box-shadow .2s ease;
+}
+.hdr.scrolled{box-shadow:0 6px 20px rgba(26,26,26,.07)}
+.hdr .bar{
+  max-width:1160px;margin:0 auto;padding:0 22px;
+  min-height:var(--hdr-h);
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px 20px;
+}
+.wordmark{
+  display:inline-flex;align-items:center;min-height:44px;
+  font-weight:600;font-size:20px;letter-spacing:-.01em;
+  text-decoration:none;margin-right:auto;white-space:nowrap;
+}
+.nav-main{display:flex;align-items:center;gap:4px}
+.nav-main a{
+  display:inline-flex;align-items:center;min-height:44px;padding:10px 12px;
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;font-size:14px;
+  letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+  color:var(--mut);
+}
+.nav-main a:hover{color:var(--ink)}
+.nav-main a[aria-current=page]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--ox)}
+.hdr .btn.call{min-height:44px;padding:9px 20px;font-size:14px}
+.menu-btn{
+  display:none;align-items:center;justify-content:center;
+  min-height:44px;min-width:44px;padding:9px 14px;cursor:pointer;
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;font-size:14px;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;color:var(--ink);border:2px solid var(--ink);border-radius:2px;
+}
+/* Mobile: JS swaps the inline nav for the full-screen menu.
+   No-JS keeps the inline nav (it wraps; nothing is unreachable). */
+@media (max-width:919px){
+  html.js .nav-main{display:none}
+  html.js .menu-btn{display:inline-flex}
+  .hdr .bar{padding-top:8px;padding-bottom:8px}
+}
+
+/* full-screen menu (mobile, JS only) */
+.panel{
+  position:fixed;inset:0;z-index:60;
+  background:var(--paper);
+  display:flex;flex-direction:column;
+  padding:14px 22px 32px;overflow:auto;
+}
+.panel[hidden]{display:none}
+.panel .panel-top{display:flex;align-items:center;justify-content:space-between;min-height:var(--hdr-h)}
+.panel nav{display:flex;flex-direction:column;margin-top:24px;border-top:1px solid var(--hair)}
+.panel nav a{
+  display:flex;align-items:center;min-height:56px;padding:12px 2px;
+  font-size:24px;font-weight:600;text-decoration:none;
+  border-bottom:1px solid var(--hair);
+}
+.panel nav a[aria-current=page]{color:var(--ox)}
+.panel .cta{margin-top:28px}
+
+/* ============================================================
+   HERO (index) · asymmetric editorial composition
+   ============================================================ */
+.hero{padding:clamp(44px,7vw,96px) 0 clamp(56px,8vw,110px)}
+.hero .wrap{display:grid;gap:clamp(36px,5vw,64px)}
+@media (min-width:960px){
+  .hero .wrap{grid-template-columns:6fr 5fr;align-items:center}
+}
+.hero h1{font-size:clamp(42px,5.8vw,72px)}
+.hero .tagline{
+  font-style:italic;font-size:clamp(20px,2.4vw,24px);color:var(--mut);
+  max-width:36ch;margin:0 0 26px;
+}
+/* mounted print: hairline frame with an offset hairline behind */
+.frame{border:1px solid var(--hair);background:#fff;padding:12px;box-shadow:14px 14px 0 -1px var(--paper),14px 14px 0 0 var(--hair)}
+.frame img{width:100%;max-height:70vh;object-fit:cover}
+.frame figcaption{padding:12px 4px 2px}
+
+/* ============================================================
+   DUO rows · alternating two-column rhythm on desktop
+   ============================================================ */
+.duo{display:grid;gap:clamp(28px,4vw,44px)}
+@media (min-width:960px){
+  .duo{grid-template-columns:1fr 1fr;gap:clamp(48px,6vw,88px);align-items:center}
+  .duo.wide-media{grid-template-columns:7fr 5fr}
+  .duo.flip .duo-media{order:2}
+  .duo.top{align-items:start}
+}
+.duo-media img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.duo-media.tall img{aspect-ratio:4/5}
+.duo-media video{width:100%;max-height:70vh;background:#000;display:block}
+
+/* ============================================================
+   TEASER GRID (index) · 4-up wall cards
+   ============================================================ */
+.tease-grid{display:grid;gap:24px;grid-template-columns:repeat(2,1fr);margin:0 0 8px}
+@media (min-width:960px){.tease-grid{grid-template-columns:repeat(4,1fr);gap:28px}}
+.tease-grid figure a{display:block;text-decoration:none}
+.tease-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:opacity .2s ease}
+.tease-grid a:hover img{opacity:.88}
+
+/* ============================================================
+   THE CAPTION RAIL (booth page, desktop) · signature adapted
+   Exhibits pass in an offset rhythm; the wall card holds still.
+   Phones, no-JS, and reduced-motion get plain captions.
+   ============================================================ */
+.exhibit{margin:0 0 clamp(40px,6vw,72px)}
+.exhibit:last-child{margin-bottom:0}
+.exhibit img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.exhibit.offset img{aspect-ratio:4/3}
+.exhibit .ex-no{
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;
+  font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ox);
+  margin:0 0 10px;
+}
+.rail-card{display:none}
+@media (min-width:980px){
+  .rail-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;align-items:start}
+  .exhibit.offset{width:84%;margin-left:auto}
+  /* JS + motion engage the rail: captions move to the wall card */
+  .rail .exhibit figcaption{
+    position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+    overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+  }
+  .rail .rail-card{
+    display:block;position:sticky;top:calc(var(--hdr-h) + 34vh);
+    background:var(--paper);border:1px solid var(--hair);border-left:3px solid var(--ox);
+    padding:18px 20px;
+  }
+  .rail .rail-card .rail-num{
+    font-family:Archivo,Verdana,sans-serif;font-weight:600;
+    font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ox);
+    margin:0 0 8px;
+  }
+  .rail .rail-card .rail-txt{font-size:18px;line-height:1.5;margin:0}
+  .rail .rail-card .inner{transition:opacity .18s ease}
+  .rail .rail-card.swap .inner{opacity:0}
+}
+
+/* ---------- price list: prices align, tabular ---------- */
+.pricelist{list-style:none;margin:0 0 26px;padding:0;max-width:760px}
+.pricelist li{
+  display:flex;gap:18px;justify-content:space-between;align-items:baseline;
+  padding:16px 0;border-bottom:1px solid var(--hair);
+  font-size:19px;line-height:1.5;
+}
+.pricelist li:first-child{border-top:1px solid var(--hair)}
+.price{color:var(--ox);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* ---------- stat row (shop page) ---------- */
+.stats{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--hair);border:1px solid var(--hair);margin:0 0 clamp(28px,4vw,44px);
+}
+@media (min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stats > div{background:var(--paper);padding:clamp(20px,3vw,32px) clamp(16px,2vw,28px)}
+.stats .num{
+  display:block;font-weight:600;font-variant-numeric:tabular-nums;
+  font-size:clamp(32px,4vw,50px);line-height:1.05;margin-bottom:6px;
+}
+.stats .what{
+  font-family:Archivo,Verdana,sans-serif;font-weight:600;font-size:13px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--mut);
+}
+
+/* ---------- email form ---------- */
+form{margin:0}
+.email-row{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;max-width:560px}
+input[type=email]{
+  font-family:inherit;font-size:19px;color:var(--ink);
+  padding:13px 14px;min-height:48px;
+  border:2px solid var(--ink);border-radius:2px;background:#fff;
+  flex:1 1 240px;min-width:0;
+}
+button.btn{cursor:pointer}
+
+/* ---------- map ---------- */
+.map-cell{border:1px solid var(--hair)}
+.map-cell iframe{border:0;width:100%;height:100%;min-height:340px;display:block}
+@media (min-width:960px){.map-cell iframe{min-height:440px}}
+
+/* ============================================================
+   FOOTER · every page
+   ============================================================ */
+.foot{border-top:1px solid var(--hair);margin-top:clamp(72px,10vw,130px);padding:clamp(48px,7vw,84px) 0 40px}
+.foot-grid{display:grid;gap:36px}
+@media (min-width:760px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}}
+.foot .fm{font-weight:600;font-size:21px;margin:0 0 10px}
+.foot .lbl{display:block;margin-bottom:12px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot ul a{
+  display:inline-flex;align-items:center;min-height:44px;
+  color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;
+}
+.foot ul a:hover{border-bottom-color:var(--ink)}
+.foot address{font-style:normal;font-size:18px;line-height:1.7}
+.foot address a{color:var(--ink)}
+.colophon{
+  font-family:Archivo,Verdana,sans-serif;font-weight:500;
+  font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mut);margin-top:clamp(40px,6vw,60px);
+  padding-top:22px;border-top:1px solid var(--hair);
+}
+
+/* ---------- whisper-quiet scroll fades (motion-gated) ---------- */
+.anim .fade{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.anim .fade.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .anim .fade{opacity:1;transform:none;transition:none}
+}
+
+/* ---------- skip link ---------- */
+.skip{
+  position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);
+  padding:12px 18px;z-index:70;font-family:Archivo,sans-serif;
+}
+.skip:focus{left:0}

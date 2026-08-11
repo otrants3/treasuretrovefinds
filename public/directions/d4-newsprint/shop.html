@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Too far to visit Booth 18? The Treasure Trove Finds Etsy shop has been open eight years: 183 sales, 5.0 stars across 63 reviews.">
+<link rel="icon" href="../../favicon.svg">
+<title>Shop Online · Treasure Trove Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="index.html">Treasure Trove Finds</a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="story.html">Story</a>
+      <a href="booth.html">The Booth</a>
+      <a href="visit.html">Visit</a>
+      <a href="shop.html" aria-current="page">Shop Online</a>
+    </nav>
+    <a class="call-btn" href="tel:+15164462693">Call</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <div class="wrap">
+    <div class="menu-top">
+      <span class="menu-title">Treasure Trove Finds</span>
+      <button class="menu-close">Close</button>
+    </div>
+    <nav aria-label="Sections">
+      <a href="index.html">Front Page</a>
+      <a href="story.html">Story</a>
+      <a href="booth.html">The Booth</a>
+      <a href="visit.html">Visit</a>
+      <a href="shop.html" aria-current="page">Shop Online</a>
+    </nav>
+    <div class="menu-actions">
+      <a class="btn" href="tel:+15164462693">Call Bill</a>
+      <a class="btn alt" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+    </div>
+    <p class="menu-facts">
+      Booth 18, Paradise Antique Mall<br>
+      3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+      Bill is in the booth Wednesdays and Sundays, 10 to 6.
+    </p>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============ Too far to visit: the remote path ============ -->
+<section class="page-head" aria-label="Too far to visit">
+  <div class="wrap measure">
+    <p class="slugline">By Post and Wire</p>
+    <h1 class="headline">Too far to visit?</h1>
+    <p class="deck">The Etsy shop has been open eight years. Here is its record.</p>
+
+    <div class="boxscore" aria-label="Etsy shop record">
+      <div><span class="num">8</span><span class="lbl" style="display:block">Years on Etsy</span></div>
+      <div><span class="num">183</span><span class="lbl" style="display:block">Sales</span></div>
+      <div><span class="num">5.0</span><span class="lbl" style="display:block">Stars</span></div>
+      <div><span class="num">63</span><span class="lbl" style="display:block">Reviews</span></div>
+    </div>
+
+    <p style="text-align:center">
+      <a class="btn" href="https://www.etsy.com/shop/ttrovefinds">Visit the Etsy shop</a>
+      <a class="btn alt" href="https://www.instagram.com/treasuretrovefinds/">Follow on Instagram</a>
+    </p>
+
+    <div class="coupon">
+      <p>Want first look when new pieces land?</p>
+      <!-- AWAITING: wire form to email provider. Email only, no other fields, forgiving input. -->
+      <form action="#" method="post">
+        <input type="email" name="email" placeholder="you@email.com" aria-label="Email address">
+        <button class="btn" type="submit">Get the word</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <nav aria-label="Footer">
+      <p class="foot-label">The Paper</p>
+      <a href="index.html">Front page</a>
+      <a href="story.html">Story</a>
+      <a href="booth.html">The booth</a>
+      <a href="visit.html">Visit</a>
+      <a href="shop.html">Shop online</a>
+    </nav>
+    <div>
+      <p class="foot-label">The Booth</p>
+      <p class="foot-facts">
+        Booth 18, Paradise Antique Mall<br>
+        3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+        Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+        <a href="tel:+15164462693">(516) 446-2693</a><br>
+        <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+      </p>
+    </div>
+    <div>
+      <p class="foot-label">By Post and Wire</p>
+      <a href="https://www.etsy.com/shop/ttrovefinds">Etsy: ttrovefinds</a><br>
+      <a href="https://www.instagram.com/treasuretrovefinds/">Instagram: @treasuretrovefinds</a>
+    </div>
+  </div>
+  <p class="colophon">Treasure Trove Finds · Bill and Lisa Otranto · Long Island to Las Vegas</p>
+</footer>
+
+<script>
+(function(){
+  var bar = document.getElementById('topbar');
+  function onScroll(){ bar.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var btn = document.querySelector('.menu-btn');
+  var menu = document.getElementById('menu');
+  var close = document.querySelector('.menu-close');
+  function setMenu(open){
+    menu.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    if (open) close.focus(); else btn.focus();
+  }
+  btn.addEventListener('click', function(){ setMenu(menu.hidden); });
+  close.addEventListener('click', function(){ setMenu(false); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && !menu.hidden) setMenu(false);
+  });
+
+  var plates = document.querySelectorAll('.plate');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    plates.forEach(function(p){ p.classList.add('developed'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('developed'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.35, rootMargin: '0px 0px -8% 0px' });
+    plates.forEach(function(p){ io.observe(p); });
+  }
+  plates.forEach(function(p){
+    p.addEventListener('click', function(){ p.classList.toggle('developed'); });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+/* ============================================================
+   DIRECTION 2: FIELD NOTES · multi-page build
+   A magazine profile of a collector crossed with his own
+   research files. Paper, ink, cobalt, old brass.
+   Palette: bone #EAE4D8 · ink #17150F · cobalt #1F3D8F · brass #A8862C
+   Shared by index / story / booth / visit / shop.
+   ============================================================ */
+:root{
+  --bone:#EAE4D8;
+  --ink:#17150F;
+  --cobalt:#1F3D8F;
+  --brass:#A8862C;
+  --paper:#F1D9B5;      /* file-tab and card paper; matches the engravings */
+  --bone-deep:#DFD7C6;
+  --faint:rgba(23,21,15,.16);
+  --head-h:68px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+body{
+  margin:0;
+  font-family:'Newsreader',Georgia,serif;
+  font-size:19px;
+  line-height:1.62;
+  color:var(--ink);
+  background:var(--bone);
+}
+/* paper grain, very quiet */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* ledger margin rule, desktop only */
+@media (min-width:1280px){
+  body::after{
+    content:"";position:fixed;top:0;bottom:0;left:calc(50% - 616px);width:8px;z-index:1;pointer-events:none;
+    border-left:2px solid rgba(31,61,143,.28);
+    border-right:1px solid rgba(31,61,143,.18);
+  }
+}
+img{max-width:100%;height:auto;display:block}
+figure{margin:0}
+a{color:var(--cobalt)}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+
+/* ---------- layout shells ---------- */
+.shell{max-width:1140px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
+.prose{max-width:640px}
+.prose p{margin:0 0 17px}
+section{padding:52px 0 56px}
+@media (min-width:960px){ section{padding:76px 0 80px} }
+main{position:relative;z-index:2}
+
+/* ---------- type ---------- */
+h1{
+  font-family:'Fraunces',Georgia,serif;font-weight:900;
+  font-size:clamp(40px,7vw,76px);line-height:.98;letter-spacing:-.015em;
+  margin:12px 0 10px;
+}
+h2{
+  font-family:'Fraunces',Georgia,serif;font-weight:700;
+  font-size:clamp(29px,4.4vw,42px);line-height:1.08;letter-spacing:-.01em;
+  margin:0 0 18px;
+}
+.h-minor{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:24px;margin:34px 0 10px}
+.mono{font-family:'Courier Prime',Courier,monospace}
+.kicker{
+  font-family:'Courier Prime',Courier,monospace;font-size:14px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt);margin:0;
+}
+.tagline{font-size:22px;font-style:italic;line-height:1.5;max-width:34ch;margin:0 0 14px}
+.brassrule{height:3px;background:var(--brass);border:0;max-width:220px;margin:16px 0 20px}
+
+/* ============================================================
+   STICKY HEADER · a slim file label pinned to the top
+   ============================================================ */
+.site-head{
+  position:sticky;top:0;z-index:50;
+  background:var(--bone);
+  border-top:5px solid var(--cobalt);
+  border-bottom:2px solid var(--ink);
+  transition:box-shadow .25s ease;
+}
+.site-head.scrolled{box-shadow:0 4px 18px rgba(23,21,15,.18)}
+.site-head .shell{
+  display:flex;align-items:stretch;gap:10px;
+  min-height:var(--head-h);
+}
+.wordmark{
+  display:flex;flex-direction:column;justify-content:center;
+  text-decoration:none;color:var(--ink);padding:8px 0;min-height:44px;
+}
+.wordmark .wm-name{
+  font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:21px;line-height:1.05;letter-spacing:-.01em;
+}
+.wordmark .wm-file{
+  font-family:'Courier Prime',Courier,monospace;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(23,21,15,.6);margin-top:2px;
+}
+/* keep the sticky header at 64 to 72px on small screens */
+@media (max-width:599px){
+  :root{--head-h:64px}
+  .wordmark{flex:1;min-width:0}
+  .wordmark .wm-name{font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .wordmark .wm-file{display:none}
+}
+.site-nav{display:none}
+@media (min-width:920px){
+  .site-nav{display:flex;align-items:stretch;margin-left:auto}
+  .site-nav a{
+    display:flex;align-items:center;
+    padding:0 16px;min-height:44px;
+    font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:13px;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+  }
+  .site-nav a:hover{color:var(--cobalt);text-decoration:underline;text-underline-offset:4px}
+  /* current page = the pulled file tab, fused to the header's bottom rule */
+  .site-nav a[aria-current="page"]{
+    background:var(--paper);
+    border:2px solid var(--ink);border-bottom-color:var(--paper);
+    border-radius:9px 9px 0 0;
+    margin:14px 4px -2px;padding:0 15px;min-height:0;
+    color:var(--ink);text-decoration:none;
+  }
+}
+.head-call{
+  display:flex;align-items:center;margin:10px 0 10px auto;
+}
+@media (min-width:920px){ .head-call{margin-left:14px} }
+.head-call .btn{margin:0;min-height:44px;padding:8px 18px;font-size:15px}
+.menu-btn{
+  display:flex;align-items:center;justify-content:center;
+  min-height:44px;min-width:44px;margin:10px 0;padding:8px 14px;
+  background:transparent;color:var(--ink);text-decoration:none;
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:14px;
+  letter-spacing:.12em;text-transform:uppercase;
+  border:2px solid var(--ink);border-radius:3px;cursor:pointer;
+}
+.menu-btn:hover{background:rgba(23,21,15,.06)}
+@media (min-width:920px){ .menu-btn{display:none} }
+
+/* ---------- full-screen mobile menu ---------- */
+.menu{
+  display:none;position:fixed;inset:0;z-index:60;
+  background:var(--bone);border-top:6px solid var(--cobalt);
+  flex-direction:column;overflow-y:auto;
+}
+.menu:target{display:flex}          /* no-JS fallback */
+.menu.open{display:flex}            /* JS path */
+.menu-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;border-bottom:2px solid var(--ink);
+}
+.menu-top .wm-name{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:20px;color:var(--ink)}
+.menu-close{
+  display:flex;align-items:center;justify-content:center;
+  min-height:44px;min-width:44px;padding:8px 14px;
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:14px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;
+  border:2px solid var(--ink);border-radius:3px;background:transparent;cursor:pointer;
+}
+.menu-list{list-style:none;margin:0;padding:10px 20px}
+.menu-list a{
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:56px;padding:12px 4px;
+  font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:27px;
+  color:var(--ink);text-decoration:none;
+  border-bottom:1px dotted rgba(23,21,15,.45);
+}
+.menu-list a .no{
+  font-family:'Courier Prime',Courier,monospace;font-size:13px;font-weight:700;
+  letter-spacing:.12em;color:var(--brass);
+}
+.menu-list a[aria-current="page"]{color:var(--cobalt)}
+.menu-list a:hover{color:var(--cobalt)}
+.menu-actions{padding:18px 20px 30px}
+.menu-actions .facts{margin:14px 0 0;font-size:18px}
+
+/* ---------- file-folder section tabs ---------- */
+.sechead{display:flex;align-items:flex-end;border-bottom:2px solid var(--ink);margin:0 0 30px}
+.tab{
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:13px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+  background:var(--paper);
+  border:2px solid var(--ink);border-bottom:2px solid var(--paper);
+  border-radius:10px 10px 0 0;
+  padding:10px 18px 8px;margin-bottom:-2px;position:relative;
+}
+.sechead .ref{
+  margin-left:auto;padding:0 2px 8px 12px;
+  font-family:'Courier Prime',Courier,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(23,21,15,.55);
+}
+@media (max-width:560px){ .sechead .ref{display:none} }
+
+/* ---------- accession strips (the signature) ---------- */
+.acc{
+  font-family:'Courier Prime',Courier,monospace;font-size:13px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink);
+  background:var(--paper);
+  border:1px solid var(--faint);border-top:2px solid var(--ink);
+  padding:8px 10px 7px;line-height:1.5;
+}
+.acc.typing::after{content:"▌";color:var(--cobalt);margin-left:1px}
+figcaption .note{
+  display:block;font-family:'Newsreader',Georgia,serif;font-size:17px;font-style:italic;
+  line-height:1.5;color:rgba(23,21,15,.82);padding:9px 2px 0;
+}
+.filestrip{
+  font-family:'Courier Prime',Courier,monospace;font-size:13px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);
+  border:1px dashed rgba(23,21,15,.4);background:rgba(241,217,181,.5);
+  display:inline-block;padding:7px 12px 6px;margin:2px 0 18px;
+}
+
+/* ---------- photos as taped-in prints ---------- */
+.print{position:relative;background:#fff;padding:8px 8px 0;border:1px solid var(--faint);
+  box-shadow:0 2px 10px rgba(23,21,15,.12), 0 12px 28px rgba(23,21,15,.07);}
+.print img,.print video{display:block;width:100%}
+.print .acc{margin:8px -9px -1px;border-left:0;border-right:0}
+.tape::before,.tape::after{
+  content:"";position:absolute;top:-11px;width:74px;height:24px;z-index:3;
+  background:rgba(241,217,181,.75);border:1px solid rgba(23,21,15,.12);
+  box-shadow:0 1px 3px rgba(23,21,15,.12);
+}
+.tape::before{left:14px;transform:rotate(-5deg)}
+.tape::after{right:14px;transform:rotate(4deg)}
+/* framed grid cells: photos live in fixed windows, never dumped raw */
+.print .win{aspect-ratio:4/3;overflow:hidden}
+.print .win img{width:100%;height:100%;object-fit:cover}
+.print .win.tall{aspect-ratio:3/4}
+.print .win.wide{aspect-ratio:3/2}
+a .print, a.printlink{transition:transform .25s ease,box-shadow .25s ease}
+a.printlink{display:block;text-decoration:none;color:inherit}
+a.printlink:hover .print{transform:translateY(-4px);box-shadow:0 6px 14px rgba(23,21,15,.16), 0 18px 36px rgba(23,21,15,.1)}
+@media (prefers-reduced-motion: reduce){
+  a.printlink:hover .print{transform:none}
+}
+
+/* ---------- quotes ---------- */
+.quote{
+  font-family:'Fraunces',Georgia,serif;font-size:clamp(23px,3.4vw,29px);font-style:italic;font-weight:500;
+  line-height:1.4;margin:26px 0 10px;padding-left:18px;border-left:4px solid var(--cobalt);
+}
+.attr{font-family:'Courier Prime',Courier,monospace;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(23,21,15,.65);margin:0 0 8px;padding-left:22px}
+
+/* ---------- facts card ---------- */
+.card{
+  background:var(--paper);border:2px solid var(--ink);padding:22px 22px 20px;position:relative;
+  box-shadow:0 3px 0 var(--ink);
+}
+.card .kicker{color:var(--ink)}
+.facts{font-size:20px;line-height:1.7;margin:10px 0 18px}
+.facts a{color:var(--cobalt);font-weight:600}
+.facts .lbl{font-family:'Courier Prime',Courier,monospace;font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(23,21,15,.6);display:block;margin-top:10px}
+.facts .lbl:first-child{margin-top:0}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:12px 24px;margin:4px 10px 6px 0;
+  background:var(--ink);color:var(--bone);text-decoration:none;
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:18px;
+  letter-spacing:.08em;text-transform:uppercase;
+  border:2px solid var(--ink);border-radius:3px;
+  box-shadow:2px 2px 0 rgba(23,21,15,.35);
+  cursor:pointer;
+}
+.btn:hover{background:var(--cobalt);border-color:var(--cobalt);color:var(--bone)}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:2px 2px 0 rgba(23,21,15,.2)}
+.btn.alt:hover{background:rgba(23,21,15,.06);border-color:var(--ink);color:var(--ink)}
+.textlink{
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:16px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);
+  display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px;
+}
+.textlink:hover{color:var(--ink)}
+
+/* ============================================================
+   TWO-COLUMN EDITORIAL RHYTHM (desktop)
+   ============================================================ */
+.duo{display:grid;gap:36px;align-items:start}
+@media (min-width:960px){
+  .duo{grid-template-columns:1.05fr .95fr;gap:56px}
+  .duo.even{grid-template-columns:1fr 1fr}
+  .duo.flip .d-text{order:2}
+  .duo.flip .d-media{order:1}
+  .duo .d-media.sticky{position:sticky;top:calc(var(--head-h) + 28px)}
+}
+
+/* ---------- hero (index) ---------- */
+.hero{padding:46px 0 56px}
+@media (min-width:960px){
+  .hero{padding:64px 0 72px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+}
+.hero-media{margin-top:34px}
+@media (min-width:960px){ .hero-media{margin-top:0} }
+.hero-media .win{aspect-ratio:4/5;max-height:64vh;overflow:hidden}
+@media (min-width:640px) and (max-width:959px){ .hero-media .win{aspect-ratio:3/2;max-height:52vh} }
+.hero-media .win img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- goods grids ---------- */
+.goods-grid{display:grid;gap:28px;margin:28px 0 8px}
+@media (min-width:640px){ .goods-grid{grid-template-columns:1fr 1fr} }
+@media (min-width:1040px){ .goods-grid.three{grid-template-columns:1fr 1fr 1fr} }
+
+/* ---------- ledger list ---------- */
+ul.ledger{list-style:none;margin:14px 0 22px;padding:0;max-width:720px;counter-reset:ledger}
+ul.ledger li{
+  counter-increment:ledger;
+  border-bottom:1px dotted rgba(23,21,15,.45);
+  padding:12px 2px 12px 52px;position:relative;margin:0;
+  font-size:20px;
+}
+ul.ledger li::before{
+  content:counter(ledger,decimal-leading-zero);
+  position:absolute;left:2px;top:14px;
+  font-family:'Courier Prime',Courier,monospace;font-size:14px;font-weight:700;color:var(--brass);
+}
+.pr{font-weight:700;color:var(--cobalt);white-space:nowrap}
+.openline{font-size:21px;font-weight:600;max-width:640px}
+
+/* ---------- deep band (alternate section ground) ---------- */
+.band-deep{background:var(--bone-deep);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+
+/* ---------- stat blocks (shop) ---------- */
+.stats{display:grid;gap:2px;margin:26px 0;border:2px solid var(--ink);background:var(--ink);
+  box-shadow:0 3px 0 var(--ink)}
+@media (min-width:640px){ .stats{grid-template-columns:repeat(4,1fr)} }
+.stats > div{background:var(--paper);padding:18px 16px 14px}
+.stats .num{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:clamp(30px,4vw,44px);line-height:1;display:block}
+.stats .lab{font-family:'Courier Prime',Courier,monospace;font-size:12px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(23,21,15,.6);display:block;margin-top:8px}
+
+/* ---------- email form ---------- */
+input[type=email]{
+  font-family:'Courier Prime',Courier,monospace;font-size:18px;color:var(--ink);
+  padding:12px 14px;min-height:48px;background:#fff;
+  border:2px solid var(--ink);border-radius:3px;width:100%;max-width:340px;margin:0 10px 10px 0;
+}
+input[type=email]::placeholder{color:rgba(23,21,15,.45)}
+
+/* ---------- map ---------- */
+.mapframe{border:2px solid var(--ink);background:#fff;padding:8px;box-shadow:0 3px 0 var(--ink)}
+.mapframe iframe{border:0;width:100%;height:340px;display:block}
+@media (min-width:960px){ .mapframe iframe{height:440px} }
+
+/* ---------- decorative engravings (taped clippings, desktop only) ---------- */
+.plate{display:none}
+@media (min-width:1150px){
+  .plate{display:block;position:absolute;width:150px;z-index:2;pointer-events:none;
+    border:1px solid rgba(23,21,15,.18);box-shadow:0 3px 12px rgba(23,21,15,.16)}
+}
+
+/* ============================================================
+   FOOTER · the back cover of the file
+   ============================================================ */
+.site-foot{
+  position:relative;z-index:2;
+  background:var(--ink);color:var(--bone);
+  border-top:4px solid var(--brass);
+  padding:46px 0 34px;margin-top:70px;
+}
+.foot-grid{display:grid;gap:34px}
+@media (min-width:760px){ .foot-grid{grid-template-columns:1fr 1.3fr 1fr} }
+.foot-lbl{
+  font-family:'Courier Prime',Courier,monospace;font-size:12px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin:0 0 12px;
+}
+.foot-nav{list-style:none;margin:0;padding:0}
+.foot-nav a{
+  display:inline-flex;align-items:center;min-height:44px;
+  color:var(--bone);text-decoration:underline;text-underline-offset:4px;
+  font-family:'Courier Prime',Courier,monospace;font-weight:700;font-size:15px;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.foot-nav a:hover{color:var(--paper)}
+.foot-facts{font-size:18px;line-height:1.8;margin:0}
+.foot-facts a{color:var(--bone);font-weight:600}
+.foot-facts a:hover{color:var(--paper)}
+.colophon{
+  font-family:'Courier Prime',Courier,monospace;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(234,228,216,.62);margin:38px 0 0;line-height:1.8;
+  border-top:1px solid rgba(234,228,216,.2);padding-top:20px;
+}
+
+/* ---------- scroll reveal (only when JS runs and motion allowed) ---------- */
+.anim .rev{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.anim .rev.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .anim .rev{opacity:1;transform:none;transition:none}
+}

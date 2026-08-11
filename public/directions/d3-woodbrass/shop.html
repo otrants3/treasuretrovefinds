@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Too far to visit Booth 18? The Treasure Trove Finds Etsy shop has been open eight years: 183 sales, 5.0 stars across 63 reviews.">
+<link rel="icon" href="../../favicon.svg">
+<title>Shop Online · Treasure Trove Finds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="head-inner">
+    <a class="wordmark" href="index.html">Treasure Trove Finds</a>
+    <nav class="head-nav" aria-label="Site">
+      <a href="story.html">Story</a>
+      <a href="booth.html">The booth</a>
+      <a href="visit.html">Visit</a>
+      <a href="shop.html" aria-current="page">Shop online</a>
+    </nav>
+    <a class="head-call" href="tel:+15164462693">Call</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+<nav id="menu" class="mobile-menu" aria-label="Site menu">
+  <a href="index.html">Home</a>
+  <a href="story.html">Story</a>
+  <a href="booth.html">The booth</a>
+  <a href="visit.html">Visit</a>
+  <a href="shop.html" aria-current="page">Shop online</a>
+  <a class="menu-call" href="tel:+15164462693">Call Bill · (516) 446-2693</a>
+</nav>
+
+<main>
+
+<!-- ============ TOO FAR TO VISIT ============ -->
+<section class="shelf" aria-label="Shop from far away">
+  <div class="mid">
+    <div class="plaque-row reveal"><h2 class="plaque">Too Far to Visit?</h2></div>
+    <div class="stat-row reveal d2">
+      <div class="stat"><b>8</b><span>YEARS ON ETSY</span></div>
+      <div class="stat"><b>183</b><span>SALES</span></div>
+      <div class="stat"><b>5.0</b><span>STARS · 63 REVIEWS</span></div>
+    </div>
+    <div class="card reveal d3">
+      <p>The Etsy shop has been open eight years: 183 sales, 5.0 stars across 63 reviews.</p>
+      <p>
+        <a class="btn" href="https://www.etsy.com/shop/ttrovefinds">Visit the Etsy shop</a>
+        <a class="btn alt on-paper" href="https://www.instagram.com/treasuretrovefinds/">Follow on Instagram</a>
+      </p>
+      <p style="margin-top:14px">Want first look when new pieces land?</p>
+      <!-- AWAITING: wire form to email provider. Email only, no other fields, forgiving input. -->
+      <form action="#" method="post">
+        <input type="email" name="email" placeholder="you@email.com" aria-label="Email address">
+        <button class="btn" type="submit">Get the word</button>
+      </form>
+      <img class="engraving" src="../../cabinet/plates/cobalt-bottle.png" alt="" aria-hidden="true" loading="lazy">
+    </div>
+    <p class="reveal center" style="margin-top:26px">
+      <a class="btn alt" href="visit.html">Or come see it in person</a>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wide foot-grid">
+    <nav class="foot-nav" aria-label="Footer">
+      <p class="foot-head">PAGES</p>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="booth.html">The booth</a></li>
+        <li><a href="visit.html">Visit</a></li>
+        <li><a href="shop.html">Shop online</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="foot-head">THE BOOTH</p>
+      <p class="foot-facts">
+        Booth 18, Paradise Antique Mall<br>
+        3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+        Bill is in the booth Wednesdays and Sundays, 10 to 6.<br>
+        <a href="tel:+15164462693">(516) 446-2693</a><br>
+        <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+      </p>
+    </div>
+    <div>
+      <p class="foot-head">ONLINE</p>
+      <p class="foot-facts">
+        <a href="https://www.etsy.com/shop/ttrovefinds">Etsy · ttrovefinds</a><br>
+        <a href="https://www.instagram.com/treasuretrovefinds/">Instagram · @treasuretrovefinds</a>
+      </p>
+    </div>
+  </div>
+  <p class="foot-line">Treasure Trove Finds · Bill and Lisa Otranto · Long Island to Las Vegas</p>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var head=document.querySelector('.site-head');
+  function onScroll(){head.classList.toggle('solid',window.scrollY>8)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var btn=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
+  if(btn&&menu){btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.textContent=open?'Close':'Menu';
+    document.body.classList.toggle('no-scroll',open);
+  });}
+
+  var shelves=document.querySelectorAll('.shelf');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){
+    shelves.forEach(function(s){s.classList.add('lit')});return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('lit');io.unobserve(e.target);}
+    });
+  },{rootMargin:'0px 0px -12% 0px',threshold:0});
+  shelves.forEach(function(s){io.observe(s)});
+})();
+</script>
+
+</body>
+</html>
