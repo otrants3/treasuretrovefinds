@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treasure Trove Finds · Booth 18, Paradise Antique Mall, Las Vegas</title>
+<meta name="description" content="An antique booth in Las Vegas packed with old toys, bottles, advertising and a mixture of everything. Bill has been at this since he was a kid on Long Island, and every piece comes with what he found out about it.">
+<link rel="icon" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="head">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="bm" aria-hidden="true"></span><span>Treasure Trove Finds</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="story.html">The story</a>
+      <a href="booth.html">The booth</a>
+      <a href="visit.html">Visit</a>
+      <a href="shop.html">Shop online</a>
+    </nav>
+    <a class="btn primary" href="tel:+15164462693">Call<span class="sm-hide">Bill</span></a>
+    <button class="menu-btn" type="button" data-open-menu aria-controls="drawer" aria-expanded="false">Menu</button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" data-open="false">
+  <div class="wrap">
+    <div class="drawer-top">
+      <a class="brand" href="index.html"><span class="bm" aria-hidden="true"></span><span>Treasure Trove Finds</span></a>
+      <button class="menu-btn" type="button" data-close-menu>Close</button>
+    </div>
+    <nav aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="story.html">The story</a>
+      <a href="booth.html">The booth</a>
+      <a href="visit.html">Visit</a>
+      <a href="shop.html">Shop online</a>
+    </nav>
+    <div class="drawer-foot">
+      <a class="btn primary" href="tel:+15164462693">Call Bill · (516) 446-2693</a>
+      <p class="muted" style="margin-top:14px">Booth 18, Paradise Antique Mall<br>3565 E. Flamingo Rd, Las Vegas</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HERO: what this is, where it is, and proof it is full ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Booth 18 · Paradise Antique Mall · Las Vegas</p>
+      <h1>Treasure Trove <span class="tt-finds">Finds</span></h1>
+      <p class="lede">Old toys, bottles, advertising, and a mixture of everything. Bill has been at this since he was a kid on Long Island. Ask about any piece and he can tell you who made it and when.</p>
+      <p class="hero-facts">
+        <strong>3565 E. Flamingo Rd, Las Vegas, NV 89121</strong><br>
+        Bill is in the booth Wednesdays and Sundays, 10 to 6<br>
+        <a href="tel:+15164462693">(516) 446-2693</a>
+      </p>
+      <div class="btn-row">
+        <a class="btn primary" href="tel:+15164462693">Call Bill</a>
+        <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+      </div>
+    </div>
+
+    <!-- proof of abundance inside the first screen, not a claim about it -->
+    <div class="hero-mosaic" aria-hidden="true">
+      <figure class="m-tall"><img src="../photos/case-buddy-l-trucks.jpg" alt="" loading="eager" decoding="async"></figure>
+      <figure><img src="../photos/case-toys.jpg" alt="" loading="eager" decoding="async"></figure>
+      <figure><img src="../photos/shelves-bottles.jpg" alt="" loading="eager" decoding="async"></figure>
+      <figure class="m-wide"><img src="../photos/tag-race-car.jpg" alt="" loading="lazy" decoding="async"></figure>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ THE TROVE: the signature ============ -->
+<section id="trove">
+  <div class="wrap">
+    <div class="trove-head rise">
+      <div class="measure">
+        <p class="eyebrow">The trove</p>
+        <h2>Dig through it.</h2>
+        <p class="lede muted">The booth is packed floor to ceiling. Tap anything here and you get what Bill knows about it.</p>
+      </div>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter the trove">
+      <button class="chip" type="button" data-cat="all" aria-pressed="true">Everything</button>
+      <button class="chip" type="button" data-cat="toys" aria-pressed="false">Toys</button>
+      <button class="chip" type="button" data-cat="bottles-and-glass" aria-pressed="false">Bottles and glass</button>
+      <button class="chip" type="button" data-cat="advertising" aria-pressed="false">Advertising</button>
+      <button class="chip" type="button" data-cat="dolls-and-plush" aria-pressed="false">Dolls and plush</button>
+      <button class="chip" type="button" data-cat="housewares" aria-pressed="false">Housewares</button>
+      <button class="chip" type="button" data-cat="tools-and-hardware" aria-pressed="false">Tools</button>
+    </div>
+
+    <div class="wall" id="wall">
+      <noscript>
+        <p class="muted">Turn on JavaScript to dig through the whole trove, or see every photo on
+        <a href="booth.html">the booth page</a>.</p>
+      </noscript>
+    </div>
+
+    <div class="wall-more" id="wall-more" hidden>
+      <button class="btn ghost" type="button" id="wall-more-btn">Show me the rest</button>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ THE RECORD: the differentiator, shown ============ -->
+<section>
+  <div class="wrap duo wide-right rise">
+    <figure>
+      <img src="../photos/tag-detail.jpg" alt="A handwritten tag tied to a green pressed steel race car" loading="lazy">
+      <figcaption>Bill writes the tag by hand, ties it on, and prices it plain.</figcaption>
+    </figure>
+    <div>
+      <p class="eyebrow">Why this booth is different</p>
+      <h2>Every piece leaves with its record.</h2>
+      <p>Most vendors write a price on a tag. Bill writes down what he found out: the maker, the year, how the thing works, what one sold for at auction.</p>
+      <p>He has loved history since he was a kid on Long Island, and he still does the homework on every piece before it goes in the case.</p>
+      <p><strong>The cases are open.</strong> Ask for anything and it comes out. In a mall where most cases stay locked, that is the whole point: he wants you to look closely.</p>
+      <div class="btn-row">
+        <a class="btn ghost" href="story.html">Read their story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BILL, IN HIS OWN VOICE ============ -->
+<section class="band">
+  <div class="wrap duo rise">
+    <div>
+      <p class="eyebrow">Bill, on tape at the mall</p>
+      <p class="quote">"I like to branch out because I learn the history of something when I learn about it. Because I can study it and then I'm pretty good at it."</p>
+      <p class="quote-attr">Bill Otranto</p>
+      <div class="btn-row">
+        <a class="btn ghost" href="story.html">The whole story</a>
+      </div>
+    </div>
+    <div>
+      <div class="reel">
+        <video controls playsinline preload="none" poster="../video/bill-mission-poster.jpg">
+          <source src="../video/bill-mission.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="reel-cap">Thirty seconds, filmed in the mall. Bill on why the booth holds a little of everything.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUTSIDE PROOF ============ -->
+<section>
+  <div class="wrap duo wide-left rise">
+    <div>
+      <p class="eyebrow">As seen on</p>
+      <h2>They filmed the mall and spent fifteen minutes in Booth 18.</h2>
+      <p class="quote" style="font-size:clamp(20px,2.6vw,26px)">"This is a vendor who really knows his stuff."</p>
+      <p class="quote-attr">Picker Road, on camera</p>
+      <p class="muted" style="margin-top:16px">They bought five pieces while the camera was rolling.</p>
+      <div class="btn-row">
+        <a class="btn ghost" href="https://www.youtube.com/watch?v=u0U7ZoHl1FE&amp;t=862s">Watch the episode</a>
+      </div>
+    </div>
+    <figure>
+      <img src="../featured/picker-road.jpg" alt="The two Picker Road hosts outside Paradise Antique Mall during filming" loading="lazy">
+      <figcaption>The Picker Road hosts at the mall. Bill's booth starts at 14:17.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ SHOP ONLINE ============ -->
+<section>
+  <div class="wrap">
+    <div class="measure rise">
+      <p class="eyebrow">Too far to visit</p>
+      <h2>They ship, too.</h2>
+      <p class="lede muted">The Etsy shop has been open eight years. Instagram is where new pieces show up first.</p>
+    </div>
+
+    <div class="stats rise" style="margin-top:32px">
+      <div><div class="n">8</div><div class="k">Years on Etsy</div></div>
+      <div><div class="n">183</div><div class="k">Sales</div></div>
+      <div><div class="n">5.0</div><div class="k">Star rating</div></div>
+      <div><div class="n">63</div><div class="k">Reviews</div></div>
+    </div>
+
+    <div class="btn-row rise">
+      <a class="btn primary" href="https://www.etsy.com/shop/ttrovefinds">Open the Etsy shop</a>
+      <a class="btn ghost" href="https://www.instagram.com/treasuretrovefinds/">Follow on Instagram</a>
+      <a class="btn ghost" href="shop.html">More on shopping online</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section id="visit">
+  <div class="wrap duo wide-left rise">
+    <iframe class="map" title="Map to Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas" src="https://maps.google.com/maps?q=3565+E+Flamingo+Rd+Las+Vegas+NV+89121&amp;output=embed" loading="lazy"></iframe>
+    <div>
+      <p class="eyebrow">Find the booth</p>
+      <h2>Come see it.</h2>
+      <p class="hero-facts">
+        <strong>Booth 18, Paradise Antique Mall</strong><br>
+        3565 E. Flamingo Rd, Las Vegas, NV 89121<br>
+        Bill is in the booth Wednesdays and Sundays, 10 to 6<br>
+        <a href="tel:+15164462693">(516) 446-2693</a><br>
+        <a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a>
+      </p>
+      <div class="btn-row">
+        <a class="btn primary" href="tel:+15164462693">Call Bill</a>
+        <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=3565+E+Flamingo+Rd,+Las+Vegas,+NV+89121">Get directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><span class="bm" aria-hidden="true"></span><span>Treasure Trove Finds</span></a>
+        <p class="muted">Booth 18, Paradise Antique Mall<br>3565 E. Flamingo Rd, Las Vegas, NV 89121</p>
+        <p class="muted">Bill is in the booth Wednesdays and Sundays, 10 to 6</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="story.html">The story</a></li>
+          <li><a href="booth.html">The booth</a></li>
+          <li><a href="visit.html">Visit</a></li>
+          <li><a href="shop.html">Shop online</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Reach them</h4>
+        <ul>
+          <li><a href="tel:+15164462693">(516) 446-2693</a></li>
+          <li><a href="mailto:ttrovefinds@gmail.com">ttrovefinds@gmail.com</a></li>
+          <li><a href="https://www.etsy.com/shop/ttrovefinds">Etsy shop</a></li>
+          <li><a href="https://www.instagram.com/treasuretrovefinds/">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">Bill and Lisa Otranto · Long Island to Las Vegas</p>
+  </div>
+</footer>
+
+<!-- record sheet -->
+<div class="sheet-scrim" id="sheet-scrim" data-open="false"></div>
+<aside class="sheet" id="sheet" data-open="false" role="dialog" aria-modal="true" aria-label="The record">
+  <div class="sheet-bar">
+    <p class="eyebrow">The record</p>
+    <button class="sheet-close" type="button">Close</button>
+  </div>
+  <div class="sheet-body" id="sheet-body"></div>
+</aside>
+
+<script src="items.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

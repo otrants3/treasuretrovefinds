@@ -57,11 +57,15 @@ diecast. Along with Christmas and Halloween from the 1920s to the 1960s."
 
 ## The family story (canonical beats; drafted, AWAITING Bill and Lisa's read)
 
+- **Bill has loved history since he was a kid on Long Island** (A.J., 2026-08-11).
+  That is the beginning of the story now. It is not "a collector who started a
+  business"; it is a lifelong history habit that became a shop.
 - Bill has been collecting for decades, most of it on his own.
 - The kids grew up and left; the weekends went quiet. Bill and Lisa filled them
   together with estate sales and garage sales. It became how they reconnected.
-- Any night: Bill at the kitchen table, tag in one hand, reference book in the
-  other, pricing and researching. Lisa a room away doing her own side of it.
+- **RETIRED DETAIL: the kitchen table.** A.J. 2026-08-11: that was years ago and
+  no longer describes their life. Do not use "stop by the house and Bill is at
+  the kitchen table" in any copy.
 - They talked about opening a shop for decades. It stayed a conversation.
   Booth 18 is that conversation finally happening.
 - Long Island to Las Vegas. The New York plates still hang on the back wall.
