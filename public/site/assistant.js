@@ -4,7 +4,7 @@
    Why this exists: the booths are in Las Vegas but the interest is
    national. People want to ask "do you have the pair to this one" and
    today there is nowhere to ask. This answers what it safely can, three
-   times, and then turns the conversation into a real email to Bill.
+   times, and then turns the conversation into a real email to Treasure Trove Finds.
 
    THE EMAIL IS THE POINT. The chat is the on-ramp. Every failure mode
    here lands on the email, never on an error.
@@ -97,7 +97,7 @@
         '<button class="btn primary ai-send" type="submit">Send</button>' +
       '</form>' +
       '<div class="ai-foot-row">' +
-        '<button class="ai-link" type="button" data-ai-hand>Send this to Bill instead</button>' +
+        '<button class="ai-link" type="button" data-ai-hand>Send this to the shop instead</button>' +
         '<p class="ai-count" id="ai-count"></p>' +
       '</div>' +
     '</div>';
@@ -139,17 +139,17 @@
   function paint() {
     log.innerHTML = '';
     bubble('bot',
-      '<p><b>This is the front desk, not Bill.</b> It answers up to three ' +
+      '<p><b>Ask about anything, in the cases or not.</b> This answers up to three ' +
       'questions using the pieces photographed for this site, then it writes the ' +
-      'whole thing up as an email so Bill can answer you himself.</p>' +
-      '<p>Bill is in booths 39 and 46 on Wednesdays and Sundays, 10 to 6.</p>', true);
+      'whole thing up as an email so Bill and Lisa can pick it up from there.</p>' +
+      '<p>Booths 39 and 46, Wednesdays and Sundays, 10 to 6.</p>', true);
 
     for (var i = 0; i < state.log.length; i++) {
       var m = state.log[i];
       var body = m.content + (m.photo ? '\n(photo attached)' : '');
       bubble(m.role === 'user' ? 'you' : 'bot', body, false);
     }
-    if (state.answers >= MAX_ANSWERS) handoffCard('That is three. Bill takes it from here.');
+    if (state.answers >= MAX_ANSWERS) handoffCard('That is three. The shop can take it from here.');
     updateCount();
   }
 
@@ -163,7 +163,7 @@
     sendBtn.disabled = capped || busy;
     file.disabled = capped || busy;
     form.setAttribute('data-capped', capped ? 'true' : 'false');
-    if (capped) text.placeholder = 'Three answers used. Send it to Bill below.';
+    if (capped) text.placeholder = 'Three answers used. Send the question below.';
   }
 
   /* ---------- the handoff, which is the actual product ---------- */
@@ -223,15 +223,15 @@
     var card = document.createElement('div');
     card.className = 'ai-hand-card';
     card.innerHTML =
-      '<p class="eyebrow">Send it to Bill</p>' +
-      '<p>' + esc(lead || 'Bill answers these himself. Here is the email, ready to go. Change anything you like before it opens.') + '</p>' +
+      '<p class="eyebrow">Send it to the shop</p>' +
+      '<p>' + esc(lead || 'Bill and Lisa answer these themselves. Here is the email, ready to go. Change anything you like before it opens.') + '</p>' +
       '<label class="ai-ta-label" for="ai-recap">The email, yours to edit</label>' +
       '<textarea id="ai-recap" class="ai-recap" rows="9" spellcheck="true"></textarea>' +
       '<div class="btn-row">' +
         '<button class="btn primary" type="button" data-ai-mail>Open this in email</button>' +
         '<button class="btn ghost" type="button" data-ai-copy>Copy the text</button>' +
       '</div>' +
-      '<p class="ai-fine">Goes to ' + EMAIL + '. No mail app on this device? Copy the text and send it however you like, or call Bill at (516) 446-2693.</p>';
+      '<p class="ai-fine">Goes to ' + EMAIL + '. No mail app on this device? Copy the text and send it however you like, or call (516) 446-2693.</p>';
     log.appendChild(card);
     var ta = card.querySelector('textarea');
     ta.value = recap();
@@ -296,7 +296,7 @@
     if (f.size > 12 * 1024 * 1024) {
       pending = null; file.value = '';
       photoLabel.textContent = 'Add a photo';
-      note('That photo is very large. Try one under 12MB, or send it to Bill by email.');
+      note('That photo is very large. Try one under 12MB, or attach it to the email instead.');
       return;
     }
     photoLabel.textContent = 'Reading photo';
@@ -304,7 +304,7 @@
       if (!dataUrl) {
         pending = null; file.value = '';
         photoLabel.textContent = 'Add a photo';
-        note('That file would not open as a photo. You can attach it to the email to Bill instead.');
+        note('That file would not open as a photo. You can attach it to the email instead.');
         return;
       }
       pending = { dataUrl: dataUrl, name: f.name || 'photo' };
@@ -339,11 +339,11 @@
       // Never leave them at a dead end. The email is the product.
       bubble('bot',
         '<p>The helper is not answering right now. That happens, and it does not ' +
-        'cost you the question.</p><p>Bill answers these himself. Here is your ' +
+        'cost you the question.</p><p>Bill and Lisa answer these themselves. Here is your ' +
         'question written up for him.</p>', true);
       busy = false;
       updateCount();
-      handoffCard('Send it straight to Bill.');
+      handoffCard('Send it straight to the shop.');
     };
 
     var done = function (reply) {
@@ -355,7 +355,7 @@
       busy = false;
       updateCount();
       if (state.answers >= MAX_ANSWERS) {
-        handoffCard('That is three, which is where this hands off. Bill answers the rest himself.');
+        handoffCard('That is three. Bill and Lisa answer the rest themselves.');
       }
     };
 

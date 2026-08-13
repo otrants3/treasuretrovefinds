@@ -129,8 +129,8 @@
           it.tags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') +
           '</ul></div>';
       } else {
-        record = '<div class="sheet-note"><p>Bill has the full history on this one. The cases are open, so ask ' +
-          'and it comes out, or call and he will tell you over the phone.</p></div>';
+        record = '<div class="sheet-note"><p>The history on this one is at the shop. The cases are open, so ask ' +
+          'and it comes out, or call and they will tell you over the phone.</p></div>';
       }
 
       sheetBody.innerHTML =
@@ -142,7 +142,7 @@
           '<p class="sheet-meta">' + meta.join('<br>') + '</p>' +
           record + readable +
           '<div class="btn-row">' +
-            '<a class="btn primary" href="tel:' + PHONE + '">Ask Bill about this</a>' +
+            '<a class="btn primary" href="tel:' + PHONE + '">Ask about this piece</a>' +
             '<a class="btn ghost" href="visit.html">Come see it</a>' +
           '</div>' +
         '</div>';
