@@ -34,10 +34,35 @@ the same trait: he wants you to look closely.
 
 ## What makes Lisa different
 
-**We still do not know, and that is now the biggest hole in this project.**
-Everything on the site leans on Bill because Bill is the only one on tape. Half
-this business is missing from its own website. Nothing is invented in the
-meantime. Getting Lisa in her own words is the top content blocker.
+First real word from her, 2026-08-13: **she collects vintage jewelry and
+brooches, and anything that catches her eye when she is thrifting.**
+
+That is small but it changes the site. It gives the jewelry and adornment side of
+the booths a named owner, and it says something true about how she hunts: by eye,
+not by category. Bill studies a thing until he knows it. Lisa spots it. Those are
+two different talents and the business runs on both, which is a better story than
+either one alone.
+
+Still wanted: her longer story in her own words, and how she and Bill divide the
+two booths.
+
+## Two booths, not one (2026-08-13)
+
+They now hold **Booths 39 and 46**. Booth 18 was the original and is history.
+Two booths is worth saying plainly: it means more room and more stock than the
+single-booth vendors around them.
+
+## Categories are the front door (2026-08-13)
+
+A stranger's first question is not "what is your favorite thing," it is "what do
+you have." Leading the whole site with Bill's toys quote undersells them badly,
+because the verified photo catalogue shows toys are only 4 of 36 photographs.
+The real spread is bottles and glass, advertising and service station pieces,
+dolls and plush, housewares, tools and hardware, jewelry, furniture and paper.
+
+So the categories get shown honestly and up front, and the toys quote moves to
+where it belongs: Bill's own corner, alongside Lisa's, as what each of them
+personally chases. Favorites are a story beat. Categories are navigation.
 
 ## The thesis, one line
 

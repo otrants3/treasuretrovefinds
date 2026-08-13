@@ -10,7 +10,13 @@ Companion docs: `booth-facts.md` (Picker Road distillation), `bill-clip-transcri
 ## Business facts
 
 - Name: Treasure Trove Finds
-- Booth 18, Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas, NV 89121
+- **BOOTHS 39 AND 46. They have TWO booths now** (A.J., 2026-08-13). This
+  REPLACES "Booth 18" everywhere on the site. Booth 18 was the original single
+  booth and is now history. Consequence for captions: photos showing an "18"
+  sign are of the OLD booth, so never put a booth number in a caption unless the
+  number visible in that frame matches. "Two booths" is a selling fact: more
+  room and more stock than a single booth.
+- Paradise Antique Mall, 3565 E. Flamingo Rd, Las Vegas, NV 89121
   (CONFIRM exact mall name with Bill: "Paradise Antique Mall" vs "Paradise Mall")
 - Bill is at the booth Wednesdays and Sundays, 10 a.m. to 6 p.m.
   (CONFIRM: is the booth browsable every day the mall is open, with Bill present
@@ -38,6 +44,23 @@ Companion docs: `booth-facts.md` (Picker Road distillation), `bill-clip-transcri
 
 "1920 to 1950 toys. Trucks, cars, trains. Buddy L, Hubley, Lionel, Tootsietoy
 diecast. Along with Christmas and Halloween from the 1920s to the 1960s."
+
+**IMPORTANT framing correction (A.J., 2026-08-13):** that quote is Bill's
+FAVOURITE corner, not the inventory. Leading the whole site with it undersells
+them badly. The verified photo catalogue shows the real spread: bottles and
+glass, advertising and service station pieces, dolls and plush, housewares and
+kitchen things, tools and hardware, jewellery, furniture, paper. Categories must
+be shown honestly and prominently; the toys quote belongs in Bill's own corner,
+not as the headline for everything they own.
+
+## What Lisa collects (from Lisa, via A.J., 2026-08-13)
+
+**The first real Lisa content in the project.** She loves collecting vintage
+jewellery and brooches, and anything that catches her eye when she is thrifting.
+
+Use it. It gives the jewellery and adornment side of the booth a named owner and
+finally puts her on the site as half the business. Still awaited: her story in
+her own longer words, and how she and Bill split the two booths.
 
 ## Bill's real quotes (from bill-clip-transcript.txt; the ONLY quotable source)
 

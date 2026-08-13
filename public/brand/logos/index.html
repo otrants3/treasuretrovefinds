@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treasure Trove Finds · Five logo directions</title>
+<meta name="description" content="Five logo directions for Treasure Trove Finds, each with a horizontal lockup, a stacked version, a small mark and a one colour version.">
+<link rel="icon" href="a-tag-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --oat:#F4EEE2; --oat-deep:#EAE1D0; --paper:#FCF8F0; --ink:#23201C;
+  --ink-soft:#5A5148; --oak:#A78862; --oak-line:rgba(167,136,98,.38);
+  --tin:#BE3A2B; --sage:#4E6B58;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--oat);color:var(--ink);font-family:var(--body);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.04;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(34px,7.5vw,58px)}
+h2{font-size:clamp(26px,4vw,38px)}
+p{margin:0 0 1em}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding-inline:20px}
+@media (min-width:900px){.wrap{padding-inline:40px}}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
+.lede{font-size:clamp(18px,2.2vw,21px);max-width:56ch;color:var(--ink)}
+.rule{border:0;border-top:1px solid var(--oak-line);margin:0}
+
+header.top{padding-block:48px 28px}
+.legend{font-family:var(--mono);font-size:13px;color:var(--ink-soft);
+  max-width:60ch;margin-top:18px}
+
+/* favicon strip */
+.strip{background:var(--paper);border:1px solid var(--oak-line);border-radius:14px;
+  padding:18px;margin-block:28px 8px}
+.chrome{background:var(--ink);border-radius:10px 10px 0 0;padding:10px 10px 0;
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.chrome::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;display:flex;align-items:center;gap:8px;background:var(--oat);
+  border-radius:8px 8px 0 0;padding:9px 14px;max-width:210px}
+.tab img{width:16px;height:16px;flex:0 0 auto}
+.tab b{font-family:var(--display);font-weight:500;font-size:12.5px;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.tab i{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--ink-soft)}
+.favs{display:flex;flex-wrap:wrap;gap:10px 26px;padding-top:18px}
+.fav{display:flex;align-items:center;gap:9px}
+.fav span{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+
+/* directions */
+.dir{padding-block:46px}
+.dir + .dir{border-top:1px solid var(--oak-line)}
+.dir-head{max-width:62ch;margin-bottom:26px}
+.why{font-size:18px;margin:12px 0 0;color:var(--ink)}
+.panels{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:760px){.panels{grid-template-columns:1fr 1fr}}
+@media (min-width:1080px){.panels{grid-template-columns:repeat(6,1fr)}
+  .w2{grid-column:span 2} .w3{grid-column:span 3} .w4{grid-column:span 4}}
+.panel{margin:0;background:var(--paper);border:1px solid var(--oak-line);
+  border-radius:14px;padding:16px;display:flex;flex-direction:column}
+.panel figcaption{font-family:var(--mono);font-size:12px;line-height:1.5;
+  color:var(--ink-soft);padding-top:14px;margin-top:auto}
+.panel .stage,.panel .duo{flex:1}
+.stage{display:flex;align-items:center;justify-content:center;gap:20px;
+  min-height:110px;padding:14px 10px;background:var(--oat);border-radius:8px;
+  flex-wrap:wrap}
+.stage.tall{min-height:190px}
+.lockup{height:46px;width:auto}
+@media (min-width:1080px){.lockup{height:54px}}
+.stack{height:150px;width:auto}
+.sizes{align-items:flex-end;gap:22px}
+.duo{display:grid;grid-template-columns:1fr;gap:10px;align-items:stretch}
+.duo .stage{height:100%}
+@media (min-width:520px){.duo{grid-template-columns:1fr 1fr}}
+.one-col{min-height:96px}
+.mono{height:38px;width:auto;color:var(--ink)}
+.rev{background:var(--ink)}
+.rev .mono{color:var(--oat)}
+.hold{display:grid;place-items:center;width:104px;height:104px;background:var(--oat-deep)}
+.hold.circle{border-radius:50%}
+.hold.square{border-radius:4px}
+.hold img{width:56px;height:56px}
+.bar{padding:0;background:var(--oat-deep);align-items:flex-start}
+.mockhead{display:flex;align-items:center;gap:14px;width:100%;padding:13px 16px;
+  background:var(--oat);border-bottom:1px solid var(--oak-line);border-radius:8px}
+.mockhead img{height:26px;width:auto}
+.mockhead em{margin-left:auto;font-family:var(--display);font-style:normal;
+  font-weight:600;font-size:13px;background:var(--tin);color:var(--paper);
+  padding:8px 14px;border-radius:6px;white-space:nowrap}
+
+footer.foot{background:var(--ink);color:var(--oat);padding-block:40px;margin-top:36px}
+.foot h3{font-size:22px;margin-bottom:14px}
+.foot p,.foot li{color:rgba(244,238,226,.72)}
+.foot ul{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:12.5px;
+  columns:2;column-gap:26px;max-width:640px}
+.foot li{margin-bottom:6px;break-inside:avoid}
+</style>
+</head>
+<body>
+
+<header class="top wrap">
+  <p class="eyebrow">Treasure Trove Finds · Brand marks</p>
+  <h1>Five logo directions</h1>
+  <p class="lede">Each direction comes with a horizontal lockup for the site
+  header, a stacked version for the footer or a printed card, a standalone mark
+  that has to hold at 32 pixels, and a one colour version for a stamp, a paper
+  bag or anything reversed out.</p>
+  <p class="legend">Colours are the booth palette. Type is Bricolage Grotesque
+  and DM Mono, converted to outlines, so no font file is needed to use any of
+  these. Judge them small first.</p>
+
+  <div class="strip">
+    <div class="chrome"><span class="tab"><img src="a-tag-mark.svg" alt=""><b>Treasure Trove Finds</b><i>A</i></span><span class="tab"><img src="b-stamp-mark.svg" alt=""><b>Treasure Trove Finds</b><i>B</i></span><span class="tab"><img src="c-monogram-mark.svg" alt=""><b>Treasure Trove Finds</b><i>C</i></span><span class="tab"><img src="d-keyhole-mark.svg" alt=""><b>Treasure Trove Finds</b><i>D</i></span><span class="tab"><img src="e-wall-mark.svg" alt=""><b>Treasure Trove Finds</b><i>E</i></span></div>
+    <div class="favs"><div class="fav"><img src="a-tag-mark.svg" alt="The tag mark at 24 pixels" width="24" height="24"><span>A. The tag</span></div><div class="fav"><img src="b-stamp-mark.svg" alt="The stamp mark at 24 pixels" width="24" height="24"><span>B. The stamp</span></div><div class="fav"><img src="c-monogram-mark.svg" alt="The monogram mark at 24 pixels" width="24" height="24"><span>C. The monogram</span></div><div class="fav"><img src="d-keyhole-mark.svg" alt="The keyhole mark at 24 pixels" width="24" height="24"><span>D. The keyhole</span></div><div class="fav"><img src="e-wall-mark.svg" alt="The wall mark at 24 pixels" width="24" height="24"><span>E. The wall</span></div></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="dir" id="a-tag">
+  <div class="dir-head">
+    <p class="eyebrow">Direction A</p>
+    <h2>The tag</h2>
+    <p class="why">Bill ties a handwritten tag to every piece, so the tag is the business. The ruled lines are the record he writes out, and the red one is the price.</p>
+  </div>
+
+  <div class="panels">
+    <figure class="panel w4">
+      <div class="stage"><img src="a-tag-lockup.svg" alt="The tag horizontal lockup" class="lockup"></div>
+      <figcaption>Horizontal lockup. Site header and letterhead.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall"><img src="a-tag-stacked.svg" alt="The tag stacked lockup" class="stack"></div>
+      <figcaption>Stacked. Footer, printed card, paper bag.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall sizes">
+        <img src="a-tag-mark.svg" alt="The tag mark at 96 pixels" width="96" height="96">
+        <img src="a-tag-mark.svg" alt="The tag mark at 48 pixels" width="48" height="48">
+        <img src="a-tag-mark.svg" alt="The tag mark at 32 pixels" width="32" height="32">
+      </div>
+      <figcaption>Mark at 96, 48 and 32 pixels.</figcaption>
+    </figure>
+
+    <figure class="panel w4">
+      <div class="duo">
+        <div class="stage one-col"><svg viewBox="0 0 271.7 64" class="mono" role="img" aria-label="The tag in one colour on oat"><use href="#m-a-tag"/></svg></div>
+        <div class="stage one-col rev"><svg viewBox="0 0 271.7 64" class="mono" role="img" aria-label="The tag reversed on ink"><use href="#m-a-tag"/></svg></div>
+      </div>
+      <figcaption>One colour. Solid ink on oat, and reversed to oat on ink.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage fit">
+        <span class="hold circle"><img src="a-tag-mark.svg" alt=""></span>
+        <span class="hold square"><img src="a-tag-mark.svg" alt=""></span>
+      </div>
+      <figcaption>Optical fit inside a circle and a square.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage bar">
+        <span class="mockhead"><img src="a-tag-lockup.svg" alt=""><em>Call Bill</em></span>
+      </div>
+      <figcaption>At real header size, 26 pixels tall.</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="dir" id="b-stamp">
+  <div class="dir-head">
+    <p class="eyebrow">Direction B</p>
+    <h2>The stamp</h2>
+    <p class="why">A maker's mark, struck the way a foundry marked the base of old tin. The full name rides the ring; the reduced seal carries the initials when it has to be small.</p>
+  </div>
+
+  <div class="panels">
+    <figure class="panel w4">
+      <div class="stage"><img src="b-stamp-lockup.svg" alt="The stamp horizontal lockup" class="lockup"></div>
+      <figcaption>Horizontal lockup. Site header and letterhead.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall"><img src="b-stamp-stacked.svg" alt="The stamp stacked lockup" class="stack"></div>
+      <figcaption>Stacked. Footer, printed card, paper bag.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall sizes">
+        <img src="b-stamp-mark.svg" alt="The stamp mark at 96 pixels" width="96" height="96">
+        <img src="b-stamp-mark.svg" alt="The stamp mark at 48 pixels" width="48" height="48">
+        <img src="b-stamp-mark.svg" alt="The stamp mark at 32 pixels" width="32" height="32">
+      </div>
+      <figcaption>Mark at 96, 48 and 32 pixels.</figcaption>
+    </figure>
+
+    <figure class="panel w4">
+      <div class="duo">
+        <div class="stage one-col"><svg viewBox="0 0 260 64" class="mono" role="img" aria-label="The stamp in one colour on oat"><use href="#m-b-stamp"/></svg></div>
+        <div class="stage one-col rev"><svg viewBox="0 0 260 64" class="mono" role="img" aria-label="The stamp reversed on ink"><use href="#m-b-stamp"/></svg></div>
+      </div>
+      <figcaption>One colour. Solid ink on oat, and reversed to oat on ink.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage fit">
+        <span class="hold circle"><img src="b-stamp-mark.svg" alt=""></span>
+        <span class="hold square"><img src="b-stamp-mark.svg" alt=""></span>
+      </div>
+      <figcaption>Optical fit inside a circle and a square.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage bar">
+        <span class="mockhead"><img src="b-stamp-lockup.svg" alt=""><em>Call Bill</em></span>
+      </div>
+      <figcaption>At real header size, 26 pixels tall.</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="dir" id="c-monogram">
+  <div class="dir-head">
+    <p class="eyebrow">Direction C</p>
+    <h2>The monogram</h2>
+    <p class="why">Three letters in the brand face, tracked until the crossbars meet and cut back apart by a hair. No ornament, no period costume, and it holds a square better than anything else here.</p>
+  </div>
+
+  <div class="panels">
+    <figure class="panel w4">
+      <div class="stage"><img src="c-monogram-lockup.svg" alt="The monogram horizontal lockup" class="lockup"></div>
+      <figcaption>Horizontal lockup. Site header and letterhead.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall"><img src="c-monogram-stacked.svg" alt="The monogram stacked lockup" class="stack"></div>
+      <figcaption>Stacked. Footer, printed card, paper bag.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall sizes">
+        <img src="c-monogram-mark.svg" alt="The monogram mark at 96 pixels" width="96" height="96">
+        <img src="c-monogram-mark.svg" alt="The monogram mark at 48 pixels" width="48" height="48">
+        <img src="c-monogram-mark.svg" alt="The monogram mark at 32 pixels" width="32" height="32">
+      </div>
+      <figcaption>Mark at 96, 48 and 32 pixels.</figcaption>
+    </figure>
+
+    <figure class="panel w4">
+      <div class="duo">
+        <div class="stage one-col"><svg viewBox="0 0 322.9 64" class="mono" role="img" aria-label="The monogram in one colour on oat"><use href="#m-c-monogram"/></svg></div>
+        <div class="stage one-col rev"><svg viewBox="0 0 322.9 64" class="mono" role="img" aria-label="The monogram reversed on ink"><use href="#m-c-monogram"/></svg></div>
+      </div>
+      <figcaption>One colour. Solid ink on oat, and reversed to oat on ink.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage fit">
+        <span class="hold circle"><img src="c-monogram-mark.svg" alt=""></span>
+        <span class="hold square"><img src="c-monogram-mark.svg" alt=""></span>
+      </div>
+      <figcaption>Optical fit inside a circle and a square.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage bar">
+        <span class="mockhead"><img src="c-monogram-lockup.svg" alt=""><em>Call Bill</em></span>
+      </div>
+      <figcaption>At real header size, 26 pixels tall.</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="dir" id="d-keyhole">
+  <div class="dir-head">
+    <p class="eyebrow">Direction D</p>
+    <h2>The keyhole</h2>
+    <p class="why">The escutcheon plate off a display case, with red showing through the hole. Bill leaves his cases unlocked, so the mark says look closely rather than keep out.</p>
+  </div>
+
+  <div class="panels">
+    <figure class="panel w4">
+      <div class="stage"><img src="d-keyhole-lockup.svg" alt="The keyhole horizontal lockup" class="lockup"></div>
+      <figcaption>Horizontal lockup. Site header and letterhead.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall"><img src="d-keyhole-stacked.svg" alt="The keyhole stacked lockup" class="stack"></div>
+      <figcaption>Stacked. Footer, printed card, paper bag.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall sizes">
+        <img src="d-keyhole-mark.svg" alt="The keyhole mark at 96 pixels" width="96" height="96">
+        <img src="d-keyhole-mark.svg" alt="The keyhole mark at 48 pixels" width="48" height="48">
+        <img src="d-keyhole-mark.svg" alt="The keyhole mark at 32 pixels" width="32" height="32">
+      </div>
+      <figcaption>Mark at 96, 48 and 32 pixels.</figcaption>
+    </figure>
+
+    <figure class="panel w4">
+      <div class="duo">
+        <div class="stage one-col"><svg viewBox="0 0 271.7 64" class="mono" role="img" aria-label="The keyhole in one colour on oat"><use href="#m-d-keyhole"/></svg></div>
+        <div class="stage one-col rev"><svg viewBox="0 0 271.7 64" class="mono" role="img" aria-label="The keyhole reversed on ink"><use href="#m-d-keyhole"/></svg></div>
+      </div>
+      <figcaption>One colour. Solid ink on oat, and reversed to oat on ink.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage fit">
+        <span class="hold circle"><img src="d-keyhole-mark.svg" alt=""></span>
+        <span class="hold square"><img src="d-keyhole-mark.svg" alt=""></span>
+      </div>
+      <figcaption>Optical fit inside a circle and a square.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage bar">
+        <span class="mockhead"><img src="d-keyhole-lockup.svg" alt=""><em>Call Bill</em></span>
+      </div>
+      <figcaption>At real header size, 26 pixels tall.</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="dir" id="e-wall">
+  <div class="dir-head">
+    <p class="eyebrow">Direction E</p>
+    <h2>The wall</h2>
+    <p class="why">The name promises abundance and the booth is packed floor to ceiling, so the mark is a full case. Ten blocks, one of them red: the piece you came for.</p>
+  </div>
+
+  <div class="panels">
+    <figure class="panel w4">
+      <div class="stage"><img src="e-wall-lockup.svg" alt="The wall horizontal lockup" class="lockup"></div>
+      <figcaption>Horizontal lockup. Site header and letterhead.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall"><img src="e-wall-stacked.svg" alt="The wall stacked lockup" class="stack"></div>
+      <figcaption>Stacked. Footer, printed card, paper bag.</figcaption>
+    </figure>
+
+    <figure class="panel w2">
+      <div class="stage tall sizes">
+        <img src="e-wall-mark.svg" alt="The wall mark at 96 pixels" width="96" height="96">
+        <img src="e-wall-mark.svg" alt="The wall mark at 48 pixels" width="48" height="48">
+        <img src="e-wall-mark.svg" alt="The wall mark at 32 pixels" width="32" height="32">
+      </div>
+      <figcaption>Mark at 96, 48 and 32 pixels.</figcaption>
+    </figure>
+
+    <figure class="panel w4">
+      <div class="duo">
+        <div class="stage one-col"><svg viewBox="0 0 326.2 64" class="mono" role="img" aria-label="The wall in one colour on oat"><use href="#m-e-wall"/></svg></div>
+        <div class="stage one-col rev"><svg viewBox="0 0 326.2 64" class="mono" role="img" aria-label="The wall reversed on ink"><use href="#m-e-wall"/></svg></div>
+      </div>
+      <figcaption>One colour. Solid ink on oat, and reversed to oat on ink.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage fit">
+        <span class="hold circle"><img src="e-wall-mark.svg" alt=""></span>
+        <span class="hold square"><img src="e-wall-mark.svg" alt=""></span>
+      </div>
+      <figcaption>Optical fit inside a circle and a square.</figcaption>
+    </figure>
+
+    <figure class="panel w3">
+      <div class="stage bar">
+        <span class="mockhead"><img src="e-wall-lockup.svg" alt=""><em>Call Bill</em></span>
+      </div>
+      <figcaption>At real header size, 26 pixels tall.</figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h3>Twenty files, all vector</h3>
+    <p>Saved in public/brand/logos. Rebuild them with scripts/build-logos.py.</p>
+    <ul><li>a-tag-lockup.svg</li><li>a-tag-mark.svg</li><li>a-tag-mono.svg</li><li>a-tag-stacked.svg</li><li>b-stamp-lockup.svg</li><li>b-stamp-mark.svg</li><li>b-stamp-mono.svg</li><li>b-stamp-stacked.svg</li><li>c-monogram-lockup.svg</li><li>c-monogram-mark.svg</li><li>c-monogram-mono.svg</li><li>c-monogram-stacked.svg</li><li>d-keyhole-lockup.svg</li><li>d-keyhole-mark.svg</li><li>d-keyhole-mono.svg</li><li>d-keyhole-stacked.svg</li><li>e-wall-lockup.svg</li><li>e-wall-mark.svg</li><li>e-wall-mono.svg</li><li>e-wall-stacked.svg</li></ul>
+  </div>
+</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="m-a-tag" viewBox="0 0 271.7 64"><path d="M22.6,2.6h18.8L52.4,13.6a3.2,3.2 0 0 1 1,2.3V58.2a3.4,3.4 0 0 1 -3.4,3.4H14a3.4,3.4 0 0 1 -3.4,-3.4V15.9a3.2,3.2 0 0 1 1,-2.3Z M28.6,11.2a3.4,3.4 0 1,0 6.8,0a3.4,3.4 0 1,0 -6.8,0Z M19.5,25.4h25a2.1,2.1 0 0 1 2.1,2.1v0a2.1,2.1 0 0 1 -2.1,2.1h-25a2.1,2.1 0 0 1 -2.1,-2.1v-0a2.1,2.1 0 0 1 2.1,-2.1ZM19.5,34.8h18.2a2.1,2.1 0 0 1 2.1,2.1v0a2.1,2.1 0 0 1 -2.1,2.1h-18.2a2.1,2.1 0 0 1 -2.1,-2.1v-0a2.1,2.1 0 0 1 2.1,-2.1Z M19.9,47.6h10.2a2.5,2.5 0 0 1 2.5,2.5v0a2.5,2.5 0 0 1 -2.5,2.5h-10.2a2.5,2.5 0 0 1 -2.5,-2.5v-0a2.5,2.5 0 0 1 2.5,-2.5Z" fill="currentColor" fill-rule="evenodd"/><g transform="translate(83.6 27.2)"><path d="M5.5 0V-19.8H9.8V0ZM0.4 -16.1V-19.8H14.9V-16.1Z M15 0V-8.3L15 -15.8H18.8L18.7 -9.2H18.9Q19.1 -11.8 19.6 -13.3Q20.2 -14.8 21 -15.4Q21.8 -16.1 22.9 -16.1Q23.4 -16.1 23.9 -16Q24.5 -15.8 25 -15.5L24.8 -10.8Q24.2 -11.1 23.6 -11.3Q23 -11.4 22.5 -11.4Q21.5 -11.4 20.8 -10.8Q20 -10.2 19.7 -9Q19.3 -7.7 19.3 -6V0Z M32.9 0.4Q30.8 0.4 29.3 -0.2Q27.8 -0.8 26.9 -1.9Q26 -3.1 25.6 -4.5Q25.1 -5.9 25.1 -7.6Q25.1 -9.3 25.6 -10.8Q26 -12.4 26.9 -13.6Q27.8 -14.8 29.2 -15.5Q30.7 -16.2 32.6 -16.2Q34.6 -16.2 36 -15.5Q37.4 -14.8 38.3 -13.6Q39.1 -12.4 39.4 -10.8Q39.7 -9.2 39.4 -7.3L27.8 -7.1V-9.5L36.1 -9.7L35.5 -8.3Q35.7 -9.7 35.4 -10.7Q35.1 -11.7 34.5 -12.2Q33.8 -12.7 32.6 -12.7Q31.4 -12.7 30.7 -12.1Q30 -11.5 29.6 -10.4Q29.3 -9.3 29.3 -7.8Q29.3 -5.2 30.2 -4Q31.1 -2.9 33 -2.9Q33.8 -2.9 34.4 -3.1Q34.9 -3.3 35.3 -3.7Q35.6 -4.1 35.7 -4.6Q35.9 -5.2 35.9 -5.8L39.8 -5.6Q39.9 -4.5 39.6 -3.5Q39.2 -2.4 38.4 -1.5Q37.6 -0.7 36.3 -0.1Q34.9 0.4 32.9 0.4Z M45.2 0.4Q43.9 0.4 42.9 -0Q41.8 -0.4 41.1 -1.4Q40.4 -2.3 40.4 -3.9Q40.4 -5.3 41 -6.2Q41.6 -7.1 42.5 -7.7Q43.5 -8.2 44.6 -8.5Q45.8 -8.8 46.9 -9Q48.5 -9.3 49.3 -9.5Q50.1 -9.7 50.4 -9.9Q50.6 -10.2 50.6 -10.6Q50.6 -11.6 49.9 -12.2Q49.2 -12.7 48 -12.7Q47.3 -12.7 46.6 -12.4Q45.9 -12.2 45.4 -11.5Q45 -10.9 45 -9.7L41.1 -10Q41.1 -11.8 41.7 -13Q42.3 -14.2 43.4 -14.9Q44.4 -15.6 45.7 -15.9Q47 -16.2 48.2 -16.2Q50.4 -16.2 51.9 -15.3Q53.4 -14.5 54.1 -12.9Q54.9 -11.3 54.9 -9V-6.2Q54.9 -5.2 54.9 -4.1Q54.9 -3.1 54.9 -2.1Q54.9 -1 54.9 0H51.1Q51.1 -1.1 51.2 -2.3Q51.2 -3.5 51.2 -4.7H51Q50.9 -3.3 50.1 -2.2Q49.3 -1 48 -0.3Q46.8 0.4 45.2 0.4ZM46.8 -2.8Q47.4 -2.8 48.1 -3Q48.8 -3.3 49.4 -3.8Q49.9 -4.3 50.3 -5.2Q50.6 -6.1 50.6 -7.3L50.7 -8L51.5 -8.1Q51.2 -7.7 50.6 -7.5Q50 -7.2 49.2 -7.1Q48.5 -7 47.7 -6.8Q46.9 -6.7 46.3 -6.4Q45.6 -6.2 45.2 -5.7Q44.8 -5.3 44.8 -4.6Q44.8 -3.7 45.4 -3.3Q45.9 -2.8 46.8 -2.8Z M63.2 0.4Q61.7 0.4 60.3 0.1Q59 -0.2 58 -0.9Q57 -1.6 56.5 -2.7Q56 -3.9 56.1 -5.5L59.9 -5.9Q59.9 -4.8 60.3 -4.1Q60.8 -3.4 61.5 -3Q62.3 -2.7 63.4 -2.7Q64.5 -2.7 65.2 -3.1Q66 -3.5 66 -4.3Q66 -4.8 65.7 -5.1Q65.4 -5.4 64.7 -5.7Q63.9 -5.9 62.7 -6.2Q61.3 -6.5 60.1 -6.9Q58.9 -7.3 58 -7.8Q57.1 -8.3 56.7 -9.1Q56.2 -9.9 56.2 -11.1Q56.2 -12.7 57 -13.8Q57.9 -14.9 59.4 -15.6Q60.9 -16.2 62.9 -16.2Q64.7 -16.2 66.3 -15.6Q67.8 -15 68.7 -13.8Q69.6 -12.5 69.4 -10.4L65.7 -10Q65.8 -11 65.4 -11.6Q65 -12.3 64.3 -12.6Q63.6 -13 62.7 -13Q61.5 -13 60.9 -12.6Q60.2 -12.1 60.2 -11.4Q60.2 -10.9 60.6 -10.5Q61.1 -10.1 61.8 -9.9Q62.6 -9.7 63.8 -9.4Q64.8 -9.2 65.9 -8.9Q67 -8.6 68 -8.1Q68.9 -7.5 69.5 -6.6Q70.1 -5.8 70.1 -4.4Q70.1 -2.9 69.3 -1.8Q68.5 -0.8 67 -0.2Q65.4 0.4 63.2 0.4Z M76.2 0.4Q73.6 0.4 72.3 -1.4Q71.1 -3.3 71.1 -7.1V-15.8H75.4V-7.2Q75.4 -5.1 76 -4.2Q76.5 -3.4 77.6 -3.4Q78.4 -3.4 79 -3.8Q79.7 -4.2 80.1 -4.9Q80.6 -5.7 80.8 -7Q81.1 -8.2 81.1 -9.9V-15.8H85.4V-7.3V0H81.7L81.8 -6.3H81.5Q81.3 -4 80.7 -2.5Q80 -1 78.9 -0.3Q77.8 0.4 76.2 0.4Z M87.2 0V-8.3L87.1 -15.8H90.9L90.8 -9.2H91.1Q91.2 -11.8 91.8 -13.3Q92.3 -14.8 93.1 -15.4Q94 -16.1 95 -16.1Q95.5 -16.1 96.1 -16Q96.6 -15.8 97.2 -15.5L97 -10.8Q96.4 -11.1 95.8 -11.3Q95.2 -11.4 94.7 -11.4Q93.6 -11.4 92.9 -10.8Q92.2 -10.2 91.8 -9Q91.4 -7.7 91.4 -6V0Z M105.1 0.4Q103 0.4 101.5 -0.2Q100 -0.8 99.1 -1.9Q98.1 -3.1 97.7 -4.5Q97.3 -5.9 97.3 -7.6Q97.3 -9.3 97.7 -10.8Q98.2 -12.4 99.1 -13.6Q100 -14.8 101.4 -15.5Q102.8 -16.2 104.8 -16.2Q106.7 -16.2 108.2 -15.5Q109.6 -14.8 110.4 -13.6Q111.3 -12.4 111.6 -10.8Q111.8 -9.2 111.6 -7.3L100 -7.1V-9.5L108.3 -9.7L107.7 -8.3Q107.8 -9.7 107.6 -10.7Q107.3 -11.7 106.6 -12.2Q105.9 -12.7 104.8 -12.7Q103.6 -12.7 102.9 -12.1Q102.1 -11.5 101.8 -10.4Q101.5 -9.3 101.5 -7.8Q101.5 -5.2 102.4 -4Q103.3 -2.9 105.1 -2.9Q106 -2.9 106.5 -3.1Q107.1 -3.3 107.4 -3.7Q107.8 -4.1 107.9 -4.6Q108 -5.2 108 -5.8L112 -5.6Q112 -4.5 111.7 -3.5Q111.4 -2.4 110.6 -1.5Q109.8 -0.7 108.4 -0.1Q107.1 0.4 105.1 0.4Z M123.2 0V-19.8H127.5V0ZM118.1 -16.1V-19.8H132.6V-16.1Z M132.6 0V-8.3L132.6 -15.8H136.4L136.3 -9.2H136.5Q136.7 -11.8 137.3 -13.3Q137.8 -14.8 138.6 -15.4Q139.4 -16.1 140.5 -16.1Q141 -16.1 141.6 -16Q142.1 -15.8 142.7 -15.5L142.4 -10.8Q141.8 -11.1 141.2 -11.3Q140.6 -11.4 140.1 -11.4Q139.1 -11.4 138.4 -10.8Q137.7 -10.2 137.3 -9Q136.9 -7.7 136.9 -6V0Z M150.5 0.4Q148.2 0.4 146.4 -0.5Q144.7 -1.4 143.7 -3.2Q142.7 -5.1 142.7 -7.9Q142.7 -10.7 143.8 -12.5Q144.8 -14.4 146.5 -15.3Q148.3 -16.2 150.5 -16.2Q152.8 -16.2 154.5 -15.3Q156.2 -14.3 157.2 -12.5Q158.2 -10.7 158.2 -7.9Q158.2 -5 157.2 -3.1Q156.2 -1.3 154.4 -0.4Q152.6 0.4 150.5 0.4ZM150.5 -2.8Q151.6 -2.8 152.3 -3.4Q153 -4 153.4 -5Q153.8 -6.1 153.8 -7.6Q153.8 -9.3 153.4 -10.4Q153 -11.5 152.2 -12.1Q151.4 -12.8 150.4 -12.8Q149.3 -12.8 148.6 -12.2Q147.9 -11.6 147.5 -10.5Q147.1 -9.4 147.1 -7.9Q147.1 -5.5 148 -4.2Q148.9 -2.8 150.5 -2.8Z M162.6 0 157.6 -15.8H162.2L165.3 -3.6H165.5L168.7 -15.8H173L168.1 0Z M180.3 0.4Q178.1 0.4 176.7 -0.2Q175.2 -0.8 174.2 -1.9Q173.3 -3.1 172.9 -4.5Q172.5 -5.9 172.5 -7.6Q172.5 -9.3 172.9 -10.8Q173.3 -12.4 174.2 -13.6Q175.1 -14.8 176.6 -15.5Q178 -16.2 180 -16.2Q181.9 -16.2 183.3 -15.5Q184.7 -14.8 185.6 -13.6Q186.5 -12.4 186.7 -10.8Q187 -9.2 186.8 -7.3L175.1 -7.1V-9.5L183.5 -9.7L182.9 -8.3Q183 -9.7 182.7 -10.7Q182.5 -11.7 181.8 -12.2Q181.1 -12.7 180 -12.7Q178.8 -12.7 178 -12.1Q177.3 -11.5 177 -10.4Q176.6 -9.3 176.6 -7.8Q176.6 -5.2 177.6 -4Q178.5 -2.9 180.3 -2.9Q181.1 -2.9 181.7 -3.1Q182.3 -3.3 182.6 -3.7Q182.9 -4.1 183.1 -4.6Q183.2 -5.2 183.2 -5.8L187.1 -5.6Q187.2 -4.5 186.9 -3.5Q186.6 -2.4 185.8 -1.5Q185 -0.7 183.6 -0.1Q182.3 0.4 180.3 0.4Z" fill="currentColor"/><path d="M1.3 29V9.2H5.6V29ZM3.4 21.6V18.1H13.6V21.6ZM3.4 12.8V9.2H14.7V12.8Z M15.9 29V13.2H20.2V29ZM18 11.9Q16.8 11.9 16.1 11.4Q15.4 10.8 15.4 9.8Q15.4 8.8 16.1 8.3Q16.8 7.7 18 7.7Q19.3 7.7 20 8.3Q20.6 8.8 20.6 9.8Q20.6 10.8 20 11.4Q19.3 11.9 18 11.9Z M22 29V20.5L22 13.2H25.7L25.6 19.9H25.9Q26 17.5 26.7 15.9Q27.3 14.4 28.4 13.6Q29.5 12.8 31.3 12.8Q33.8 12.8 35.1 14.6Q36.4 16.3 36.4 19.9V29H32.1V20.4Q32.1 18.5 31.5 17.5Q31 16.6 29.8 16.6Q28.7 16.6 27.9 17.3Q27.2 18.1 26.8 19.6Q26.3 21.2 26.3 23.7V29Z M43.8 29.4Q42.1 29.4 40.8 28.5Q39.4 27.6 38.6 25.7Q37.8 23.9 37.8 21Q37.8 18.3 38.5 16.4Q39.2 14.6 40.6 13.7Q41.9 12.8 43.7 12.8Q45.1 12.8 46.2 13.4Q47.2 14 47.9 15.3Q48.6 16.6 48.9 18.6H49.2Q49 17.5 48.9 16.4Q48.7 15.4 48.6 14.5Q48.6 13.6 48.6 12.8V8.2H52.9L52.9 23.1L52.9 29H49.1L49.2 24H49Q48.6 25.8 47.9 27Q47.2 28.2 46.2 28.8Q45.2 29.4 43.8 29.4ZM45.2 25.9Q46 25.9 46.6 25.6Q47.2 25.2 47.7 24.6Q48.1 24 48.3 23.2Q48.6 22.3 48.6 21.3V21.1Q48.6 20.3 48.4 19.6Q48.3 18.9 48 18.3Q47.7 17.7 47.2 17.3Q46.8 16.9 46.3 16.7Q45.8 16.5 45.2 16.5Q44.2 16.5 43.5 17.1Q42.8 17.8 42.5 18.8Q42.2 19.9 42.2 21.3Q42.2 22.6 42.5 23.6Q42.9 24.7 43.6 25.3Q44.2 25.9 45.2 25.9Z M61.4 29.4Q59.9 29.4 58.5 29.1Q57.2 28.8 56.2 28.1Q55.3 27.4 54.8 26.3Q54.2 25.1 54.3 23.5L58.1 23.1Q58.1 24.2 58.6 24.9Q59 25.6 59.7 26Q60.5 26.3 61.6 26.3Q62.7 26.3 63.5 25.9Q64.2 25.5 64.2 24.7Q64.2 24.2 63.9 23.9Q63.6 23.6 62.9 23.3Q62.2 23.1 60.9 22.8Q59.5 22.5 58.3 22.1Q57.1 21.7 56.2 21.2Q55.4 20.7 54.9 19.9Q54.4 19.1 54.4 17.9Q54.4 16.3 55.3 15.2Q56.1 14.1 57.6 13.4Q59.2 12.8 61.1 12.8Q62.9 12.8 64.5 13.4Q66 14 66.9 15.2Q67.8 16.5 67.6 18.6L63.9 19Q64 18 63.6 17.4Q63.3 16.7 62.6 16.4Q61.9 16 60.9 16Q59.8 16 59.1 16.4Q58.5 16.9 58.5 17.6Q58.5 18.1 58.9 18.5Q59.3 18.9 60.1 19.1Q60.8 19.3 62 19.6Q63.1 19.8 64.2 20.1Q65.2 20.4 66.2 20.9Q67.1 21.5 67.7 22.4Q68.3 23.2 68.3 24.6Q68.3 26.1 67.5 27.2Q66.7 28.2 65.2 28.8Q63.7 29.4 61.4 29.4Z" fill="currentColor"/></g></symbol><symbol id="m-b-stamp" viewBox="0 0 260 64"><path d="M0.8,32a31.2,31.2 0 1,0 62.4,0a31.2,31.2 0 1,0 -62.4,0ZM3.3,32a28.7,28.7 0 1,0 57.4,0a28.7,28.7 0 1,0 -57.4,0Z" fill="currentColor" fill-rule="evenodd"/><path d="M7.4,32a24.6,24.6 0 1,0 49.2,0a24.6,24.6 0 1,0 -49.2,0ZM8.6,32a23.4,23.4 0 1,0 46.8,0a23.4,23.4 0 1,0 -46.8,0Z" fill="currentColor" fill-rule="evenodd"/><path d="M19.2 39.1V25.2H22.6V39.1ZM15.8 28.1V25.2H26.1V28.1Z M30.6 39.1V25.2H34V39.1ZM27.1 28.1V25.2H37.4V28.1Z M38.6 39.1V25.2H42V39.1ZM40.3 34.2V31.4H47.4V34.2ZM40.3 28.1V25.2H48.1V28.1Z" fill="currentColor"/><g transform="translate(83.7 26.4)"><path d="M3.9 0V-13.9H6.9V0ZM0.3 -11.3V-13.9H10.5V-11.3Z M12.7 0V-13.9H18.2Q19.2 -13.9 20 -13.7Q20.8 -13.5 21.5 -13.2Q22.2 -12.9 22.7 -12.4Q23.2 -11.9 23.4 -11.3Q23.7 -10.6 23.7 -9.8Q23.7 -9.1 23.5 -8.5Q23.3 -8 22.8 -7.5Q22.3 -7 21.6 -6.7Q20.8 -6.4 19.8 -6.3V-6.1Q21.1 -6 21.8 -5.6Q22.5 -5.1 22.9 -4.4Q23.3 -3.7 23.5 -2.9L24.2 0H20.9L20.4 -2.6Q20.2 -3.4 19.9 -3.9Q19.7 -4.4 19.1 -4.6Q18.6 -4.9 17.7 -4.9H15.7V0ZM15.7 -7.2H17.9Q19.2 -7.2 19.9 -7.7Q20.6 -8.2 20.6 -9.2Q20.6 -10.3 19.9 -10.9Q19.3 -11.4 18 -11.4H15.7Z M26.5 0V-13.9H29.5V0ZM28.7 0V-2.5H36.3V0ZM28.7 -5.8V-8.1H35.3V-5.8ZM28.7 -11.3V-13.9H36.3V-11.3Z M38 0 42.8 -13.9H46.7L51.4 0H48.1L44.8 -11.4H44.6L41.3 0ZM40.6 -2.6V-4.8H49.2V-2.6Z M58.3 0.3Q56.9 0.3 55.8 -0Q54.7 -0.4 54 -1Q53.2 -1.6 52.9 -2.5Q52.5 -3.4 52.6 -4.5L55.4 -5.1Q55.4 -4.1 55.8 -3.4Q56.2 -2.8 56.9 -2.5Q57.6 -2.2 58.4 -2.2Q59.2 -2.2 59.7 -2.4Q60.3 -2.6 60.6 -2.9Q60.9 -3.3 60.9 -3.7Q60.9 -4.3 60.5 -4.7Q60.1 -5 59.4 -5.3Q58.7 -5.5 57.8 -5.7Q56.9 -6 56 -6.3Q55.1 -6.6 54.4 -7Q53.6 -7.5 53.2 -8.2Q52.7 -8.9 52.7 -10Q52.7 -11.3 53.4 -12.2Q54.1 -13.1 55.3 -13.7Q56.4 -14.2 58 -14.2Q59.6 -14.2 60.8 -13.6Q62.1 -13.1 62.8 -12Q63.4 -11 63.3 -9.5L60.5 -9Q60.6 -9.6 60.4 -10.1Q60.2 -10.6 59.9 -11Q59.6 -11.4 59.1 -11.5Q58.5 -11.7 57.9 -11.7Q57.2 -11.7 56.7 -11.5Q56.2 -11.3 55.9 -11Q55.7 -10.6 55.7 -10.2Q55.7 -9.7 56 -9.3Q56.4 -9 57.1 -8.8Q57.8 -8.5 58.7 -8.3Q59.6 -8.1 60.5 -7.8Q61.4 -7.5 62.2 -7Q62.9 -6.5 63.4 -5.8Q63.9 -5 63.9 -3.8Q63.9 -2.5 63.1 -1.6Q62.4 -0.6 61.2 -0.2Q59.9 0.3 58.3 0.3Z M71.9 0.3Q70.7 0.3 69.8 0Q68.9 -0.2 68.2 -0.7Q67.5 -1.2 67 -1.9Q66.6 -2.6 66.4 -3.5Q66.2 -4.4 66.2 -5.4V-13.9H69.2V-5.6Q69.2 -4.5 69.5 -3.8Q69.8 -3.1 70.4 -2.8Q71 -2.4 71.9 -2.4Q72.7 -2.4 73.3 -2.8Q73.9 -3.1 74.2 -3.8Q74.5 -4.5 74.5 -5.6V-13.9H77.6V-5.4Q77.6 -2.7 76.1 -1.2Q74.7 0.3 71.9 0.3Z M80.4 0V-13.9H85.9Q86.9 -13.9 87.7 -13.7Q88.5 -13.5 89.2 -13.2Q89.9 -12.9 90.4 -12.4Q90.8 -11.9 91.1 -11.3Q91.4 -10.6 91.4 -9.8Q91.4 -9.1 91.2 -8.5Q91 -8 90.5 -7.5Q90 -7 89.3 -6.7Q88.5 -6.4 87.5 -6.3V-6.1Q88.8 -6 89.5 -5.6Q90.2 -5.1 90.6 -4.4Q91 -3.7 91.2 -2.9L91.9 0H88.6L88.1 -2.6Q87.9 -3.4 87.6 -3.9Q87.3 -4.4 86.8 -4.6Q86.3 -4.9 85.4 -4.9H83.4V0ZM83.4 -7.2H85.6Q86.9 -7.2 87.6 -7.7Q88.2 -8.2 88.2 -9.2Q88.2 -10.3 87.6 -10.9Q87 -11.4 85.7 -11.4H83.4Z M94.2 0V-13.9H97.2V0ZM96.3 0V-2.5H104V0ZM96.3 -5.8V-8.1H103V-5.8ZM96.3 -11.3V-13.9H104V-11.3Z M114.8 0V-13.9H117.9V0ZM111.3 -11.3V-13.9H121.4V-11.3Z M123.7 0V-13.9H129.2Q130.2 -13.9 131 -13.7Q131.8 -13.5 132.5 -13.2Q133.2 -12.9 133.7 -12.4Q134.1 -11.9 134.4 -11.3Q134.7 -10.6 134.7 -9.8Q134.7 -9.1 134.5 -8.5Q134.3 -8 133.8 -7.5Q133.3 -7 132.6 -6.7Q131.8 -6.4 130.8 -6.3V-6.1Q132.1 -6 132.8 -5.6Q133.5 -5.1 133.9 -4.4Q134.3 -3.7 134.5 -2.9L135.2 0H131.9L131.4 -2.6Q131.2 -3.4 130.9 -3.9Q130.6 -4.4 130.1 -4.6Q129.6 -4.9 128.7 -4.9H126.7V0ZM126.7 -7.2H128.9Q130.2 -7.2 130.9 -7.7Q131.5 -8.2 131.5 -9.2Q131.5 -10.3 130.9 -10.9Q130.3 -11.4 129 -11.4H126.7Z M143.2 0.3Q141.7 0.3 140.5 -0.2Q139.3 -0.7 138.5 -1.6Q137.7 -2.5 137.3 -3.8Q136.9 -5.1 136.9 -6.9Q136.9 -9.3 137.7 -10.9Q138.5 -12.5 139.9 -13.3Q141.4 -14.2 143.3 -14.2Q144.7 -14.2 145.9 -13.7Q147 -13.2 147.8 -12.3Q148.6 -11.4 149.1 -10Q149.5 -8.7 149.5 -6.9Q149.5 -5.2 149.1 -3.8Q148.6 -2.5 147.8 -1.5Q147 -0.6 145.8 -0.2Q144.6 0.3 143.2 0.3ZM143.2 -2.2Q144.3 -2.2 145 -2.7Q145.7 -3.3 146 -4.3Q146.4 -5.3 146.4 -6.8Q146.4 -8.4 146 -9.5Q145.7 -10.5 144.9 -11.1Q144.2 -11.7 143.2 -11.7Q142.1 -11.7 141.4 -11.1Q140.7 -10.6 140.4 -9.5Q140 -8.5 140 -7Q140 -5.8 140.2 -4.9Q140.4 -4 140.8 -3.4Q141.2 -2.8 141.8 -2.5Q142.4 -2.2 143.2 -2.2Z M155 0 150.5 -13.9H153.8L157 -2.5H157L160.1 -13.9H163.4L158.9 0Z M165.5 0V-13.9H168.5V0ZM167.6 0V-2.5H175.2V0ZM167.6 -5.8V-8.1H174.3V-5.8ZM167.6 -11.3V-13.9H175.2V-11.3Z" fill="currentColor"/><path d="M0.9 25V11.1H3.9V25ZM2.4 19.9V17.4H9.5V19.9ZM2.4 13.7V11.1H10.3V13.7Z M12.6 25V11.1H15.7V25Z M18.5 25V11.1H22.6L28.1 21.1H28.1V11.1H31.1V25H27.2L21.6 14.8H21.5V25Z M35.4 25V22.5H39Q40 22.5 40.7 22Q41.5 21.6 41.9 20.7Q42.3 19.8 42.3 18.1Q42.3 16.9 42.1 16.1Q41.9 15.3 41.4 14.7Q40.9 14.2 40.2 13.9Q39.6 13.7 38.6 13.7H35.4V11.1H38.5Q40.9 11.1 42.5 12Q44 12.8 44.7 14.3Q45.5 15.8 45.5 17.9Q45.5 19.6 45.1 20.8Q44.7 22 44.1 22.8Q43.4 23.6 42.6 24.1Q41.8 24.6 40.9 24.8Q40 25 39.1 25ZM34 25V11.1H37V25Z M53.3 25.3Q51.8 25.3 50.8 25Q49.7 24.6 49 24Q48.2 23.4 47.9 22.5Q47.5 21.6 47.6 20.5L50.4 19.9Q50.4 20.9 50.8 21.6Q51.2 22.2 51.9 22.5Q52.6 22.8 53.4 22.8Q54.1 22.8 54.7 22.6Q55.3 22.4 55.6 22.1Q55.9 21.7 55.9 21.3Q55.9 20.7 55.5 20.3Q55 20 54.3 19.7Q53.6 19.5 52.8 19.3Q51.9 19 51 18.7Q50.1 18.4 49.4 18Q48.6 17.5 48.2 16.8Q47.7 16.1 47.7 15Q47.7 13.7 48.4 12.8Q49.1 11.9 50.2 11.3Q51.4 10.8 53 10.8Q54.6 10.8 55.8 11.4Q57.1 11.9 57.8 13Q58.4 14 58.3 15.5L55.5 16Q55.5 15.4 55.4 14.9Q55.2 14.4 54.9 14Q54.5 13.6 54 13.5Q53.5 13.3 52.9 13.3Q52.1 13.3 51.6 13.5Q51.2 13.7 50.9 14Q50.7 14.4 50.7 14.8Q50.7 15.3 51 15.7Q51.4 16 52.1 16.2Q52.8 16.5 53.7 16.7Q54.6 16.9 55.5 17.2Q56.4 17.5 57.1 18Q57.9 18.5 58.4 19.2Q58.8 20 58.8 21.2Q58.8 22.5 58.1 23.4Q57.4 24.4 56.2 24.8Q54.9 25.3 53.3 25.3Z" fill="currentColor"/></g></symbol><symbol id="m-c-monogram" viewBox="0 0 322.9 64"><g transform="translate(0 16.8)"><g transform="translate(-0.6 30.4)"><path d="M8.1 0V-30.4H15.6V0ZM0.6 -24V-30.4H23.1V-24Z M31.2 0V-30.4H38.7V0ZM23.7 -24V-30.4H46.2V-24Z M47.2 0V-30.4H54.6V0ZM50.9 -10.8V-16.9H66.4V-10.8ZM50.9 -24.1V-30.4H67.9V-24.1Z" fill="currentColor"/></g></g><g transform="translate(88.9 41.4)"><path d="M5 0V-17.8H8.9V0ZM0.4 -14.5V-17.8H13.4V-14.5Z M13.4 0V-7.5L13.4 -14.2H16.8L16.7 -8.3H16.9Q17.1 -10.6 17.6 -11.9Q18 -13.3 18.8 -13.9Q19.5 -14.5 20.5 -14.5Q20.9 -14.5 21.4 -14.4Q21.9 -14.3 22.4 -14L22.2 -9.7Q21.7 -10 21.1 -10.1Q20.6 -10.3 20.1 -10.3Q19.2 -10.3 18.6 -9.7Q17.9 -9.2 17.6 -8.1Q17.3 -7 17.3 -5.4V0Z M29.4 0.4Q27.5 0.4 26.2 -0.2Q24.8 -0.8 24 -1.8Q23.2 -2.8 22.8 -4Q22.4 -5.3 22.4 -6.8Q22.4 -8.4 22.8 -9.8Q23.2 -11.2 24 -12.2Q24.8 -13.3 26.1 -13.9Q27.4 -14.6 29.2 -14.6Q30.9 -14.6 32.2 -13.9Q33.5 -13.3 34.2 -12.3Q35 -11.2 35.2 -9.7Q35.5 -8.3 35.3 -6.6L24.8 -6.4V-8.6L32.3 -8.7L31.8 -7.5Q31.9 -8.7 31.6 -9.6Q31.4 -10.5 30.8 -11Q30.2 -11.4 29.2 -11.4Q28.1 -11.4 27.4 -10.9Q26.8 -10.3 26.5 -9.3Q26.2 -8.3 26.2 -7Q26.2 -4.7 27 -3.6Q27.8 -2.6 29.5 -2.6Q30.2 -2.6 30.7 -2.8Q31.2 -3 31.5 -3.3Q31.8 -3.7 32 -4.2Q32.1 -4.7 32 -5.2L35.6 -5Q35.7 -4.1 35.4 -3.1Q35.1 -2.2 34.4 -1.4Q33.7 -0.6 32.4 -0.1Q31.2 0.4 29.4 0.4Z M40.3 0.4Q39.2 0.4 38.2 -0Q37.3 -0.4 36.7 -1.2Q36.1 -2.1 36.1 -3.5Q36.1 -4.8 36.6 -5.6Q37.1 -6.4 37.9 -6.9Q38.8 -7.4 39.8 -7.7Q40.9 -7.9 41.9 -8.1Q43.3 -8.4 44.1 -8.5Q44.8 -8.7 45 -8.9Q45.3 -9.2 45.3 -9.6Q45.3 -10.5 44.6 -10.9Q44 -11.4 42.9 -11.4Q42.3 -11.4 41.6 -11.2Q41 -11 40.6 -10.4Q40.1 -9.8 40.1 -8.7L36.7 -9Q36.7 -10.6 37.2 -11.7Q37.8 -12.8 38.7 -13.4Q39.7 -14 40.8 -14.3Q41.9 -14.6 43 -14.6Q45 -14.6 46.4 -13.8Q47.7 -13.1 48.4 -11.6Q49.1 -10.2 49.1 -8.1V-5.6Q49.1 -4.6 49.1 -3.7Q49.1 -2.8 49.1 -1.8Q49.1 -0.9 49.1 0H45.7Q45.7 -1 45.7 -2.1Q45.7 -3.1 45.7 -4.3H45.6Q45.4 -3 44.7 -1.9Q44 -0.9 42.9 -0.3Q41.8 0.4 40.3 0.4ZM41.8 -2.5Q42.4 -2.5 43 -2.7Q43.6 -3 44.1 -3.4Q44.6 -3.9 44.9 -4.7Q45.3 -5.5 45.3 -6.6L45.3 -7.2L46 -7.3Q45.8 -6.9 45.2 -6.7Q44.7 -6.5 44 -6.4Q43.3 -6.3 42.6 -6.1Q41.9 -6 41.3 -5.8Q40.7 -5.6 40.4 -5.2Q40 -4.8 40 -4.1Q40 -3.3 40.5 -2.9Q41 -2.5 41.8 -2.5Z M56.5 0.4Q55.1 0.4 53.9 0.1Q52.6 -0.2 51.8 -0.8Q50.9 -1.4 50.4 -2.5Q50 -3.5 50.1 -5L53.5 -5.3Q53.5 -4.3 53.9 -3.7Q54.2 -3 54.9 -2.7Q55.6 -2.5 56.6 -2.5Q57.6 -2.5 58.3 -2.8Q59 -3.1 59 -3.9Q59 -4.3 58.7 -4.6Q58.4 -4.9 57.8 -5.1Q57.1 -5.3 56 -5.6Q54.7 -5.9 53.6 -6.2Q52.5 -6.6 51.8 -7Q51 -7.5 50.6 -8.2Q50.1 -8.9 50.1 -10Q50.1 -11.4 50.9 -12.4Q51.7 -13.4 53 -14Q54.4 -14.6 56.2 -14.6Q57.8 -14.6 59.2 -14Q60.6 -13.5 61.4 -12.4Q62.2 -11.2 62 -9.3L58.7 -9Q58.8 -9.9 58.4 -10.5Q58.1 -11.1 57.5 -11.4Q56.8 -11.7 56 -11.7Q54.9 -11.7 54.4 -11.3Q53.8 -10.9 53.8 -10.3Q53.8 -9.8 54.1 -9.4Q54.5 -9.1 55.2 -8.9Q55.9 -8.7 57 -8.5Q57.9 -8.3 58.9 -8Q59.9 -7.7 60.7 -7.2Q61.6 -6.8 62.1 -6Q62.6 -5.2 62.6 -3.9Q62.6 -2.6 61.9 -1.7Q61.2 -0.7 59.8 -0.1Q58.5 0.4 56.5 0.4Z M68 0.4Q65.7 0.4 64.6 -1.3Q63.4 -2.9 63.4 -6.4V-14.2H67.3V-6.5Q67.3 -4.6 67.8 -3.8Q68.3 -3.1 69.3 -3.1Q70 -3.1 70.6 -3.4Q71.1 -3.8 71.6 -4.5Q72 -5.2 72.2 -6.3Q72.4 -7.4 72.4 -8.9V-14.2H76.3V-6.6V0H73L73 -5.7H72.8Q72.7 -3.6 72.1 -2.2Q71.5 -0.9 70.5 -0.3Q69.5 0.4 68 0.4Z M77.8 0V-7.5L77.8 -14.2H81.2L81.1 -8.3H81.3Q81.5 -10.6 81.9 -11.9Q82.4 -13.3 83.2 -13.9Q83.9 -14.5 84.9 -14.5Q85.3 -14.5 85.8 -14.4Q86.3 -14.3 86.8 -14L86.6 -9.7Q86.1 -10 85.5 -10.1Q85 -10.3 84.5 -10.3Q83.6 -10.3 83 -9.7Q82.3 -9.2 82 -8.1Q81.6 -7 81.6 -5.4V0Z M93.8 0.4Q91.9 0.4 90.6 -0.2Q89.2 -0.8 88.4 -1.8Q87.6 -2.8 87.2 -4Q86.8 -5.3 86.8 -6.8Q86.8 -8.4 87.2 -9.8Q87.6 -11.2 88.4 -12.2Q89.2 -13.3 90.5 -13.9Q91.8 -14.6 93.6 -14.6Q95.3 -14.6 96.6 -13.9Q97.8 -13.3 98.6 -12.3Q99.4 -11.2 99.6 -9.7Q99.9 -8.3 99.7 -6.6L89.2 -6.4V-8.6L96.7 -8.7L96.1 -7.5Q96.3 -8.7 96 -9.6Q95.8 -10.5 95.2 -11Q94.6 -11.4 93.6 -11.4Q92.5 -11.4 91.8 -10.9Q91.2 -10.3 90.9 -9.3Q90.6 -8.3 90.6 -7Q90.6 -4.7 91.4 -3.6Q92.2 -2.6 93.9 -2.6Q94.6 -2.6 95.1 -2.8Q95.6 -3 95.9 -3.3Q96.2 -3.7 96.3 -4.2Q96.5 -4.7 96.4 -5.2L100 -5Q100.1 -4.1 99.8 -3.1Q99.5 -2.2 98.8 -1.4Q98.1 -0.6 96.8 -0.1Q95.6 0.4 93.8 0.4Z M109.9 0V-17.8H113.8V0ZM105.3 -14.5V-17.8H118.3V-14.5Z M118.3 0V-7.5L118.3 -14.2H121.7L121.6 -8.3H121.8Q122 -10.6 122.4 -11.9Q122.9 -13.3 123.7 -13.9Q124.4 -14.5 125.4 -14.5Q125.8 -14.5 126.3 -14.4Q126.8 -14.3 127.3 -14L127.1 -9.7Q126.6 -10 126 -10.1Q125.5 -10.3 125 -10.3Q124.1 -10.3 123.5 -9.7Q122.8 -9.2 122.5 -8.1Q122.1 -7 122.1 -5.4V0Z M134.2 0.4Q132.2 0.4 130.6 -0.4Q129 -1.3 128.2 -2.9Q127.3 -4.6 127.3 -7.1Q127.3 -9.6 128.2 -11.3Q129.1 -12.9 130.7 -13.7Q132.3 -14.6 134.2 -14.6Q136.3 -14.6 137.9 -13.7Q139.4 -12.9 140.3 -11.2Q141.2 -9.6 141.2 -7.1Q141.2 -4.5 140.3 -2.8Q139.3 -1.2 137.8 -0.4Q136.2 0.4 134.2 0.4ZM134.3 -2.5Q135.2 -2.5 135.9 -3.1Q136.5 -3.6 136.9 -4.5Q137.2 -5.5 137.2 -6.9Q137.2 -8.3 136.9 -9.4Q136.5 -10.4 135.8 -10.9Q135.1 -11.5 134.1 -11.5Q133.2 -11.5 132.6 -11Q131.9 -10.4 131.6 -9.5Q131.2 -8.5 131.2 -7.1Q131.2 -5 132 -3.8Q132.8 -2.5 134.3 -2.5Z M145 0 140.5 -14.2H144.7L147.5 -3.2H147.6L150.5 -14.2H154.4L150 0Z M160.8 0.4Q158.9 0.4 157.6 -0.2Q156.2 -0.8 155.4 -1.8Q154.6 -2.8 154.2 -4Q153.8 -5.3 153.8 -6.8Q153.8 -8.4 154.2 -9.8Q154.6 -11.2 155.4 -12.2Q156.2 -13.3 157.5 -13.9Q158.8 -14.6 160.6 -14.6Q162.3 -14.6 163.6 -13.9Q164.9 -13.3 165.6 -12.3Q166.4 -11.2 166.7 -9.7Q166.9 -8.3 166.7 -6.6L156.2 -6.4V-8.6L163.7 -8.7L163.2 -7.5Q163.3 -8.7 163.1 -9.6Q162.8 -10.5 162.2 -11Q161.6 -11.4 160.6 -11.4Q159.5 -11.4 158.8 -10.9Q158.2 -10.3 157.9 -9.3Q157.6 -8.3 157.6 -7Q157.6 -4.7 158.4 -3.6Q159.2 -2.6 160.9 -2.6Q161.6 -2.6 162.1 -2.8Q162.6 -3 162.9 -3.3Q163.2 -3.7 163.4 -4.2Q163.5 -4.7 163.5 -5.2L167 -5Q167.1 -4.1 166.8 -3.1Q166.5 -2.2 165.8 -1.4Q165.1 -0.6 163.8 -0.1Q162.6 0.4 160.8 0.4Z M173.1 0V-17.8H177V0ZM175 -6.6V-9.8H184.2V-6.6ZM175 -14.6V-17.8H185.2V-14.6Z M186.1 0V-14.2H190V0ZM188 -15.4Q186.9 -15.4 186.3 -15.9Q185.7 -16.4 185.7 -17.3Q185.7 -18.2 186.3 -18.7Q186.9 -19.1 188 -19.1Q189.2 -19.1 189.8 -18.7Q190.4 -18.2 190.4 -17.3Q190.4 -16.4 189.8 -15.9Q189.2 -15.4 188 -15.4Z M191.5 0V-7.7L191.5 -14.2H194.8L194.7 -8.2H195Q195.1 -10.3 195.7 -11.7Q196.2 -13.1 197.2 -13.9Q198.3 -14.6 199.8 -14.6Q202.1 -14.6 203.3 -13Q204.5 -11.4 204.5 -8.2V0H200.6V-7.8Q200.6 -9.5 200.1 -10.3Q199.6 -11.2 198.5 -11.2Q197.5 -11.2 196.8 -10.5Q196.2 -9.9 195.8 -8.5Q195.4 -7 195.4 -4.8V0Z M211 0.4Q209.5 0.4 208.3 -0.4Q207 -1.3 206.3 -2.9Q205.6 -4.6 205.6 -7.2Q205.6 -9.7 206.2 -11.3Q206.9 -12.9 208.1 -13.7Q209.3 -14.6 210.9 -14.6Q212.2 -14.6 213.1 -14Q214.1 -13.5 214.7 -12.3Q215.4 -11.2 215.6 -9.4H215.8Q215.7 -10.4 215.6 -11.3Q215.4 -12.2 215.4 -13.1Q215.3 -13.9 215.3 -14.6V-18.8H219.2L219.2 -5.3L219.2 0H215.8L215.9 -4.5H215.6Q215.4 -2.9 214.7 -1.8Q214.1 -0.7 213.2 -0.2Q212.3 0.4 211 0.4ZM212.3 -2.8Q212.9 -2.8 213.5 -3.1Q214.1 -3.4 214.5 -3.9Q214.9 -4.5 215.1 -5.3Q215.3 -6 215.3 -6.9V-7.1Q215.3 -7.9 215.2 -8.5Q215 -9.1 214.8 -9.6Q214.5 -10.2 214.1 -10.5Q213.7 -10.9 213.3 -11.1Q212.8 -11.3 212.3 -11.3Q211.4 -11.3 210.8 -10.7Q210.1 -10.1 209.8 -9.1Q209.5 -8.2 209.5 -7Q209.5 -5.8 209.8 -4.8Q210.2 -3.9 210.8 -3.3Q211.4 -2.8 212.3 -2.8Z M226.8 0.4Q225.4 0.4 224.2 0.1Q223 -0.2 222.1 -0.8Q221.2 -1.4 220.8 -2.5Q220.3 -3.5 220.4 -5L223.8 -5.3Q223.8 -4.3 224.2 -3.7Q224.6 -3 225.2 -2.7Q225.9 -2.5 226.9 -2.5Q227.9 -2.5 228.6 -2.8Q229.3 -3.1 229.3 -3.9Q229.3 -4.3 229 -4.6Q228.7 -4.9 228.1 -5.1Q227.4 -5.3 226.3 -5.6Q225 -5.9 223.9 -6.2Q222.9 -6.6 222.1 -7Q221.3 -7.5 220.9 -8.2Q220.5 -8.9 220.5 -10Q220.5 -11.4 221.2 -12.4Q222 -13.4 223.4 -14Q224.7 -14.6 226.5 -14.6Q228.1 -14.6 229.5 -14Q230.9 -13.5 231.7 -12.4Q232.5 -11.2 232.3 -9.3L229 -9Q229.1 -9.9 228.7 -10.5Q228.4 -11.1 227.8 -11.4Q227.2 -11.7 226.3 -11.7Q225.3 -11.7 224.7 -11.3Q224.1 -10.9 224.1 -10.3Q224.1 -9.8 224.5 -9.4Q224.8 -9.1 225.5 -8.9Q226.2 -8.7 227.3 -8.5Q228.2 -8.3 229.2 -8Q230.2 -7.7 231.1 -7.2Q231.9 -6.8 232.4 -6Q233 -5.2 233 -3.9Q233 -2.6 232.2 -1.7Q231.5 -0.7 230.1 -0.1Q228.8 0.4 226.8 0.4Z" fill="currentColor"/></g></symbol><symbol id="m-d-keyhole" viewBox="0 0 271.7 64"><path d="M13,26A19,22 0 0 1 51,26L48.6,55.4A6.2,6.2 0 0 1 42.4,61.6H21.6A6.2,6.2 0 0 1 15.4,55.4Z M24.8,24.6a7.2,7.2 0 1,0 14.4,0a7.2,7.2 0 1,0 -14.4,0Z M28.7,29.6h6.6l2.5,17.6a3.2,3.2 0 0 1 -3.2,3.6H28.4a3.2,3.2 0 0 1 -3.2,-3.6Z" fill="currentColor" fill-rule="evenodd"/><g transform="translate(83.6 27.2)"><path d="M5.5 0V-19.8H9.8V0ZM0.4 -16.1V-19.8H14.9V-16.1Z M15 0V-8.3L15 -15.8H18.8L18.7 -9.2H18.9Q19.1 -11.8 19.6 -13.3Q20.2 -14.8 21 -15.4Q21.8 -16.1 22.9 -16.1Q23.4 -16.1 23.9 -16Q24.5 -15.8 25 -15.5L24.8 -10.8Q24.2 -11.1 23.6 -11.3Q23 -11.4 22.5 -11.4Q21.5 -11.4 20.8 -10.8Q20 -10.2 19.7 -9Q19.3 -7.7 19.3 -6V0Z M32.9 0.4Q30.8 0.4 29.3 -0.2Q27.8 -0.8 26.9 -1.9Q26 -3.1 25.6 -4.5Q25.1 -5.9 25.1 -7.6Q25.1 -9.3 25.6 -10.8Q26 -12.4 26.9 -13.6Q27.8 -14.8 29.2 -15.5Q30.7 -16.2 32.6 -16.2Q34.6 -16.2 36 -15.5Q37.4 -14.8 38.3 -13.6Q39.1 -12.4 39.4 -10.8Q39.7 -9.2 39.4 -7.3L27.8 -7.1V-9.5L36.1 -9.7L35.5 -8.3Q35.7 -9.7 35.4 -10.7Q35.1 -11.7 34.5 -12.2Q33.8 -12.7 32.6 -12.7Q31.4 -12.7 30.7 -12.1Q30 -11.5 29.6 -10.4Q29.3 -9.3 29.3 -7.8Q29.3 -5.2 30.2 -4Q31.1 -2.9 33 -2.9Q33.8 -2.9 34.4 -3.1Q34.9 -3.3 35.3 -3.7Q35.6 -4.1 35.7 -4.6Q35.9 -5.2 35.9 -5.8L39.8 -5.6Q39.9 -4.5 39.6 -3.5Q39.2 -2.4 38.4 -1.5Q37.6 -0.7 36.3 -0.1Q34.9 0.4 32.9 0.4Z M45.2 0.4Q43.9 0.4 42.9 -0Q41.8 -0.4 41.1 -1.4Q40.4 -2.3 40.4 -3.9Q40.4 -5.3 41 -6.2Q41.6 -7.1 42.5 -7.7Q43.5 -8.2 44.6 -8.5Q45.8 -8.8 46.9 -9Q48.5 -9.3 49.3 -9.5Q50.1 -9.7 50.4 -9.9Q50.6 -10.2 50.6 -10.6Q50.6 -11.6 49.9 -12.2Q49.2 -12.7 48 -12.7Q47.3 -12.7 46.6 -12.4Q45.9 -12.2 45.4 -11.5Q45 -10.9 45 -9.7L41.1 -10Q41.1 -11.8 41.7 -13Q42.3 -14.2 43.4 -14.9Q44.4 -15.6 45.7 -15.9Q47 -16.2 48.2 -16.2Q50.4 -16.2 51.9 -15.3Q53.4 -14.5 54.1 -12.9Q54.9 -11.3 54.9 -9V-6.2Q54.9 -5.2 54.9 -4.1Q54.9 -3.1 54.9 -2.1Q54.9 -1 54.9 0H51.1Q51.1 -1.1 51.2 -2.3Q51.2 -3.5 51.2 -4.7H51Q50.9 -3.3 50.1 -2.2Q49.3 -1 48 -0.3Q46.8 0.4 45.2 0.4ZM46.8 -2.8Q47.4 -2.8 48.1 -3Q48.8 -3.3 49.4 -3.8Q49.9 -4.3 50.3 -5.2Q50.6 -6.1 50.6 -7.3L50.7 -8L51.5 -8.1Q51.2 -7.7 50.6 -7.5Q50 -7.2 49.2 -7.1Q48.5 -7 47.7 -6.8Q46.9 -6.7 46.3 -6.4Q45.6 -6.2 45.2 -5.7Q44.8 -5.3 44.8 -4.6Q44.8 -3.7 45.4 -3.3Q45.9 -2.8 46.8 -2.8Z M63.2 0.4Q61.7 0.4 60.3 0.1Q59 -0.2 58 -0.9Q57 -1.6 56.5 -2.7Q56 -3.9 56.1 -5.5L59.9 -5.9Q59.9 -4.8 60.3 -4.1Q60.8 -3.4 61.5 -3Q62.3 -2.7 63.4 -2.7Q64.5 -2.7 65.2 -3.1Q66 -3.5 66 -4.3Q66 -4.8 65.7 -5.1Q65.4 -5.4 64.7 -5.7Q63.9 -5.9 62.7 -6.2Q61.3 -6.5 60.1 -6.9Q58.9 -7.3 58 -7.8Q57.1 -8.3 56.7 -9.1Q56.2 -9.9 56.2 -11.1Q56.2 -12.7 57 -13.8Q57.9 -14.9 59.4 -15.6Q60.9 -16.2 62.9 -16.2Q64.7 -16.2 66.3 -15.6Q67.8 -15 68.7 -13.8Q69.6 -12.5 69.4 -10.4L65.7 -10Q65.8 -11 65.4 -11.6Q65 -12.3 64.3 -12.6Q63.6 -13 62.7 -13Q61.5 -13 60.9 -12.6Q60.2 -12.1 60.2 -11.4Q60.2 -10.9 60.6 -10.5Q61.1 -10.1 61.8 -9.9Q62.6 -9.7 63.8 -9.4Q64.8 -9.2 65.9 -8.9Q67 -8.6 68 -8.1Q68.9 -7.5 69.5 -6.6Q70.1 -5.8 70.1 -4.4Q70.1 -2.9 69.3 -1.8Q68.5 -0.8 67 -0.2Q65.4 0.4 63.2 0.4Z M76.2 0.4Q73.6 0.4 72.3 -1.4Q71.1 -3.3 71.1 -7.1V-15.8H75.4V-7.2Q75.4 -5.1 76 -4.2Q76.5 -3.4 77.6 -3.4Q78.4 -3.4 79 -3.8Q79.7 -4.2 80.1 -4.9Q80.6 -5.7 80.8 -7Q81.1 -8.2 81.1 -9.9V-15.8H85.4V-7.3V0H81.7L81.8 -6.3H81.5Q81.3 -4 80.7 -2.5Q80 -1 78.9 -0.3Q77.8 0.4 76.2 0.4Z M87.2 0V-8.3L87.1 -15.8H90.9L90.8 -9.2H91.1Q91.2 -11.8 91.8 -13.3Q92.3 -14.8 93.1 -15.4Q94 -16.1 95 -16.1Q95.5 -16.1 96.1 -16Q96.6 -15.8 97.2 -15.5L97 -10.8Q96.4 -11.1 95.8 -11.3Q95.2 -11.4 94.7 -11.4Q93.6 -11.4 92.9 -10.8Q92.2 -10.2 91.8 -9Q91.4 -7.7 91.4 -6V0Z M105.1 0.4Q103 0.4 101.5 -0.2Q100 -0.8 99.1 -1.9Q98.1 -3.1 97.7 -4.5Q97.3 -5.9 97.3 -7.6Q97.3 -9.3 97.7 -10.8Q98.2 -12.4 99.1 -13.6Q100 -14.8 101.4 -15.5Q102.8 -16.2 104.8 -16.2Q106.7 -16.2 108.2 -15.5Q109.6 -14.8 110.4 -13.6Q111.3 -12.4 111.6 -10.8Q111.8 -9.2 111.6 -7.3L100 -7.1V-9.5L108.3 -9.7L107.7 -8.3Q107.8 -9.7 107.6 -10.7Q107.3 -11.7 106.6 -12.2Q105.9 -12.7 104.8 -12.7Q103.6 -12.7 102.9 -12.1Q102.1 -11.5 101.8 -10.4Q101.5 -9.3 101.5 -7.8Q101.5 -5.2 102.4 -4Q103.3 -2.9 105.1 -2.9Q106 -2.9 106.5 -3.1Q107.1 -3.3 107.4 -3.7Q107.8 -4.1 107.9 -4.6Q108 -5.2 108 -5.8L112 -5.6Q112 -4.5 111.7 -3.5Q111.4 -2.4 110.6 -1.5Q109.8 -0.7 108.4 -0.1Q107.1 0.4 105.1 0.4Z M123.2 0V-19.8H127.5V0ZM118.1 -16.1V-19.8H132.6V-16.1Z M132.6 0V-8.3L132.6 -15.8H136.4L136.3 -9.2H136.5Q136.7 -11.8 137.3 -13.3Q137.8 -14.8 138.6 -15.4Q139.4 -16.1 140.5 -16.1Q141 -16.1 141.6 -16Q142.1 -15.8 142.7 -15.5L142.4 -10.8Q141.8 -11.1 141.2 -11.3Q140.6 -11.4 140.1 -11.4Q139.1 -11.4 138.4 -10.8Q137.7 -10.2 137.3 -9Q136.9 -7.7 136.9 -6V0Z M150.5 0.4Q148.2 0.4 146.4 -0.5Q144.7 -1.4 143.7 -3.2Q142.7 -5.1 142.7 -7.9Q142.7 -10.7 143.8 -12.5Q144.8 -14.4 146.5 -15.3Q148.3 -16.2 150.5 -16.2Q152.8 -16.2 154.5 -15.3Q156.2 -14.3 157.2 -12.5Q158.2 -10.7 158.2 -7.9Q158.2 -5 157.2 -3.1Q156.2 -1.3 154.4 -0.4Q152.6 0.4 150.5 0.4ZM150.5 -2.8Q151.6 -2.8 152.3 -3.4Q153 -4 153.4 -5Q153.8 -6.1 153.8 -7.6Q153.8 -9.3 153.4 -10.4Q153 -11.5 152.2 -12.1Q151.4 -12.8 150.4 -12.8Q149.3 -12.8 148.6 -12.2Q147.9 -11.6 147.5 -10.5Q147.1 -9.4 147.1 -7.9Q147.1 -5.5 148 -4.2Q148.9 -2.8 150.5 -2.8Z M162.6 0 157.6 -15.8H162.2L165.3 -3.6H165.5L168.7 -15.8H173L168.1 0Z M180.3 0.4Q178.1 0.4 176.7 -0.2Q175.2 -0.8 174.2 -1.9Q173.3 -3.1 172.9 -4.5Q172.5 -5.9 172.5 -7.6Q172.5 -9.3 172.9 -10.8Q173.3 -12.4 174.2 -13.6Q175.1 -14.8 176.6 -15.5Q178 -16.2 180 -16.2Q181.9 -16.2 183.3 -15.5Q184.7 -14.8 185.6 -13.6Q186.5 -12.4 186.7 -10.8Q187 -9.2 186.8 -7.3L175.1 -7.1V-9.5L183.5 -9.7L182.9 -8.3Q183 -9.7 182.7 -10.7Q182.5 -11.7 181.8 -12.2Q181.1 -12.7 180 -12.7Q178.8 -12.7 178 -12.1Q177.3 -11.5 177 -10.4Q176.6 -9.3 176.6 -7.8Q176.6 -5.2 177.6 -4Q178.5 -2.9 180.3 -2.9Q181.1 -2.9 181.7 -3.1Q182.3 -3.3 182.6 -3.7Q182.9 -4.1 183.1 -4.6Q183.2 -5.2 183.2 -5.8L187.1 -5.6Q187.2 -4.5 186.9 -3.5Q186.6 -2.4 185.8 -1.5Q185 -0.7 183.6 -0.1Q182.3 0.4 180.3 0.4Z" fill="currentColor"/><path d="M1.3 29V9.2H5.6V29ZM3.4 21.6V18.1H13.6V21.6ZM3.4 12.8V9.2H14.7V12.8Z M15.9 29V13.2H20.2V29ZM18 11.9Q16.8 11.9 16.1 11.4Q15.4 10.8 15.4 9.8Q15.4 8.8 16.1 8.3Q16.8 7.7 18 7.7Q19.3 7.7 20 8.3Q20.6 8.8 20.6 9.8Q20.6 10.8 20 11.4Q19.3 11.9 18 11.9Z M22 29V20.5L22 13.2H25.7L25.6 19.9H25.9Q26 17.5 26.7 15.9Q27.3 14.4 28.4 13.6Q29.5 12.8 31.3 12.8Q33.8 12.8 35.1 14.6Q36.4 16.3 36.4 19.9V29H32.1V20.4Q32.1 18.5 31.5 17.5Q31 16.6 29.8 16.6Q28.7 16.6 27.9 17.3Q27.2 18.1 26.8 19.6Q26.3 21.2 26.3 23.7V29Z M43.8 29.4Q42.1 29.4 40.8 28.5Q39.4 27.6 38.6 25.7Q37.8 23.9 37.8 21Q37.8 18.3 38.5 16.4Q39.2 14.6 40.6 13.7Q41.9 12.8 43.7 12.8Q45.1 12.8 46.2 13.4Q47.2 14 47.9 15.3Q48.6 16.6 48.9 18.6H49.2Q49 17.5 48.9 16.4Q48.7 15.4 48.6 14.5Q48.6 13.6 48.6 12.8V8.2H52.9L52.9 23.1L52.9 29H49.1L49.2 24H49Q48.6 25.8 47.9 27Q47.2 28.2 46.2 28.8Q45.2 29.4 43.8 29.4ZM45.2 25.9Q46 25.9 46.6 25.6Q47.2 25.2 47.7 24.6Q48.1 24 48.3 23.2Q48.6 22.3 48.6 21.3V21.1Q48.6 20.3 48.4 19.6Q48.3 18.9 48 18.3Q47.7 17.7 47.2 17.3Q46.8 16.9 46.3 16.7Q45.8 16.5 45.2 16.5Q44.2 16.5 43.5 17.1Q42.8 17.8 42.5 18.8Q42.2 19.9 42.2 21.3Q42.2 22.6 42.5 23.6Q42.9 24.7 43.6 25.3Q44.2 25.9 45.2 25.9Z M61.4 29.4Q59.9 29.4 58.5 29.1Q57.2 28.8 56.2 28.1Q55.3 27.4 54.8 26.3Q54.2 25.1 54.3 23.5L58.1 23.1Q58.1 24.2 58.6 24.9Q59 25.6 59.7 26Q60.5 26.3 61.6 26.3Q62.7 26.3 63.5 25.9Q64.2 25.5 64.2 24.7Q64.2 24.2 63.9 23.9Q63.6 23.6 62.9 23.3Q62.2 23.1 60.9 22.8Q59.5 22.5 58.3 22.1Q57.1 21.7 56.2 21.2Q55.4 20.7 54.9 19.9Q54.4 19.1 54.4 17.9Q54.4 16.3 55.3 15.2Q56.1 14.1 57.6 13.4Q59.2 12.8 61.1 12.8Q62.9 12.8 64.5 13.4Q66 14 66.9 15.2Q67.8 16.5 67.6 18.6L63.9 19Q64 18 63.6 17.4Q63.3 16.7 62.6 16.4Q61.9 16 60.9 16Q59.8 16 59.1 16.4Q58.5 16.9 58.5 17.6Q58.5 18.1 58.9 18.5Q59.3 18.9 60.1 19.1Q60.8 19.3 62 19.6Q63.1 19.8 64.2 20.1Q65.2 20.4 66.2 20.9Q67.1 21.5 67.7 22.4Q68.3 23.2 68.3 24.6Q68.3 26.1 67.5 27.2Q66.7 28.2 65.2 28.8Q63.7 29.4 61.4 29.4Z" fill="currentColor"/></g></symbol><symbol id="m-e-wall" viewBox="0 0 326.2 64"><path d="M1.6,0h13.8a1.6,1.6 0 0 1 1.6,1.6v9.8a1.6,1.6 0 0 1 -1.6,1.6h-13.8a1.6,1.6 0 0 1 -1.6,-1.6v-9.8a1.6,1.6 0 0 1 1.6,-1.6Z M21.6,0h23.8a1.6,1.6 0 0 1 1.6,1.6v9.8a1.6,1.6 0 0 1 -1.6,1.6h-23.8a1.6,1.6 0 0 1 -1.6,-1.6v-9.8a1.6,1.6 0 0 1 1.6,-1.6Z M51.6,0h10.8a1.6,1.6 0 0 1 1.6,1.6v30.8a1.6,1.6 0 0 1 -1.6,1.6h-10.8a1.6,1.6 0 0 1 -1.6,-1.6v-30.8a1.6,1.6 0 0 1 1.6,-1.6Z M1.6,16h13.8a1.6,1.6 0 0 1 1.6,1.6v29.8a1.6,1.6 0 0 1 -1.6,1.6h-13.8a1.6,1.6 0 0 1 -1.6,-1.6v-29.8a1.6,1.6 0 0 1 1.6,-1.6Z M21.6,16h9.8a1.6,1.6 0 0 1 1.6,1.6v14.8a1.6,1.6 0 0 1 -1.6,1.6h-9.8a1.6,1.6 0 0 1 -1.6,-1.6v-14.8a1.6,1.6 0 0 1 1.6,-1.6Z M21.6,37h23.8a1.6,1.6 0 0 1 1.6,1.6v8.8a1.6,1.6 0 0 1 -1.6,1.6h-23.8a1.6,1.6 0 0 1 -1.6,-1.6v-8.8a1.6,1.6 0 0 1 1.6,-1.6Z M51.6,37h10.8a1.6,1.6 0 0 1 1.6,1.6v23.8a1.6,1.6 0 0 1 -1.6,1.6h-10.8a1.6,1.6 0 0 1 -1.6,-1.6v-23.8a1.6,1.6 0 0 1 1.6,-1.6Z M1.6,52h13.8a1.6,1.6 0 0 1 1.6,1.6v8.8a1.6,1.6 0 0 1 -1.6,1.6h-13.8a1.6,1.6 0 0 1 -1.6,-1.6v-8.8a1.6,1.6 0 0 1 1.6,-1.6Z M21.6,52h9.8a1.6,1.6 0 0 1 1.6,1.6v8.8a1.6,1.6 0 0 1 -1.6,1.6h-9.8a1.6,1.6 0 0 1 -1.6,-1.6v-8.8a1.6,1.6 0 0 1 1.6,-1.6Z M37.6,52h7.8a1.6,1.6 0 0 1 1.6,1.6v8.8a1.6,1.6 0 0 1 -1.6,1.6h-7.8a1.6,1.6 0 0 1 -1.6,-1.6v-8.8a1.6,1.6 0 0 1 1.6,-1.6Z M37.6,16h7.8a1.6,1.6 0 0 1 1.6,1.6v14.8a1.6,1.6 0 0 1 -1.6,1.6h-7.8a1.6,1.6 0 0 1 -1.6,-1.6v-14.8a1.6,1.6 0 0 1 1.6,-1.6Z" fill="currentColor"/><g transform="translate(83.6 41.7)"><path d="M5.2 0V-18.5H9.2V0ZM0.4 -15V-18.5H13.9V-15Z M13.9 0V-7.7L13.9 -14.7H17.4L17.3 -8.6H17.5Q17.7 -11 18.2 -12.4Q18.7 -13.8 19.5 -14.4Q20.2 -15 21.2 -15Q21.7 -15 22.2 -14.9Q22.7 -14.8 23.3 -14.5L23 -10.1Q22.5 -10.4 21.9 -10.5Q21.4 -10.7 20.9 -10.7Q19.9 -10.7 19.3 -10.1Q18.6 -9.5 18.2 -8.4Q17.9 -7.2 17.9 -5.6V0Z M30.5 0.4Q28.5 0.4 27.1 -0.2Q25.8 -0.8 24.9 -1.8Q24 -2.9 23.6 -4.2Q23.2 -5.5 23.2 -7.1Q23.2 -8.7 23.6 -10.1Q24.1 -11.6 24.9 -12.7Q25.7 -13.8 27.1 -14.4Q28.4 -15.1 30.2 -15.1Q32.1 -15.1 33.4 -14.5Q34.7 -13.8 35.5 -12.7Q36.3 -11.6 36.6 -10.1Q36.8 -8.6 36.6 -6.8L25.7 -6.6V-8.9L33.5 -9.1L32.9 -7.8Q33.1 -9 32.8 -10Q32.6 -10.9 31.9 -11.4Q31.3 -11.9 30.2 -11.9Q29.1 -11.9 28.4 -11.3Q27.7 -10.7 27.4 -9.7Q27.1 -8.7 27.1 -7.3Q27.1 -4.9 28 -3.8Q28.8 -2.7 30.5 -2.7Q31.3 -2.7 31.8 -2.9Q32.4 -3.1 32.7 -3.5Q33 -3.8 33.1 -4.3Q33.3 -4.8 33.2 -5.4L36.9 -5.2Q37 -4.2 36.7 -3.2Q36.4 -2.2 35.7 -1.4Q34.9 -0.6 33.6 -0.1Q32.4 0.4 30.5 0.4Z M41.8 0.4Q40.7 0.4 39.7 -0Q38.7 -0.4 38 -1.3Q37.4 -2.2 37.4 -3.6Q37.4 -5 37.9 -5.8Q38.4 -6.7 39.3 -7.2Q40.2 -7.7 41.3 -8Q42.4 -8.2 43.5 -8.4Q44.9 -8.7 45.7 -8.9Q46.4 -9 46.7 -9.3Q46.9 -9.5 46.9 -9.9Q46.9 -10.9 46.3 -11.4Q45.6 -11.8 44.5 -11.8Q43.8 -11.8 43.2 -11.6Q42.5 -11.4 42.1 -10.8Q41.6 -10.1 41.6 -9L38 -9.4Q38 -11 38.6 -12.1Q39.2 -13.2 40.2 -13.9Q41.1 -14.5 42.3 -14.8Q43.5 -15.1 44.6 -15.1Q46.7 -15.1 48.1 -14.3Q49.5 -13.6 50.2 -12.1Q50.9 -10.6 50.9 -8.4V-5.8Q50.9 -4.8 50.9 -3.8Q50.9 -2.9 50.9 -1.9Q50.9 -1 50.9 0H47.3Q47.4 -1.1 47.4 -2.2Q47.4 -3.2 47.4 -4.4H47.3Q47.1 -3.1 46.4 -2Q45.7 -0.9 44.5 -0.3Q43.3 0.4 41.8 0.4ZM43.4 -2.6Q43.9 -2.6 44.6 -2.8Q45.2 -3.1 45.7 -3.6Q46.3 -4.1 46.6 -4.9Q46.9 -5.7 46.9 -6.8L47 -7.4L47.7 -7.6Q47.5 -7.2 46.9 -7Q46.3 -6.7 45.6 -6.6Q44.9 -6.5 44.2 -6.4Q43.5 -6.2 42.8 -6Q42.2 -5.8 41.8 -5.4Q41.5 -5 41.5 -4.3Q41.5 -3.5 42 -3Q42.5 -2.6 43.4 -2.6Z M58.5 0.4Q57.1 0.4 55.8 0.1Q54.6 -0.2 53.7 -0.8Q52.8 -1.5 52.3 -2.6Q51.8 -3.6 51.9 -5.2L55.4 -5.5Q55.5 -4.5 55.9 -3.8Q56.3 -3.1 57 -2.8Q57.7 -2.5 58.7 -2.5Q59.8 -2.5 60.5 -2.9Q61.2 -3.2 61.2 -4Q61.2 -4.5 60.9 -4.8Q60.6 -5.1 59.9 -5.3Q59.2 -5.5 58.1 -5.8Q56.7 -6.1 55.6 -6.5Q54.5 -6.8 53.7 -7.3Q52.9 -7.8 52.4 -8.5Q52 -9.3 52 -10.4Q52 -11.8 52.8 -12.9Q53.6 -13.9 55 -14.5Q56.4 -15.1 58.3 -15.1Q59.9 -15.1 61.4 -14.6Q62.8 -14 63.7 -12.8Q64.5 -11.6 64.3 -9.7L60.8 -9.4Q60.9 -10.2 60.6 -10.9Q60.3 -11.5 59.6 -11.8Q58.9 -12.1 58 -12.1Q57 -12.1 56.4 -11.7Q55.8 -11.3 55.8 -10.7Q55.8 -10.1 56.2 -9.8Q56.5 -9.5 57.3 -9.3Q58 -9 59.1 -8.8Q60.1 -8.6 61.1 -8.3Q62.1 -8 63 -7.5Q63.9 -7 64.4 -6.2Q65 -5.4 65 -4.1Q65 -2.7 64.2 -1.7Q63.5 -0.7 62 -0.2Q60.6 0.4 58.5 0.4Z M70.6 0.4Q68.1 0.4 66.9 -1.3Q65.8 -3.1 65.8 -6.6V-14.7H69.8V-6.7Q69.8 -4.8 70.3 -4Q70.9 -3.2 71.9 -3.2Q72.6 -3.2 73.2 -3.5Q73.8 -3.9 74.2 -4.6Q74.6 -5.3 74.9 -6.5Q75.1 -7.6 75.1 -9.2V-14.7H79.1V-6.9V0H75.7L75.7 -5.9H75.5Q75.3 -3.7 74.7 -2.3Q74.1 -0.9 73.1 -0.3Q72.1 0.4 70.6 0.4Z M80.7 0V-7.7L80.6 -14.7H84.2L84.1 -8.6H84.3Q84.5 -11 85 -12.4Q85.5 -13.8 86.3 -14.4Q87 -15 88 -15Q88.5 -15 89 -14.9Q89.5 -14.8 90 -14.5L89.8 -10.1Q89.3 -10.4 88.7 -10.5Q88.1 -10.7 87.7 -10.7Q86.7 -10.7 86 -10.1Q85.4 -9.5 85 -8.4Q84.7 -7.2 84.7 -5.6V0Z M97.3 0.4Q95.3 0.4 93.9 -0.2Q92.5 -0.8 91.7 -1.8Q90.8 -2.9 90.4 -4.2Q90 -5.5 90 -7.1Q90 -8.7 90.4 -10.1Q90.8 -11.6 91.7 -12.7Q92.5 -13.8 93.9 -14.4Q95.2 -15.1 97 -15.1Q98.8 -15.1 100.2 -14.5Q101.5 -13.8 102.3 -12.7Q103.1 -11.6 103.3 -10.1Q103.6 -8.6 103.3 -6.8L92.5 -6.6V-8.9L100.3 -9.1L99.7 -7.8Q99.8 -9 99.6 -10Q99.3 -10.9 98.7 -11.4Q98.1 -11.9 97 -11.9Q95.9 -11.9 95.2 -11.3Q94.5 -10.7 94.2 -9.7Q93.9 -8.7 93.9 -7.3Q93.9 -4.9 94.8 -3.8Q95.6 -2.7 97.3 -2.7Q98.1 -2.7 98.6 -2.9Q99.1 -3.1 99.5 -3.5Q99.8 -3.8 99.9 -4.3Q100 -4.8 100 -5.4L103.7 -5.2Q103.8 -4.2 103.5 -3.2Q103.2 -2.2 102.4 -1.4Q101.7 -0.6 100.4 -0.1Q99.1 0.4 97.3 0.4Z M113.9 0V-18.5H118V0ZM109.2 -15V-18.5H122.7V-15Z M122.7 0V-7.7L122.6 -14.7H126.2L126.1 -8.6H126.3Q126.5 -11 127 -12.4Q127.5 -13.8 128.3 -14.4Q129 -15 130 -15Q130.5 -15 131 -14.9Q131.5 -14.8 132 -14.5L131.8 -10.1Q131.3 -10.4 130.7 -10.5Q130.1 -10.7 129.7 -10.7Q128.7 -10.7 128 -10.1Q127.4 -9.5 127 -8.4Q126.7 -7.2 126.7 -5.6V0Z M139.2 0.4Q137.1 0.4 135.4 -0.5Q133.8 -1.3 132.9 -3Q132 -4.7 132 -7.3Q132 -10 132.9 -11.7Q133.9 -13.4 135.5 -14.3Q137.2 -15.1 139.2 -15.1Q141.3 -15.1 143 -14.2Q144.6 -13.4 145.5 -11.7Q146.4 -9.9 146.4 -7.3Q146.4 -4.6 145.5 -2.9Q144.5 -1.2 142.9 -0.4Q141.2 0.4 139.2 0.4ZM139.3 -2.6Q140.3 -2.6 140.9 -3.2Q141.6 -3.7 142 -4.7Q142.3 -5.7 142.3 -7.1Q142.3 -8.7 141.9 -9.7Q141.5 -10.8 140.8 -11.3Q140.1 -11.9 139.1 -11.9Q138.2 -11.9 137.5 -11.4Q136.8 -10.8 136.4 -9.8Q136.1 -8.8 136.1 -7.4Q136.1 -5.2 136.9 -3.9Q137.8 -2.6 139.3 -2.6Z M150.4 0 145.7 -14.7H150L153 -3.4H153.1L156.1 -14.7H160.2L155.5 0Z M166.8 0.4Q164.8 0.4 163.4 -0.2Q162 -0.8 161.2 -1.8Q160.3 -2.9 159.9 -4.2Q159.5 -5.5 159.5 -7.1Q159.5 -8.7 159.9 -10.1Q160.3 -11.6 161.2 -12.7Q162 -13.8 163.4 -14.4Q164.7 -15.1 166.5 -15.1Q168.3 -15.1 169.7 -14.5Q171 -13.8 171.8 -12.7Q172.6 -11.6 172.8 -10.1Q173.1 -8.6 172.8 -6.8L162 -6.6V-8.9L169.8 -9.1L169.2 -7.8Q169.3 -9 169.1 -10Q168.8 -10.9 168.2 -11.4Q167.6 -11.9 166.5 -11.9Q165.4 -11.9 164.7 -11.3Q164 -10.7 163.7 -9.7Q163.4 -8.7 163.4 -7.3Q163.4 -4.9 164.3 -3.8Q165.1 -2.7 166.8 -2.7Q167.6 -2.7 168.1 -2.9Q168.6 -3.1 169 -3.5Q169.3 -3.8 169.4 -4.3Q169.5 -4.8 169.5 -5.4L173.2 -5.2Q173.3 -4.2 173 -3.2Q172.7 -2.2 171.9 -1.4Q171.2 -0.6 169.9 -0.1Q168.6 0.4 166.8 0.4Z M179.5 0V-18.5H183.5V0ZM181.4 -6.9V-10.2H191V-6.9ZM181.4 -15.1V-18.5H192V-15.1Z M193 0V-14.7H197V0ZM195 -16Q193.8 -16 193.2 -16.5Q192.6 -17 192.6 -17.9Q192.6 -18.8 193.2 -19.3Q193.8 -19.9 195 -19.9Q196.2 -19.9 196.8 -19.3Q197.4 -18.8 197.4 -17.9Q197.4 -17 196.8 -16.5Q196.2 -16 195 -16Z M198.6 0V-8L198.6 -14.7H202L201.9 -8.5H202.2Q202.4 -10.7 202.9 -12.2Q203.5 -13.6 204.6 -14.4Q205.6 -15.1 207.2 -15.1Q209.6 -15.1 210.8 -13.5Q212 -11.8 212 -8.5V0H208V-8.1Q208 -9.8 207.5 -10.7Q207 -11.6 205.8 -11.6Q204.8 -11.6 204.1 -10.9Q203.4 -10.2 203 -8.8Q202.6 -7.3 202.6 -4.9V0Z M218.8 0.4Q217.3 0.4 216 -0.5Q214.7 -1.3 213.9 -3.1Q213.2 -4.8 213.2 -7.5Q213.2 -10 213.9 -11.7Q214.6 -13.4 215.8 -14.3Q217 -15.1 218.7 -15.1Q220 -15.1 221 -14.5Q222 -14 222.7 -12.8Q223.3 -11.6 223.6 -9.7H223.8Q223.7 -10.8 223.6 -11.7Q223.4 -12.7 223.3 -13.6Q223.3 -14.4 223.3 -15.1V-19.5H227.3L227.3 -5.5L227.3 0H223.8L223.9 -4.6H223.6Q223.3 -3 222.7 -1.9Q222 -0.7 221.1 -0.2Q220.1 0.4 218.8 0.4ZM220.2 -2.9Q220.8 -2.9 221.4 -3.2Q222 -3.5 222.4 -4.1Q222.8 -4.7 223.1 -5.5Q223.3 -6.2 223.3 -7.2V-7.4Q223.3 -8.1 223.1 -8.8Q223 -9.5 222.7 -10Q222.4 -10.5 222 -10.9Q221.6 -11.3 221.2 -11.5Q220.7 -11.7 220.2 -11.7Q219.2 -11.7 218.6 -11.1Q217.9 -10.5 217.6 -9.5Q217.3 -8.5 217.3 -7.2Q217.3 -6 217.6 -5Q218 -4 218.6 -3.5Q219.2 -2.9 220.2 -2.9Z M235.2 0.4Q233.7 0.4 232.5 0.1Q231.2 -0.2 230.3 -0.8Q229.4 -1.5 228.9 -2.6Q228.5 -3.6 228.5 -5.2L232.1 -5.5Q232.1 -4.5 232.5 -3.8Q232.9 -3.1 233.6 -2.8Q234.3 -2.5 235.3 -2.5Q236.4 -2.5 237.1 -2.9Q237.8 -3.2 237.8 -4Q237.8 -4.5 237.5 -4.8Q237.2 -5.1 236.5 -5.3Q235.8 -5.5 234.7 -5.8Q233.4 -6.1 232.2 -6.5Q231.1 -6.8 230.3 -7.3Q229.5 -7.8 229.1 -8.5Q228.6 -9.3 228.6 -10.4Q228.6 -11.8 229.4 -12.9Q230.2 -13.9 231.6 -14.5Q233 -15.1 234.9 -15.1Q236.6 -15.1 238 -14.6Q239.5 -14 240.3 -12.8Q241.1 -11.6 240.9 -9.7L237.5 -9.4Q237.6 -10.2 237.2 -10.9Q236.9 -11.5 236.2 -11.8Q235.6 -12.1 234.7 -12.1Q233.6 -12.1 233 -11.7Q232.4 -11.3 232.4 -10.7Q232.4 -10.1 232.8 -9.8Q233.2 -9.5 233.9 -9.3Q234.6 -9 235.7 -8.8Q236.7 -8.6 237.7 -8.3Q238.7 -8 239.6 -7.5Q240.5 -7 241 -6.2Q241.6 -5.4 241.6 -4.1Q241.6 -2.7 240.8 -1.7Q240.1 -0.7 238.7 -0.2Q237.2 0.4 235.2 0.4Z" fill="currentColor"/></g></symbol></svg>
+</body>
+</html>

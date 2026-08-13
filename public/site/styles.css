@@ -397,6 +397,126 @@ figcaption{
   font-family:var(--mono);font-size:12.5px;color:rgba(244,238,226,.6);
 }
 
+/* ---------- the booth helper ----------
+   Same furniture as the record sheet on purpose: bottom sheet on a phone,
+   right-hand panel on a desktop, oat and paper, tin only on the actions.
+   The helper answers three questions and then writes the email to Bill,
+   so the handoff card is the loudest thing in here. */
+.ai-launch{
+  position:fixed;right:16px;bottom:16px;z-index:58;
+  min-height:52px;padding:14px 22px;font-size:16px;
+  box-shadow:var(--shadow-2);
+}
+@media (min-width:900px){ .ai-launch{right:24px;bottom:24px} }
+body.ai-open{overflow:hidden}
+
+.ai-scrim{
+  position:fixed;inset:0;z-index:96;background:rgba(35,32,28,.55);
+  opacity:0;pointer-events:none;transition:opacity .22s ease;
+}
+.ai-scrim[data-open="true"]{opacity:1;pointer-events:auto}
+
+.ai-panel{
+  position:fixed;z-index:97;background:var(--paper);
+  left:0;right:0;bottom:0;height:min(88vh,720px);
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+  transform:translateY(102%);visibility:hidden;
+  transition:transform .28s cubic-bezier(.2,.8,.2,1), visibility 0s linear .28s;
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:var(--shadow-2);
+}
+.ai-panel[data-open="true"]{transform:translateY(0);visibility:visible;transition-delay:0s}
+@media (min-width:900px){
+  .ai-panel{
+    left:auto;top:0;bottom:0;height:auto;width:min(520px,42vw);
+    border-radius:0;transform:translateX(103%);
+  }
+  .ai-panel[data-open="true"]{transform:translateX(0)}
+}
+
+.ai-log{
+  flex:1 1 auto;min-height:0;overflow-y:auto;
+  padding:var(--sp-3) 20px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.ai-msg{max-width:100%;font-size:18px;line-height:1.55}
+.ai-msg p{margin:0 0 .55em}
+.ai-msg p:last-child{margin-bottom:0}
+.ai-bot{
+  background:var(--oat);border-left:3px solid var(--oak);
+  padding:14px 16px;border-radius:0 var(--r-sm) var(--r-sm) 0;
+}
+.ai-you{
+  align-self:flex-end;max-width:88%;
+  background:var(--oat-deep);border:1px solid var(--oak-line);
+  padding:12px 16px;border-radius:var(--r-md) var(--r-md) 3px var(--r-md);
+}
+.ai-thinking{color:var(--ink-soft);font-style:italic}
+.ai-note{
+  font-family:var(--mono);font-size:13.5px;line-height:1.6;color:var(--ink-soft);
+  border-top:1px solid var(--oak-line);padding-top:10px;
+}
+
+/* the handoff: the whole point of the feature */
+.ai-hand-card{
+  background:var(--paper);border:1px solid var(--oak);
+  border-radius:var(--r-md);padding:var(--sp-3);box-shadow:var(--shadow-1);
+}
+.ai-hand-card .eyebrow{margin-bottom:8px}
+.ai-hand-card p{font-size:18px;line-height:1.5}
+.ai-ta-label{
+  display:block;font-family:var(--mono);font-size:13px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-soft);margin:12px 0 6px;
+}
+.ai-recap{
+  width:100%;max-width:100%;display:block;
+  font-family:var(--body);font-size:18px;line-height:1.5;color:var(--ink);
+  background:var(--oat);border:1.5px solid var(--oak);border-radius:var(--r-sm);
+  padding:12px 14px;resize:vertical;
+}
+.ai-hand-card .btn-row{margin-top:14px}
+.ai-hand-card .btn{min-height:48px;padding:12px 20px;font-size:16px}
+.ai-fine{
+  font-family:var(--mono);font-size:13px;line-height:1.6;
+  color:var(--ink-soft);margin:12px 0 0;
+}
+
+/* the input row */
+.ai-foot{border-top:1px solid var(--oak-line);padding:12px 20px 16px;background:var(--paper)}
+/* the box gets its own row so it is a real writing surface on a phone */
+.ai-form{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ai-form[data-capped="true"]{opacity:.55}
+.ai-photo{
+  position:relative;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:52px;min-width:52px;padding:10px 12px;
+  background:transparent;border:1.5px solid var(--oak);border-radius:var(--r-sm);
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-soft);text-align:center;line-height:1.2;cursor:pointer;
+}
+.ai-photo input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.ai-photo:focus-within{outline:3px solid var(--tin);outline-offset:3px}
+.ai-photo-txt{max-width:8ch}
+.ai-text{
+  flex:1 1 100%;order:-1;min-width:0;min-height:52px;max-height:132px;
+  padding:14px 14px;resize:none;overflow-y:auto;
+  font-family:var(--body);font-size:18px;line-height:1.4;color:var(--ink);
+  background:var(--paper);border:1.5px solid var(--oak);border-radius:var(--r-sm);
+}
+.ai-text:focus-visible{border-color:var(--tin)}
+.ai-send{flex:0 0 auto;margin-left:auto;min-height:52px;padding:14px 24px;font-size:16px}
+.ai-send:disabled,.ai-text:disabled{cursor:not-allowed}
+.ai-foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+.ai-link{
+  min-height:44px;padding:8px 0;background:none;border:0;cursor:pointer;
+  font-family:var(--display);font-weight:600;font-size:15px;color:var(--ink);
+  text-decoration:underline;text-underline-offset:3px;
+}
+.ai-count{
+  margin:0 0 0 auto;font-family:var(--mono);font-size:12.5px;
+  letter-spacing:.06em;color:var(--ink-soft);
+}
+
 /* ---------- motion ---------- */
 .rise{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s cubic-bezier(.2,.7,.3,1)}
 .rise.in{opacity:1;transform:none}
@@ -404,4 +524,5 @@ figcaption{
   *{animation:none !important;transition:none !important}
   .rise{opacity:1;transform:none}
   .sheet{transition:none}
+  .ai-panel{transition:none}
 }
